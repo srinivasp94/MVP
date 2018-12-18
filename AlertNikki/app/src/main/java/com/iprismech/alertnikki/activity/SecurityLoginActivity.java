@@ -94,7 +94,7 @@ public class SecurityLoginActivity extends BaseAbstractActivity<Class> implement
 
                                 Login_model login_model = new Login_model();
                                 login_model.passcode = "8938960";
-                                login_model.selected_image = "";
+                                login_model.selected_image = "base640";
                                 try {
                                     obj = Class.forName(Login_model.class.getName()).cast(login_model);
 
