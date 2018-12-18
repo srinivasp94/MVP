@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbackground"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.SearchView
+        android:id="@+id/search_company"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="@dimen/_2sdp">
+
+    </android.support.v7.widget.SearchView>
+
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:gravity="center"
+        android:text="- Food -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_16sdp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_Food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@color/viewcolor" />
+
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp"
+        android:gravity="center"
+        android:text="- Online Shopping -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_16sdp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_Onlineshopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@color/viewcolor" />
+
+
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".activity.WelcomeActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="@dimen/_80sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_gravity="center"
+        android:id="@+id/img_pic"
+        android:layout_marginTop="@dimen/_8sdp" />
+
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome !"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="@dimen/_14sdp"
+        android:textColor="@color/colorPrimary"/>
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Name of Security"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:gravity="center"
+        android:textSize="@dimen/_14sdp"
+        />
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Society Main gate"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:textSize="@dimen/_12sdp"
+        />
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Entry Time 9.00 AM"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center"
+        android:textSize="@dimen/_14sdp"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ok"
+        android:id="@+id/btn_ok"
+        android:background="@color/colorPrimary"
+        android:textColor="#fff"
+        android:textSize="@dimen/_14sdp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_10sdp"/>
+</LinearLayout>

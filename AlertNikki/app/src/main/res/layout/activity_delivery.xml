@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f9f9f9"
+    android:orientation="vertical"
+    tools:context=".activity.DeliveryActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingTop="@dimen/_6sdp">
+
+            <ImageView
+                android:id="@+id/img_Close"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_alignParentTop="true"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                android:tint="@color/black" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:id="@+id/txt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="Delivery"
+                android:textSize="@dimen/_16sdp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingLeft="@dimen/_5sdp"
+            android:paddingTop="@dimen/_8sdp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_deliveryBoy_pic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/img_deliveryBoy_pic"
+                android:paddingLeft="@dimen/_5sdp"
+                android:text="Add Picture"
+                android:textSize="@dimen/_14sdp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/_8sdp">
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="*Name"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/edt_Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="Name" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/viewcolor" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="*Mobile"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/edt_Mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="000-000-0000" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/viewcolor" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="*Delivy From"
+                android:textColor="@color/colorPrimary" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/edt_DeliveryFrom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="Name" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_deliverycompany"
+                    android:layout_width="@dimen/_24sdp"
+                    android:layout_height="@dimen/_24sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:src="@mipmap/ic_launcher" />
+            </RelativeLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/viewcolor" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="*Delivy From"
+                android:textColor="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:orientation="horizontal">
+
+
+                <EditText
+                    android:id="@+id/edt_vehicle_first"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:background="@drawable/vehiclenum_bgr"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:hint="AP"
+                    android:inputType="text"
+                    android:maxLength="2"
+                    android:padding="@dimen/_1sdp"
+                    android:textAllCaps="true" />
+
+                <EditText
+                    android:id="@+id/edt_vehicle_one"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:background="@drawable/vehiclenum_bgr"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:hint="AP"
+                    android:inputType="number"
+                    android:maxLength="2"
+                    android:padding="@dimen/_1sdp" />
+
+                <EditText
+                    android:id="@+id/edt_vehicle_two"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:background="@drawable/vehiclenum_bgr"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:hint="AP"
+                    android:inputType="text"
+                    android:maxLength="2"
+                    android:padding="@dimen/_3sdp" />
+
+                <EditText
+                    android:id="@+id/edt_vehicle_three"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginRight="@dimen/_4sdp"
+                    android:background="@drawable/vehiclenum_bgr"
+                    android:elevation="@dimen/_2sdp"
+                    android:gravity="center"
+                    android:hint="1111"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    android:padding="@dimen/_3sdp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/mainbackground"
+            android:paddingLeft="@dimen/_8sdp"
+            android:paddingTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            android:text="Resident Details"
+            android:textSize="@dimen/_15sdp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:orientation="vertical"
+            android:padding="@dimen/_8sdp">
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="*Mobile Number"
+                android:textColor="@color/colorPrimary" />
+            <EditText
+                android:id="@+id/edt_resident_Mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="000-000-0000" />
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/viewcolor" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="*Select Building /Block/Zone"
+                android:textColor="@color/colorPrimary" />
+
+            <Spinner
+                android:layout_marginTop="@dimen/_2sdp"
+                android:padding="@dimen/_4sdp"
+                android:id="@+id/spinner_building"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/viewcolor" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="*Select Flat /Villa"
+                android:textColor="@color/colorPrimary" />
+
+            <Spinner
+                android:layout_marginTop="@dimen/_2sdp"
+                android:padding="@dimen/_4sdp"
+                android:id="@+id/spinner_flat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:background="@color/viewcolor" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_sendnotify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Send Notify"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/_8sdp"
+            android:padding="@dimen/_8sdp"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/button_bgr"/>
+    </LinearLayout>
+</ScrollView>

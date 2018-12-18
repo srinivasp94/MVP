@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mainbackground"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_navigationtop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        app:elevation="2dp"
+        app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/nav_top_view" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom_navigation"
+        android:layout_below="@id/bottom_navigationtop"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/_8sdp"
+            android:gravity="center"
+            android:text="Entry Code"
+            android:textSize="@dimen/_13sdp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/passcode_bgr"
+            android:elevation="@dimen/_2sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/_10sdp"
+            android:paddingRight="@dimen/_10sdp"
+            android:weightSum="6">
+
+
+            <EditText
+                android:id="@+id/edt_otp1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/edt_otp2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/edt_otp3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/edt_otp4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/edt_otp5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true" />
+
+            <EditText
+                android:id="@+id/edt_otp6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:hint="0"
+                android:inputType="number"
+                android:maxLength="1"
+                android:padding="@dimen/_5sdp"
+                android:singleLine="true" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/qrcode_Scan_Layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/_1sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@mipmap/ic_launcher" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="QR CODE"
+                    android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/_1sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@mipmap/ic_launcher" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="OTP"
+                    android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/_10sdp"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/_1sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@mipmap/ic_launcher" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="MOBIle"
+                    android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:elevation="@dimen/_1sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@mipmap/ic_launcher" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:text="VEHICLE"
+                    android:textSize="@dimen/_14sdp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txtSocietyGate"
+        android:layout_gravity="bottom"
+        android:background="@android:color/white"
+        app:elevation="1dp"
+        app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_view" />
+    <!--app:itemIconTint="@color/white"-->
+    <!--app:itemTextColor="@color/white"-->
+    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+        android:id="@+id/txtSocietyGate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/textcolor"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="Society Main gate"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
+
+    <FrameLayout
+        android:id="@+id/fm_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+</RelativeLayout>

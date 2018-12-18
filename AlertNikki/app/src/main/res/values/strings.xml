@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AlertNikki</string>
+
+    <string name="delivery">Delivery</string>
+    <string name="daily">Daily Helps</string>
+    <string name="school">School bus</string>
+    <string name="cab">Cab</string>
+    <string name="more">More</string>
+
+
+</resources>

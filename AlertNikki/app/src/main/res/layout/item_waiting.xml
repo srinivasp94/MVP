@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="2">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/txt_title_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="GusetName"
+            android:textSize="@dimen/_13sdp" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewLight
+            android:id="@+id/txt_gusetType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guset"
+            android:textSize="@dimen/_13sdp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#cc6600"
+            android:text="Check"
+            android:textColor="@color/white"
+            android:visibility="gone" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/green"
+            android:gravity="center"
+            android:text="Ok"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+</LinearLayout>
