@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_home"
-        android:title="@string/delivery"
-        android:icon="@android:drawable/btn_star" />
-    <item android:id="@+id/action_news"
-        android:title="@string/daily"
-        android:icon="@android:drawable/btn_star" />
-    <item android:id="@+id/action_settings"
-        android:title="@string/school"
-        android:icon="@android:drawable/btn_star" />
-    <item android:id="@+id/action_notifications"
-        android:title="@string/cab"
-        android:icon="@android:drawable/btn_star"/>
-    <item android:id="@+id/action_profile"
-        android:title="@string/more"
-        android:icon="@android:drawable/btn_star" />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_delivery"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/delivery" />
+    <item
+        android:id="@+id/action_dailyhelps"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/daily" />
+    <item
+        android:id="@+id/action_school"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/school" />
+    <item
+        android:id="@+id/action_cab"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/cab" />
+    <item
+        android:id="@+id/action_more"
+        android:icon="@android:drawable/btn_star"
+        android:title="@string/more" />
 </menu>

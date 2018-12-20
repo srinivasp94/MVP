@@ -3,7 +3,10 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_3sdp"
+    android:background="@color/white"
     android:orientation="horizontal"
+    android:padding="@dimen/_3sdp"
     android:weightSum="2">
 
     <LinearLayout
@@ -13,8 +16,9 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_55sdp"
+            android:layout_gravity="center"
             android:padding="@dimen/_4sdp"
             android:src="@mipmap/ic_launcher" />
     </LinearLayout>
@@ -22,7 +26,9 @@
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_weight="1"
+        android:gravity="center"
         android:orientation="vertical">
 
         <com.iprismech.alertnikki.customviews.CustomTextViewBold
@@ -30,9 +36,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="GusetName"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13sdp" />
 
-        <com.iprismech.alertnikki.customviews.CustomTextViewLight
+        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
             android:id="@+id/txt_gusetType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +54,7 @@
             android:text="GusetName"
             android:textSize="@dimen/_13sdp" />
 
-        <com.iprismech.alertnikki.customviews.CustomTextViewLight
+        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
             android:id="@+id/txt_AddressFrom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +71,7 @@
         android:orientation="vertical"
         android:padding="@dimen/_3sdp">
 
-        <com.iprismech.alertnikki.customviews.CustomTextViewLight
+        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
             android:id="@+id/txt_timeSince"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,7 +87,7 @@
             android:layout_marginLeft="@dimen/_2sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginRight="@dimen/_4sdp"
-            android:background="@drawable/out_bgr"
+            android:background="@drawable/red_button_bgr"
             android:padding="@dimen/_4sdp"
             android:text="out"
             android:textColor="@color/white" />

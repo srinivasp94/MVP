@@ -44,10 +44,12 @@ public class SplashScreenActivity<Class> extends BaseAbstractActivity {
             @Override
             public void run() {
 
-                if (SharedPrefsUtils.getInstance(SplashScreenActivity.this).isUserLoggedIn()) {
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SECURITY_LOGIN_SCREEN);
-                } else {
+                if (SharedPrefsUtils.getInstance(SplashScreenActivity.this).isUserLoggedIn()==true) {
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                    finish();
+                } else {
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SECURITY_LOGIN_SCREEN);
+                    finish();
                 }
 
             }

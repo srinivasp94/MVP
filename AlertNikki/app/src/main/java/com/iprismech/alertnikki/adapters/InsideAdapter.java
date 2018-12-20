@@ -11,14 +11,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Response.ResponseVisitMember;
 
 import java.util.ArrayList;
 
 public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder> {
     private Context context;
-    private ArrayList arrayList;
+    private ArrayList<ResponseVisitMember> arrayList;
 
-    public InsideAdapter(Context context, ArrayList arrayList) {
+    public InsideAdapter(Context context, ArrayList<ResponseVisitMember> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -31,8 +32,13 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
+        ResponseVisitMember member = arrayList.get(i);
+        holder.guestName.setText(member.name);
+        holder.type.setText(member.type);
+        holder.invitedBy.setText(member.userName);
+        holder.address.setText(member.flatName);
+        holder.timesince.setText(member.inTime + "");
     }
 
     @Override

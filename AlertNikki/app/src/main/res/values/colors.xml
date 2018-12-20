@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#D81B60</color>
-    <color name="colorPrimaryDark">#D81B60</color>
+    <color name="colorPrimary">#e30f25</color>
+    <color name="colorPrimaryDark">#ff0036</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="white">#fff</color>
-    <color name="black">#111</color>
-    <color name="textcolor">#605d5d</color>
+    <color name="black">#222222</color>
+    <color name="lightblachtcolor">#373737</color>
+
     <color name="navcolor">#433e3e</color>
     <color name="green">#059e5e</color>
 
 
     <color name="viewcolor">#ccc</color>
-    <color name="mainbackground">#e9e9e9</color>
+    <color name="gold">#ff9600</color>
+    <color name="mainbackground">#f8f8f8</color>
+    <color name="backgroundlight">#e9e9e9</color>
+    <color name="buttongreen">#1cb91c</color>
+
+    <!--222222 bottom navigation color-->
+    <!--373737 Main gate-->
+    <!--B Gr color f8f8f8-->
+    <!--Gradient 1 - ff0036-->
+    <!--Gradient 2 - e30f25-->
+    <!--App Main Color - e30f25-->
+    <!--Check - ff9600-->
+    <!--In - 1cb91c-->
 
 </resources>

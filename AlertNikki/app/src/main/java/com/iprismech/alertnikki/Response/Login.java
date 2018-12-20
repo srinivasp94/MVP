@@ -47,7 +47,7 @@ public class Login {
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).append("adminId", adminId).append("securityId", securityId).append("image", image).append("loginDate", loginDate).append("loginTime", loginTime).append("city", city).append("society", society).toString();
+            return new ToStringBuilder(this).append("adminId", adminId).append("securityId", securityId).append("image", image).append("loginData", loginDate).append("loginTime", loginTime).append("city", city).append("society", society).toString();
         }
     }
 }

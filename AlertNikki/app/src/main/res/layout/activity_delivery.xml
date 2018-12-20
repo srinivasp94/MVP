@@ -311,6 +311,6 @@
             android:textAllCaps="false"
             android:textSize="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/button_bgr"/>
+            android:background="@drawable/black_button_bgr"/>
     </LinearLayout>
 </ScrollView>

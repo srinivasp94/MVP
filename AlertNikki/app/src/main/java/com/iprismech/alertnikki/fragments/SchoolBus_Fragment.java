@@ -11,15 +11,14 @@ import android.view.ViewGroup;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
-import com.iprismech.alertnikki.adapters.DailyHelpsAdapter;
 
 import java.util.ArrayList;
 
-public class DailyHelps_Fragement extends BaseAbstractFragment<Class> {
+public class SchoolBus_Fragment extends BaseAbstractFragment<Class> {
 
     private SearchView msearchView;
-    private RecyclerView rv_DailyHelps;
-    private DailyHelpsAdapter helpsAdapter;
+    private RecyclerView rv_admin;
+    private AdminStaffAdapter staffAdapter;
     private LinearLayoutManager manager;
     private ArrayList arrayList;
 
@@ -53,9 +52,9 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
         msearchView = view.findViewById(R.id.searchview_admin);
-        rv_DailyHelps= view.findViewById(R.id.rv_adminstaff);
-        rv_DailyHelps.setLayoutManager(manager);
+        rv_admin = view.findViewById(R.id.rv_adminstaff);
+        rv_admin.setLayoutManager(manager);
 
-        helpsAdapter  = new DailyHelpsAdapter(getActivity(),arrayList);
+        staffAdapter = new AdminStaffAdapter(getActivity(), arrayList);
     }
 }

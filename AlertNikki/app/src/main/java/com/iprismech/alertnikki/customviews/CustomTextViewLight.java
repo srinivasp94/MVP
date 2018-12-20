@@ -1,5 +1,6 @@
 package com.iprismech.alertnikki.customviews;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Typeface;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 /**
  * Created by Venkateswarlu SKP on 30-08-2016.
  */
+@SuppressLint("AppCompatCustomView")
 public class CustomTextViewLight extends TextView {
     public CustomTextViewLight(Context context) {
         super(context);
@@ -36,7 +38,7 @@ public class CustomTextViewLight extends TextView {
 
 
     private void init() {
-        Typeface externalFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cabin-Medium.ttf");
+        Typeface externalFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cabin_Medium.ttf");
 
         setTypeface(externalFont);
 //        setAllCaps(true);

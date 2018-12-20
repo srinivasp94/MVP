@@ -10,14 +10,15 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Response.StaffResponse;
 
 import java.util.ArrayList;
 
 public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.ViewHolder> {
     private Context context;
-    private ArrayList arrayList;
+    private ArrayList<StaffResponse> arrayList;
 
-    public AdminStaffAdapter(Context context, ArrayList arrayList) {
+    public AdminStaffAdapter(Context context, ArrayList<StaffResponse> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -31,7 +32,12 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+        StaffResponse staffResponse = arrayList.get(i);
+        viewHolder.guestName.setText(staffResponse.name);
+        viewHolder.type.setText(staffResponse.designation);
+        viewHolder.invitedBy.setText("Passcode: " + staffResponse.passcode);
+        viewHolder.address.setText("Entry Time: " + staffResponse.dateOfJoining);
+        viewHolder.timesince.setText(staffResponse.timings);
     }
 
     @Override

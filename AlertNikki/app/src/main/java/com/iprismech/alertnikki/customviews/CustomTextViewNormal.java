@@ -38,7 +38,7 @@ public class CustomTextViewNormal extends TextView {
 
     private void init() {
 
-        Typeface externalFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cabin-Regular.ttf");
+        Typeface externalFont = Typeface.createFromAsset(getContext().getAssets(), "fonts/Cabin_Regular.ttf");
 
         setTypeface(externalFont);
 

@@ -5,14 +5,19 @@
     android:background="@color/mainbackground"
     android:orientation="vertical">
 
-    <android.support.v7.widget.SearchView
-        android:id="@+id/search_company"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:elevation="@dimen/_2sdp">
+        android:layout_height="wrap_content">
 
-    </android.support.v7.widget.SearchView>
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:elevation="@dimen/_2sdp">
+
+        </android.support.v7.widget.SearchView>
+    </RelativeLayout>
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
         android:layout_width="match_parent"

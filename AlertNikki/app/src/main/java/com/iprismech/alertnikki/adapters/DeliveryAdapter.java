@@ -10,12 +10,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Response.FoodModel;
 
 import java.util.ArrayList;
 
 public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.ViewHolder> {
     private Context context;
-    private ArrayList arrayList;
+    private ArrayList<FoodModel> arrayList;
 
     public DeliveryAdapter(Context context, ArrayList arrayList) {
         this.context = context;
@@ -31,7 +32,8 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-
+        FoodModel model = arrayList.get(i);
+        viewHolder.mName.setText(model.getTitle());
     }
 
     @Override

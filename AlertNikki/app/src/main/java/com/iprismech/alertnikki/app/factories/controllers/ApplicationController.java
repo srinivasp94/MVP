@@ -166,7 +166,7 @@ public class ApplicationController {
                 uiController.launchActivity(ViewFactory.ScreenIds.SECURITY_LOGIN_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_CAMERA_SCREEN:
-                uiController.launchActivity(ViewFactory.ScreenIds.CAMERA_SCREEN);
+                uiController.launchActivity(ViewFactory.ScreenIds.CAMERA_SCREEN,(Bundle)eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_WELCOME_SCREEN:
                 uiController.launchActivity(ViewFactory.ScreenIds.WELCOME_SCREEN, (Bundle) eventObjects);

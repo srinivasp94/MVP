@@ -3,17 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_home"
-        android:title="Home" />
+        android:icon="@android:drawable/btn_star_big_off"
+        android:title="Keypad" />
     <item
         android:id="@+id/nav_alert"
+        android:icon="@android:drawable/btn_star_big_off"
         android:title="Alerts" />
     <item
         android:id="@+id/nav_visitors"
+        android:icon="@android:drawable/btn_star_big_off"
         android:title="Visitors" />
     <item
         android:id="@+id/nav_admin_staff"
-        android:title="Admin Staff" />
+        android:icon="@android:drawable/btn_star_big_off"
+        android:title="AdminStaff" />
     <item
         android:id="@+id/nav_More"
+        android:icon="@android:drawable/btn_star_big_off"
         android:title="More" />
 </menu>

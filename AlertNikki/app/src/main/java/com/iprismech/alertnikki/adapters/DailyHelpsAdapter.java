@@ -24,7 +24,7 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_admin_staff, viewGroup, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_daily_helps, viewGroup, false);
         return new ViewHolder(view);
     }
 

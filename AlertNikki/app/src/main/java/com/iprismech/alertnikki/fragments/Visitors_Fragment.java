@@ -7,10 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.SearchView;
+
 
 import com.iprismech.alertnikki.R;
 
@@ -48,13 +49,17 @@ public class Visitors_Fragment extends BaseAbstractFragment<Class> {
     @Override
     protected void initialiseViews() {
         super.initialiseViews();
+        try {
 
-        search_visitors = view.findViewById(R.id.search_visitors);
-        mtabLayout = view.findViewById(R.id.tabLayout);
-        mviewPager = view.findViewById(R.id.viewpager);
+            search_visitors = view.findViewById(R.id.search_visitors);
+            mtabLayout = view.findViewById(R.id.tabLayout);
+            mviewPager = view.findViewById(R.id.viewpager);
 
-        setupViewPager(mviewPager);
-        mtabLayout.setupWithViewPager(mviewPager);
+            setupViewPager(mviewPager);
+            mtabLayout.setupWithViewPager(mviewPager);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setupViewPager(ViewPager viewPager) {
