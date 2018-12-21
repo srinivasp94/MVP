@@ -6,6 +6,7 @@
     android:orientation="horizontal"
     android:background="@color/white"
     android:padding="@dimen/_3sdp"
+    android:elevation="@dimen/_1sdp"
     android:weightSum="2">
 
     <!--<LinearLayout
@@ -84,7 +85,18 @@
             android:gravity="center"
             android:text="in"
             android:textColor="@color/white"
-            android:visibility="visible" />
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_call"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:background="@drawable/vehiclenum_bgr"
+            android:gravity="center"
+            android:text="call"
+            android:textColor="@color/black"
+            android:visibility="gone" />
 
     </LinearLayout>
 

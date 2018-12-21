@@ -23,6 +23,15 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
         this.context = context;
         this.arrayList = arrayList;
     }
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
 
     @NonNull
     @Override

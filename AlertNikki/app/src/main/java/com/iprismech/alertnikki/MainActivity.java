@@ -19,6 +19,7 @@ import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 import com.iprismech.alertnikki.base.BaseAbstractActivity;
 import com.iprismech.alertnikki.fragments.AdminStaff_Fragment;
 import com.iprismech.alertnikki.fragments.Alerts_Fragment;
+import com.iprismech.alertnikki.fragments.CabsFragment;
 import com.iprismech.alertnikki.fragments.DailyHelps_Fragement;
 import com.iprismech.alertnikki.fragments.Delivery_Fragment;
 import com.iprismech.alertnikki.fragments.HomeFragment;
@@ -27,7 +28,7 @@ import com.iprismech.alertnikki.fragments.Visitors_Fragment;
 import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
 
 public class MainActivity extends BaseAbstractActivity<Class> implements View.OnClickListener {
-    private BottomNavigationView bottomNavigationView, topnavigationview;
+    public BottomNavigationView bottomNavigationView, topnavigationview;
     private FragmentManager fragmentManager;
     private TextView txtGate;
 
@@ -108,7 +109,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                         fragmentManager.beginTransaction().replace(R.id.fm_container, new SchoolBus_Fragment(), "").commit();
                         break;
                     case R.id.action_cab:
-                        fragmentManager.beginTransaction().replace(R.id.fm_container, new Delivery_Fragment(), "").commit();
+                        fragmentManager.beginTransaction().replace(R.id.fm_container, new CabsFragment(), "").commit();
                         break;
                     case R.id.action_more:
                         fragmentManager.beginTransaction().replace(R.id.fm_container, new Delivery_Fragment(), "").commit();
@@ -148,7 +149,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                                 @Override
                                 public boolean onMenuItemClick(MenuItem item) {
-                                    switch (menuItem.getItemId()) {
+                                    switch (item.getItemId()) {
                                         case R.id.nav_logout:
                                             SharedPrefsUtils.logoutUser();
                                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SPLASH_SCREEN);

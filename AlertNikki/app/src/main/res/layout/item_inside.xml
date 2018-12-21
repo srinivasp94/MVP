@@ -5,6 +5,7 @@
     android:layout_margin="@dimen/_3sdp"
     android:orientation="horizontal"
     android:background="@color/white"
+    android:elevation="@dimen/_1sdp"
     android:padding="@dimen/_3sdp"
     android:weightSum="2">
 
@@ -47,7 +48,7 @@
             android:layout_width="match_parent"
             android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_1sdp"
             android:text="GusetName"
             android:textSize="@dimen/_13sdp" />
 
@@ -80,12 +81,14 @@
         <Button
             android:id="@+id/btn_out"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_25sdp"
+            android:layout_height="@dimen/_20sdp"
             android:layout_marginLeft="@dimen/_2sdp"
             android:layout_marginTop="@dimen/_3sdp"
             android:layout_marginRight="@dimen/_4sdp"
             android:background="@drawable/red_button_bgr"
             android:padding="@dimen/_4sdp"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:text="out"
             android:textColor="@color/white" />
     </LinearLayout>

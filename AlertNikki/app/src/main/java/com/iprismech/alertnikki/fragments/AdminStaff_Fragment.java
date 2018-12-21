@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.AdminStaff;
+import com.iprismech.alertnikki.Request.OutAdminStaff;
 import com.iprismech.alertnikki.Response.Admin_Staff;
 import com.iprismech.alertnikki.Response.StaffResponse;
 import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
@@ -31,6 +32,7 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
     private LinearLayoutManager manager;
     private ArrayList<StaffResponse> arrayList = new ArrayList<>();
     private Object obj;
+    RetrofitResponseListener responseListener;
 
     @Override
     protected View getFragmentView() {
@@ -63,6 +65,8 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
 
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        responseListener = this;
 
         msearchView = view.findViewById(R.id.searchview_admin);
         rv_admin = view.findViewById(R.id.rv_adminstaff);
@@ -100,9 +104,31 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                             if (arrayList != null && arrayList.size() > 0) {
                                 staffAdapter = new AdminStaffAdapter(getActivity(), arrayList);
                                 rv_admin.setAdapter(staffAdapter);
+                                staffAdapter.setOnItemClickListener(new AdminStaffAdapter.OnitemClickListener() {
+                                    @Override
+                                    public void onItemClick(View view, int position) {
+//                                        out_admin_staff
+                                        OutAdminStaff req = new OutAdminStaff();
+                                        req.attendenceId = arrayList.get(position).attendence.id;
+
+                                        try {
+                                            obj = Class.forName(OutAdminStaff.class.getName()).cast(req);
+                                        } catch (Exception e) {
+                                            e.printStackTrace();
+                                        }
+                                        new RetrofitRequester(responseListener).callPostServices(obj, 2, "out_admin_staff", true);
+                                    }
+                                });
                             } else {
                                 Common.showToast(getActivity(), "Items Not Found");
                             }
+                            break;
+                        case 2:
+                            Common.showToast(getActivity(), object.optString("message"));
+                            JSONObject responseStaff = object.optJSONObject("response");
+                            arrayList.remove(arrayList.contains(responseStaff.optString("id")));
+
+                            staffAdapter.notifyDataSetChanged();
                             break;
                     }
                 } else {

@@ -5,6 +5,8 @@ public class Constants {
     public static final String BASE_URL = "http://iprismconstructions.com/alertnikki/app/security/";
 
 
+    //http://iprismconstructions.com/alertnikki/storage/security/testimonial-1.jpg
+
     public static final String BASE_IMAGE_URL = "http://iprismconstructions.com/alertnikki/";
 
     public static final String INTERNET_UNABLEABLE = "Not connected to the internet. Please check your connection and try again.";

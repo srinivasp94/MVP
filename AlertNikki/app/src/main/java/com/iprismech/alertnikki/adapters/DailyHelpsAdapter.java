@@ -6,19 +6,33 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Response.DailyHelpsList;
 
 import java.util.ArrayList;
 
 public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList arrayList;
+    private ArrayList<DailyHelpsList> arrayList;
 
-    public DailyHelpsAdapter(Context context, ArrayList arrayList) {
+    public DailyHelpsAdapter(Context context, ArrayList<DailyHelpsList> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+    }
+
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
     }
 
     @NonNull
@@ -30,6 +44,11 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        DailyHelpsList helpsList = arrayList.get(i);
+        viewHolder.name.setText(helpsList.name);
+        viewHolder.duty.setText(helpsList.designation);
+        viewHolder.passcode.setText("Passcode: " + helpsList.passcode);
+        viewHolder.time.setText(helpsList.timings);
 
     }
 
@@ -39,8 +58,18 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        private ImageView img_pic;
+        private TextView name, passcode, duty, time;
+        private Button btn_out;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            img_pic = itemView.findViewById(R.id.image);
+            name = itemView.findViewById(R.id.txt_title_name);
+            duty = itemView.findViewById(R.id.txt_gusetType);
+            passcode = itemView.findViewById(R.id.txt_AddressFrom);
+            time = itemView.findViewById(R.id.txt_timeSince);
+            btn_out = itemView.findViewById(R.id.btn_out);
         }
     }
 }

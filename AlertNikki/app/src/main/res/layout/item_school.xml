@@ -3,6 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:elevation="@dimen/_1sdp"
+    android:padding="@dimen/_3sdp"
+    android:background="@color/white"
+    android:layout_margin="@dimen/_3sdp"
     android:weightSum="2">
 
     <LinearLayout
@@ -13,11 +17,9 @@
         android:gravity="center">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/image"
+            android:id="@+id/image_school"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-
             android:padding="@dimen/_4sdp"
             android:src="@mipmap/ic_launcher" />
     </LinearLayout>
@@ -32,12 +34,13 @@
         <com.iprismech.alertnikki.customviews.CustomTextViewBold
             android:id="@+id/txt_title_name"
             android:layout_width="match_parent"
+            android:textColor="@color/black"
             android:layout_height="wrap_content"
             android:text="GusetName"
             android:textSize="@dimen/_13sdp" />
 
         <com.iprismech.alertnikki.customviews.CustomTextViewLight
-            android:id="@+id/txt_gusetType"
+            android:id="@+id/txt_addressSchool"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guset"
@@ -45,7 +48,7 @@
 
 
         <com.iprismech.alertnikki.customviews.CustomTextViewLight
-            android:id="@+id/txt_AddressFrom"
+            android:id="@+id/txt_Route"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guset"

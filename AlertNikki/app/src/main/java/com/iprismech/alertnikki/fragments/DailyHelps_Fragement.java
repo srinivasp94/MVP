@@ -9,19 +9,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Request.AdminStaff;
+import com.iprismech.alertnikki.Response.DailyHelps;
+import com.iprismech.alertnikki.Response.DailyHelpsList;
 import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
 import com.iprismech.alertnikki.adapters.DailyHelpsAdapter;
+import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
+import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikki.utilities.Common;
+import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class DailyHelps_Fragement extends BaseAbstractFragment<Class> {
+public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
 
     private SearchView msearchView;
     private RecyclerView rv_DailyHelps;
     private DailyHelpsAdapter helpsAdapter;
     private LinearLayoutManager manager;
-    private ArrayList arrayList;
+    private ArrayList<DailyHelpsList> arrayList = new ArrayList<>();
+    private Object obj;
 
     @Override
     protected View getFragmentView() {
@@ -53,9 +64,53 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> {
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
         msearchView = view.findViewById(R.id.searchview_admin);
-        rv_DailyHelps= view.findViewById(R.id.rv_adminstaff);
-        rv_DailyHelps.setLayoutManager(manager);
+        rv_DailyHelps = view.findViewById(R.id.rv_adminstaff);
 
-        helpsAdapter  = new DailyHelpsAdapter(getActivity(),arrayList);
+        AdminStaff staff = new AdminStaff();
+        staff.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
+        staff.search = "";
+
+        try {
+            obj = Class.forName(AdminStaff.class.getName()).cast(staff);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 1, "daily_helps", true);
+
+
+    }
+
+    @Override
+    public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+        if (objectResponse == null || objectRequest.equals("")) {
+            Common.showToast(getActivity(), "PLease Try again");
+        } else {
+            try {
+                Gson gson = new Gson();
+                String jsonString = gson.toJson(objectResponse);
+                JSONObject object = new JSONObject(jsonString);
+                if (object.optBoolean("status")) {
+                    switch (requestId) {
+                        case 1:
+                            DailyHelps dailyHelps = Common.getSpecificDataObject(objectResponse, DailyHelps.class);
+                            arrayList = (ArrayList<DailyHelpsList>) dailyHelps.response;
+                            if (arrayList != null && arrayList.size() > 0) {
+                                helpsAdapter = new DailyHelpsAdapter(getActivity(), arrayList);
+                                rv_DailyHelps.setLayoutManager(manager);
+                                rv_DailyHelps.setAdapter(helpsAdapter);
+                            } else {
+                                Common.showToast(getActivity(), "No Data Found");
+                            }
+                            break;
+                    }
+                } else {
+                    Common.showToast(getActivity(), object.optString("message"));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 }

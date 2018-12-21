@@ -25,8 +25,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_adminstaff"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/_2sdp"
-        android:layout_height="wrap_content">
+        android:layoutAnimation="@anim/layout_animation_fall_down">
 
     </android.support.v7.widget.RecyclerView>
 

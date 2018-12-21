@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/nav_logout"
-        android:title="Logout"
-        />
 
     <item
         android:id="@+id/nav_loginTime"
-        android:title="Login Time"
-        />
+        android:title="Login Time" />
+
+    <item
+        android:id="@+id/nav_movein"
+        android:title="Move In" />
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout" />
 
 </menu>

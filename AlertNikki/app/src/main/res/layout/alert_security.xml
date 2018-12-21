@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical">
+
+
+        <LinearLayout
+            android:id="@+id/llview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:background="@drawable/white_bg_corner"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_above="@+id/llview"
+                android:background="#da3939">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
+
+                    android:orientation="horizontal">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mario Speedwagon"
+                        android:textColor="#000"
+                        android:textSize="@dimen/_12sdp">
+
+                    </com.iprismech.alertnikki.customviews.CustomTextViewBold>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Society, Main Gate" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Checked:" />
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="01:30pm"
+                        android:textColor="#000" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/_5sdp">
+
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                        android:layout_weight="0.5">
+
+                        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/black_button_bgr"
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/_35sdp"
+                            android:text="Ok"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/_13sdp" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_helper_pic"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="85dp"
+            android:src="@drawable/dummy" />
+    </RelativeLayout>
+
+</LinearLayout>

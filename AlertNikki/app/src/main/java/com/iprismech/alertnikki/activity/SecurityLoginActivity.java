@@ -93,7 +93,6 @@ public class SecurityLoginActivity extends BaseAbstractActivity<Class> implement
                             if (et_otp6.getText().toString().length() == 1) {
                                 et_otp7.requestFocus();
                                 if (et_otp7.getText().toString().length() == 1) {
-                                    Toast.makeText(context, "Text 123456 ", Toast.LENGTH_SHORT).show();
                                     String passcode = et_otp1.getText().toString() + et_otp2.getText().toString() +
                                             et_otp3.getText().toString() + et_otp4.getText().toString() +
                                             et_otp5.getText().toString() + et_otp6.getText().toString() + et_otp7.getText().toString();

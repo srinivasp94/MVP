@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v4.content.WakefulBroadcastReceiver;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.iprismech.alertnikki.MyApplication;
@@ -24,6 +26,7 @@ public class RetrofitRequester {
     private Activity activity;
     private Context context;
     private Dialog progressDialog;
+    private Button button;
 
     public RetrofitRequester(RetrofitResponseListener retrofitResponseListener) {
 
@@ -48,6 +51,9 @@ public class RetrofitRequester {
             this.context = (Context) retrofitResponseListener;
             this.activity = (Activity) retrofitResponseListener;
 
+        } else if (retrofitResponseListener instanceof android.view.View.OnClickListener) {
+            this.context = (Context) retrofitResponseListener;
+            this.activity = (Activity) retrofitResponseListener;
         }
 
 

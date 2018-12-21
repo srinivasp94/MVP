@@ -23,6 +23,16 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
         this.arrayList = arrayList;
     }
 
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -45,7 +55,7 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView guestName, type, invitedBy, address, timesince;
         Button out;
 
@@ -57,6 +67,15 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
             address = itemView.findViewById(R.id.txt_AddressFrom);
             timesince = itemView.findViewById(R.id.txt_timeSince);
             out = itemView.findViewById(R.id.btn_out);
+
+            out.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
         }
     }
 }

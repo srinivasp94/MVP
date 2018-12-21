@@ -7,6 +7,7 @@
     android:background="@color/white"
     android:orientation="horizontal"
     android:padding="@dimen/_3sdp"
+    android:elevation="@dimen/_1sdp"
     android:weightSum="2">
 
     <LinearLayout
@@ -78,7 +79,7 @@
             android:gravity="center"
             android:text="00Hr10Min"
             android:textColor="@color/green"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_11sdp" />
 
         <Button
             android:id="@+id/btn_out"

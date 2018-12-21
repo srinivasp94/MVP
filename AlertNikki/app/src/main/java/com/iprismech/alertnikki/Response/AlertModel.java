@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AlertModel {
@@ -16,13 +17,13 @@ public class AlertModel {
     public String message;
     @SerializedName("digital_gatepass_alerts")
     @Expose
-    public List<DigitalGatepassAlert> digitalGatepassAlerts = null;
+    public ArrayList<DigitalGatepassAlert> digitalGatepassAlerts = null;
     @SerializedName("notify_gate_alerts")
     @Expose
-    public List<NotifiGateAlerts> notifyGateAlerts = null;
+    public ArrayList<NotifiGateAlerts> notifyGateAlerts = null;
     @SerializedName("kids_gate_alerts")
     @Expose
-    public List<KidsGateAlerts> kidsGateAlerts = null;
+    public ArrayList<KidsGateAlerts> kidsGateAlerts = null;
 
     @Override
     public String toString() {

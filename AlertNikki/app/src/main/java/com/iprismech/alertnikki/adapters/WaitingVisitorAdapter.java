@@ -25,6 +25,15 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
         this.context = context;
         this.arrayList = arrayList;
     }
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
 
     @NonNull
     @Override
@@ -45,7 +54,9 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
 
         if (member.type.equalsIgnoreCase("Guest")) {
             viewHolder.b_in.setVisibility(View.VISIBLE);
-        } else if (member.type.equalsIgnoreCase("Delivery Boy")) {
+        } else if (member.type.equalsIgnoreCase("Delivery") && member.security_accept_status.equalsIgnoreCase("0")) {
+            viewHolder.b_call_1.setVisibility(View.VISIBLE);
+        } else {
             viewHolder.b_check.setVisibility(View.VISIBLE);
         }
 
@@ -66,8 +77,8 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
             super(itemView);
             b_in = itemView.findViewById(R.id.btn_in);
             b_check = itemView.findViewById(R.id.btn_check);
-           /* b_call_1 = itemView.findViewById(R.id.btn_check);
-            b_call2 = itemView.findViewById(R.id.btn_check);
+            b_call_1 = itemView.findViewById(R.id.btn_call);
+           /* b_call2 = itemView.findViewById(R.id.btn_check);
             b_msg = itemView.findViewById(R.id.btn_check);*/
 
             name = itemView.findViewById(R.id.txt_title_name);
