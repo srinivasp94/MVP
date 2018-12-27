@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.AdminStaff;
+import com.iprismech.alertnikki.Request.OutAdminStaff;
 import com.iprismech.alertnikki.Response.DailyHelps;
 import com.iprismech.alertnikki.Response.DailyHelpsList;
 import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
@@ -32,7 +33,9 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
     private DailyHelpsAdapter helpsAdapter;
     private LinearLayoutManager manager;
     private ArrayList<DailyHelpsList> arrayList = new ArrayList<>();
+    private ArrayList<DailyHelpsList> dailyHelps_List = new ArrayList<>();
     private Object obj;
+    private int item_position;
 
     @Override
     protected View getFragmentView() {
@@ -95,12 +98,39 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
                             DailyHelps dailyHelps = Common.getSpecificDataObject(objectResponse, DailyHelps.class);
                             arrayList = (ArrayList<DailyHelpsList>) dailyHelps.response;
                             if (arrayList != null && arrayList.size() > 0) {
-                                helpsAdapter = new DailyHelpsAdapter(getActivity(), arrayList);
-                                rv_DailyHelps.setLayoutManager(manager);
-                                rv_DailyHelps.setAdapter(helpsAdapter);
+
+                                for (int i = 0; i < arrayList.size(); i++) {
+                                    if (arrayList.get(i).attendence.adminId != null) {
+                                        Common.commonLogs(getActivity(), "123daily  " + arrayList.get(i).name);
+                                        dailyHelps_List.add(arrayList.get(i));
+                                        if (dailyHelps_List != null && dailyHelps_List.size() > 0) {
+                                            helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
+                                            rv_DailyHelps.setLayoutManager(manager);
+                                            rv_DailyHelps.setAdapter(helpsAdapter);
+                                            helpsAdapter.setOnItemClickListener(new DailyHelpsAdapter.OnitemClickListener() {
+                                                @Override
+                                                public void onItemClick(View view, int position) {
+                                                    call_out_DailyHelps_WS(position);
+                                                }
+                                            });
+                                        } else {
+                                            Common.showToast(getActivity(), "No Data Found");
+                                        }
+                                    } else {
+                                        Common.showToast(getActivity(), "No Data Found");
+                                    }
+                                }
+
                             } else {
-                                Common.showToast(getActivity(), "No Data Found");
+                                Common.showToast(getActivity(), "No Data found");
                             }
+
+
+                            break;
+                        case 2:
+                            Common.showToast(getActivity(), object.optString("message"));
+                            dailyHelps_List.remove(item_position);
+                            helpsAdapter.notifyDataSetChanged();
                             break;
                     }
                 } else {
@@ -112,5 +142,19 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
 
 
         }
+    }
+
+    private void call_out_DailyHelps_WS(int position) {
+//        out_daily_helps
+        item_position = position;
+        OutAdminStaff req = new OutAdminStaff();
+        req.attendenceId = dailyHelps_List.get(position).attendence.id;
+        try {
+            obj = Class.forName(OutAdminStaff.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 2, "out_daily_helps", true);
+
     }
 }

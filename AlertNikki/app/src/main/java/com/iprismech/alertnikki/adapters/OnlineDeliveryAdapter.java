@@ -23,6 +23,7 @@ public class OnlineDeliveryAdapter extends RecyclerView.Adapter<OnlineDeliveryAd
         this.context = context;
         this.arrayList = arrayList;
     }
+
     private OnitemClickListener mListner;
 
     public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
@@ -46,6 +47,7 @@ public class OnlineDeliveryAdapter extends RecyclerView.Adapter<OnlineDeliveryAd
         OnlineModel onlineModel = arrayList.get(i);
 //holder.img_company.
         holder.mName.setText(onlineModel.getTitle());
+        holder.img_company.setImageResource(onlineModel.getImg_id());
     }
 
     @Override
@@ -53,7 +55,7 @@ public class OnlineDeliveryAdapter extends RecyclerView.Adapter<OnlineDeliveryAd
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView img_company;
         private TextView mName;
 
@@ -61,6 +63,15 @@ public class OnlineDeliveryAdapter extends RecyclerView.Adapter<OnlineDeliveryAd
             super(itemView);
             img_company = itemView.findViewById(R.id.img_logo_company);
             mName = itemView.findViewById(R.id.txt_compamyName);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
         }
     }
 }

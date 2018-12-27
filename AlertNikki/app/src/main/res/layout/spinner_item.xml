@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.iprismech.alertnikki.customviews.CustomTextViewNormal
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_spinner_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left"
+    android:layout_gravity="left"
+    android:padding="@dimen/_10sdp"
+    android:textColor="#f91d05"
+    android:textSize="@dimen/_12sdp" />

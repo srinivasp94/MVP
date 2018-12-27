@@ -10,11 +10,11 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_pics"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_60sdp"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_15sdp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/dummy" />
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
         android:id="@+id/txt_nameOfUser"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_margin="@dimen/_10sdp"
-        android:background="@color/viewcolor"
+        android:background="@color/backgroundlight"
         android:paddingLeft="@dimen/_10sdp"
         android:paddingRight="@dimen/_10sdp" />
 
@@ -72,9 +72,9 @@
 
             <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
-                android:background="@color/green"
+                android:background="#32b032"
                 android:gravity="center"
                 android:padding="@dimen/_6sdp"
                 android:text="Entry"
@@ -83,13 +83,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.7"
                     android:background="@color/white"
@@ -98,30 +98,44 @@
                     android:padding="@dimen/_6sdp"
                     android:text="Check In:"
                     android:textSize="@dimen/_12sdp" />
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundlight"
+                    >
+
+                </View>
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1.3"
+                    android:layout_weight="1.2"
                     android:background="@color/white"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
+                    android:id="@+id/visitor_tv_chech_in"
                     android:padding="@dimen/_6sdp"
                     android:text="06:21 pm 29 oct 2018"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/backgroundlight"
+                >
 
+            </View>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.7"
                     android:background="@color/white"
@@ -130,13 +144,19 @@
                     android:padding="@dimen/_6sdp"
                     android:text="Approved By:"
                     android:textSize="@dimen/_12sdp" />
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundlight"
+                    >
 
+                </View>
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1.3"
-
+                    android:layout_weight="1.2"
+                    android:id="@+id/tv_approved_by"
                     android:background="@color/white"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
@@ -145,17 +165,23 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/backgroundlight"
+                >
 
+            </View>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_weight="2"
 
                 android:orientation="horizontal">
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="0.7"
                     android:background="@color/white"
@@ -164,15 +190,22 @@
                     android:padding="@dimen/_6sdp"
                     android:text="Allowed By:"
                     android:textSize="@dimen/_12sdp" />
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/backgroundlight"
+                    >
 
+                </View>
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="1.3"
+                    android:layout_weight="1.2"
                     android:background="@color/white"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
+                    android:id="@+id/tv_allowed_by"
                     android:padding="@dimen/_6sdp"
                     android:text="Johndoe"
                     android:textColor="@color/black"

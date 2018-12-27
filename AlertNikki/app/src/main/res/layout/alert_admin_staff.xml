@@ -16,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/_20sdp"
             android:layout_marginTop="34dp"
             android:background="@drawable/white_bg_corner"
             android:gravity="center"
@@ -25,7 +26,7 @@
                 android:id="@+id/tv_admin_staff_entry_timings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_38sdp"
                 android:text="Entry Time: 09:00am, 5 Dec,2018"
                 android:textSize="@dimen/_11sdp" />
 
@@ -43,8 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
-                android:text="Sweeper, admin Staff"
-                android:textColor="#000" />
+                android:text="Sweeper, admin Staff" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -55,13 +55,14 @@
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Passcode :" />
+                    android:text="Passcode : " />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:id="@+id/tv_helper_passcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="356153"
+                    android:layout_marginLeft="@dimen/_2sdp"
                     android:textColor="#000" />
 
             </LinearLayout>
@@ -75,13 +76,14 @@
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Works in :" />
+                    android:text="Works in : " />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:id="@+id/tv_satff_works_in"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pride Soceity"
+                    android:layout_marginLeft="@dimen/_2sdp"
                     android:textColor="#000" />
 
             </LinearLayout>

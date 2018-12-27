@@ -1,16 +1,20 @@
 package com.iprismech.alertnikki.adapters;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.StaffResponse;
+import com.iprismech.alertnikki.utilities.Constants;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,6 +52,8 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
         viewHolder.invitedBy.setText("Passcode: " + staffResponse.passcode);
         viewHolder.address.setText("Entry Time: " + staffResponse.dateOfJoining);
         viewHolder.timesince.setText(staffResponse.timings);
+        Picasso.with(context).load(Constants.BASE_IMAGE_URL + staffResponse.image.replace("\\", "")).
+                error(R.drawable.dummy).into(viewHolder.image);
     }
 
     @Override
@@ -58,6 +64,7 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView guestName, type, invitedBy, address, timesince;
         Button out;
+        ImageView image;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +74,7 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
             address = itemView.findViewById(R.id.txt_AddressFrom);
             timesince = itemView.findViewById(R.id.txt_timeSince);
             out = itemView.findViewById(R.id.btn_out);
+            image = itemView.findViewById(R.id.image);
 
             out.setOnClickListener(this);
         }

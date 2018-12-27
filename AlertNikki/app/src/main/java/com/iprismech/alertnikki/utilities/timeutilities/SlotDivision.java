@@ -3,12 +3,16 @@ package com.iprismech.alertnikki.utilities.timeutilities;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.TextUtils;
+import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -102,6 +106,21 @@ public class SlotDivision {
 
         editText.setText(formatedDate);
 
+    }
+
+    public static String timeConvert(Context context, final String time) {
+        String formattedDate = "";
+        Date dateObj = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:SS a");
+            dateObj = sdf.parse(time);
+            System.out.println(dateObj);
+            System.out.println(new SimpleDateFormat("K:mm").format(dateObj));
+            formattedDate = new SimpleDateFormat("K:mm").format(dateObj);
+        } catch (final ParseException e) {
+            e.printStackTrace();
+        }
+        return formattedDate;
     }
 }
 

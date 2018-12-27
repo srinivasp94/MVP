@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <RelativeLayout
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginHorizontal="@dimen/_20sdp"
             android:layout_marginTop="34dp"
             android:background="@drawable/white_bg_corner"
             android:gravity="center"
@@ -40,8 +42,7 @@
                 android:id="@+id/tv_school_bus_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bus No- WPI"
-                android:textColor="#000" />
+                android:text="Bus No- WPI" />
 
 
             <LinearLayout

@@ -1,12 +1,18 @@
 package com.iprismech.alertnikki.fragments;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
@@ -21,7 +27,9 @@ import com.iprismech.alertnikki.adapters.AlertsAdapter;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.Common;
+import com.iprismech.alertnikki.utilities.Constants;
 import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
@@ -97,7 +105,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
             try {
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
-                JSONObject object = new JSONObject(jsonString);
+                final JSONObject object = new JSONObject(jsonString);
                 if (object.optBoolean("status") == true) {
                     switch (requestId) {
                         case 1:
@@ -112,7 +120,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                 for (int i = 0; i < digital_ist.size(); i++) {
                                     alertsCommon = new AlertsCommon();
                                     alertsCommon.date = digital_ist.get(i).date;
-                                    alertsCommon.service = "";
+                                    alertsCommon.service = digital_ist.get(i).member.memberType;
                                     alertsCommon.Description = digital_ist.get(i).description;
                                     alertsCommon.type_alert = "digital_alerts";
                                     alertsCommon.inTime = digital_ist.get(i).entryIn;
@@ -138,7 +146,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                     alertsCommon.date = NotifyList.get(j).fromDate;
                                     alertsCommon.service = NotifyList.get(j).service;
                                     alertsCommon.Description = "Name: " + NotifyList.get(j).personName +
-                                            ", Mobile" + NotifyList.get(j).personMobile;
+                                            ", Mobile: " + NotifyList.get(j).personMobile;
                                     alertsCommon.type_alert = "Notify";
                                     alertsCommon.inTime = NotifyList.get(j).fromDateTime;
                                     alertsCommon.outTime = NotifyList.get(j).toDateTime;
@@ -163,7 +171,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                     alertsCommon.date = kidsList.get(j).fromDate;
                                     alertsCommon.service = kidsList.get(j).purpose;
                                     alertsCommon.Description = "Name: " + kidsList.get(j).kidGoingWithWhom +
-                                            ", Mobile" + NotifyList.get(j).personMobile;
+                                            ", Mobile: " + NotifyList.get(j).personMobile;
                                     alertsCommon.type_alert = "Kids";
                                     alertsCommon.inTime = kidsList.get(j).inTime;
                                     alertsCommon.outTime = kidsList.get(j).outTime;
@@ -171,7 +179,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 
                                     alertsCommon.id = kidsList.get(j).member.id;
                                     alertsCommon.passcode = kidsList.get(j).member.passcode;
-                                    alertsCommon.name = kidsList.get(j).member.name;
+                                    alertsCommon.name = kidsList.get(j).kidName;
                                     alertsCommon.phone = kidsList.get(j).member.mobile;
                                     alertsCommon.society = kidsList.get(j).member.society;
                                     alertsCommon.flat = kidsList.get(j).member.flat;
@@ -188,16 +196,15 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                 alertsAdapter.setOnItemClickListener(new AlertsAdapter.OnitemClickListener() {
                                     @Override
                                     public void onItemClick(View view, int position) {
-                                        NotifyAlertReq req = new NotifyAlertReq();
-                                        req.notify_gate_id = commonAlertsList.get(position).id;
+//                                        call_Nottify_AlertWS(position);
+                                        if (commonAlertsList.get(position).type_alert.equalsIgnoreCase("kids")) {
 
-                                        try {
-                                            obj = Class.forName(NotifyAlertReq.class.getName()).cast(req);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
+                                            showAlertDialog_kid(position, object);
+                                        } else if (commonAlertsList.get(position).type_alert.equalsIgnoreCase("notify")) {
+                                            showAlertDialog_Notify(position, object);
+                                        } else {
+                                            showAlertDialog_Digital(position);
                                         }
-                                        new RetrofitRequester(responseListener).callPostServices(obj, 2, "security_accept_notify_gate_alert", true);
-
 
                                     }
                                 });
@@ -207,6 +214,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                             break;
                         case 2:
                             Common.showToast(getActivity(), object.optString("message"));
+                            break;
                     }
                 } else {
                     Common.showToast(getActivity(), object.optString("message"));
@@ -216,6 +224,133 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
             }
 
         }
+    }
+
+
+    private void showAlertDialog_kid(final int position, JSONObject jsonObject) {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view1 = inflater.inflate(R.layout.alert_kids, null);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setView(view1);
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCancelable(true);
+//        alertDialog.setCancelable(false);
+
+        TextView tv_kid_Name, tv_purpose, tv_intime, tv_outtime, tv_gingWith, bt_deny, btn_allow;
+        ImageView HelperPic;
+        tv_kid_Name = view1.findViewById(R.id.tv_alert_kid_name);
+        tv_purpose = view1.findViewById(R.id.tv_helper_passcode);
+        tv_intime = view1.findViewById(R.id.tv_kids_intime);
+        tv_outtime = view1.findViewById(R.id.tv_kids_alert_outtime);
+        tv_gingWith = view1.findViewById(R.id.tv_goingWith);
+
+        tv_kid_Name.setText(commonAlertsList.get(position).name);
+        tv_purpose.setText(commonAlertsList.get(position).service);
+        tv_intime.setText(commonAlertsList.get(position).inTime);
+        tv_outtime.setText(commonAlertsList.get(position).outTime);
+        tv_gingWith.setText(commonAlertsList.get(position).Description);
+
+        btn_allow = view1.findViewById(R.id.tv_allow_kids_alert);
+        btn_allow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                call_Nottify_AlertWS(position);
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
+
+    }
+
+    private void call_Nottify_AlertWS(int position) {
+        NotifyAlertReq req = new NotifyAlertReq();
+        req.notify_gate_id = commonAlertsList.get(position).id;
+
+        try {
+            obj = Class.forName(NotifyAlertReq.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 2, "security_accept_notify_gate_alert", true);
+
+    }
+
+    private void showAlertDialog_Notify(final int position, JSONObject object) {
+        {
+            LayoutInflater inflater = LayoutInflater.from(getActivity());
+            View view1 = inflater.inflate(R.layout.alert_staff_alert, null);
+
+            final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+            alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            alertDialog.setView(view1);
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            alertDialog.setCancelable(false);
+
+            TextView tv_Name, tv_purpose, tv_description, btn_allow;
+            ImageView HelperPic;
+
+            tv_Name = view1.findViewById(R.id.tv_alert_staff_alert_name);
+            tv_purpose = view1.findViewById(R.id.tv_role);
+            tv_description = view1.findViewById(R.id.tv_no_response_content);
+            HelperPic = view1.findViewById(R.id.img_alertPic);
+            btn_allow = view1.findViewById(R.id.bt_allow);
+            tv_Name.setText(commonAlertsList.get(position).name);
+            tv_purpose.setText(commonAlertsList.get(position).service);
+            tv_description.setText(commonAlertsList.get(position).Description);
+
+            Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL + commonAlertsList.get(position).profilePic)
+                    .error(R.drawable.dummy).into(HelperPic);
+
+            btn_allow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    call_Nottify_AlertWS(position);
+                    alertDialog.dismiss();
+                }
+            });
+
+            alertDialog.show();
+        }
+    }
+
+
+    private void showAlertDialog_Digital(final int position) {
+        LayoutInflater inflater = LayoutInflater.from(getActivity());
+        View view1 = inflater.inflate(R.layout.alert_staff_alert, null);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setView(view1);
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCancelable(false);
+
+        TextView tv_Name, tv_purpose, tv_description, btn_allow;
+        ImageView HelperPic;
+
+        tv_Name = view1.findViewById(R.id.tv_alert_staff_alert_name);
+        tv_purpose = view1.findViewById(R.id.tv_role);
+        tv_description = view1.findViewById(R.id.tv_no_response_content);
+        HelperPic = view1.findViewById(R.id.img_alertPic);
+        btn_allow = view1.findViewById(R.id.bt_allow);
+        tv_Name.setText(commonAlertsList.get(position).name);
+        tv_purpose.setText(commonAlertsList.get(position).service);
+        tv_description.setText(commonAlertsList.get(position).Description);
+
+        Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL + commonAlertsList.get(position).profilePic)
+                .error(R.drawable.dummy).into(HelperPic);
+
+        btn_allow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                call_Nottify_AlertWS(position);
+                alertDialog.dismiss();
+            }
+        });
+
+        alertDialog.show();
     }
 }
 

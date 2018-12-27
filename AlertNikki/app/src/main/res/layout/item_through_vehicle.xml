@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:orientation="vertical"
+
+    android:paddingBottom="@dimen/_10sdp">
+
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:id="@+id/item_through_name"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:gravity="center_horizontal"
+        android:text="Name: "
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:gravity="center_horizontal">
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/text_mob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mobile Number: "
+            android:textSize="@dimen/_11sdp" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/item_mobile_no_through_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_toRightOf="@+id/text_mob"
+            android:text="000-000-0000 "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:gravity="center_horizontal">
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/text_veh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Vehicle Number: "
+            android:textSize="@dimen/_11sdp" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/item_through_vehicle_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_veh"
+            android:text="TS 09 CD 1443  "
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/text_srvi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="Serivice From: "
+            android:textSize="@dimen/_11sdp" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/item_service_from_through_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_srvi"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/text_sdeli"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery From: "
+            android:textSize="@dimen/_11sdp" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:id="@+id/item_delivery_from_through_vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_sdeli"
+            android:gravity="center_horizontal"
+
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12sdp" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/backgroundlight">
+
+    </View>
+</LinearLayout>

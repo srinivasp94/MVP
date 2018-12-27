@@ -16,6 +16,7 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         app:elevation="2dp"
+        app:itemIconTint="@drawable/nav_item_color_state"
         app:itemTextColor="@drawable/nav_item_color_state"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/nav_top_view" />
@@ -25,9 +26,9 @@
         android:id="@+id/fm_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
         android:layout_above="@id/bottom_navigation"
-        android:layout_below="@+id/bottom_navigationtop">
+        android:layout_below="@+id/bottom_navigationtop"
+        android:background="@color/white">
 
     </FrameLayout>
 
@@ -41,6 +42,7 @@
         android:background="@android:color/white"
         app:elevation="1dp"
         app:itemBackground="@color/black"
+        app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
         app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
         app:labelVisibilityMode="labeled"
         app:menu="@menu/bottom_view" />

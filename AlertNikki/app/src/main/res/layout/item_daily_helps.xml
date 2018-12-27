@@ -6,6 +6,7 @@
     android:elevation="@dimen/_1sdp"
     android:background="@color/white"
     android:layout_margin="@dimen/_4sdp"
+    android:gravity="center"
     android:padding="@dimen/_3sdp"
     android:weightSum="1.5">
 
@@ -21,7 +22,7 @@
             android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_55sdp"
             android:padding="@dimen/_4sdp"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/dummy" />
     <!--</LinearLayout>-->
 
     <LinearLayout
@@ -45,7 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guset"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_10sdp" />
 
 
         <com.iprismech.alertnikki.customviews.CustomTextViewLight
@@ -53,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Guset"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_11sdp" />
     </LinearLayout>
 
     <LinearLayout
@@ -72,7 +73,7 @@
             android:gravity="center"
             android:text="00Hr10Min"
             android:textColor="@color/green"
-            android:textSize="@dimen/_12sdp" />
+            android:textSize="@dimen/_10sdp" />
 
         <Button
             android:id="@+id/btn_out"

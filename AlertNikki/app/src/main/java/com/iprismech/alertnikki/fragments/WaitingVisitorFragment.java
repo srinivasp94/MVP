@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Request.CallVisitor;
 import com.iprismech.alertnikki.Request.Visitor;
+import com.iprismech.alertnikki.Request.Visitor_In;
 import com.iprismech.alertnikki.Response.ResponseVisitMember;
 import com.iprismech.alertnikki.Response.WaitingVisitors;
 import com.iprismech.alertnikki.adapters.WaitingVisitorAdapter;
@@ -29,6 +31,7 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
     private WaitingVisitorAdapter adapter;
     private ArrayList<ResponseVisitMember> arrayList = new ArrayList<>();
     private Object obj;
+    private int itemposition;
 
     @Override
     protected View getFragmentView() {
@@ -95,7 +98,35 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
                             if (arrayList != null && arrayList.size() > 0) {
                                 adapter = new WaitingVisitorAdapter(getActivity(), arrayList);
                                 rv_visit_inside.setAdapter(adapter);
+                                adapter.setOnItemClickListener(new WaitingVisitorAdapter.OnitemClickListener() {
+                                    @Override
+                                    public void onItemClick(View view, int position) {
+                                        switch (view.getId()) {
+
+                                            case R.id.btn_in:
+                                                callWaiting_in_WS(position);
+                                                break;
+                                            case R.id.btn_check:
+                                                call_Waiting_check_WS(position);
+                                                break;
+                                            case R.id.btn_call:
+                                                call_Waiting_call_WS(position);
+                                                break;
+                                            case R.id.btn_msg:
+                                                call_Waiting_msg_WS(position);
+                                                break;
+                                        }
+                                    }
+                                });
                             }
+                            break;
+                        case 2:
+                            arrayList.remove(itemposition);
+                            adapter.notifyDataSetChanged();
+                            Common.showToast(getActivity(), object.optString("message"));
+                            break;
+                        case 3:
+                            Common.showToast(getActivity(), object.optString("message"));
                             break;
                     }
                 } else {
@@ -108,5 +139,53 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
 
         }
     }
+
+    private void call_Waiting_msg_WS(int position) {
+//        msg_notification
+
+    }
+
+    private void callWaiting_in_WS(int position) {
+
+        itemposition = position;
+        Visitor_In req = new Visitor_In();
+        req.securityId = SharedPrefsUtils.getInstance(getActivity()).getsecurityId();
+        req.visitorId = arrayList.get(position).visitorId;
+        if (arrayList.get(position).type.equalsIgnoreCase("Guest")) {
+            req.type = "1";
+        } else {
+            req.type = "2";
+        }
+
+        try {
+            obj = Class.forName(Visitor_In.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 2, "update_in_visitors", true);
+
+    }
+
+    private void call_Waiting_check_WS(int position) {
+
+    }
+
+    private void call_Waiting_call_WS(int position) {
+//        user_call_service
+
+        CallVisitor req = new CallVisitor();
+        req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
+        req.userId = arrayList.get(position).userId;
+        req.userType = arrayList.get(position).userType;
+
+        try {
+            obj = Class.forName(CallVisitor.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 3, "user_call_service", true);
+    }
+
+
 }
 

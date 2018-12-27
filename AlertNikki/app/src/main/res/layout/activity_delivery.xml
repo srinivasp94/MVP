@@ -48,9 +48,9 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_deliveryBoy_pic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:src="@drawable/dummy" />
 
             <com.iprismech.alertnikki.customviews.CustomTextViewBold
                 android:layout_width="match_parent"
@@ -77,10 +77,12 @@
                 android:text="*Name"
                 android:textColor="@color/colorPrimary" />
 
-            <EditText
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                 android:id="@+id/edt_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:inputType="text"
                 android:background="@null"
                 android:hint="Name" />
 
@@ -88,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:background="@color/viewcolor" />
+                android:background="@color/backgroundlight" />
 
             <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                 android:layout_width="match_parent"
@@ -97,18 +99,21 @@
                 android:text="*Mobile"
                 android:textColor="@color/colorPrimary" />
 
-            <EditText
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                 android:id="@+id/edt_Mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:inputType="number"
+                android:maxLength="10"
+                android:singleLine="true"
                 android:hint="000-000-0000" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:background="@color/viewcolor" />
+                android:background="@color/backgroundlight" />
 
             <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                 android:layout_width="match_parent"
@@ -121,11 +126,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
+                <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                     android:id="@+id/edt_DeliveryFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
+                    android:singleLine="true"
+                    android:focusable="false"
+                    android:inputType="text"
                     android:hint="Name" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -134,7 +142,7 @@
                     android:layout_height="@dimen/_24sdp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/_8sdp"
-                    android:src="@mipmap/ic_launcher" />
+                    android:src="@drawable/dummy" />
             </RelativeLayout>
 
 
@@ -142,7 +150,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:background="@color/viewcolor" />
+                android:background="@color/backgroundlight" />
 
             <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                 android:layout_width="match_parent"
@@ -154,11 +162,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:padding="@dimen/_5sdp"
                 android:orientation="horizontal">
 
 
-                <EditText
+                <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                     android:id="@+id/edt_vehicle_first"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="wrap_content"
@@ -168,12 +177,13 @@
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
                     android:hint="AP"
-                    android:inputType="text"
+                    android:singleLine="true"
+                    android:inputType="textCapCharacters"
                     android:maxLength="2"
                     android:padding="@dimen/_1sdp"
                     android:textAllCaps="true" />
 
-                <EditText
+                <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                     android:id="@+id/edt_vehicle_one"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="wrap_content"
@@ -182,12 +192,13 @@
                     android:background="@drawable/vehiclenum_bgr"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
-                    android:hint="AP"
+                    android:hint="30"
+                    android:singleLine="true"
                     android:inputType="number"
                     android:maxLength="2"
                     android:padding="@dimen/_1sdp" />
 
-                <EditText
+                <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                     android:id="@+id/edt_vehicle_two"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="wrap_content"
@@ -196,12 +207,14 @@
                     android:background="@drawable/vehiclenum_bgr"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
-                    android:hint="AP"
-                    android:inputType="text"
+                    android:hint="CD"
+                    android:textAllCaps="true"
+                    android:singleLine="true"
+                    android:inputType="textCapCharacters"
                     android:maxLength="2"
-                    android:padding="@dimen/_3sdp" />
+                    android:padding="@dimen/_1sdp" />
 
-                <EditText
+                <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                     android:id="@+id/edt_vehicle_three"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="wrap_content"
@@ -210,10 +223,11 @@
                     android:background="@drawable/vehiclenum_bgr"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
-                    android:hint="1111"
+                    android:hint="0000"
+                    android:singleLine="true"
                     android:inputType="number"
                     android:maxLength="4"
-                    android:padding="@dimen/_3sdp" />
+                    android:padding="@dimen/_1sdp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -222,7 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_8sdp"
-            android:background="@color/mainbackground"
+            android:background="@color/backgroundlight"
             android:paddingLeft="@dimen/_8sdp"
             android:paddingTop="@dimen/_5sdp"
             android:paddingBottom="@dimen/_5sdp"
@@ -243,11 +257,15 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="*Mobile Number"
                 android:textColor="@color/colorPrimary" />
-            <EditText
+
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                 android:id="@+id/edt_resident_Mobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="10"
                 android:hint="000-000-0000" />
 
 
@@ -255,7 +273,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:background="@color/viewcolor" />
+                android:background="@color/backgroundlight" />
 
             <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                 android:layout_width="match_parent"
@@ -265,18 +283,18 @@
                 android:textColor="@color/colorPrimary" />
 
             <Spinner
-                android:layout_marginTop="@dimen/_2sdp"
-                android:padding="@dimen/_4sdp"
                 android:id="@+id/spinner_building"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name" />
+                android:layout_marginTop="@dimen/_2sdp"
+                android:hint="Name"
+                android:padding="@dimen/_4sdp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:background="@color/viewcolor" />
+                android:background="@color/backgroundlight" />
 
             <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                 android:layout_width="match_parent"
@@ -286,31 +304,31 @@
                 android:textColor="@color/colorPrimary" />
 
             <Spinner
-                android:layout_marginTop="@dimen/_2sdp"
-                android:padding="@dimen/_4sdp"
                 android:id="@+id/spinner_flat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name" />
+                android:layout_marginTop="@dimen/_2sdp"
+                android:hint="Name"
+                android:padding="@dimen/_4sdp" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:background="@color/viewcolor" />
+                android:background="@color/backgroundlight" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_sendnotify"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send Notify"
-            android:textColor="@color/white"
             android:layout_margin="@dimen/_8sdp"
-            android:padding="@dimen/_8sdp"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/black_button_bgr"/>
+            android:background="@drawable/black_button_bgr"
+            android:padding="@dimen/_8sdp"
+            android:text="Send Notify"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
     </LinearLayout>
 </ScrollView>

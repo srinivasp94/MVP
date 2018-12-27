@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="* Vehicle number"
+                android:textColor="#e62d40" />
+
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
+                android:id="@+id/movein_et_vehicle_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@null"
+                android:hint="xxx-xxx-xx"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6bfc6">
+
+            </View>
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="* Bulding Name"
+                android:textColor="#e62d40" />
+
+            <Spinner
+                android:id="@+id/sp_building"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_30sdp">
+
+            </Spinner>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6bfc6">
+
+            </View>
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="* Flat Name"
+                android:textColor="#e62d40" />
+
+            <Spinner
+                android:id="@+id/sp_flat"
+                style="@style/SpinnerTheme"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_30sdp"></Spinner>
+
+
+            <!--<com.iprismech.alertnikki.customviews.CustomEditTextNormal-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="@dimen/_5sdp"-->
+            <!--android:background="@null"-->
+            <!--android:hint="102"-->
+            <!--android:inputType="number"-->
+            <!--android:id="@+id/movein_et_flat_number"-->
+            <!--android:maxLines="1"-->
+            <!--android:singleLine="true"-->
+            <!--android:textSize="@dimen/_12sdp" />-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6bfc6">
+
+            </View>
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="* Tenant name"
+                android:textColor="#e62d40" />
+
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
+                android:id="@+id/movein_et_tenant_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@null"
+                android:hint="John Doe"
+                android:inputType="text"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6bfc6">
+
+            </View>
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="* Mobile number"
+                android:textColor="#e62d40" />
+
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
+                android:id="@+id/movein_et_mobile_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@null"
+                android:hint="xxx-xxx-xx"
+                android:inputType="number"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.2dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#c6bfc6">
+
+            </View>
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Comments"
+                android:textColor="#e62d40" />
+
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
+                android:id="@+id/movein_et_comment"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/search_bg_new"
+                android:gravity="start"
+                android:hint="Write your comments here..."
+                android:padding="@dimen/_5sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:id="@+id/movein_btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignBottom="@id/ll_view"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_80sdp"
+                android:background="@drawable/black_button_bgr"
+                android:gravity="center"
+                android:text="Submit"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

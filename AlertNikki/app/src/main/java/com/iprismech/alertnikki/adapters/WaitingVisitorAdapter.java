@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
@@ -25,6 +26,7 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
         this.context = context;
         this.arrayList = arrayList;
     }
+
     private OnitemClickListener mListner;
 
     public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
@@ -52,10 +54,14 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
         viewHolder.toAddress.setText("Name: " + member.userName + "\n" +
                 "Flat: " + member.flatName + "\n" + "Building: " + member.buildingName);
 
-        if (member.type.equalsIgnoreCase("Guest")) {
+        //   visitor person as guest or security accept as 1 then show IN or
+//      if deviryBou or security accept as 0 allow to call or message
+//      if Residence not responding to call or message allow to check
+
+        if (member.type.equalsIgnoreCase("Guest") || member.security_accept_status.equalsIgnoreCase("1")) {
             viewHolder.b_in.setVisibility(View.VISIBLE);
         } else if (member.type.equalsIgnoreCase("Delivery") && member.security_accept_status.equalsIgnoreCase("0")) {
-            viewHolder.b_call_1.setVisibility(View.VISIBLE);
+            viewHolder.ll_calling.setVisibility(View.VISIBLE);
         } else {
             viewHolder.b_check.setVisibility(View.VISIBLE);
         }
@@ -68,18 +74,25 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView name, type, toAddress;
         private ImageView pic;
-        private Button b_in, b_check, b_call_1, b_call2, b_msg;
+        private Button b_in, b_check;
+        ImageView b_call_1, b_call2, b_msg;
+        LinearLayout ll_calling;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             b_in = itemView.findViewById(R.id.btn_in);
             b_check = itemView.findViewById(R.id.btn_check);
+            b_msg = itemView.findViewById(R.id.btn_msg);
             b_call_1 = itemView.findViewById(R.id.btn_call);
-           /* b_call2 = itemView.findViewById(R.id.btn_check);
-            b_msg = itemView.findViewById(R.id.btn_check);*/
+            b_call2 = itemView.findViewById(R.id.btn_callactive);
+            ll_calling = itemView.findViewById(R.id.ll_calling);
+
+
+            /* b_call2 = itemView.findViewById(R.id.btn_check);*/
+
 
             name = itemView.findViewById(R.id.txt_title_name);
             type = itemView.findViewById(R.id.txt_gusetType);
@@ -87,7 +100,20 @@ public class WaitingVisitorAdapter extends RecyclerView.Adapter<WaitingVisitorAd
 
             pic = itemView.findViewById(R.id.img_userpic);
 
+            b_in.setOnClickListener(this);
+            b_msg.setOnClickListener(this);
+            b_call_1.setOnClickListener(this);
+            b_call2.setOnClickListener(this);
 
+            b_check.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
         }
     }
 }

@@ -5,7 +5,10 @@ import android.support.annotation.IntDef;
 
 import com.iprismech.alertnikki.MainActivity;
 import com.iprismech.alertnikki.activity.CameraActivity;
+import com.iprismech.alertnikki.activity.DeliveryActivity;
+import com.iprismech.alertnikki.activity.GuestDetailsActivity;
 import com.iprismech.alertnikki.activity.SecurityLoginActivity;
+import com.iprismech.alertnikki.activity.ThroughVehicleActivity;
 import com.iprismech.alertnikki.activity.WelcomeActivity;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 import com.iprismech.alertnikki.fragments.QrCode_Fragment;
@@ -14,11 +17,14 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.CAMERA_SCREEN;
+import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.DELIVERY_BOY;
+import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.GUEST_DETAILS;
 import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.INTROSCREEN;
 import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.MAIN_SCREEN;
 
 import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.QRCODE;
 import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.SECURITY_LOGIN_SCREEN;
+import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.THROUGH_VEHICLE;
 import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.WELCOME_SCREEN;
 
 
@@ -34,7 +40,8 @@ import static com.iprismech.alertnikki.app.factories.ViewFactory.ScreenIds.WELCO
 public class ViewFactory {
 
     @Retention(RetentionPolicy.CLASS)
-    @IntDef({ScreenIds.SPLASH_SCREEN, SECURITY_LOGIN_SCREEN, CAMERA_SCREEN, WELCOME_SCREEN, MAIN_SCREEN, QRCODE,INTROSCREEN})
+    @IntDef({ScreenIds.SPLASH_SCREEN, SECURITY_LOGIN_SCREEN, CAMERA_SCREEN,
+            WELCOME_SCREEN, MAIN_SCREEN, QRCODE, INTROSCREEN, DELIVERY_BOY, THROUGH_VEHICLE, GUEST_DETAILS})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1000;
@@ -46,7 +53,9 @@ public class ViewFactory {
         int QRCODE = 1005;
 
         int INTROSCREEN = 1036;
-
+        int DELIVERY_BOY = 1007;
+        int GUEST_DETAILS = 1008;
+        int THROUGH_VEHICLE = 1037;
 
     }
 
@@ -83,6 +92,12 @@ public class ViewFactory {
                 return MainActivity.class;
             case QRCODE:
                 return QrCode_Fragment.class;
+            case DELIVERY_BOY:
+                return DeliveryActivity.class;
+            case THROUGH_VEHICLE:
+                return ThroughVehicleActivity.class;
+            case GUEST_DETAILS:
+                return GuestDetailsActivity.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

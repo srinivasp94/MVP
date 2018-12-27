@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
@@ -57,7 +58,8 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView guestName, type, invitedBy, address, timesince;
-        Button out;
+        TextView out;
+        LinearLayout ll_rootVisitor;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -68,12 +70,17 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
             address = itemView.findViewById(R.id.txt_AddressFrom);
             timesince = itemView.findViewById(R.id.txt_timeSince);
             out = itemView.findViewById(R.id.btn_out);
+            ll_rootVisitor= itemView.findViewById(R.id.ll_rootVisitor);
 
             out.setOnClickListener(this);
+            ll_rootVisitor.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
 
         }
     }

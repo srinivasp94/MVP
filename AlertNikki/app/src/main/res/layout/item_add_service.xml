@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_45sdp"
+    android:layout_height="@dimen/_50sdp"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:id="@+id/ll_item_categoty">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/dummy" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/daily_hepler_category"
+            android:gravity="center_horizontal"
+            android:text="Maid"
+            android:textSize="@dimen/_10sdp" />
+    </LinearLayout>
+    <!--<View-->
+        <!--android:layout_width="@dimen/_1sdp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#000">-->
+    <!--</View>-->
+
+
+</LinearLayout>

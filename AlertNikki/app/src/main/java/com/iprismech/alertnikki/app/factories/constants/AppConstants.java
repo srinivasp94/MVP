@@ -6,10 +6,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_CAMERA_SCREEN;
+import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN;
+import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_GUEST_DETAILS_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_MAIN_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_QRCODE;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_SECURITY_LOGIN_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_SPLASH_SCREEN;
+import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_THROUGH_VEHICLE_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_WELCOME_SCREEN;
 
 
@@ -31,8 +34,11 @@ public interface AppConstants {
             LAUNCH_WELCOME_SCREEN,
             LAUNCH_MAIN_SCREEN,
             LAUNCH_CAMERA_SCREEN,
-            LAUNCH_QRCODE
-})
+            LAUNCH_QRCODE, LAUNCH_DELIVERY_BOY_SCREEN,
+            LAUNCH_THROUGH_VEHICLE_SCREEN,
+            LAUNCH_GUEST_DETAILS_SCREEN
+
+    })
     @interface EventIds {
 
         int LAUNCH_SPLASH_SCREEN = 101;
@@ -40,7 +46,10 @@ public interface AppConstants {
         int LAUNCH_CAMERA_SCREEN = 103;
         int LAUNCH_WELCOME_SCREEN = 104;
         int LAUNCH_MAIN_SCREEN = 105;
-        int LAUNCH_QRCODE= 106;
+        int LAUNCH_QRCODE = 106;
+        int LAUNCH_DELIVERY_BOY_SCREEN = 107;
+        int LAUNCH_THROUGH_VEHICLE_SCREEN = 108;
+        int LAUNCH_GUEST_DETAILS_SCREEN = 109;
 
     }
 

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +48,14 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         viewHolder.schoolName.setText(buses.schoolBusName);
         viewHolder.schoolAddress.setText(buses.address);
         viewHolder.route.setText("Bus No: " + buses.vehicleNumber);
+
+        if (buses.attendence.inTime == null) {
+            viewHolder.notify.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.in_time.setVisibility(View.VISIBLE);
+            viewHolder.in_time.setText(buses.attendence.inTime);
+            viewHolder.bt_OUT.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -54,16 +63,31 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         return busesLists.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView schoolName, schoolAddress, route;
-        private ImageView schoolPic;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        private TextView schoolName, schoolAddress, route, in_time;
+        private ImageView schoolPic, notify;
+        private Button bt_OUT;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             schoolName = itemView.findViewById(R.id.txt_title_name);
             schoolAddress = itemView.findViewById(R.id.txt_addressSchool);
             route = itemView.findViewById(R.id.txt_Route);
+            in_time = itemView.findViewById(R.id.txt_timeSince);
             schoolPic = itemView.findViewById(R.id.image_school);
+            bt_OUT = itemView.findViewById(R.id.btn_out);
+            notify = itemView.findViewById(R.id.img_notify);
+
+            notify.setOnClickListener(this);
+            bt_OUT.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
         }
     }
 }

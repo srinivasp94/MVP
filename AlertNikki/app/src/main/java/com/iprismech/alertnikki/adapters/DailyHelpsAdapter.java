@@ -57,7 +57,7 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
         return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView img_pic;
         private TextView name, passcode, duty, time;
         private Button btn_out;
@@ -70,6 +70,14 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
             passcode = itemView.findViewById(R.id.txt_AddressFrom);
             time = itemView.findViewById(R.id.txt_timeSince);
             btn_out = itemView.findViewById(R.id.btn_out);
+
+            btn_out.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null)
+                mListner.onItemClick(v, getPosition());
         }
     }
 }

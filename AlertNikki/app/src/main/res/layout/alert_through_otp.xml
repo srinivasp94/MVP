@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_50sdp"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:id="@+id/llview"
+            android:layout_width="match_parent"
+            android:background="@drawable/white_bg_corner"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginHorizontal="@dimen/_25sdp"
+            android:layout_marginTop="34dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:id="@+id/tv_through_otp_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:text="Petey Cruiser"
+                android:textColor="#000"
+                android:textSize="@dimen/_14sdp" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewLight
+                android:id="@+id/throuh_otp_mobile_nuber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="mobile"
+                android:textColor="#000" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:orientation="horizontal">
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Passcode :" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:id="@+id/tv_through_otp_passcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="356153"
+                    android:textColor="#000" />
+
+            </LinearLayout>
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/through_otp_residency"
+                android:text="Residency"
+                />
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/through_otp_flat"
+                android:text="Flat"
+                />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/through_otp_society"
+                android:text="Society"
+                />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_5sdp">
+
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                        android:id="@+id/tv_allow_ok_through_otp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/green_btn_bgr"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_15sdp"
+                        android:text="Ok"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/_15sdp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_through_otp_pic"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/dummy" />
+    </RelativeLayout>
+</LinearLayout>

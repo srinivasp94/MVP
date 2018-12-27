@@ -42,6 +42,8 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
+
+    implementation 'com.orhanobut:dialogplus:1.11@aar'
 //    implementation 'com.google.zxing:core:3.3.3'
 //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'

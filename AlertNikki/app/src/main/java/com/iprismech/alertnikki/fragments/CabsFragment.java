@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.FoodModel;
 import com.iprismech.alertnikki.adapters.DeliveryAdapter;
+import com.iprismech.alertnikki.app.factories.constants.AppConstants;
+import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 
 import java.util.ArrayList;
 
@@ -55,11 +57,21 @@ public class CabsFragment extends BaseAbstractFragment<Class> {
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-        arrayList.add(new FoodModel("OLA", R.drawable.user));
-        arrayList.add(new FoodModel("Uber", R.drawable.user));
-        arrayList.add(new FoodModel("Bla Bla", R.drawable.user));
+        arrayList.add(new FoodModel("OLA", R.drawable.ic_ola));
+        arrayList.add(new FoodModel("Uber", R.drawable.ic_uber));
+        arrayList.add(new FoodModel("Bla Bla", R.drawable.ic_blabla));
         adapter = new DeliveryAdapter(getActivity(), arrayList);
         rv_cabs.setLayoutManager(manager);
         rv_cabs.setAdapter(adapter);
+        adapter.setOnItemClickListener(new DeliveryAdapter.OnitemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Key_Title", arrayList.get(position).getTitle());
+                bundle.putInt("Key_Image", arrayList.get(position).getImg_id());
+
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN, bundle);
+            }
+        });
     }
 }

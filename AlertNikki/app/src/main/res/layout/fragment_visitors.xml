@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_2sdp"
-            android:elevation="@dimen/_2sdp"
+            android:elevation="@dimen/_1sdp"
             android:padding="@dimen/_2sdp"
             app:defaultQueryHint="Search here">
 

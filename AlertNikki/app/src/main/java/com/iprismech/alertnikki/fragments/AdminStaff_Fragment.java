@@ -8,6 +8,7 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
@@ -27,12 +28,15 @@ import java.util.ArrayList;
 
 public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
     private SearchView msearchView;
+    private LinearLayout ll_noResponse;
     private RecyclerView rv_admin;
     private AdminStaffAdapter staffAdapter;
     private LinearLayoutManager manager;
     private ArrayList<StaffResponse> arrayList = new ArrayList<>();
+    private ArrayList<StaffResponse> arrayListnew = new ArrayList<>();
     private Object obj;
     RetrofitResponseListener responseListener;
+    private int itemPosition;
 
     @Override
     protected View getFragmentView() {
@@ -70,6 +74,7 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
 
         msearchView = view.findViewById(R.id.searchview_admin);
         rv_admin = view.findViewById(R.id.rv_adminstaff);
+        ll_noResponse = view.findViewById(R.id.ll_noResponse);
         rv_admin.setLayoutManager(manager);
 
         AdminStaff staff = new AdminStaff();
@@ -101,24 +106,31 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                             Admin_Staff admin_staff = Common.getSpecificDataObject(objectResponse, Admin_Staff.class);
 
                             arrayList = (ArrayList) admin_staff.response;
-                            if (arrayList != null && arrayList.size() > 0) {
-                                staffAdapter = new AdminStaffAdapter(getActivity(), arrayList);
-                                rv_admin.setAdapter(staffAdapter);
-                                staffAdapter.setOnItemClickListener(new AdminStaffAdapter.OnitemClickListener() {
-                                    @Override
-                                    public void onItemClick(View view, int position) {
-//                                        out_admin_staff
-                                        OutAdminStaff req = new OutAdminStaff();
-                                        req.attendenceId = arrayList.get(position).attendence.id;
 
-                                        try {
-                                            obj = Class.forName(OutAdminStaff.class.getName()).cast(req);
-                                        } catch (Exception e) {
-                                            e.printStackTrace();
-                                        }
-                                        new RetrofitRequester(responseListener).callPostServices(obj, 2, "out_admin_staff", true);
+                            if (arrayList != null && arrayList.size() > 0) {
+                                for (int i = 0; i < arrayList.size(); i++) {
+                                    if (arrayList.get(i).attendence.id == null || arrayList.get(i).attendence.id.equalsIgnoreCase("")) {
+
+                                    } else {
+                                        arrayListnew.add(arrayList.get(i));
                                     }
-                                });
+                                }
+                                if (arrayListnew != null && arrayListnew.size() > 0) {
+
+                                    staffAdapter = new AdminStaffAdapter(getActivity(), arrayListnew);
+                                    rv_admin.setAdapter(staffAdapter);
+
+                                    staffAdapter.setOnItemClickListener(new AdminStaffAdapter.OnitemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+//                                        out_admin_staff
+                                            call_staff_outWS(position);
+                                        }
+                                    });
+                                } else {
+                                    ll_noResponse.setVisibility(View.VISIBLE);
+                                }
+
                             } else {
                                 Common.showToast(getActivity(), "Items Not Found");
                             }
@@ -126,7 +138,7 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                         case 2:
                             Common.showToast(getActivity(), object.optString("message"));
                             JSONObject responseStaff = object.optJSONObject("response");
-                            arrayList.remove(arrayList.contains(responseStaff.optString("id")));
+                            arrayList.remove(itemPosition);
 
                             staffAdapter.notifyDataSetChanged();
                             break;
@@ -140,5 +152,18 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
 
 
         }
+    }
+
+    private void call_staff_outWS(int position) {
+        itemPosition = position;
+        OutAdminStaff req = new OutAdminStaff();
+        req.attendenceId = arrayList.get(position).staffId;
+
+        try {
+            obj = Class.forName(OutAdminStaff.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(responseListener).callPostServices(obj, 2, "out_admin_staff", true);
     }
 }

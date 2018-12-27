@@ -55,7 +55,7 @@ public class AlertsAdapter extends RecyclerView.Adapter<AlertsAdapter.ViewHolder
 
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView date, notification_Msg, type;
 
         public ViewHolder(@NonNull View itemView) {
@@ -63,6 +63,15 @@ public class AlertsAdapter extends RecyclerView.Adapter<AlertsAdapter.ViewHolder
             date = itemView.findViewById(R.id.item_notify_date);
             notification_Msg = itemView.findViewById(R.id.item_notify_message);
             type = itemView.findViewById(R.id.item_notify_type);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
         }
     }
 }

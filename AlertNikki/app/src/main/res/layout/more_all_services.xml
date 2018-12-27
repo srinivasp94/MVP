@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:orientation="vertical">
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/rview_more_all_services">
+
+    </android.support.v7.widget.RecyclerView>
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_35sdp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/_20sdp"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center" android:src="@drawable/dummy"/>-->
+
+        <!--<com.iprismech.alertnikki.customviews.CustomTextViewBold-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="@dimen/_10sdp"-->
+            <!--android:text="Add Guest"-->
+            <!--android:textColor="#000" />-->
+    <!--</LinearLayout>-->
+    <!--<View-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="@dimen/_1sdp"-->
+    <!--android:layout_marginLeft="@dimen/_30sdp"-->
+
+    <!--android:background="#5655"></View>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_35sdp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/_20sdp"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center" android:src="@drawable/dummy"/>-->
+
+        <!--<com.iprismech.alertnikki.customviews.CustomTextViewBold-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="@dimen/_10sdp"-->
+            <!--android:text="Resident"-->
+            <!--android:textColor="#000" />-->
+    <!--</LinearLayout>-->
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="@dimen/_1sdp"-->
+        <!--android:layout_marginLeft="@dimen/_30sdp"-->
+
+        <!--android:background="#5655"></View>-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_35sdp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/_20sdp"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center" android:src="@drawable/dummy"/>-->
+
+        <!--<com.iprismech.alertnikki.customviews.CustomTextViewBold-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="@dimen/_10sdp"-->
+            <!--android:text="Courier/Delivery boy"-->
+            <!--android:textColor="#000" />-->
+    <!--</LinearLayout>-->
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="@dimen/_1sdp"-->
+        <!--android:layout_marginLeft="@dimen/_30sdp"-->
+
+        <!--android:background="#5655"></View>-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_35sdp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/_20sdp"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center" android:src="@drawable/dummy"/>-->
+
+        <!--<com.iprismech.alertnikki.customviews.CustomTextViewBold-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="@dimen/_10sdp"-->
+            <!--android:text="Cab"-->
+            <!--android:textColor="#000" />-->
+    <!--</LinearLayout>-->
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="@dimen/_1sdp"-->
+        <!--android:layout_marginLeft="@dimen/_30sdp"-->
+
+        <!--android:background="#5655"></View>-->
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/_35sdp"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="@dimen/_20sdp"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center" android:src="@drawable/dummy"/>-->
+
+        <!--<com.iprismech.alertnikki.customviews.CustomTextViewBold-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="@dimen/_20sdp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:layout_marginLeft="@dimen/_10sdp"-->
+            <!--android:text="Gas Delivery"-->
+            <!--android:textColor="#000" />-->
+    <!--</LinearLayout>-->
+    <!--<View-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="@dimen/_1sdp"-->
+        <!--android:layout_marginLeft="@dimen/_30sdp"-->
+
+        <!--android:background="#5655"></View>-->
+
+
+    <!--<ExpandableListView-->
+        <!--android:id="@+id/lvExp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_width="wrap_content"/>-->
+</LinearLayout>

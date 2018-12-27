@@ -45,6 +45,7 @@ public class DeliveryAdapter extends RecyclerView.Adapter<DeliveryAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         FoodModel model = arrayList.get(i);
         viewHolder.mName.setText(model.getTitle());
+        viewHolder.img_company.setImageResource(model.getImg_id());
     }
 
     @Override

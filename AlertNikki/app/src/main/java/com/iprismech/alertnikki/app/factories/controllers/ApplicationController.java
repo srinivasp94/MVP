@@ -166,7 +166,7 @@ public class ApplicationController {
                 uiController.launchActivity(ViewFactory.ScreenIds.SECURITY_LOGIN_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_CAMERA_SCREEN:
-                uiController.launchActivity(ViewFactory.ScreenIds.CAMERA_SCREEN,(Bundle)eventObjects);
+                uiController.launchActivity(ViewFactory.ScreenIds.CAMERA_SCREEN, (Bundle) eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_WELCOME_SCREEN:
                 uiController.launchActivity(ViewFactory.ScreenIds.WELCOME_SCREEN, (Bundle) eventObjects);
@@ -176,6 +176,18 @@ public class ApplicationController {
                 break;
             case AppConstants.EventIds.LAUNCH_QRCODE:
                 uiController.launchActivity(ViewFactory.ScreenIds.QRCODE);
+                break;
+            case AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN:
+                uiController.launchActivity(ViewFactory.ScreenIds.DELIVERY_BOY, (Bundle) eventObjects);
+                break;
+
+
+            case AppConstants.EventIds.LAUNCH_THROUGH_VEHICLE_SCREEN:
+                uiController.launchActivity(ViewFactory.ScreenIds.THROUGH_VEHICLE, (Bundle) eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_GUEST_DETAILS_SCREEN:
+                uiController.launchActivity(ViewFactory.ScreenIds.GUEST_DETAILS, (Bundle) eventObjects);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event id");

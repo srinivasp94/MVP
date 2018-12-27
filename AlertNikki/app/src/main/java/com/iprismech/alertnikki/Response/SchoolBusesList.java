@@ -57,5 +57,38 @@ public class SchoolBusesList {
     }
 
     public class BusSchedule {
+
+        @SerializedName("id")
+        @Expose
+        public String id;
+        @SerializedName("admin_id")
+        @Expose
+        public String adminId;
+        @SerializedName("schoolbus_id")
+        @Expose
+        public String schoolbusId;
+        @SerializedName("date")
+        @Expose
+        public String date;
+        @SerializedName("in_time")
+        @Expose
+        public String inTime;
+        @SerializedName("out_time")
+        @Expose
+        public String outTime;
+        @SerializedName("in_out_status")
+        @Expose
+        public String inOutStatus;
+        @SerializedName("created_on")
+        @Expose
+        public String createdOn;
+        @SerializedName("modified_on")
+        @Expose
+        public String modifiedOn;
+
+        @Override
+        public String toString() {
+            return new ToStringBuilder(this).append("id", id).append("adminId", adminId).append("schoolbusId", schoolbusId).append("date", date).append("inTime", inTime).append("outTime", outTime).append("inOutStatus", inOutStatus).append("createdOn", createdOn).append("modifiedOn", modifiedOn).toString();
+        }
     }
 }

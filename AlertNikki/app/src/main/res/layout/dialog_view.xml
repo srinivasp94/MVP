@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_margin="@dimen/_2sdp"
-    android:background="#7ffcb09d"
+    android:background="@color/backgroundlight"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="@dimen/_4sdp">
@@ -13,9 +13,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTintMode="multiply"
+        android:progressBackgroundTint="@color/black"
         android:progressBackgroundTintMode="multiply"
-        android:scrollbars="none"
-        android:progressBackgroundTint="@color/black" />
+        android:progressTint="@color/colorPrimary"
+        android:scrollbars="none" />
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
         android:layout_width="wrap_content"
