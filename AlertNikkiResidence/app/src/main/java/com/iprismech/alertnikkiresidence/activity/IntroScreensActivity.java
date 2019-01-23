@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
@@ -36,5 +37,6 @@ public class IntroScreensActivity extends BaseAbstractActivity {
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+        Toast.makeText(getApplicationContext(), "This", Toast.LENGTH_SHORT).show();
     }
 }
