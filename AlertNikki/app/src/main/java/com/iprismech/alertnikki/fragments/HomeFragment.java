@@ -52,6 +52,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     RetrofitResponseListener responseListener;
     MainActivity activity;
     private String tag = "";
+    private ImageView car, otp, qr, mobile;
 
     @Override
     protected View getFragmentView() {
@@ -173,6 +174,11 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
         edt_all = view.findViewById(R.id.edt_all);
         edt_text = view.findViewById(R.id.edt_otp1);
+        otp = view.findViewById(R.id.otp);
+        car = view.findViewById(R.id.car);
+        qr = view.findViewById(R.id.qr);
+        mobile = view.findViewById(R.id.mobile);
+
         responseListener = this;
 
         activity = (MainActivity) getActivity();
@@ -187,9 +193,13 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 break;
             case R.id.ll_mobile:
                 try {
-                    lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
-                    lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
-                    lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                    mobile.setImageResource(R.drawable.mobile);
+
+                    otp.setImageResource(R.drawable.ic_otp_inactve);
+                    car.setImageResource(R.drawable.ic_car_inactiv);
+//                    lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
+//                    lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+//                    lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
                     tag = "mobile";
                     lPasscode.setVisibility(View.GONE);
                     ll_edittextAll.setVisibility(View.VISIBLE);
@@ -203,9 +213,16 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                 break;
             case R.id.ll_otp:
-                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
-                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
-                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+
+                otp.setImageResource(R.drawable.otp);
+
+                mobile.setImageResource(R.drawable.ic_mobile_inactv);
+                car.setImageResource(R.drawable.ic_car_inactiv);
+
+//
+//                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
+//                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+//                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
                 tag = "otp";
                 lPasscode.setVisibility(View.GONE);
                 ll_edittextAll.setVisibility(View.VISIBLE);
@@ -214,9 +231,14 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 break;
             case R.id.ll_vehicle:
-                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
-                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
-                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+
+                otp.setImageResource(R.drawable.ic_otp_inactve);
+
+                mobile.setImageResource(R.drawable.ic_mobile_inactv);
+                car.setImageResource(R.drawable.car);
+//                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
+//                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+//                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
                 tag = "vehicle";
                 lPasscode.setVisibility(View.GONE);
                 ll_edittextAll.setVisibility(View.VISIBLE);
@@ -455,7 +477,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                 AllowAdminStaff adminStaffRequset = new AllowAdminStaff();
                 adminStaffRequset.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
-                adminStaffRequset.staffId = responseObject.optString("id");
+                adminStaffRequset.staffId = responseObject.optString("staff_id");
                 try {
                     obj = Class.forName(AllowAdminStaff.class.getName()).cast(adminStaffRequset);
                 } catch (Exception e) {

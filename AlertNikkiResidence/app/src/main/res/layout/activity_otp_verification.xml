@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/contactus_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:background="#e20d2d">
+
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/mobile_icon"
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:src="@drawable/dummy" />
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:id="@+id/txt_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mobile_icon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+        android:text="Verification"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp" />
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:id="@+id/display_txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:gravity="center"
+        android:paddingLeft="@dimen/_14sdp"
+        android:paddingRight="@dimen/_14sdp"
+        android:text="@string/otp_text"
+        android:textSize="@dimen/_12sdp" />
+    <!--<com.github.glomadrian.codeinputlib.CodeInput-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/pairing"-->
+    <!--/>-->
+
+    <RelativeLayout
+        android:id="@+id/otp_rec"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_below="@id/display_txt"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@color/graylight">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_10sdp">
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_digit1"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_digit2"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_digit3"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_digit4"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_digit5"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_digit6"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:maxLines="1"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_verify"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_below="@id/otp_rec"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:background="@drawable/black_corner_bg">
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+            android:id="@+id/verifyotp_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Verify"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_15sdp" />
+
+
+    </LinearLayout>
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:id="@+id/txtResendcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_verify"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="Resend Code in 00:20"
+        android:textColor="@color/black" />
+</LinearLayout>

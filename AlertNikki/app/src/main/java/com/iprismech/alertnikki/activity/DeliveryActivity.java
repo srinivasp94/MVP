@@ -38,6 +38,7 @@ import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.BuildingListRequest;
 import com.iprismech.alertnikki.Request.DeliveryBoy_Req;
 import com.iprismech.alertnikki.Request.FlatListRequest;
+import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 import com.iprismech.alertnikki.base.BaseAbstractActivity;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
@@ -454,13 +455,16 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                             sp_flat.setAdapter(customadapter);
                             break;
                         case 3:
-                            Common.showToast(DeliveryActivity.this, object.optString("message"));
+                            // Common.showToast(DeliveryActivity.this, object.optString("message"));
+
+                            Toast.makeText(getApplicationContext(), "Notification Sent to user Successfully", Toast.LENGTH_SHORT).show();
                             onBackPressed();
+
                             break;
                     }
                 } else {
                     if (object.optString("message").equalsIgnoreCase("User is not there your posted flat!")) {
-                        Toast.makeText(context, "No Tenant/User in Selected Flat", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "No Tenant/User in Selected Flat, Please Check", Toast.LENGTH_SHORT).show();
                     } else {
                         Common.showToast(DeliveryActivity.this, object.optString("message"));
                     }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/contactus_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:background="#e20d2d">
+
+    </android.support.v7.widget.Toolbar>
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lorem LoremLorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
+        android:textColor="@color/black"
+        android:layout_marginTop="@dimen/_10sdp"/>
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Passcode"
+        android:textColor="@color/red" />
+    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Passcode"
+        android:background="@null"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:textSize="@dimen/_12sdp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/graylight">
+    </View>
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        android:background="@drawable/black_corner_bg"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:text="Login"
+        android:gravity="center"/>
+</LinearLayout>

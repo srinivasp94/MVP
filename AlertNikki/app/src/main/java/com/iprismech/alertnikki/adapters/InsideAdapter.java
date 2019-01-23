@@ -18,32 +18,24 @@ import java.util.ArrayList;
 
 public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder> {
     private Context context;
-    private ArrayList<ResponseVisitMember> arrayList;
+    private ArrayList<ResponseVisitMember> visitMembers;
 
-    public InsideAdapter(Context context, ArrayList<ResponseVisitMember> arrayList) {
+    public InsideAdapter(Context context, ArrayList<ResponseVisitMember> visitMembers) {
         this.context = context;
-        this.arrayList = arrayList;
-    }
-    private OnitemClickListener mListner;
-
-    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
-        mListner = onitemClickListener;
-    }
-
-    public interface OnitemClickListener {
-        void onItemClick(View view, int position);
+        this.visitMembers = visitMembers;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public InsideAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_inside, viewGroup, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        ResponseVisitMember member = arrayList.get(i);
+    public void onBindViewHolder(@NonNull InsideAdapter.ViewHolder holder, int i) {
+        ResponseVisitMember member = visitMembers.get(i);
+
         holder.guestName.setText(member.name);
         holder.type.setText(member.type);
         holder.invitedBy.setText(member.userName);
@@ -53,7 +45,7 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return arrayList.size();
+        return visitMembers.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -78,9 +70,6 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
 
         @Override
         public void onClick(View v) {
-            if (mListner != null) {
-                mListner.onItemClick(v, getPosition());
-            }
 
         }
     }

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/_2sdp"
+    android:background="@color/backgroundlight"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="@dimen/_4sdp">
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTintMode="multiply"
+        android:progressBackgroundTint="@color/black"
+        android:progressBackgroundTintMode="multiply"
+        android:progressTint="@color/colorPrimary"
+        android:scrollbars="none" />
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="Loading..." />
+</LinearLayout>

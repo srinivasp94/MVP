@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/mainbackground"
-    android:orientation="vertical">
+    android:background="@color/mainbackground">
 
     <RelativeLayout
+        android:id="@+id/rl_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
@@ -26,16 +26,21 @@
         android:id="@+id/ll_noResponse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_below="@+id/rl_view"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_80sdp"
+
+        android:layout_marginBottom="@dimen/_80sdp"
         android:gravity="center"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/_55sdp"
             android:layout_height="@dimen/_55sdp"
             android:layout_marginTop="@dimen/_5sdp"
             android:src="@drawable/pending" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,9 +54,10 @@
         android:id="@+id/rv_adminstaff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_view"
         android:layout_margin="@dimen/_2sdp"
         android:layoutAnimation="@anim/layout_animation_fall_down">
 
     </android.support.v7.widget.RecyclerView>
 
-</LinearLayout>
+</RelativeLayout>

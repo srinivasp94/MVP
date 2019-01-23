@@ -45,16 +45,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:text="* Bulding Name"
+                android:text="* Building Name"
                 android:textColor="#e62d40" />
 
             <Spinner
                 android:id="@+id/sp_building"
                 style="@style/SpinnerTheme"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_30sdp">
 
             </Spinner>
@@ -62,7 +61,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="#c6bfc6">
 
             </View>
@@ -78,9 +77,8 @@
                 android:id="@+id/sp_flat"
                 style="@style/SpinnerTheme"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_30sdp"></Spinner>
 
 
@@ -99,7 +97,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="#c6bfc6">
 
             </View>

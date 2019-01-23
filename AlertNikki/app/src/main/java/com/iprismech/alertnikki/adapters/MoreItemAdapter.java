@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
@@ -13,11 +14,19 @@ public class MoreItemAdapter extends BaseAdapter {
 
     private Context context;
     private String[] list;
+    private Integer[] imageList;
     LayoutInflater inflater;
 
     public MoreItemAdapter(Context context, String[] list) {
         this.context = context;
         this.list = list;
+        inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public MoreItemAdapter(Context context, String[] list, Integer[] imageList) {
+        this.context = context;
+        this.list = list;
+        this.imageList = imageList;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -44,6 +53,7 @@ public class MoreItemAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.simple_list_item, parent, false);
             holder = new Holder();
             holder.textView = view.findViewById(R.id.txt_popupitem);
+            holder.imageView = view.findViewById(R.id.image_moredata);
             view.setTag(holder);
 
         } else {
@@ -51,11 +61,13 @@ public class MoreItemAdapter extends BaseAdapter {
         }
 
         holder.textView.setText(list[position]);
+        holder.imageView.setImageResource(imageList[position]);
         return view;
 
     }
 
     public class Holder {
         TextView textView;
+        ImageView imageView;
     }
 }

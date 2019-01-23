@@ -80,17 +80,13 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
         AdminStaff staff = new AdminStaff();
         staff.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
         staff.search = "";
-
         try {
             obj = Class.forName(AdminStaff.class.getName()).cast(staff);
         } catch (Exception e) {
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "admin_staff", true);
-
-
     }
-
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectRequest.equals("")) {
@@ -104,19 +100,15 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                     switch (requestId) {
                         case 1:
                             Admin_Staff admin_staff = Common.getSpecificDataObject(objectResponse, Admin_Staff.class);
-
                             arrayList = (ArrayList) admin_staff.response;
-
                             if (arrayList != null && arrayList.size() > 0) {
                                 for (int i = 0; i < arrayList.size(); i++) {
                                     if (arrayList.get(i).attendence.id == null || arrayList.get(i).attendence.id.equalsIgnoreCase("")) {
-
                                     } else {
                                         arrayListnew.add(arrayList.get(i));
                                     }
                                 }
                                 if (arrayListnew != null && arrayListnew.size() > 0) {
-
                                     staffAdapter = new AdminStaffAdapter(getActivity(), arrayListnew);
                                     rv_admin.setAdapter(staffAdapter);
 
@@ -130,7 +122,6 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                                 } else {
                                     ll_noResponse.setVisibility(View.VISIBLE);
                                 }
-
                             } else {
                                 Common.showToast(getActivity(), "Items Not Found");
                             }

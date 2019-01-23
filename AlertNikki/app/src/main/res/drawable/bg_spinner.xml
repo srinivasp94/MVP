@@ -2,27 +2,27 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-            <bitmap android:gravity="center_vertical|right" android:src="@drawable/red_spinner_arrow" />
+        <bitmap android:gravity="center_vertical|right" android:src="@drawable/red_spinner_arrow" />
 
         <!--<layer-list>-->
 
-            <!--<item>-->
-                <!--<shape>-->
-                    <!--&lt;!&ndash;<gradient android:angle="90" android:endColor="#2c303a" android:startColor="#2c303a" android:type="linear" />&ndash;&gt;-->
+        <!--<item>-->
+        <!--<shape>-->
+        <!--&lt;!&ndash;<gradient android:angle="90" android:endColor="#2c303a" android:startColor="#2c303a" android:type="linear" />&ndash;&gt;-->
 
-                    <!--&lt;!&ndash;<stroke android:width="0.33dp" android:color="#2c303a" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<stroke android:width="0.33dp" android:color="#2c303a" />&ndash;&gt;-->
 
-                    <!--&lt;!&ndash;<corners android:radius="0dp" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<corners android:radius="0dp" />&ndash;&gt;-->
 
-                    <!--&lt;!&ndash;<padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />&ndash;&gt;-->
-                <!--</shape>-->
-            <!--</item>-->
+        <!--&lt;!&ndash;<padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />&ndash;&gt;-->
+        <!--</shape>-->
+        <!--</item>-->
 
-            <!--<item android:right="5dp">-->
+        <!--<item android:right="5dp">-->
 
-                <!--<bitmap android:gravity="center_vertical|right" android:src="@drawable/green_down_arrow" />-->
+        <!--<bitmap android:gravity="center_vertical|right" android:src="@drawable/green_down_arrow" />-->
 
-            <!--</item>-->
+        <!--</item>-->
 
         <!--</layer-list>-->
 

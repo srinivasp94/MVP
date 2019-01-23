@@ -64,6 +64,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
     private FragmentManager fragmentManager;
     private TextView txtGate;
 
+
     private PopupMenu popupMenu;
 
     private Object obj;
@@ -196,9 +197,12 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
 //                        showDialog(MainActivity.this, topnavigationview.getLeft() - (topnavigationview.getRight() * 2), topnavigationview.getTop() + (topnavigationview.getHeight() * 2 * (0 + 2)),0);
 
                         String[] list = {"My Login Time", "Add data", "Move in", "Move out", "About Us", "Logout", "SOS"};
+                        Integer[] imageslist = {R.drawable.ic_clock,
+                                R.drawable.ic_adddata,
+                                R.drawable.ic_movein, R.drawable.ic_moveout, R.drawable.ic_about, R.drawable.ic_logout, R.drawable.ic_sos};
                         /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this,
                                 R.layout.simple_list_item, R.id.txt_popupitem, list);*/
-                        MoreItemAdapter adapter = new MoreItemAdapter(MainActivity.this, list);
+                        MoreItemAdapter adapter = new MoreItemAdapter(MainActivity.this, list, imageslist);
 
                         DialogPlus dialog = DialogPlus.newDialog(MainActivity.this)
                                 .setAdapter(adapter)
@@ -207,10 +211,13 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                                     public void onItemClick(DialogPlus dialog, Object item, View view, int position) {
                                         switch (position) {
                                             case 5:
+
                                                 SharedPrefsUtils.logoutUser();
-                                                finish();
+
                                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SPLASH_SCREEN);
+
                                                 dialog.dismiss();
+
                                                 break;
                                             case 0:
 
@@ -223,11 +230,12 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                                                     e.printStackTrace();
                                                 }
                                                 new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 1, "my_login_time", true);
+
                                                 dialog.dismiss();
                                                 break;
                                             case 2:
                                                 fragmentManager.beginTransaction().replace(R.id.fm_container, new MoveInFragment(), "").commit();
-
+                                                dialog.dismiss();
                                                 break;
                                             case 1:
                                                 fragmentManager.beginTransaction().replace(R.id.fm_container, new AddServiceFragment(), "").commit();
@@ -235,18 +243,27 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                                                 break;
                                             case 4:
 //about us
-                                                dialog.dismiss();
+
+
                                                 break;
                                             case 6:
 //SOS
+
                                                 dialog.dismiss();
+
                                                 break;
                                             case 3:
                                                 fragmentManager.beginTransaction().replace(R.id.fm_container, new MoveOutFragment(), "").commit();
+
                                                 dialog.dismiss();
+
                                                 break;
                                         }
+
+
                                     }
+
+
                                 })
                                 .setExpanded(true)
                                 .setGravity(Gravity.CENTER)// This will enable the expand feature, (similar to android L share dialog)

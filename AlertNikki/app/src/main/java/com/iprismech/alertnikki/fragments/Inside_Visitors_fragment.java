@@ -64,7 +64,7 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        rv_visit_inside.setLayoutManager(manager);
+//        rv_visit_inside.setLayoutManager(manager);
 
 
         Visitor visitor = new Visitor();
@@ -98,8 +98,10 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
 
                             arrayList = (ArrayList) waitingVisitors.response;
                             if (arrayList != null && arrayList.size() > 0) {
+                                rv_visit_inside.setLayoutManager(manager);
                                 insideAdapter = new InsideAdapter(getActivity(), arrayList);
                                 rv_visit_inside.setAdapter(insideAdapter);
+/*
                                 insideAdapter.setOnItemClickListener(new InsideAdapter.OnitemClickListener() {
                                     @Override
                                     public void onItemClick(View view, int position) {
@@ -117,6 +119,7 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
 
                                     }
                                 });
+*/
                             } else {
                                 Common.showToast(getActivity(), "Items Found");
                             }
