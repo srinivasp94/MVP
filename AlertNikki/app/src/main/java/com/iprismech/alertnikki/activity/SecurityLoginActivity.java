@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.Login_model;
@@ -28,6 +29,7 @@ public class SecurityLoginActivity extends BaseAbstractActivity<Class> implement
 
     private EditText et_otp1, et_otp2, et_otp3, et_otp4, et_otp5, et_otp6, et_otp7;
     private Object obj;
+    PinEntryEditText pinEntry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +72,33 @@ public class SecurityLoginActivity extends BaseAbstractActivity<Class> implement
         et_otp5 = findViewById(R.id.edt_otp5);
         et_otp6 = findViewById(R.id.edt_otp6);
         et_otp7 = findViewById(R.id.edt_otp7);
+        pinEntry = (PinEntryEditText) findViewById(R.id.txt_pin_entry);
+        if (pinEntry != null) {
+            pinEntry.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
+                @Override
+                public void onPinEntered(CharSequence str) {
+                    if (str.toString().length() == 7) {
+                        callPasscodeWS(str.toString());
+                    } else {
+                        pinEntry.setText(null);
+                    }
+                }
+            });
+        }
 
+    }
+
+    private void callPasscodeWS(String s) {
+        Login_model login_model = new Login_model();
+        login_model.passcode = s;
+
+        try {
+            obj = Class.forName(Login_model.class.getName()).cast(login_model);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 1, "security_passcode_check", true);
     }
 
     @Override
@@ -151,8 +179,11 @@ public class SecurityLoginActivity extends BaseAbstractActivity<Class> implement
                             bundle.putString("Key_Admin_Id", login.loginData.adminId);
                             bundle.putString("Key_Passcode", login.loginData.passcode);
                             bundle.putString("Key_Name", login.loginData.name);
+                            bundle.putString("Key_Shift", login.loginData.title);
+
 
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CAMERA_SCREEN, bundle);
+                            finish();
                             break;
                     }
                 } else {

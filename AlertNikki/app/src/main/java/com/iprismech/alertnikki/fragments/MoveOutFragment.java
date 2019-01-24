@@ -1,5 +1,7 @@
 package com.iprismech.alertnikki.fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -8,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +23,8 @@ import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.BuildingListRequest;
 import com.iprismech.alertnikki.Request.FlatListRequest;
 import com.iprismech.alertnikki.Request.MoveOutReq;
+import com.iprismech.alertnikki.activity.SelectBuildingActvity;
+import com.iprismech.alertnikki.activity.SelectFlatActivity;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.Common;
@@ -29,7 +34,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MoveOutFragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener, AdapterView.OnItemSelectedListener {
+public class MoveOutFragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener, View.OnClickListener {
     private Object obj;
     RetrofitResponseListener retrofitResponseListener;
     private EditText et_vehicle_number, et_flat_number, et_tenant_name, et_mobile_number, et_comment;
@@ -42,6 +47,8 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
     private ArrayList<String> building_array = new ArrayList<>();
     private ArrayList<String> flat_array = new ArrayList<>();
     private String building_id, flat_id;
+    private LinearLayout ll_buiding, ll_flatno;
+    private TextView tv_flat_number,tv_building_name;
 
     @Override
     protected View getFragmentView() {
@@ -82,11 +89,22 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
         et_mobile_number = view.findViewById(R.id.moveout_et_mobile_number);
         et_tenant_name = view.findViewById(R.id.moveout_et_tenant_name);
         btn_tv_submit = view.findViewById(R.id.moveout_btn_submit);
-        sp_building = view.findViewById(R.id.sp_moveot_building);
-        sp_flat = view.findViewById(R.id.sp_moveout_flat);
+       // sp_building = view.findViewById(R.id.sp_moveot_building);
+      //  sp_flat = view.findViewById(R.id.sp_moveout_flat);
 
-        sp_building.setOnItemSelectedListener(this);
-        sp_flat.setOnItemSelectedListener(this);
+        ll_buiding = view.findViewById(R.id.ll_building_moveout);
+        ll_flatno = view.findViewById(R.id.ll_flatno_moveout);
+        tv_building_name = view.findViewById(R.id.tv_building_name_movieout);
+        tv_flat_number=view.findViewById(R.id.tv_flat_number_moveout);
+
+        // sp_building = view.findViewById(R.id.sp_building);
+        //sp_flat = view.findViewById(R.id.sp_flat);
+        ll_buiding.setOnClickListener(this);
+        ll_flatno.setOnClickListener(this);
+
+
+        //sp_building.setOnItemSelectedListener(this);
+        //sp_flat.setOnItemSelectedListener(this);
 
 
         BuildingListRequest buildingListRequest = new BuildingListRequest();
@@ -199,50 +217,92 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
         }
     }
 
+//    @Override
+//    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//        switch (parent.getId()) {
+//            case R.id.sp_moveot_building:
+//                flat_array.clear();
+//                try {
+//                    if (position == 0) {
+//                    } else {
+//                        position = position - 1;
+//                        building_id = buildingsPojo.getResponse().get(position).getId();
+//                        FlatListRequest flatListRequest = new FlatListRequest();
+//                        flatListRequest.admin_id = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
+//                        flatListRequest.building_id=building_id;
+//                        //flatListRequest.building_id="4";
+//                        try {
+//                            obj = Class.forName(FlatListRequest.class.getName()).cast(flatListRequest);
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
+//                        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "flats", true);
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                break;
+//
+//            case R.id.sp_moveout_flat:
+//
+//                try {
+//                    if (position == 0) {
+//                    } else {
+//                        position = position - 1;
+//                        flat_id = flatPojo.getResponse().get(position).getId();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//                break;
+//
+//        }
+   // }
+
+
+
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()) {
-            case R.id.sp_moveot_building:
-                flat_array.clear();
-                try {
-                    if (position == 0) {
-                    } else {
-                        position = position - 1;
-                        building_id = buildingsPojo.getResponse().get(position).getId();
-                        FlatListRequest flatListRequest = new FlatListRequest();
-                        flatListRequest.admin_id = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
-                        flatListRequest.building_id=building_id;
-                        //flatListRequest.building_id="4";
-                        try {
-                            obj = Class.forName(FlatListRequest.class.getName()).cast(flatListRequest);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "flats", true);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.ll_building_moveout:
+                Intent intent = new Intent(getActivity(), SelectBuildingActvity.class);
+                startActivityForResult(intent, 1);
                 break;
-
-            case R.id.sp_moveout_flat:
-
-                try {
-                    if (position == 0) {
-                    } else {
-                        position = position - 1;
-                        flat_id = flatPojo.getResponse().get(position).getId();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            case R.id.ll_flatno_moveout:
+                Intent intent_flat = new Intent(getActivity(), SelectFlatActivity.class);
+                intent_flat.putExtra("building_id",building_id);
+                startActivityForResult(intent_flat, 2);
                 break;
-
         }
+
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                building_id = data.getStringExtra("id");
+                String name = data.getStringExtra("name");
+                tv_building_name.setText(name);
+                Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
 
+            }
+
+        }
+        else if (requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
+                flat_id = data.getStringExtra("id");
+                String name = data.getStringExtra("name");
+                tv_flat_number.setText(name);
+                //Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+
+        }
     }
 }

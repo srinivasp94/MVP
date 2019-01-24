@@ -45,8 +45,10 @@ public class AlertsAdapter extends RecyclerView.Adapter<AlertsAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         AlertsCommon alerts = list.get(i);
         viewHolder.date.setText(alerts.date);
-        viewHolder.notification_Msg.setText(alerts.Description);
+        viewHolder.notification_Msg.setText("Name:"+alerts.name+"  Mobile:"+alerts.phone);
+       // viewHolder.notification_Msg.setText(alerts.Description);
         viewHolder.type.setText(alerts.type_alert);
+
     }
 
     @Override

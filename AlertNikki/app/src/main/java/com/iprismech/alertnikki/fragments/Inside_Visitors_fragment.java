@@ -61,16 +61,13 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
         super.initialiseViews();
 
         rv_visit_inside = view.findViewById(R.id.rv_visitors);
-        manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-
-//        rv_visit_inside.setLayoutManager(manager);
 
 
         Visitor visitor = new Visitor();
 
         //for inside status as 1
         visitor.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
+  //      visitor.adminId = "2";
         visitor.status = "1";
         visitor.search = "";
         try {
@@ -80,6 +77,14 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "visitors", true);
 
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //getChildFragmentManager().beginTransaction().detach(getParentFragment()).attach(getParentFragment()).commit();
+        }
     }
 
     @Override
@@ -98,15 +103,17 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
 
                             arrayList = (ArrayList) waitingVisitors.response;
                             if (arrayList != null && arrayList.size() > 0) {
+                                manager = new LinearLayoutManager(getActivity());
+                                manager.setOrientation(LinearLayoutManager.VERTICAL);
                                 rv_visit_inside.setLayoutManager(manager);
+
                                 insideAdapter = new InsideAdapter(getActivity(), arrayList);
                                 rv_visit_inside.setAdapter(insideAdapter);
-/*
                                 insideAdapter.setOnItemClickListener(new InsideAdapter.OnitemClickListener() {
                                     @Override
                                     public void onItemClick(View view, int position) {
                                         switch (view.getId()) {
-                                            case R.id.btn_out:
+                                            case R.id.btn_out_inside:
                                                 callVisitor_Out_WS(position);
                                                 break;
                                             case R.id.ll_rootVisitor:
@@ -119,7 +126,6 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
 
                                     }
                                 });
-*/
                             } else {
                                 Common.showToast(getActivity(), "Items Found");
                             }
@@ -140,8 +146,6 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
 
     }

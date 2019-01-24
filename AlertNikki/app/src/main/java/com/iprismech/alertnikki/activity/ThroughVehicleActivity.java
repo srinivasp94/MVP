@@ -58,7 +58,7 @@ public class ThroughVehicleActivity extends BaseAbstractActivity<Class> implemen
         Bundle bundle = getIntent().getExtras();
         String vehicle_no = bundle.getString("Key_vehicle");
         recyclerView = findViewById(R.id.rview_through_vehicle);
-        btn_tv_ok = findViewById(R.id.ok_submit_vehicle);
+        //   btn_tv_ok = findViewById(R.id.ok_submit_vehicle);
         tv_vehicle_no = findViewById(R.id.search_vehicle);
         throuh_vehicle_close = findViewById(R.id.throuh_vehicle_close);
         tv_vehicle_no.setText("List of Vehicles Contains: " + vehicle_no);
@@ -87,7 +87,8 @@ public class ThroughVehicleActivity extends BaseAbstractActivity<Class> implemen
                 if (object.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
-                            ThroughVehiclePojo throughVehiclePojo = gson.fromJson(jsonString, ThroughVehiclePojo.class);
+                            ThroughVehiclePojo throughVehiclePojo = null;
+                            throughVehiclePojo = gson.fromJson(jsonString, ThroughVehiclePojo.class);
                             LinearLayoutManager manager = new LinearLayoutManager(getApplicationContext());
                             manager.setOrientation(LinearLayoutManager.VERTICAL);
                             recyclerView.setLayoutManager(manager);

@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.MainActivity;
 import com.iprismech.alertnikki.R;
@@ -53,6 +54,10 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     MainActivity activity;
     private String tag = "";
     private ImageView car, otp, qr, mobile;
+    private PinEntryEditText pinPhone, pinOTP, pinVehicleNumber;
+
+    private ImageView imgHome, imgStaff, imgVisitor, imgBell, imgCab, imgDailyHelps, imgDelivery, imgSchool, imgMore;
+    private String vehiclenumber= "";
 
     @Override
     protected View getFragmentView() {
@@ -125,6 +130,43 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 }
             }
         });
+        if (pinPhone != null) {
+            pinPhone.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
+                @Override
+                public void onPinEntered(CharSequence str) {
+                    if (str.toString().length() == 10) {
+                        call_PhoneWS(str.toString());
+                    } else {
+                        pinPhone.setText(null);
+                    }
+                }
+            });
+        }
+        if (pinOTP != null) {
+            pinOTP.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
+                @Override
+                public void onPinEntered(CharSequence str) {
+                    if (str.toString().length() == 5) {
+                        callOTP_WS(str.toString());
+                    } else {
+                        pinOTP.setText(null);
+                    }
+                }
+            });
+        }
+        if (pinVehicleNumber != null) {
+            pinVehicleNumber.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
+                @Override
+                public void onPinEntered(CharSequence str) {
+                    if (str.toString().length() == 4) {
+                        vehiclenumber = str.toString();
+                        call_vehicle_WS(str.toString());
+                    } else {
+                        pinVehicleNumber.setText(null);
+                    }
+                }
+            });
+        }
     }
 
     private void call_PhoneWS(String phn) {
@@ -164,6 +206,9 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     @Override
     protected void initialiseViews() {
         super.initialiseViews();
+
+        activity = (MainActivity) getActivity();
+
         qrcode = view.findViewById(R.id.qrcode_Scan_Layout);
         lMobile = view.findViewById(R.id.ll_mobile);
         lOtp = view.findViewById(R.id.ll_otp);
@@ -179,9 +224,24 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         qr = view.findViewById(R.id.qr);
         mobile = view.findViewById(R.id.mobile);
 
+        pinPhone = view.findViewById(R.id.txt_pin_entry1);
+        pinOTP = view.findViewById(R.id.txt_pin_entryOtp);
+        pinVehicleNumber = view.findViewById(R.id.txt_pin_entryVehicle);
+
+
+        imgHome = activity.findViewById(R.id.iv_top_keypad);
+        imgStaff = activity.findViewById(R.id.iv_top_admistaff);
+        imgVisitor = activity.findViewById(R.id.iv_top_visitors);
+        imgBell = activity.findViewById(R.id.iv_top_alerts);
+        imgCab = activity.findViewById(R.id.iv_bottom_cab);
+        imgDailyHelps = activity.findViewById(R.id.iv_bottom_dailyhelps);
+        imgDelivery = activity.findViewById(R.id.iv_bottom_delivery);
+        imgSchool = activity.findViewById(R.id.iv_bottomschoolbus);
+        imgMore = activity.findViewById(R.id.iv_bottom_more);
+
         responseListener = this;
 
-        activity = (MainActivity) getActivity();
+
     }
 
     @Override
@@ -193,16 +253,15 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 break;
             case R.id.ll_mobile:
                 try {
-                    mobile.setImageResource(R.drawable.mobile);
-
-                    otp.setImageResource(R.drawable.ic_otp_inactve);
-                    car.setImageResource(R.drawable.ic_car_inactiv);
-//                    lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
-//                    lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
-//                    lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                    lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                    lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                    lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
                     tag = "mobile";
                     lPasscode.setVisibility(View.GONE);
                     ll_edittextAll.setVisibility(View.VISIBLE);
+                    pinPhone.setVisibility(View.VISIBLE);
+                    pinOTP.setVisibility(View.GONE);
+                    pinVehicleNumber.setVisibility(View.GONE);
                     edt_all.setHint("Please Enter Mobile Number");
                     edt_all.setText("");
                     edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
@@ -214,34 +273,30 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 break;
             case R.id.ll_otp:
 
-                otp.setImageResource(R.drawable.otp);
-
-                mobile.setImageResource(R.drawable.ic_mobile_inactv);
-                car.setImageResource(R.drawable.ic_car_inactiv);
-
-//
-//                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
-//                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
-//                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
                 tag = "otp";
                 lPasscode.setVisibility(View.GONE);
                 ll_edittextAll.setVisibility(View.VISIBLE);
+                pinPhone.setVisibility(View.GONE);
+                pinOTP.setVisibility(View.VISIBLE);
+                pinVehicleNumber.setVisibility(View.GONE);
                 edt_all.setHint("Please Enter OTP");
                 edt_all.setText("");
                 edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 break;
             case R.id.ll_vehicle:
 
-                otp.setImageResource(R.drawable.ic_otp_inactve);
-
-                mobile.setImageResource(R.drawable.ic_mobile_inactv);
-                car.setImageResource(R.drawable.car);
-//                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.mainbackground));
-//                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
-//                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                lVehicle.setBackgroundColor(getActivity().getResources().getColor(R.color.colorPrimary));
+                lOtp.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
+                lMobile.setBackgroundColor(getActivity().getResources().getColor(R.color.backgroundlight));
                 tag = "vehicle";
                 lPasscode.setVisibility(View.GONE);
                 ll_edittextAll.setVisibility(View.VISIBLE);
+                pinPhone.setVisibility(View.GONE);
+                pinOTP.setVisibility(View.GONE);
+                pinVehicleNumber.setVisibility(View.VISIBLE);
                 edt_all.setHint("Please Enter Vehicle Number");
                 edt_all.setText("");
                 edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
@@ -275,7 +330,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
             }
             new RetrofitRequester(this).callPostServices(obj, 1, "passcode", true);
         } else {
-            Common.showToast(getActivity(), "Enter Full Passcode");
+//            Common.showToast(getActivity(), "Enter Full Passcode");
         }
     }
 
@@ -300,7 +355,9 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                                 showCustomDialog(getActivity(), responseObject);
                             } else if (member_Type.equalsIgnoreCase("security")) {
                                 showCustomDialog(getActivity(), responseObject);
-                            } else if (member_Type.equalsIgnoreCase("staff")) {
+                            }
+                            //staff nothing but admin staff
+                            else if (member_Type.equalsIgnoreCase("staff")) {
                                 showCustomDialogForAdmin(getActivity(), responseObject);
                             } else {
                                 showCustomDialogDailyHelps(getActivity(), responseObject);
@@ -319,13 +376,36 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                             try {
                                 FragmentManager manager = activity.getSupportFragmentManager();
                                 manager.beginTransaction().replace(R.id.fm_container, new DailyHelps_Fragement(), "DailyHelps").commit();
-                                activity.bottomNavigationView.setSelectedItemId(R.id.action_dailyhelps);
+//                                activity.bottomNavigationView.setSelectedItemId(R.id.action_dailyhelps);
+
+
+                                imgHome.setImageResource(R.drawable.ic_keypad);
+
+                                imgStaff.setImageResource(R.drawable.ic_admin_staff);
+
+                                imgVisitor.setImageResource(R.drawable.ic_visitor);
+
+                                imgBell.setImageResource(R.drawable.ic_bell);
+
+                                imgCab.setImageResource(R.drawable.ic_cab);
+
+                                imgDailyHelps.setImageResource(R.drawable.ic_dailyhelps_active);
+
+                                imgDelivery.setImageResource(R.drawable.ic_delivery);
+
+                                imgSchool.setImageResource(R.drawable.ic_school_bus);
+
+                                imgMore.setImageResource(R.drawable.ic_bottom_more);
+
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 Common.commonLogs(getActivity(), "123Helps" + e.toString());
                             }
                             break;
                         case 3:
+                            //admin staff
+
                             JSONObject jsonStaffResponse = object.optJSONObject("response");
 
                             Common.showToast(getActivity(), object.optString("message"));
@@ -333,7 +413,30 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                                 FragmentManager manager = getFragmentManager();
                                 manager.beginTransaction().replace(R.id.fm_container, new AdminStaff_Fragment(), "AdminStaff").commit();
 //                                MainActivity activity = (MainActivity) getActivity();
-                                activity.topnavigationview.setSelectedItemId(R.id.nav_admin_staff);
+//                                activity.topnavigationview.setSelectedItemId(R.id.nav_admin_staff);
+
+//                                activity.findViewById(R.id.nav_admin_staff).
+
+
+                                imgHome.setImageResource(R.drawable.ic_keypad);
+
+                                imgStaff.setImageResource(R.drawable.ic_admistaff_active);
+
+                                imgVisitor.setImageResource(R.drawable.ic_visitor);
+
+                                imgBell.setImageResource(R.drawable.ic_bell);
+
+                                imgCab.setImageResource(R.drawable.ic_cab);
+
+                                imgDailyHelps.setImageResource(R.drawable.ic_dailyhelps);
+
+                                imgDelivery.setImageResource(R.drawable.ic_delivery);
+
+                                imgSchool.setImageResource(R.drawable.ic_school_bus);
+
+                                imgMore.setImageResource(R.drawable.ic_bottom_more);
+
+
                             } catch (Exception e) {
                                 e.printStackTrace();
                                 Common.commonLogs(getActivity(), "123Staff" + e.toString());
@@ -352,7 +455,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                         case 6:
                             JSONObject vehileResponse = object.optJSONObject("response");
                             Bundle bundle = new Bundle();
-                            bundle.putString("Key_vehicle", edt_all.getText().toString());
+                            bundle.putString("Key_vehicle",vehiclenumber );
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_THROUGH_VEHICLE_SCREEN, bundle);
                             break;
 
@@ -410,6 +513,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 AllowDailyHelps dailyHelpsRequsest = new AllowDailyHelps();
                 dailyHelpsRequsest.admin_id = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
                 dailyHelpsRequsest.security_id = SharedPrefsUtils.getInstance(getActivity()).getsecurityId();
+//                dailyHelpsRequsest.maid_id = responseObject.optString("id");
                 dailyHelpsRequsest.maid_id = responseObject.optString("maid_id");
 
                 try {
@@ -590,6 +694,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
             @Override
             public void onClick(View v) {
                 alertDialog.dismiss();
+                pinPhone.setText(null);
             }
         });
         alertDialog.show();

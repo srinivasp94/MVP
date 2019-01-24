@@ -1,6 +1,7 @@
 package com.iprismech.alertnikki.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -26,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,7 +53,12 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-public class DeliveryActivity extends BaseAbstractActivity<Class> implements View.OnClickListener, RetrofitResponseListener, AdapterView.OnItemSelectedListener {
+
+
+
+
+
+public class DeliveryActivity extends BaseAbstractActivity<Class> implements View.OnClickListener, RetrofitResponseListener {
 
     private ImageView close, boy_pic, companyPic;
     private RetrofitResponseListener retrofitResponseListener;
@@ -70,7 +77,8 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
     private ArrayList<String> building_array = new ArrayList<>();
     private ArrayList<String> flat_array = new ArrayList<>();
     private String building_id, flat_id;
-
+    private LinearLayout ll_buiding, ll_flatno;
+    private TextView tv_flat_number,tv_building_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +102,10 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         super.setListenerToViews();
         sendnotify.setOnClickListener(this);
         close.setOnClickListener(this);
+        boy_pic.setOnClickListener(this);
+
+        ll_buiding.setOnClickListener(this);
+        ll_flatno.setOnClickListener(this);
     }
 
     @Override
@@ -101,11 +113,18 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
         retrofitResponseListener = this;
-        sp_building = findViewById(R.id.spinner_building);
-        sp_flat = findViewById(R.id.spinner_flat);
+        // sp_building = findViewById(R.id.spinner_building);
+        //  sp_flat = findViewById(R.id.spinner_flat);
 
-        sp_building.setOnItemSelectedListener(this);
-        sp_flat.setOnItemSelectedListener(this);
+        // sp_building.setOnItemSelectedListener(this);
+        // sp_flat.setOnItemSelectedListener(this);
+
+        ll_buiding = findViewById(R.id.ll_building_delivery);
+        ll_flatno = findViewById(R.id.ll_flatno_delivery);
+        tv_building_name = findViewById(R.id.tv_building_name_delivery);
+        tv_flat_number=findViewById(R.id.tv_flat_number_delivery);
+
+
 
 
         Bundle bundle = getIntent().getExtras();
@@ -127,10 +146,10 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         mVehicle2 = findViewById(R.id.edt_vehicle_one);
         mVehicle3 = findViewById(R.id.edt_vehicle_two);
         mVehicle4 = findViewById(R.id.edt_vehicle_three);
-        mResidentMobile = findViewById(R.id.edt_resident_Mobile);
+        // mResidentMobile = findViewById(R.id.edt_resident_Mobile);
 
-        spin_Building = findViewById(R.id.spinner_building);
-        spin_Flat = findViewById(R.id.spinner_flat);
+        // spin_Building = findViewById(R.id.spinner_building);
+        //spin_Flat = findViewById(R.id.spinner_flat);
         sendnotify = findViewById(R.id.btn_sendnotify);
 
         title.setText(mTitle);
@@ -140,7 +159,6 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         } else {
             companyPic.setImageResource(mImageid);
         }
-        boy_pic.setOnClickListener(this);
 
 
         BuildingListRequest buildingListRequest = new BuildingListRequest();
@@ -165,30 +183,35 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                 String sv2 = mVehicle2.getText().toString();
                 String sv3 = mVehicle3.getText().toString();
                 String sv4 = mVehicle4.getText().toString();
-                String sResident = mResidentMobile.getText().toString();
+                //  String sResident = mResidentMobile.getText().toString();
 
                 if (sName.length() == 0 && smobile.length() == 0 && scompany.length() == 0 && sv1.length() == 0 &&
-                        sv2.length() == 0 && sv3.length() == 0 && sv4.length() == 0 &&
-                        sResident.length() == 0
+                        sv2.length() == 0 && sv3.length() == 0 && sv4.length() == 0
                         ) {
                     Common.showToast(DeliveryActivity.this, "Please Enter all fields");
-                } else if (sName.length() == 0 || sName.length() < 6) {
-                    Common.showToast(DeliveryActivity.this, "Please Enter Name");
-                } else if (smobile.length() == 0 || smobile.length() < 10) {
+                }
+                else if (sName.length() == 0 ) {
+                    Common.showToast(DeliveryActivity.this, "Please enter name");
+                }
+                else if (smobile.length() == 0 || smobile.length() < 10) {
                     Common.showToast(DeliveryActivity.this, "Please Enter Valid 10 Digit Mobile");
                 } else if (scompany.length() == 0) {
                     Common.showToast(DeliveryActivity.this, "Please Enter Delivery From");
-                } else if (sv1.length() == 0 || sv1.length() < 2) {
-                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-                } else if (sv2.length() == 0 || sv2.length() < 2) {
-                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-                } else if (sv3.length() == 0 || sv3.length() < 2) {
-                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-                } else if (sv4.length() == 0 || sv4.length() < 4) {
-                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-                } else if (mResidentMobile.length() == 0 || mResidentMobile.length() < 10) {
-                    Common.showToast(DeliveryActivity.this, "Please Enter Resident Mobile ");
-                } else {
+                }
+
+//                else if (sv1.length() == 0 || sv1.length() < 2) {
+//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
+//                } else if (sv2.length() == 0 || sv2.length() < 2) {
+//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
+//                } else if (sv3.length() == 0 || sv3.length() < 2) {
+//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
+//                } else if (sv4.length() == 0 || sv4.length() < 4) {
+//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
+//                }
+//                else if (mResidentMobile.length() == 0 || mResidentMobile.length() < 10) {
+//                    Common.showToast(DeliveryActivity.this, "Please Enter Resident Mobile ");
+//                }
+                else {
                     LayoutInflater dialoginflater = LayoutInflater.from(getApplicationContext());
                     View dialogview = dialoginflater.inflate(R.layout.alert_delivery_warning, null);
                     final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
@@ -229,14 +252,29 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                 //     permissionsRequest();
                 showPictureDialog("");
                 break;
+            case R.id.ll_building_delivery:
+                Intent intent = new Intent(DeliveryActivity.this, SelectBuildingActvity.class);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.ll_flatno_delivery:
+                Intent intent_flat = new Intent(DeliveryActivity.this, SelectFlatActivity.class);
+                intent_flat.putExtra("building_id",building_id);
+                startActivityForResult(intent_flat, 2);
+                break;
         }
+
+
     }
+
+
 
     private void showPictureDialog(final String base64) {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(context);
         pictureDialog.setTitle("Select Action");
+//        String[] pictureDialogItems = {
+//                "Select photo from gallery",
+//                "Capture photo from camera"};
         String[] pictureDialogItems = {
-                "Select photo from gallery",
                 "Capture photo from camera"};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
@@ -244,10 +282,11 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                choosePhotoFromGallary(base64);
+                               // choosePhotoFromGallary(base64);
+                                takePhotoFromCamera(base64);
                                 break;
                             case 1:
-                                takePhotoFromCamera(base64);
+                               // takePhotoFromCamera(base64);
                                 break;
                         }
                     }
@@ -326,6 +365,33 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
             base64profile = Base64.encodeToString(byte_arr, Base64.DEFAULT);
 
         }
+
+
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                building_id = data.getStringExtra("id");
+                String name = data.getStringExtra("name");
+                tv_building_name.setText(name);
+                // Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+
+        }
+        else if (requestCode == 2) {
+            if (resultCode == Activity.RESULT_OK) {
+                flat_id = data.getStringExtra("id");
+                String name = data.getStringExtra("name");
+                tv_flat_number.setText(name);
+                //Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+
+            }
+
+        }
+
     }
 
     protected Bitmap decodeUri(Uri selectedImage, int REQUIRED_SIZE) {
@@ -411,6 +477,11 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         } else if (mTitle.equalsIgnoreCase("Courier Boy")) {
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
         }
+        else if (mTitle.equalsIgnoreCase("Swiggy")||mTitle.equalsIgnoreCase("Food Panda")||mTitle.equalsIgnoreCase("Zomoto")||mTitle.equalsIgnoreCase("Uber Eats")
+                ||mTitle.equalsIgnoreCase("Other")||mTitle.equalsIgnoreCase("Paytm")||mTitle.equalsIgnoreCase("Amazon")
+                ||mTitle.equalsIgnoreCase("FlipKart") ||mTitle.equalsIgnoreCase("Myntra")){
+            new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
+        }
     }
 
     @Override
@@ -474,53 +545,4 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
             }
         }
     }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (parent.getId()) {
-            case R.id.spinner_building:
-                flat_array.clear();
-                try {
-                    if (position == 0) {
-                    } else {
-                        position = position - 1;
-                        building_id = buildingsPojo.getResponse().get(position).getId();
-
-                        FlatListRequest flatListRequest = new FlatListRequest();
-                        flatListRequest.admin_id = SharedPrefsUtils.getInstance(getApplicationContext()).getAdmin();
-                        flatListRequest.building_id = building_id;
-                        //flatListRequest.building_id="4";
-                        try {
-                            obj = Class.forName(FlatListRequest.class.getName()).cast(flatListRequest);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "flats", true);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-
-            case R.id.spinner_flat:
-
-                try {
-                    if (position == 0) {
-                    } else {
-                        position = position - 1;
-                        flat_id = flatPojo.getResponse().get(position).getId();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }
-

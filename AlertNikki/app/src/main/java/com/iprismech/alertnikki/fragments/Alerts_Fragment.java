@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.Alert;
 import com.iprismech.alertnikki.Request.NotifyAlertReq;
@@ -33,7 +34,10 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Alerts_Fragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
@@ -109,7 +113,11 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                 if (object.optBoolean("status") == true) {
                     switch (requestId) {
                         case 1:
+
+
+
                             AlertModel alertModel = Common.getSpecificDataObject(objectResponse, AlertModel.class);
+                         //   AlertModel alertModel = gson.fromJson(jsonString,AlertModel.class);
 
                             digital_ist = alertModel.digitalGatepassAlerts;
                             NotifyList = alertModel.notifyGateAlerts;
@@ -139,7 +147,6 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                     commonAlertsList.add(alertsCommon);
                                 }
                             }
-
                             if (NotifyList != null && NotifyList.size() > 0) {
                                 for (int j = 0; j < NotifyList.size(); j++) {
                                     alertsCommon = new AlertsCommon();
@@ -170,8 +177,10 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                     alertsCommon = new AlertsCommon();
                                     alertsCommon.date = kidsList.get(j).fromDate;
                                     alertsCommon.service = kidsList.get(j).purpose;
-                                    alertsCommon.Description = "Name: " + kidsList.get(j).kidGoingWithWhom +
-                                            ", Mobile: " + NotifyList.get(j).personMobile;
+                                    alertsCommon.Description = kidsList.get(j).kidGoingWithWhom +
+                                            ", Mobile: " + kidsList.get(j).member.mobile;
+//                                    alertsCommon.Description = "Name: " + kidsList.get(j).kidName +
+//                                            ", Mobile: " + kidsList.get(j).member.mobile;
                                     alertsCommon.type_alert = "Kids";
                                     alertsCommon.inTime = kidsList.get(j).inTime;
                                     alertsCommon.outTime = kidsList.get(j).outTime;
@@ -191,6 +200,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                             }
 
                             if (commonAlertsList != null && commonAlertsList.size() > 0) {
+                                Collections.reverse(commonAlertsList);
                                 alertsAdapter = new AlertsAdapter(getActivity(), commonAlertsList);
                                 rv_alerts.setAdapter(alertsAdapter);
                                 alertsAdapter.setOnItemClickListener(new AlertsAdapter.OnitemClickListener() {
@@ -239,18 +249,22 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 //        alertDialog.setCancelable(false);
 
         TextView tv_kid_Name, tv_purpose, tv_intime, tv_outtime, tv_gingWith, bt_deny, btn_allow;
-        ImageView HelperPic;
+        ImageView HelperPic,img_guardian_pic;
         tv_kid_Name = view1.findViewById(R.id.tv_alert_kid_name);
         tv_purpose = view1.findViewById(R.id.tv_helper_passcode);
         tv_intime = view1.findViewById(R.id.tv_kids_intime);
         tv_outtime = view1.findViewById(R.id.tv_kids_alert_outtime);
         tv_gingWith = view1.findViewById(R.id.tv_goingWith);
+        img_guardian_pic=view1.findViewById(R.id.img_guardian_pic);
+
 
         tv_kid_Name.setText(commonAlertsList.get(position).name);
         tv_purpose.setText(commonAlertsList.get(position).service);
         tv_intime.setText(commonAlertsList.get(position).inTime);
         tv_outtime.setText(commonAlertsList.get(position).outTime);
         tv_gingWith.setText(commonAlertsList.get(position).Description);
+        Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL +commonAlertsList.get(position).profilePic).into(img_guardian_pic);
+
 
         btn_allow = view1.findViewById(R.id.tv_allow_kids_alert);
         btn_allow.setOnClickListener(new View.OnClickListener() {

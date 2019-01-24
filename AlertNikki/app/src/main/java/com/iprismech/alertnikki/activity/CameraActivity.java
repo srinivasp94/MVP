@@ -2,6 +2,7 @@ package com.iprismech.alertnikki.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.hardware.Camera;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Base64;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.iprismech.alertnikki.Pojo.LoginPojo;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.Login_model;
 import com.iprismech.alertnikki.Response.Login;
@@ -34,9 +36,11 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
     private String mSecurity_Id,
             mAdmin_Id,
             mPasscode,
-            mName;
+            mName,mShift;
     private Object obj;
     private String timeStamp = "";
+    private int cameraId;
+    private LoginPojo loginPojo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +75,35 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
             mAdmin_Id = bundle.getString("Key_Admin_Id", "");
             mPasscode = bundle.getString("Key_Passcode", "");
             mName = bundle.getString("Key_Name", "");
+            mShift=bundle.getString("Key_Shift", "");
         }
         Common.commonLogs(CameraActivity.this, bundle.toString());
 
+
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+      //  cameraId = findFrontFacingCamera();
+     //   Camera camera=Camera.open((Camera.CameraInfo.CAMERA_FACING_FRONT));
+        cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 0);
+
         startActivityForResult(cameraIntent, 2);
+    }
+
+    private int findFrontFacingCamera() {
+        int cameraId = -1;
+        // Search for the front facing camera
+        int numberOfCameras = Camera.getNumberOfCameras();
+        for (int i = 0; i < numberOfCameras; i++) {
+            Camera.CameraInfo info = new Camera.CameraInfo();
+            Camera.getCameraInfo(i, info);
+            if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
+               //
+                // Log.d(DEBUG_TAG, "Camera found");
+                cameraId = i;
+                break;
+            }
+        }
+        return cameraId;
     }
 
     @Override
@@ -153,6 +181,9 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
                 if (object.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
+                            //loginPojo=new Gson().fromJson(jsonString,LoginPojo.class);
+
+
                             Login login = Common.getSpecificDataObject(objectResponse, Login.class);
                             SharedPrefsUtils.getInstance(this).createUserSession(login.response.securityId,
                                     login.response.adminId, login.response.loginDate, login.response.loginTime
@@ -168,6 +199,7 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
                             bundle.putString("Key_Name", mName);
                             bundle.putString("Key_timeStamp", timeStamp);
                             bundle.putString("Key_Society", login.response.society);
+                            bundle.putString("Key_Shift", mShift);
 
 
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_WELCOME_SCREEN, bundle);

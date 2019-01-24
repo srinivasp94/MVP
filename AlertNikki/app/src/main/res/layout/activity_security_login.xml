@@ -6,25 +6,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".activity.SecurityLoginActivity">
 
-    <com.iprismech.alertnikki.customviews.CustomTextViewBold
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:text="Society,Main Gate"
-        android:textSize="@dimen/_18sdp"
-        android:textColor="@color/lightblachtcolor"/>
+    <!--<com.iprismech.alertnikki.customviews.CustomTextViewBold-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_marginTop="@dimen/_25sdp"-->
+    <!--android:text="Society,Main Gate"-->
+    <!--android:textSize="@dimen/_18sdp"-->
+    <!--android:textColor="@color/lightblachtcolor"/>-->
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_15sdp"
         android:gravity="center"
         android:text="Security Login"
         android:textSize="@dimen/_17sdp"
-        android:textColor="@color/lightblachtcolor"/>
+        android:textColor="@color/lightblachtcolor" />
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
         android:layout_width="match_parent"
@@ -33,6 +33,25 @@
         android:text="Please enter your code"
         android:textSize="@dimen/_13sdp" />
 
+
+
+    <com.alimuzaffar.lib.pin.PinEntryEditText
+        android:id="@+id/txt_pin_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:cursorVisible="false"
+        android:digits="1234567890"
+        android:inputType="number"
+        android:maxLength="7"
+        android:textIsSelectable="false"
+        android:textSize="@dimen/_14sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_margin="@dimen/_25sdp"
+        android:visibility="visible"
+        app:pinLineColors="@color/pin_line_colors" />
+
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +59,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:elevation="@dimen/_2sdp"
         android:gravity="center"
+        android:visibility="gone"
         android:orientation="horizontal"
         android:weightSum="7">
 

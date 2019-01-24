@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1015674861466",
+    "firebase_url": "https://alertnikki-security.firebaseio.com",
+    "project_id": "alertnikki-security",
+    "storage_bucket": "alertnikki-security.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015674861466:android:5fc2da7b206e76f3",
+        "android_client_info": {
+          "package_name": "com.iprismech.alertnikki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015674861466-akkfurlq43lrn9t9vs877fnvreoioist.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3FRucnuEE--qFgwffG44VIdOGIjb6CMg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

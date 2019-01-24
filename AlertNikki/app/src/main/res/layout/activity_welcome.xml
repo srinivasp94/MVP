@@ -7,6 +7,7 @@
     android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="@drawable/bg"
     tools:context=".activity.WelcomeActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -52,6 +53,16 @@
         android:gravity="center"
         android:id="@+id/txt_security_loginTime"
         android:text="Entry Time 9.00 AM"
+        android:textSize="@dimen/_14sdp" />
+    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:id="@+id/txt_security_shift"
+        android:text="Shift:  9.00 AM"
         android:textSize="@dimen/_14sdp" />
 
     <Button

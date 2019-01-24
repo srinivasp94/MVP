@@ -16,6 +16,8 @@ import com.iprismech.alertnikki.Pojo.MoreAllServicesPojo;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
+import com.iprismech.alertnikki.utilities.Constants;
+import com.squareup.picasso.Picasso;
 
 public class MoreAllServicesAdapter extends RecyclerView.Adapter<MoreAllServicesAdapter.ViewHolder> {
     private Context context;
@@ -39,7 +41,7 @@ public class MoreAllServicesAdapter extends RecyclerView.Adapter<MoreAllServices
     @Override
     public void onBindViewHolder(@NonNull MoreAllServicesAdapter.ViewHolder viewHolder, int i) {
         viewHolder.service_name.setText(moreAllServicesPojo.getResponse().get(i).getTitle());
-      //  Picasso.with(context).load(Constants.BASE_IMAGE_URL + moreAllServicesPojo.getResponse().get(i).).into(viewHolder.service_img);
+        //Picasso.with(context).load(Constants.BASE_IMAGE_URL + moreAllServicesPojo.getResponse().get(i).into(viewHolder.service_img);
 
     }
 
@@ -62,12 +64,20 @@ public class MoreAllServicesAdapter extends RecyclerView.Adapter<MoreAllServices
             ll_more_all.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle=new Bundle();
-                    bundle.putString("Key_Title",moreAllServicesPojo.getResponse().get(getAdapterPosition()).getTitle());
-                   // bundle.putString("Key_Image",moreAllServicesPojo.getResponse().get(getAdapterPosition()).getId());
-                    bundle.putInt("Key_Image",0);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN,bundle);
-
+                    if(moreAllServicesPojo.getResponse().get(getAdapterPosition()).getTitle().equalsIgnoreCase("Add Guest")){
+                        Bundle bundle=new Bundle();
+                        bundle.putString("Key_Title",moreAllServicesPojo.getResponse().get(getAdapterPosition()).getTitle());
+                        // bundle.putString("Key_Image",moreAllServicesPojo.getResponse().get(getAdapterPosition()).getId());
+                        bundle.putInt("Key_Image",0);
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_GUEST_SCREEN,bundle);
+                    }
+                    else {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Key_Title", moreAllServicesPojo.getResponse().get(getAdapterPosition()).getTitle());
+                        // bundle.putString("Key_Image",moreAllServicesPojo.getResponse().get(getAdapterPosition()).getId());
+                        bundle.putInt("Key_Image", 0);
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN, bundle);
+                    }
 
                 }
             });

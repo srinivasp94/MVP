@@ -52,8 +52,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="@dimen/_20sdp"
-                android:text="This user activate EMERGENCY call.Lorem Ipsum is simply dummy text"
+                android:text="Click Ok to send alert to Tenant/Resident"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp" />
 
             <LinearLayout

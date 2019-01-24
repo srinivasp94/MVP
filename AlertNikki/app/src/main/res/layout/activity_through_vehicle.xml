@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/mainbackground"
     android:layout_marginLeft="@dimen/_10sdp">
 
     <LinearLayout
@@ -18,7 +19,6 @@
             android:src="@android:drawable/ic_menu_close_clear_cancel"
             android:tint="@color/black" />
 
-
         <com.iprismech.alertnikki.customviews.CustomTextViewBold
             android:id="@+id/search_vehicle"
             android:layout_width="wrap_content"
@@ -28,33 +28,18 @@
             android:text="5555"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp" />
-
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
-            android:background="@color/lightblachtcolor">
+            android:background="@color/viewcolor">
 
         </View>
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rview_through_vehicle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_30sdp">
-
+            android:layout_marginBottom="@dimen/_3sdp">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
-
-    <com.iprismech.alertnikki.customviews.CustomTextViewBold
-        android:id="@+id/ok_submit_vehicle"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_30sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="0dp"
-        android:background="@drawable/green_btn_bgr"
-        android:gravity="center"
-        android:text="Ok"
-        android:textColor="@color/white" />
 </RelativeLayout>

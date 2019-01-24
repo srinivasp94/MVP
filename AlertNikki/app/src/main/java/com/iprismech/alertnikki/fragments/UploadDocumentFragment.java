@@ -98,36 +98,37 @@ public class UploadDocumentFragment extends BaseAbstractFragment<Class> implemen
 //                et_doc_id_num.setInputType(InputType.TYPE_CLASS_NUMBER );
                 document_id = "1";
 
-                iv_aadhaar.setImageResource(R.mipmap.dummy_selected);
-                iv_voter_id.setImageResource(R.drawable.dummy);
-                iv_pan.setImageResource(R.drawable.dummy);
+                iv_aadhaar.setImageResource(R.mipmap.aadhar_selected);
+                iv_voter_id.setImageResource(R.drawable.voter_id);
+                iv_pan.setImageResource(R.drawable.pan_card);
 
                 break;
             case R.id.ll_pan:
 
                 et_doc_id_num.setText("");
                 document_id = "2";
-                iv_pan.setImageResource(R.mipmap.dummy_selected);
-                iv_voter_id.setImageResource(R.drawable.dummy);
-                iv_aadhaar.setImageResource(R.drawable.dummy);
+                iv_pan.setImageResource(R.mipmap.pan_selected);
+                iv_voter_id.setImageResource(R.drawable.voter_id);
+                iv_aadhaar.setImageResource(R.drawable.aadhar_card);
 
                 break;
             case R.id.ll_voterid:
                 et_doc_id_num.setText("");
                 document_id = "3";
-                iv_voter_id.setImageResource(R.mipmap.dummy_selected);
-                iv_pan.setImageResource(R.drawable.dummy);
-                iv_aadhaar.setImageResource(R.drawable.dummy);
+                iv_voter_id.setImageResource(R.mipmap.voter_selected);
+                iv_pan.setImageResource(R.drawable.pan_card);
+                iv_aadhaar.setImageResource(R.drawable.aadhar_card);
                 break;
             case R.id.btn_next_doc:
                 if (document_id.isEmpty() || document_id == "") {
                     Toast.makeText(getActivity(), "Please Select document type", Toast.LENGTH_SHORT).show();
                 } else if (et_doc_id_num.getText().toString().isEmpty() || et_doc_id_num.getText().toString() == "") {
                     Toast.makeText(getActivity(), "Please Enter Document ID number", Toast.LENGTH_SHORT).show();
-                } else if (document_id.equalsIgnoreCase("1")) {
-                    if(et_doc_id_num.getText().length()<12)
-                    Toast.makeText(getActivity(), "Please enter valid Aadhar Card Number", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+//                else if (document_id.equalsIgnoreCase("1")) {
+//                    Toast.makeText(getActivity(), "Please enter valid Aadhar Card Number", Toast.LENGTH_SHORT).show();
+//                }
+                else {
                     UploadPhotoFragment fragment = new UploadPhotoFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("service_id", service_id);

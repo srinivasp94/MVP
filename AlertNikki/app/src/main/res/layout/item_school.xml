@@ -13,15 +13,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_weight="0.5"
+        android:layout_weight="0.4"
         android:gravity="center">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/image_school"
-            android:layout_width="@dimen/_55sdp"
-            android:layout_height="@dimen/_55sdp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:padding="@dimen/_4sdp"
-            android:src="@drawable/user" />
+            android:src="@drawable/school" />
     </LinearLayout>
 
     <LinearLayout
@@ -73,7 +73,7 @@
             android:layout_gravity="center"
             android:text="00Hr10Min"
             android:textColor="@color/green"
-            android:textSize="@dimen/_13sdp"
+            android:textSize="@dimen/_10sdp"
             android:visibility="gone" />
 
         <Button

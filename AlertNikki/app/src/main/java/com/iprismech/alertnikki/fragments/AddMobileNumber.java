@@ -18,35 +18,29 @@ public class AddMobileNumber extends BaseAbstractFragment<Class> {
     private TextView btn_next_mobile;
     private FragmentManager fragmentManager;
     private String service_id,mobile_number,name,address;
-
     @Override
     protected View getFragmentView() {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.add_service_mobile_number, null);
         return view;
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
     }
-
     @Override
     public void setPresenter() {
 
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return view;
     }
-
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
     }
-
     @Override
     protected void initialiseViews() {
         super.initialiseViews();
@@ -75,7 +69,6 @@ public class AddMobileNumber extends BaseAbstractFragment<Class> {
                     name=et_name.getText().toString();
                     address=et_address.getText().toString();
                     mobile_number=et_mobie_number.getText().toString();
-
                     UploadDocumentFragment fragment = new UploadDocumentFragment();
                     Bundle bundle = new Bundle();
                     bundle.putString("service_id",service_id);
@@ -84,7 +77,6 @@ public class AddMobileNumber extends BaseAbstractFragment<Class> {
                     bundle.putString("address",address);
                     fragment.setArguments(bundle);
                     fragmentManager.beginTransaction().replace(R.id.fm_container, fragment, "").addToBackStack("").commit();
-
                 }
             }
         });

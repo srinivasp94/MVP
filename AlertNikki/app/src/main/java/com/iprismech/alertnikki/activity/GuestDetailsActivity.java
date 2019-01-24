@@ -15,10 +15,12 @@ import com.iprismech.alertnikki.base.BaseAbstractActivity;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.Common;
+import com.iprismech.alertnikki.utilities.Constants;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
-public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements RetrofitResponseListener {
+public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements RetrofitResponseListener, View.OnClickListener {
     private ImageView img_pic, back;
     private TextView mName, mVehicle, mType, mCheckin, mAllowed, mApproved;
     private Object obj;
@@ -29,21 +31,19 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_guest_details);
     }
-
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_guest_details, null);
         return view;
     }
-
     @Override
     public void setPresenter() {
 
     }
-
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
+        back.setOnClickListener(this);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         mCheckin = findViewById(R.id.visitor_tv_chech_in);
         mAllowed = findViewById(R.id.tv_allowed_by);
         mApproved = findViewById(R.id.tv_approved_by);
-
+        back = findViewById(R.id.iv_navigate_back);
         Bundle bundle = getIntent().getExtras();
         String visitor_id = bundle.getString("Key_Visitor_id");
         String type_id = bundle.getString("Key_Type_id");
@@ -73,13 +73,12 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         }
 
 
-
         try {
             obj = Class.forName(Visitors_Common_Req.class.getName()).cast(visitors_common_req);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new RetrofitRequester(this).callPostServices(obj, 1, "after_in_visitor_data", true);
+            new RetrofitRequester(this).callPostServices(obj, 1, "after_in_visitor_data", true);
 
 //        back = findViewById(R.id.image_pics);
     }
@@ -88,7 +87,8 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectRequest.equals("")) {
             Common.showToast(GuestDetailsActivity.this, "PLease Try again");
-        } else {
+        }
+        else {
             try {
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
@@ -105,12 +105,23 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
                             mAllowed.setText(jsonObject.optString("security_name"));
                             mApproved.setText(jsonObject.optString("user_name"));
                             mVehicle.setText("Vehicle Number: " + jsonObject.optString("vehicle_no"));
+                          //  Picasso.with(context).load(Constants.BASE_IMAGE_URL + jsonObject.optString().into(viewHolder.service_img);
                             break;
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_navigate_back:
+                onBackPressed();
+                break;
+
         }
     }
 }

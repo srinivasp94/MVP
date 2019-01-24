@@ -22,9 +22,12 @@ public class SharedPrefsUtils {
     public static final String KEY_LOGIN_DATE = "login_date";
     public static final String KEY_LOGIN_TIME = "login_time";
 
+
     // User name (make variable public to access from outside)
     public static final String KEY_SOCIETY = "society";
     public static final String KEY_CITY = "city";
+    public static final String KEY_WAITING_COUNT = "waiting_count";
+    public static final String KEY_INSIDE_COUNT = "inside_count";
 
     // password (make variable public to access from outside)
 
@@ -51,7 +54,6 @@ public class SharedPrefsUtils {
             prefsUtils = new SharedPrefsUtils(context);
         }
         return prefsUtils;
-
     }
 
     public SharedPrefsUtils(Context context) {
@@ -81,6 +83,12 @@ public class SharedPrefsUtils {
         editor.commit();
     }
 
+    public void visitor_count(int inside_count,int waiting_count){
+        editor.putInt(KEY_INSIDE_COUNT, inside_count);
+        editor.putInt(KEY_WAITING_COUNT, waiting_count);
+        editor.commit();
+    }
+
     //Retrive User details
 
   /*  public HashMap<String, String> getUserdetails() {
@@ -105,6 +113,7 @@ public class SharedPrefsUtils {
         editor.commit();
     }
 
+
     public static void updateString(String key, String value) {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(key, value);
@@ -120,7 +129,14 @@ public class SharedPrefsUtils {
         return preferences.getInt(KEY_SECURITY_ID, 0);
     }
 
+    public Integer getInsdiecount() {
+        return preferences.getInt(KEY_INSIDE_COUNT, 0);
+    }
+    public Integer getwaitingcount() {
+        return preferences.getInt(KEY_WAITING_COUNT, 0);
+    }
     public String getAdmin() {
+
         return preferences.getString(KEY_ADMIN_ID, "");
     }
 

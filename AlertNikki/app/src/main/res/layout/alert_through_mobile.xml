@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="mobile"
+                android:visibility="gone"
                 android:textColor="#000" />
 
             <LinearLayout

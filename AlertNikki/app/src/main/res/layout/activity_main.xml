@@ -8,53 +8,379 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottom_navigationtop"
+    <!--<android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:id="@+id/bottom_navigationtop"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="bottom"-->
+    <!--android:background="@color/white"-->
+    <!--app:elevation="2dp"-->
+    <!--app:itemIconTint="@drawable/nav_item_color_state"-->
+    <!--app:itemTextColor="@drawable/nav_item_color_state"-->
+    <!--app:labelVisibilityMode="labeled"-->
+    <!--app:menu="@menu/nav_top_view" />-->
+
+
+    <LinearLayout
+        android:id="@+id/ll_topbnavigation"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_height="@dimen/_50sdp"
         android:background="@color/white"
-        app:elevation="2dp"
-        app:itemIconTint="@drawable/nav_item_color_state"
-        app:itemTextColor="@drawable/nav_item_color_state"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/nav_top_view" />
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_top_keypad"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_top_keypad"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_keypad" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_top_keypad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keypad"
+
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_top_alerts"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/iv_top_alerts"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+
+                    android:src="@drawable/ic_bell" />
+
+                <TextView
+                    android:id="@+id/badge_notification_alerts"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/item_count"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:padding="@dimen/_1sdp"
+                    android:text="0"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                    android:id="@+id/tv_top_alerts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_top_alerts"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="0dp"
+                    android:text="Alerts"
+                    android:textSize="@dimen/_10sdp" />
+            </RelativeLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_top_visitors"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_top_visitors"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="1dp"
+                    android:src="@drawable/ic_visitor" />
+
+                <TextView
+                    android:id="@+id/badge_notification_visitors"
+                    android:layout_width="@dimen/_13sdp"
+                    android:layout_height="@dimen/_13sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="@drawable/item_count"
+                    android:gravity="center|center_vertical|center_horizontal"
+                    android:padding="@dimen/_1sdp"
+                    android:text="0"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_marginTop="0dp"
+                    android:layout_marginEnd="18dp"
+                    android:textColor="#FFF"
+                    android:textSize="@dimen/_8sdp"
+                    android:textStyle="bold" />
+
+                <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                    android:id="@+id/tv_top_visitors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/iv_top_visitors"
+                    android:layout_alignStart="@+id/iv_top_visitors"
+                    android:layout_marginStart="-6dp"
+                    android:layout_marginTop="-1dp"
+                    android:text="Visitors"
+                    android:textSize="@dimen/_10sdp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_top_adminstaff"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_top_admistaff"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_admin_staff"
+
+                />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_top_admistaff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin Staff"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_top_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_top_more"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/ic_top_more" />
 
 
-    <ScrollView
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--  <ScrollView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_above="@id/bottom_navigation"
+          android:layout_below="@+id/bottom_navigationtop"
+          android:background="@color/backgroundlight">
+  -->
+    <FrameLayout
+        android:id="@+id/fm_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/bottom_navigation"
-        android:layout_below="@+id/bottom_navigationtop"
-        android:background="@color/backgroundlight">
-
-        <FrameLayout
-            android:id="@+id/fm_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </FrameLayout>
-
-    </ScrollView>
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottombnavigation"
+        android:layout_below="@+id/ll_topbnavigation" />
 
 
-    <android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/txtSocietyGate"
-        android:layout_gravity="bottom"
-        android:background="@android:color/white"
-        app:elevation="1dp"
-        app:itemBackground="@color/black"
-        app:itemIconTint="@drawable/bottom_nav_icon_color_selector"
-        app:itemTextColor="@drawable/bottom_nav_icon_color_selector"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_view" />
+    <!--</ScrollView>-->
+
+
+    <!--<android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+    <!--android:id="@+id/bottom_navigation"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@id/txtSocietyGate"-->
+    <!--android:layout_gravity="bottom"-->
+    <!--android:background="@android:color/white"-->
+    <!--app:elevation="1dp"-->
+    <!--app:itemBackground="@color/black"-->
+    <!--app:itemIconTint="@drawable/bottom_nav_icon_color_selector"-->
+    <!--app:itemTextColor="@drawable/bottom_nav_icon_color_selector"-->
+    <!--app:labelVisibilityMode="labeled"-->
+    <!--app:menu="@menu/bottom_view" />-->
     <!--app:itemIconTint="@color/white"-->
     <!--app:itemTextColor="@color/white"-->
+
+
+    <LinearLayout
+        android:id="@+id/ll_bottombnavigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_above="@id/txtSocietyGate"
+        android:layout_gravity="bottom"
+        android:background="@color/black"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_delivery"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_bottom_delivery"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_delivery" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_bottom_delivery"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:text="Delivery"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_dailyhelps"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_bottom_dailyhelps"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_dailyhelps" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_bottom_dailyhelps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DailyHelps"
+
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_schoolbus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_bottomschoolbus"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_school_bus" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_bottomschoolbus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schoolbus"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_cab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_bottom_cab"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_cab"
+
+
+                />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_bottom_cab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cab"
+
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_bottom_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_bottom_more"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/ic_bottom_more" />
+
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/tv_bottom_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="More"
+
+                android:textColor="@color/white"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
     <com.iprismech.alertnikki.customviews.CustomTextViewNormal
         android:id="@+id/txtSocietyGate"
         android:layout_width="match_parent"

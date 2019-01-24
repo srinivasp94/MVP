@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -121,6 +122,40 @@ public class SlotDivision {
             e.printStackTrace();
         }
         return formattedDate;
+    }
+
+    public static String differenceTime(String inTime) {
+        long diffinTime = 0;
+        String differ = "";
+        Calendar cal = Calendar.getInstance();
+        Date date = cal.getTime();
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        String formattedDate = dateFormat.format(date);
+//        currentTime = DateFormat.getDateTimeInstance().format(new Date());
+
+
+        Date d1 = null;
+        Date d2 = null;
+
+//        String diff = hours + ":" + mins;
+        try {
+            d1 = format.parse(formattedDate);
+            d2 = format.parse(inTime);
+
+            //in milliseconds
+//            long diff = d2.getTime() - d1.getTime();
+            long diff = d1.getTime() - d2.getTime();
+
+            long diffSeconds = diff / 1000 % 60;
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+//            long diffDays = diff / (24 * 60 * 60 * 1000);
+            differ= diffHours +"Hrs "+ ":" + diffMinutes +" Min";
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return differ;
     }
 }
 

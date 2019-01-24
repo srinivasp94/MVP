@@ -7,9 +7,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.iprismech.alertnikki.MainActivity;
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Request.AdminStaff;
 import com.iprismech.alertnikki.Request.CallVisitor;
 import com.iprismech.alertnikki.Request.Visitor;
 import com.iprismech.alertnikki.Request.Visitor_In;
@@ -32,18 +35,27 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
     private ArrayList<ResponseVisitMember> arrayList = new ArrayList<>();
     private Object obj;
     private int itemposition;
+    private SharedPrefsUtils sharedPrefsUtils;
 
     @Override
     protected View getFragmentView() {
-        view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_inside_waititng, null);
+        view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_waiting, null);
         return view;
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            //getChildFragmentManager().beginTransaction().detach(getParentFragment()).attach(getParentFragment()).commit();
+           // getChildFragmentManager().beginTransaction().attach(getParentFragment()).commit();
+        }
     }
 
     @Override
     public void setPresenter() {
 
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,14 +71,12 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
     protected void initialiseViews() {
         super.initialiseViews();
 
-        rv_visit_inside = view.findViewById(R.id.rv_visitors);
-        manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        rv_visit_inside.setLayoutManager(manager);
+        rv_visit_inside = view.findViewById(R.id.rv_visitors_waiting);
+        sharedPrefsUtils=new SharedPrefsUtils(getActivity());
 
         Visitor visitor = new Visitor();
         visitor.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
+       // visitor.adminId = "2";
         //for waiting status as 0
         visitor.status = "0";
         visitor.search = "";
@@ -96,6 +106,9 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
                             arrayList = (ArrayList<ResponseVisitMember>) waitingVisitors.response;
 
                             if (arrayList != null && arrayList.size() > 0) {
+                                manager = new LinearLayoutManager(getActivity());
+                                manager.setOrientation(LinearLayoutManager.VERTICAL);
+                                rv_visit_inside.setLayoutManager(manager);
                                 adapter = new WaitingVisitorAdapter(getActivity(), arrayList);
                                 rv_visit_inside.setAdapter(adapter);
                                 adapter.setOnItemClickListener(new WaitingVisitorAdapter.OnitemClickListener() {
@@ -124,10 +137,37 @@ public class WaitingVisitorFragment extends BaseAbstractFragment<Class> implemen
                             arrayList.remove(itemposition);
                             adapter.notifyDataSetChanged();
                             Common.showToast(getActivity(), object.optString("message"));
+
+                            AdminStaff req = new AdminStaff();
+                            req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
+                            try {
+                                obj = Class.forName(AdminStaff.class.getName()).cast(req);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            new RetrofitRequester(this).callPostServices(obj, 4, "visitors_count", false);
+                         //   new RetrofitRequester(this).callPostServices(obj, 5, "alerts_count", true);
+
+
+
+
                             break;
                         case 3:
                             Common.showToast(getActivity(), object.optString("message"));
                             break;
+
+                        case 4:
+
+//                        {"status":true,"message":"Data fetched Successfully!","visitors_count":8}
+
+                          
+                            sharedPrefsUtils.visitor_count(object.optInt("visitors_count_inside"), object.optInt("visitors_count"));
+
+                            getActivity().getSupportFragmentManager().beginTransaction().
+                                    replace(R.id.fm_container,new Visitors_Fragment(),"").commit();
+
+                            break;
+                       
                     }
                 } else {
                     Common.showToast(getActivity(), object.optString("message"));

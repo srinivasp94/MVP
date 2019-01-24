@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.StaffResponse;
 import com.iprismech.alertnikki.utilities.Constants;
+import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -51,7 +52,15 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
         viewHolder.type.setText(staffResponse.designation);
         viewHolder.invitedBy.setText("Passcode: " + staffResponse.passcode);
         viewHolder.address.setText("Entry Time: " + staffResponse.dateOfJoining);
-        viewHolder.timesince.setText(staffResponse.timings);
+        //viewHolder.timesince.setText(staffResponse.timings);
+
+        try {
+            String diffTime = SlotDivision.differenceTime(staffResponse.attendence.inTime);
+            viewHolder.timesince.setText(diffTime);
+        } catch (Exception e) {
+
+        }
+
         Picasso.with(context).load(Constants.BASE_IMAGE_URL + staffResponse.image.replace("\\", "")).
                 error(R.drawable.dummy).into(viewHolder.image);
     }
@@ -72,7 +81,8 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
             type = itemView.findViewById(R.id.txt_gusetType);
             invitedBy = itemView.findViewById(R.id.txt_invitedBy);
             address = itemView.findViewById(R.id.txt_AddressFrom);
-            timesince = itemView.findViewById(R.id.txt_timeSince);
+
+           // timesince = itemView.findViewById(R.id.txt_timeSince);
             out = itemView.findViewById(R.id.btn_out);
             image = itemView.findViewById(R.id.image);
 

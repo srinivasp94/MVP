@@ -41,56 +41,68 @@
 
             </View>
 
-            <com.iprismech.alertnikki.customviews.CustomTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="* Building Name"
-                android:textColor="#e62d40" />
-
-            <Spinner
-                android:id="@+id/sp_moveot_building"
-                style="@style/SpinnerTheme"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_30sdp"></Spinner>
+                android:layout_marginTop="@dimen/_20sdp"
+                android:id="@+id/ll_building_moveout"
+                android:orientation="horizontal">
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="* Building Name:"
+                    android:layout_weight="0.5"
+                    android:textColor="#e62d40" />
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="0dp"
+                    android:id="@+id/tv_building_name_movieout"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/bg_spinner" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.2dp"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="#c6bfc6">
 
             </View>
-
-            <com.iprismech.alertnikki.customviews.CustomTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:text="* Flat Name"
-                android:textColor="#e62d40" />
-
-            <Spinner
-                android:id="@+id/sp_moveout_flat"
-                style="@style/SpinnerTheme"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/_30sdp"></Spinner>
+                android:layout_marginTop="@dimen/_20sdp"
+                android:id="@+id/ll_flatno_moveout"
+                android:orientation="horizontal">
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="* Flat No:"
+                    android:layout_weight="0.5"
+                    android:textColor="#e62d40" />
+                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                    android:layout_width="0dp"
+                    android:id="@+id/tv_flat_number_moveout"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:layout_weight="0.5"
+                    android:textColor="@color/black" />
 
-
-            <!--<com.iprismech.alertnikki.customviews.CustomEditTextNormal-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="@dimen/_5sdp"-->
-            <!--android:background="@null"-->
-            <!--android:hint="102"-->
-            <!--android:inputType="number"-->
-            <!--android:id="@+id/movein_et_flat_number"-->
-            <!--android:maxLines="1"-->
-            <!--android:singleLine="true"-->
-            <!--android:textSize="@dimen/_12sdp" />-->
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/_5sdp"
+                    android:src="@drawable/bg_spinner" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"

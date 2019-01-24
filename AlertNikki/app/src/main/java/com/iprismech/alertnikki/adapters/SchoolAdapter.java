@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.SchoolBusesList;
+import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,16 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
             viewHolder.notify.setVisibility(View.VISIBLE);
         } else {
             viewHolder.in_time.setVisibility(View.VISIBLE);
-            viewHolder.in_time.setText(buses.attendence.inTime);
+
+            try {
+                String diffTime = SlotDivision.differenceTime(buses.attendence.inTime);
+                viewHolder.in_time.setText(diffTime);
+
+            } catch (Exception e) {
+
+            }
+
+//            viewHolder.in_time.setText(buses.attendence.inTime);
             viewHolder.bt_OUT.setVisibility(View.VISIBLE);
         }
     }

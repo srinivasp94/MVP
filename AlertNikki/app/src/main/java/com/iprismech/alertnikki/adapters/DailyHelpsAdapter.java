@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.DailyHelpsList;
+import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 
 import java.util.ArrayList;
 
@@ -48,8 +49,13 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
         viewHolder.name.setText(helpsList.name);
         viewHolder.duty.setText(helpsList.designation);
         viewHolder.passcode.setText("Passcode: " + helpsList.passcode);
-        viewHolder.time.setText(helpsList.timings);
-
+//        viewHolder.time.setText(helpsList.timings);
+        try {
+            String diffTime = SlotDivision.differenceTime(helpsList.attendence.inTime);
+            viewHolder.time.setText(diffTime);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

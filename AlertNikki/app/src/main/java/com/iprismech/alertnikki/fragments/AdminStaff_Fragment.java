@@ -74,7 +74,7 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
 
         msearchView = view.findViewById(R.id.searchview_admin);
         rv_admin = view.findViewById(R.id.rv_adminstaff);
-        ll_noResponse = view.findViewById(R.id.ll_noResponse);
+        //ll_noResponse = view.findViewById(R.id.ll_noResponse);
         rv_admin.setLayoutManager(manager);
 
         AdminStaff staff = new AdminStaff();
@@ -120,7 +120,7 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                                         }
                                     });
                                 } else {
-                                    ll_noResponse.setVisibility(View.VISIBLE);
+                                    ll_noResponse.setVisibility(View.GONE);
                                 }
                             } else {
                                 Common.showToast(getActivity(), "Items Not Found");

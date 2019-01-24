@@ -37,6 +37,6 @@ public class IntroScreensActivity extends BaseAbstractActivity {
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-        Toast.makeText(getApplicationContext(), "This", Toast.LENGTH_SHORT).show();
+
     }
 }

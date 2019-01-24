@@ -189,6 +189,9 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_GUEST_DETAILS_SCREEN:
                 uiController.launchActivity(ViewFactory.ScreenIds.GUEST_DETAILS, (Bundle) eventObjects);
                 break;
+            case AppConstants.EventIds.LAUNCH_ADD_GUEST_SCREEN:
+                uiController.launchActivity(ViewFactory.ScreenIds.ADD_GUEST, (Bundle) eventObjects);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

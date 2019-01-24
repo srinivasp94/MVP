@@ -5,6 +5,8 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+
+import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_ADD_GUEST_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_CAMERA_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN;
 import static com.iprismech.alertnikki.app.factories.constants.AppConstants.EventIds.LAUNCH_GUEST_DETAILS_SCREEN;
@@ -36,7 +38,7 @@ public interface AppConstants {
             LAUNCH_CAMERA_SCREEN,
             LAUNCH_QRCODE, LAUNCH_DELIVERY_BOY_SCREEN,
             LAUNCH_THROUGH_VEHICLE_SCREEN,
-            LAUNCH_GUEST_DETAILS_SCREEN
+            LAUNCH_GUEST_DETAILS_SCREEN,LAUNCH_ADD_GUEST_SCREEN
 
     })
     @interface EventIds {
@@ -50,6 +52,7 @@ public interface AppConstants {
         int LAUNCH_DELIVERY_BOY_SCREEN = 107;
         int LAUNCH_THROUGH_VEHICLE_SCREEN = 108;
         int LAUNCH_GUEST_DETAILS_SCREEN = 109;
+        int LAUNCH_ADD_GUEST_SCREEN = 110;
 
     }
 

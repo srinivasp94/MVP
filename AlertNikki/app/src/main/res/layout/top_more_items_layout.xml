@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_140sdp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="@dimen/_90sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="right"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_mylogintime"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_10sdp"
+        android:paddingHorizontal="@dimen/_5sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_clock" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="My Login Time"
+            android:textSize="@dimen/_14sdp"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_add_data"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#fff"
+        android:orientation="horizontal"
+
+        android:paddingHorizontal="@dimen/_5sdp"
+
+        android:paddingVertical="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_adddata" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+            android:text="Add Data"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_aboutus"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_5sdp"
+        android:paddingVertical="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_about" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+            android:text="About Us"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_logout"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:paddingHorizontal="@dimen/_5sdp"
+
+        android:paddingVertical="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_logout" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:textSize="@dimen/_14sdp"
+            android:text="Logout"
+            android:textColor="@color/black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sos"
+        android:layout_width="@dimen/_140sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#fff"
+        android:orientation="horizontal"
+
+        android:paddingHorizontal="@dimen/_5sdp"
+
+        android:paddingVertical="@dimen/_10sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_sos" />
+
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/_14sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:text="SOS"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</LinearLayout>

@@ -180,7 +180,7 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center"
                         android:id="@+id/iv_aadhar"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/aadhar_card" />
 
                     <com.iprismech.alertnikki.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -202,7 +202,7 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center"
                         android:id="@+id/iv_pan"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/pan_card" />
 
                     <com.iprismech.alertnikki.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -224,7 +224,7 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center"
                         android:id="@+id/iv_voterid"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/voter_id" />
 
                     <com.iprismech.alertnikki.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"

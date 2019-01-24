@@ -2,66 +2,81 @@ package com.iprismech.alertnikki.adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.ResponseVisitMember;
+import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 
 import java.util.ArrayList;
 
-public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder> {
+public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHolder>{
     private Context context;
-    private ArrayList<ResponseVisitMember> visitMembers;
+    private ArrayList<ResponseVisitMember> arrayList;
 
-    public InsideAdapter(Context context, ArrayList<ResponseVisitMember> visitMembers) {
+    public InsideAdapter(Context context, ArrayList<ResponseVisitMember> arrayList) {
         this.context = context;
-        this.visitMembers = visitMembers;
+        this.arrayList = arrayList;
+    }
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
     }
 
     @NonNull
     @Override
-    public InsideAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_inside, viewGroup, false);
-        return new ViewHolder(view);
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+       // View view = LayoutInflater.from(context).inflate(R.layout.item_inside, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_inside, null);
+        MyViewHolder viewHolder=new MyViewHolder(view);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull InsideAdapter.ViewHolder holder, int i) {
-        ResponseVisitMember member = visitMembers.get(i);
-
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
+        ResponseVisitMember member = arrayList.get(i);
         holder.guestName.setText(member.name);
         holder.type.setText(member.type);
         holder.invitedBy.setText(member.userName);
         holder.address.setText(member.flatName);
-        holder.timesince.setText(member.inTime + "");
+//        holder.timesince.setText(member.inTime + "");
+        try {
+            String diffTime = SlotDivision.differenceTime(member.inTime);
+            holder.timesince.setText(diffTime);
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
     public int getItemCount() {
-        return visitMembers.size();
+        return arrayList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView guestName, type, invitedBy, address, timesince;
         TextView out;
         LinearLayout ll_rootVisitor;
 
-        public ViewHolder(@NonNull View itemView) {
+        public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            guestName = itemView.findViewById(R.id.txt_title_name);
-            type = itemView.findViewById(R.id.txt_gusetType);
-            invitedBy = itemView.findViewById(R.id.txt_invitedBy);
-            address = itemView.findViewById(R.id.txt_AddressFrom);
-            timesince = itemView.findViewById(R.id.txt_timeSince);
-            out = itemView.findViewById(R.id.btn_out);
+            guestName = itemView.findViewById(R.id.txt_title_name_inside);
+            type = itemView.findViewById(R.id.txt_gusetType_indise);
+            invitedBy = itemView.findViewById(R.id.txt_invitedBy_inside);
+            address = itemView.findViewById(R.id.txt_AddressFrom_inside);
+            timesince = itemView.findViewById(R.id.txt_timeSince_inside);
+            out = itemView.findViewById(R.id.btn_out_inside);
             ll_rootVisitor= itemView.findViewById(R.id.ll_rootVisitor);
 
             out.setOnClickListener(this);
@@ -70,6 +85,9 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.ViewHolder
 
         @Override
         public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getPosition());
+            }
 
         }
     }

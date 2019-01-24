@@ -7,7 +7,33 @@
     android:background="@color/mainbackground"
     android:orientation="vertical"
     tools:context=".activity.GuestDetailsActivity">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_70sdp">
 
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_alignParentStart="true"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@color/white">
+
+    </android.support.v7.widget.Toolbar>
+    <ImageView
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/iv_navigate_back"
+        android:src="@drawable/left_arrow"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginStart="21dp" />
+</RelativeLayout>
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/image_pics"
         android:layout_width="@dimen/_60sdp"
@@ -98,15 +124,16 @@
                     android:padding="@dimen/_6sdp"
                     android:text="Check In:"
                     android:textSize="@dimen/_12sdp" />
+
                 <View
                     android:layout_width="@dimen/_1sdp"
                     android:layout_height="match_parent"
-                    android:background="@color/backgroundlight"
-                    >
+                    android:background="@color/backgroundlight">
 
                 </View>
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                    android:id="@+id/visitor_tv_chech_in"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -114,19 +141,19 @@
                     android:background="@color/white"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
-                    android:id="@+id/visitor_tv_chech_in"
                     android:padding="@dimen/_6sdp"
                     android:text="06:21 pm 29 oct 2018"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:background="@color/backgroundlight"
-                >
+                android:background="@color/backgroundlight">
 
             </View>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -144,34 +171,36 @@
                     android:padding="@dimen/_6sdp"
                     android:text="Approved By:"
                     android:textSize="@dimen/_12sdp" />
+
                 <View
                     android:layout_width="@dimen/_1sdp"
                     android:layout_height="match_parent"
-                    android:background="@color/backgroundlight"
-                    >
+                    android:background="@color/backgroundlight">
 
                 </View>
+
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                    android:id="@+id/tv_approved_by"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1.2"
-                    android:id="@+id/tv_approved_by"
                     android:background="@color/white"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
                     android:padding="@dimen/_6sdp"
-                    android:text="Recident"
+                    android:text="Resident"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_1sdp"
-                android:background="@color/backgroundlight"
-                >
+                android:background="@color/backgroundlight">
 
             </View>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -190,14 +219,16 @@
                     android:padding="@dimen/_6sdp"
                     android:text="Allowed By:"
                     android:textSize="@dimen/_12sdp" />
+
                 <View
                     android:layout_width="@dimen/_1sdp"
                     android:layout_height="match_parent"
-                    android:background="@color/backgroundlight"
-                    >
+                    android:background="@color/backgroundlight">
 
                 </View>
+
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                    android:id="@+id/tv_allowed_by"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
@@ -205,7 +236,6 @@
                     android:background="@color/white"
                     android:elevation="@dimen/_2sdp"
                     android:gravity="center"
-                    android:id="@+id/tv_allowed_by"
                     android:padding="@dimen/_6sdp"
                     android:text="Johndoe"
                     android:textColor="@color/black"

@@ -29,6 +29,7 @@ public class Delivery_Fragment extends BaseAbstractFragment<Class> {
     private OnlineDeliveryAdapter onlineDeliveryAdapter;
     private ArrayList<FoodModel> list_food = new ArrayList();
     private ArrayList<OnlineModel> list_online = new ArrayList();
+    private LinearLayoutManager managerFood,managerOnline;
 
     @Override
     protected View getFragmentView() {
@@ -62,7 +63,7 @@ public class Delivery_Fragment extends BaseAbstractFragment<Class> {
 
         list_food.add(new FoodModel("Swiggy", R.drawable.ic_swoggy));
         list_food.add(new FoodModel("Food Panda", R.drawable.ic_foodpanda));
-        list_food.add(new FoodModel("Zomoto", R.drawable.ic_zomato));
+        list_food.add(new FoodModel("Zomato", R.drawable.ic_zomato));
         list_food.add(new FoodModel("Uber Eats", R.drawable.ic_ubereats));
         list_food.add(new FoodModel("Other", R.drawable.dummy));
 
@@ -73,8 +74,12 @@ public class Delivery_Fragment extends BaseAbstractFragment<Class> {
         list_online.add(new OnlineModel("Other", R.drawable.dummy));
 
 
-        LinearLayoutManager managerFood = new LinearLayoutManager(getActivity());
+        managerFood = new LinearLayoutManager(getActivity());
         managerFood.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+      managerOnline = new LinearLayoutManager(getActivity());
+        managerOnline.setOrientation(LinearLayoutManager.HORIZONTAL);
+
         deliveryAdapter = new DeliveryAdapter(getActivity(), list_food);
         rv_mfood.setLayoutManager(managerFood);
         rv_mfood.setAdapter(deliveryAdapter);
@@ -85,8 +90,8 @@ public class Delivery_Fragment extends BaseAbstractFragment<Class> {
             }
         });
 
-        LinearLayoutManager managerOnline = new LinearLayoutManager(getActivity());
-        managerOnline.setOrientation(LinearLayoutManager.HORIZONTAL);
+        /*LinearLayoutManager managerOnline = new LinearLayoutManager(getActivity());
+        managerOnline.setOrientation(LinearLayoutManager.HORIZONTAL);*/
         onlineDeliveryAdapter = new OnlineDeliveryAdapter(getActivity(), list_online);
         rv_mOnline.setLayoutManager(managerOnline);
         rv_mOnline.setAdapter(onlineDeliveryAdapter);
@@ -116,5 +121,11 @@ public class Delivery_Fragment extends BaseAbstractFragment<Class> {
 
         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DELIVERY_BOY_SCREEN, bundle);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //initialiseViews();
     }
 }

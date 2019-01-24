@@ -1,133 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/_3sdp"
-    android:background="@color/white"
-    android:elevation="@dimen/_1sdp"
+    android:layout_margin="@dimen/_5sdp"
+
     android:orientation="horizontal"
-    android:padding="@dimen/_3sdp"
-    android:weightSum="2">
-
-    <!--<LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:layout_weight="0.3">-->
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img_userpic"
-        android:layout_width="@dimen/_40sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:padding="@dimen/_1sdp"
-        android:src="@drawable/dummy" />
-    <!--</LinearLayout>-->
-
+    android:padding="@dimen/_5sdp">
 
     <LinearLayout
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="@dimen/_8sdp"
-        android:layout_weight="1.4"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <com.iprismech.alertnikki.customviews.CustomTextViewBold
-            android:id="@+id/txt_title_name"
-            android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="@dimen/_2sdp"
+        android:weightSum="2">
+        <!--<LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="GusetName"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp" />
-
-        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
-            android:id="@+id/txt_gusetType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guset"
-            android:textSize="@dimen/_10sdp" />
-
-        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
-            android:id="@+id/txt_addressTo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Guset"
-            android:textSize="@dimen/_11sdp"
-            android:visibility="gone" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right|center"
-        android:layout_weight="0.5"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btn_check"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_25sdp"
             android:layout_gravity="center"
-            android:background="@drawable/gold_button_bgr"
             android:gravity="center"
-            android:text="Check"
-            android:textColor="@color/white"
-            android:visibility="gone" />
+            android:layout_weight="0.3">-->
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_userpic"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:padding="@dimen/_1sdp"
+            android:src="@drawable/dummy" />
+        <!--</LinearLayout>-->
 
-        <Button
-            android:id="@+id/btn_in"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_gravity="center"
-            android:background="@drawable/green_btn_bgr"
-            android:gravity="center"
-            android:text="in"
-            android:textColor="@color/white"
-            android:visibility="gone" />
 
         <LinearLayout
-            android:id="@+id/ll_calling"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@drawable/vehiclenum_bgr"
+            android:layout_marginLeft="@dimen/_8sdp"
+            android:layout_weight="1.5"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:visibility="gone">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/btn_msg"
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:gravity="center"
-                android:src="@drawable/message"
-                android:textColor="@color/black" />
+            <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                android:id="@+id/txt_title_name_waiting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="GusetName"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp" />
 
-            <ImageView
-                android:id="@+id/btn_call"
-                android:layout_width="@dimen/_15sdp"
-                android:layout_height="@dimen/_17sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:src="@drawable/call"
-                android:textColor="@color/black" />
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/txt_gusetType_waoting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guset"
+                android:textSize="@dimen/_10sdp" />
 
-            <ImageView
-                android:id="@+id/btn_callactive"
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:src="@drawable/callactive"
-                android:textColor="@color/black" />
-
+            <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                android:id="@+id/txt_addressTo_waiting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guset"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="gone" />
 
         </LinearLayout>
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:layout_weight="0.5"
+            android:gravity="center">
 
-</LinearLayout>
+            <Button
+                android:id="@+id/btn_check"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/gold_button_bgr"
+                android:gravity="center"
+                android:text="Check"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+
+            <Button
+                android:id="@+id/btn_in"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/green_btn_bgr"
+                android:gravity="center"
+                android:text="in"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_calling"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/vehiclenum_bgr"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <ImageView
+                    android:id="@+id/btn_msg"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/message"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:id="@+id/btn_call"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_17sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:src="@drawable/call"
+                    android:textColor="@color/black" />
+
+                <ImageView
+                    android:id="@+id/btn_callactive"
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:src="@drawable/callactive"
+                    android:textColor="@color/black" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

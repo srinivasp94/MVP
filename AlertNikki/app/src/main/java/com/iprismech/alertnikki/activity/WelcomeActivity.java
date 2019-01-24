@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Request.DailyHelpsReq;
 import com.iprismech.alertnikki.Request.Login_model;
+import com.iprismech.alertnikki.Request.SecurityShiftsRequest;
 import com.iprismech.alertnikki.Response.Login;
 import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
@@ -27,15 +29,16 @@ import org.json.JSONObject;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class WelcomeActivity extends BaseAbstractActivity<Class> implements View.OnClickListener {
+public class WelcomeActivity extends BaseAbstractActivity<Class> implements View.OnClickListener, RetrofitResponseListener {
 
 
-    private String img_path, mSecurity_Id, mAdmin_Id, mPasscode, mName, mtimeStamp, mSociety;
+    private String img_path, mSecurity_Id, mAdmin_Id, mPasscode, mName, mtimeStamp, mSociety,   mShiftId;
     private SimpleDateFormat dateFormat;
     private ImageView img_pic;
     private Button btn_Ok;
     private Object obj;
-    private TextView securityName, societyGate, logintime;
+    private TextView securityName, societyGate, logintime, security_shift;
+    private RetrofitResponseListener retrofitResponseListener;
 
 
     @Override
@@ -70,6 +73,9 @@ public class WelcomeActivity extends BaseAbstractActivity<Class> implements View
         securityName = findViewById(R.id.txt_securityName);
         societyGate = findViewById(R.id.txt_societyGate);
         logintime = findViewById(R.id.txt_security_loginTime);
+        security_shift = findViewById(R.id.txt_security_shift);
+
+
 
         Bundle bundle = getIntent().getExtras();
         img_path = getIntent().getStringExtra("Key_Base");
@@ -81,23 +87,34 @@ public class WelcomeActivity extends BaseAbstractActivity<Class> implements View
             mName = bundle.getString("Key_Name", "");
             mtimeStamp = bundle.getString("Key_timeStamp", "");
             mSociety = bundle.getString("Key_Society", "");
+            mShiftId=bundle.getString("Key_Shift", "");
         }
 
         String loginTime = new SimpleDateFormat("HH:mm:ss a").format(new Date());
 
         securityName.setText(mName);
         societyGate.setText(mSociety);
+        security_shift.setText("Shift : "+mShiftId);
         logintime.setText("" + loginTime);
         Common.commonLogs(WelcomeActivity.this, bundle.toString());
 
         byte[] decodedString = Base64.decode(img_path, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString,   0, decodedString.length);
         img_pic.setImageBitmap(decodedByte);
         Log.d("Base64", img_path);
 
 
         btn_Ok = findViewById(R.id.btn_ok);
 
+//        SecurityShiftsRequest securityShiftsRequest = new SecurityShiftsRequest();
+//        securityShiftsRequest.admin_id = SharedPrefsUtils.getInstance(getApplicationContext()).getAdmin();
+//        //flatListRequest.building_id="4";
+//        try {
+//            obj = Class.forName(SecurityShiftsRequest.class.getName()).cast(securityShiftsRequest);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 1, "daily_helps_list", true);
     }
 
     @Override
@@ -108,5 +125,10 @@ public class WelcomeActivity extends BaseAbstractActivity<Class> implements View
                 finish();
                 break;
         }
+    }
+
+    @Override
+    public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+
     }
 }

@@ -116,7 +116,8 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
                                         } else {
                                             Common.showToast(getActivity(), "No Data Found");
                                         }
-                                    } else {
+                                    }
+                                    else {
                                         Common.showToast(getActivity(), "No Data Found");
                                     }
                                 }

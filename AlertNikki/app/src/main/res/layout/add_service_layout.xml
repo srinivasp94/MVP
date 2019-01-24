@@ -8,353 +8,413 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
-            android:id="@+id/ll_add"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/_150sdp">
-
-
-            <!--<android.support.v7.widget.SearchView-->
-            <!--android:id="@+id/et_search"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/_35sdp"-->
-            <!--android:layout_marginHorizontal="@dimen/_10sdp"-->
-            <!--android:layout_marginTop="@dimen/_10sdp"-->
-            <!--android:background="@drawable/search_bg_new"-->
-            <!--android:imeOptions="actionSearch"-->
-            <!--app:defaultQueryHint="Search Shops"-->
-            <!--app:iconifiedByDefault="false"-->
-            <!--android:layoutDirection="rtl"-->
-            <!--app:queryHint="Search Service Providers" />-->
-            <!--&gt;-->
-
+            android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_35sdp"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:background="@drawable/search_bg_new"
-                android:weightSum="1">
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/search_icon"
-                    >
-
-                </ImageView>
-
-                <com.iprismech.alertnikki.customviews.CustomEditTextNormal
-                    android:id="@+id/autocomplete"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:background="@null"
-                    android:hint="Search Service Providers"
-                    android:paddingLeft="@dimen/_10sdp"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:textSize="@dimen/_11sdp"
-                    android:visibility="visible" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginHorizontal="@dimen/_30sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:id="@+id/service_cat_img"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
-                        android:id="@+id/service_category_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:gravity="center_horizontal"
-                        android:text="Service Boy"
-                        android:textSize="@dimen/_8sdp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_weight="0.15"
-                    android:background="#969396"></View>
-
-                <LinearLayout
-                    android:layout_width="@dimen/_55sdp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Mobile Number"
-                        android:textSize="@dimen/_8sdp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_weight="0.15"
-                    android:background="#969396"></View>
-
-                <LinearLayout
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Document"
-                        android:textSize="@dimen/_8sdp" />
-                </LinearLayout>
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_weight="0.15"
-                    android:background="#969396"></View>
-
-                <LinearLayout
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:text="Photo"
-                        android:textSize="@dimen/_8sdp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/_25sdp"
-                android:background="#969396"></View>
-
-            <ExpandableListView
-                android:id="@+id/lvExp"
+                android:id="@+id/ll_add"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone" />
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/_150sdp">
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                <!--<android.support.v7.widget.SearchView-->
+                <!--android:id="@+id/et_search"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="@dimen/_35sdp"-->
+                <!--android:layout_marginHorizontal="@dimen/_10sdp"-->
+                <!--android:layout_marginTop="@dimen/_10sdp"-->
+                <!--android:background="@drawable/search_bg_new"-->
+                <!--android:imeOptions="actionSearch"-->
+                <!--app:defaultQueryHint="Search Shops"-->
+                <!--app:iconifiedByDefault="false"-->
+                <!--android:layoutDirection="rtl"-->
+                <!--app:queryHint="Search Service Providers" />-->
+                <!--&gt;-->
 
-                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:background="@drawable/search_bg_new"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/search_icon">
+
+                    </ImageView>
+
+                    <com.iprismech.alertnikki.customviews.CustomEditTextNormal
+                        android:id="@+id/autocomplete"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:background="@null"
+                        android:hint="Search Service Providers"
+                        android:maxLines="1"
+                        android:paddingLeft="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/_11sdp"
+                        android:visibility="visible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/service_cat_img"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                            android:id="@+id/service_category_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center_horizontal"
+                            android:text="Service Boy"
+                            android:textSize="@dimen/_8sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_weight="0.15"
+                        android:background="#969396"></View>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:text="Mobile Number"
+                            android:gravity="center"
+                            android:textSize="@dimen/_8sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_weight="0.15"
+                        android:background="#969396"></View>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="Document"
+                            android:textSize="@dimen/_8sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_weight="0.15"
+                        android:background="#969396"></View>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center_horizontal"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:gravity="center"
+                            android:text="Photo"
+                            android:textSize="@dimen/_8sdp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!--
+                            <ExpandableListView
+                                android:id="@+id/lvExp"
+                                android:layout_height="match_parent"
+                                android:layout_width="match_parent"/>
+                -->
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:background="#969396"></View>
+
+
+                <LinearLayout
                     android:id="@+id/add_service_dailyhelps"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:text="Daily Helps"
-                    android:textColor="@color/black" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/spinner_img" />
-            </LinearLayout>
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Daily Helps"
+                        android:textColor="@color/black" />
 
-            <GridView
-                android:id="@+id/gv_add_service"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:numColumns="5"
-                android:visibility="gone"></GridView>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="#969396"></View>
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_add_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                </com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
 
-                <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+                <LinearLayout
                     android:id="@+id/add_service_vendors"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:text="Vendors"
-                    android:textColor="@color/black" />
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
 
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/spinner_img" />
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Vendors"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_vendor_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:paddingBottom="@dimen/_5sdp"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396">
+
+                </View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_tutors"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Tutors"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_tutor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_fulltimehelps"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Full Time Helps"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_fulltimehelps_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_socityAdmin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Society Adminstration Staff"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_societyadmin_service"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="#969396">
-
-            </View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <com.iprismech.alertnikki.customviews.CustomTextViewBold
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:text="Tutors"
-
-                    android:textColor="@color/black" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/spinner_img" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="#969396"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <com.iprismech.alertnikki.customviews.CustomTextViewBold
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:text="Full Time Helps"
-
-                    android:textColor="@color/black" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/spinner_img" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="#969396"></View>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <com.iprismech.alertnikki.customviews.CustomTextViewBold
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.9"
-                    android:gravity="center_vertical"
-                    android:text="Society Adminstration Staff"
-
-                    android:textColor="@color/black" />
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_weight="0.1"
-                    android:src="@drawable/spinner_img" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="#969396"></View>
-        </LinearLayout>
-
-
+        </RelativeLayout>
     </ScrollView>
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold

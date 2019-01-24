@@ -54,6 +54,6 @@ public class SplashScreenActivity<Class> extends BaseAbstractActivity {
 
             }
 
-        }, 2000);
+        }, 3000);
     }
 }
