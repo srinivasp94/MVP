@@ -2,14 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iprismech.alertnikkiresidence">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
                 <action
@@ -19,7 +26,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.IntroScreensActivity"></activity>
+        <activity android:name=".activity.IntroScreensActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.SignupActivity" />
+        <activity android:name=".activity.OtpVerificationActivity" />
+        <activity android:name=".activity.PasscodeActivity" />
+        <activity android:name=".activity.InviteGuestActivity" />
+        <activity android:name=".activity.PickContactsActivity"></activity>
     </application>
 
 </manifest>

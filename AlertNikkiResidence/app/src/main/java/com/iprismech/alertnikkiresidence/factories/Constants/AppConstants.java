@@ -30,6 +30,10 @@ public interface AppConstants {
         int LAUNCH_MAIN_SCREEN = 103;
         int LAUNCH_LOGIN_SCREEN = 104;
         int LAUNCH_SIGNUP_SCREEN = 105;
+        int LAUNCH_OTPVERIFICATION_SCREEN = 106;
+        int LAUNCH_PASSCODE_SCREEN = 107;
+        int LAUNCH_INVITE_GUEST_SCREEN = 108;
+        int LAUNCH_PICK_CONTACT_SCREEN = 109;
 
 
     }
