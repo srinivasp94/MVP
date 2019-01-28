@@ -19,6 +19,8 @@ public class SharedPrefsUtils {
     public static final String KEY_ADMIN_ID = "admin_id";
     public static final String KEY_PHONE = "phone";
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_NAME= "name";
+    public static final String KEY_PASSCODE= "passcode";
 
     // User name (make variable public to access from outside)
     public static final String KEY_SOCIETY_ID = "society_id";
@@ -27,6 +29,11 @@ public class SharedPrefsUtils {
     public static final String KEY_BUILDING_ID = "building-id";
 
     // password (make variable public to access from outside)
+
+    public static final String KEY_SOCIETY_NAME = "society_name";
+    public static final String KEY_CITY_NAME = "city_name";
+    public static final String KEY_FLAT_NAME = "flat_name";
+    public static final String KEY_BUILDING_NAME = "building_name";
 
 
     public static final String KEY_PASSWORD = "password";
@@ -64,18 +71,17 @@ public class SharedPrefsUtils {
 
 
     //Saving user details
-    public void createUserSession(int id, String adminid, String loginDate, String logintime, String society, String city) {
+    public void createUserSession(String id,String Phone, String email, String society, String city,
+                                  String flat,String building ,String userType) {
         editor.putBoolean(IS_USER_LOGIN, true);
-        editor.putInt(KEY_ID, id);
-        editor.putString(KEY_ADMIN_ID, adminid);
-        editor.putString(KEY_PHONE, loginDate);
-        editor.putString(KEY_EMAIL, logintime);
+        editor.putString(KEY_ID, id);
+        editor.putString(KEY_PHONE, Phone);
+        editor.putString(KEY_EMAIL, email);
         editor.putString(KEY_SOCIETY_ID, society);
         editor.putString(KEY_CITY_ID, city);
-        editor.putString(KEY_FLAT_ID, city);
-        editor.putString(KEY_BUILDING_ID, city);
-        editor.putString(KEY_PASSWORD, city);
-        editor.putString(KEY_USER_TYPE, city);
+        editor.putString(KEY_FLAT_ID, flat);
+        editor.putString(KEY_BUILDING_ID, building);
+        editor.putString(KEY_USER_TYPE, userType);
         editor.commit();
     }
 

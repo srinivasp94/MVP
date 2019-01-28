@@ -175,7 +175,18 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_SIGNUP_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SIGNUP_SCREEN);
                 break;
-
+            case AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_PASSCODE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PASSCODE_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.INVITE_GUEST_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PICK_CONTACT_SCREEN);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

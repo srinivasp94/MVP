@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@drawable/login_background"
     android:theme="@style/AppTheme.NoActionBar">
 
     <LinearLayout
@@ -48,6 +48,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:background="@null"
                         android:hint="Name"
+                        android:id="@+id/edtSignupName"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_10sdp"
                         android:singleLine="true"
@@ -80,6 +81,7 @@
                         android:layout_gravity="center_vertical"
                         android:layout_weight="0.98"
                         android:background="@null"
+                        android:id="@+id/edtSignupPhone"
                         android:gravity="center_vertical"
                         android:hint="Mobile Number"
                         android:inputType="number"
@@ -115,6 +117,7 @@
                         android:background="@null"
                         android:hint="Email"
                         android:maxLines="1"
+                        android:id="@+id/edtSignupEmail"
                         android:paddingLeft="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textSize="@dimen/_11sdp" />
@@ -144,6 +147,7 @@
                         android:background="@null"
                         android:hint="Blood Group"
                         android:maxLines="1"
+                        android:id="@+id/edtSignupBloodGrp"
                         android:paddingLeft="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textSize="@dimen/_11sdp" />
@@ -172,6 +176,7 @@
                         android:layout_height="@dimen/_40sdp"
                         android:background="@null"
                         android:hint="Password"
+                        android:id="@+id/edtSignupPassword"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:paddingLeft="@dimen/_10sdp"
@@ -204,6 +209,7 @@
                         android:hint="Confirm Password"
                         android:inputType="textPassword"
                         android:maxLines="1"
+                        android:id="@+id/edtSignupCnfPassword"
                         android:paddingLeft="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textSize="@dimen/_11sdp" />
@@ -223,11 +229,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:orientation="vertical"
-            android:paddingRight="@dimen/_60sdp">
+            android:paddingRight="@dimen/_60sdp"
+            android:visibility="gone">
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+
                 android:text="Forgot Password?"
                 android:textColor="@color/black" />
 
@@ -238,11 +247,13 @@
         </LinearLayout>
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="right"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_30sdp"
+            android:padding="@dimen/_5sdp"
+            android:id="@+id/imgSignup"
             android:src="@drawable/dummy" />
 
 
@@ -254,9 +265,10 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="17dp"
-
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="@dimen/_1sdp">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
@@ -273,15 +285,16 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Login"
+                    android:id="@+id/txtLogin"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/login_txt_bg"
                     android:gravity="center"
                     android:text="Sign Up"
-                    android:background="@drawable/login_txt_bg"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>

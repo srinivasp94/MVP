@@ -54,6 +54,7 @@
             app:cardCornerRadius="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/layoutInviteGuests"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -77,6 +78,7 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/Layout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_10sdp"
@@ -86,6 +88,7 @@
             app:cardCornerRadius="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/layoutMyStaff"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -128,6 +131,7 @@
             app:cardCornerRadius="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/layoutGateAlerts"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -160,6 +164,7 @@
             app:cardCornerRadius="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/layoutSchoolBus"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -201,6 +206,7 @@
             app:cardCornerRadius="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/layoutKidsGate"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -233,6 +239,7 @@
             app:cardCornerRadius="@dimen/_15sdp">
 
             <LinearLayout
+                android:id="@+id/LayoutLocalServices"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">

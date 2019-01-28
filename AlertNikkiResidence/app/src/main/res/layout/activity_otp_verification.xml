@@ -2,15 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/contactus_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
-        android:background="#e20d2d">
-
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/common_header" />
 
     <ImageView
         android:id="@+id/mobile_icon"
@@ -49,7 +44,7 @@
     <!--android:layout_height="wrap_content"-->
     <!--android:id="@+id/pairing"-->
     <!--/>-->
-
+<!--
     <RelativeLayout
         android:id="@+id/otp_rec"
         android:layout_width="@dimen/_180sdp"
@@ -58,89 +53,37 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_15sdp"
-        android:background="@color/graylight">
-
-        <LinearLayout
+        android:background="@color/graylight">-->
+        <com.alimuzaffar.lib.pin.PinEntryEditText
+            android:id="@+id/txt_pin_entry"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:digits="1234567890"
+            android:inputType="number"
+            android:maxLength="6"
+            android:textIsSelectable="false"
+            android:textSize="@dimen/_14sdp"
+            android:padding="@dimen/_5sdp"
             android:gravity="center"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/_10sdp">
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_below="@id/display_txt"
+            android:visibility="visible"
+            app:pinLineColors="@color/pin_line_colors" />
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:id="@+id/et_digit1"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="@dimen/_12sdp" />
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:id="@+id/et_digit2"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="@dimen/_12sdp" />
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:id="@+id/et_digit3"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="match_parent"
-
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="@dimen/_12sdp" />
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:id="@+id/et_digit4"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="@dimen/_12sdp" />
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:id="@+id/et_digit5"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:textSize="@dimen/_12sdp" />
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:id="@+id/et_digit6"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="@dimen/_5sdp"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="1"
-                android:maxLines="1"
-                android:textSize="@dimen/_12sdp" />
-        </LinearLayout>
-
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
     <LinearLayout
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
         android:id="@+id/linear_verify"
-        android:layout_width="@dimen/_250sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_below="@id/otp_rec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_pin_entry"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_25sdp"
@@ -153,6 +96,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="Verify"
+            android:padding="@dimen/_8sdp"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_15sdp" />

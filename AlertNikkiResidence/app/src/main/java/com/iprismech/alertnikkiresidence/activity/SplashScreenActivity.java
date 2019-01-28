@@ -43,11 +43,13 @@ public class SplashScreenActivity extends BaseAbstractActivity<Class> {
         ApplicationController.getInstance().setContext(context);
         new Handler().postDelayed(new Runnable() {
 
+            @SuppressLint("WrongConstant")
             public void run() {
                 try {
                     if (SharedPrefsUtils.getInstance(SplashScreenActivity.this).isUserLoggedIn()) {
 // main screem
                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+//                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INTRO_SCREEN);
                         finish();
                     } else {
 //IntroScreem

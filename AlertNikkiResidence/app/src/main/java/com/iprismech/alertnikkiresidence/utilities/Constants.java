@@ -2,7 +2,7 @@ package com.iprismech.alertnikkiresidence.utilities;
 
 public class Constants {
 
-    public static final String BASE_URL = "http://iprismconstructions.com/alertnikki/app/security/";
+    public static final String BASE_URL = "http://iprismconstructions.com/alertnikki/app/ws/";
 
 
     //http://iprismconstructions.com/alertnikki/storage/security/testimonial-1.jpg
