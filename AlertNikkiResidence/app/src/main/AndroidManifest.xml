@@ -3,7 +3,7 @@
     package="com.iprismech.alertnikkiresidence">
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -32,7 +32,13 @@
         <activity android:name=".activity.OtpVerificationActivity" />
         <activity android:name=".activity.PasscodeActivity" />
         <activity android:name=".activity.InviteGuestActivity" />
-        <activity android:name=".activity.PickContactsActivity"></activity>
+        <activity android:name=".activity.PickContactsActivity" />
+        <activity android:name=".activity.MyStaffAlerts" />
+        <activity android:name=".activity.AddStaffActivity" />
+        <activity android:name=".activity.ChooseMaidActivity" />
+        <activity android:name=".activity.StaffProfileActivity" />
+
+
     </application>
 
 </manifest>

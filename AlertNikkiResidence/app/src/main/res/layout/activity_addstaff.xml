@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Invite Guests"
+                    android:text="Add Staff"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp" />
             </LinearLayout>
@@ -74,7 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:text=" - Frequently Requested" />
+        android:text=" - Frequently Requested"
+        android:visibility="gone" />
 
     <View
         android:layout_width="match_parent"
@@ -87,7 +88,9 @@
     <GridView
         android:layout_width="match_parent"
         android:layout_height="@dimen/_60sdp"
-        android:numColumns="4"></GridView>
+        android:numColumns="4"
+        android:visibility="gone"></GridView>
+
     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -104,7 +107,10 @@
     </View>
 
     <GridView
+        android:id="@+id/gv_daily_helps_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="4"></GridView>
+        android:numColumns="4">
+
+    </GridView>
 </LinearLayout>

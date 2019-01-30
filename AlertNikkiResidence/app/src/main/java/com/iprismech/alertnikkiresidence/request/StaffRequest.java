@@ -5,13 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class GuestsReq {
-    @SerializedName("otp_sent_type")
-    @Expose
-    public String otpSentType;
-    @SerializedName("user_type")
-    @Expose
-    public String userType;
+public class StaffRequest {
     @SerializedName("user_id")
     @Expose
     public String userId;
@@ -21,6 +15,9 @@ public class GuestsReq {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("otpSentType", otpSentType).append("userType", userType).append("userId", userId).append("adminId", adminId).toString();
+        return new ToStringBuilder(this)
+                .append("userId", userId)
+                .append("adminId", adminId)
+                .toString();
     }
 }

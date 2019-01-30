@@ -7,7 +7,7 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/contactus_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
+        android:layout_height="@dimen/_60sdp"
         android:background="#e20d2d">
 
         <LinearLayout
@@ -20,6 +20,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:padding="@dimen/_8sdp"
+                android:id="@+id/back_mystaff"
                 android:src="@drawable/leftarrow_white" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
@@ -33,28 +34,80 @@
     </android.support.v7.widget.Toolbar>
 
 
-    <ImageView
-        android:layout_width="@dimen/_150sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_gravity="center" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+       >
 
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:paddingHorizontal="@dimen/_30sdp"
-        android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
-        android:textAlignment="center" />
+        <LinearLayout
+            android:id="@+id/layoutNoStaff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical">
 
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:layout_width="@dimen/_120sdp"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@drawable/red_corner_bg"
-        android:gravity="center"
-        android:text="Add Staff"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_13sdp" />
+            <ImageView
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:paddingHorizontal="@dimen/_30sdp"
+                android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+                android:textAlignment="center" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtAddStaff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/red_corner_bg"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="Add Staff"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/LayoutStaff"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:visibility="visible">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvStaffLists"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/_25sdp">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <ImageView
+                android:id="@+id/fab_add_staff"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginRight="14dp"
+                android:layout_marginBottom="9dp"
+                android:background="@null"
+                android:padding="@dimen/_5sdp"
+                android:src="@mipmap/person_add" />
+        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

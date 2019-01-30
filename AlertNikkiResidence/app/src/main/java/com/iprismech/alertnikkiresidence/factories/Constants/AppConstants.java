@@ -34,6 +34,12 @@ public interface AppConstants {
         int LAUNCH_PASSCODE_SCREEN = 107;
         int LAUNCH_INVITE_GUEST_SCREEN = 108;
         int LAUNCH_PICK_CONTACT_SCREEN = 109;
+        int LAUNCH_LAUNCH_MYSTAFF_SCREEN = 110;
+        int LAUNCH_ADD_STAFF_SCREEN=111;
+        int LAUNCH_CHOOSE_MAID=112;
+        int LAUNCH_STAFF_PROFILE=113;
+
+
 
 
     }

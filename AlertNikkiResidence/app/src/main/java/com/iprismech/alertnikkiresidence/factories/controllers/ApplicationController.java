@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
@@ -186,6 +187,19 @@ public class ApplicationController {
                 break;
             case AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PICK_CONTACT_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_LAUNCH_MYSTAFF_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MYSTAFF_ALERTS);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_STAFF);
+                break;
+            case AppConstants.EventIds.LAUNCH_CHOOSE_MAID:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.CHOOSE_MAID_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_STAFF_PROFILE:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.STAFF_PROFILE_SCREEN, (Bundle) eventObjects);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event id");
