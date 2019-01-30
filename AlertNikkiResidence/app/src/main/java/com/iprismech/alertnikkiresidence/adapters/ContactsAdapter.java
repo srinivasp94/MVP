@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.pojo.ContactModel;
@@ -32,8 +35,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        ContactModel model = contactList.get(i);
+    public void onBindViewHolder(@NonNull final ViewHolder viewHolder, final int i) {
+        final ContactModel model = contactList.get(i);
 
         if (!model.getContactName().equals("") || model.getContactName() != null) {
             viewHolder.contactName.setText(model.getContactName());
@@ -45,6 +48,39 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         } else {
             viewHolder.contactPhone.setText("No Contact");
         }
+
+        viewHolder.selectCheckBox.setChecked(model.isContactChecked());
+
+        viewHolder.selectCheckBox.setTag(model);
+
+        viewHolder.selectCheckBox.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                CheckBox cb = (CheckBox) v;
+                ContactModel contact = (ContactModel) cb.getTag();
+
+                contact.setContactChecked(cb.isChecked());
+                contactList.get(i).setContactChecked(cb.isChecked());
+
+                Toast.makeText(
+                        v.getContext(),
+                        "Clicked on Checkbox: " + cb.getText() + " is "
+                                + cb.isChecked(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+/*
+        viewHolder.selectCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (model.isContactChecked()==false) {
+                    viewHold
+                } else {
+
+                }
+            }
+        });
+*/
 
     }
 
@@ -64,6 +100,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
             contactName = itemView.findViewById(R.id.txtContactName);
             contactPhone = itemView.findViewById(R.id.txtContactNumber);
             selectCheckBox = itemView.findViewById(R.id.checkContact);
+
         }
     }
 }

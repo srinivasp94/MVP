@@ -13,10 +13,14 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.adapters.AllGuestsAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.request.GuestEditReq;
 import com.iprismech.alertnikkiresidence.request.GuestsReq;
+import com.iprismech.alertnikkiresidence.response.Guests;
+import com.iprismech.alertnikkiresidence.response.GuestsList;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
@@ -24,6 +28,8 @@ import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class InviteGuestActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private TextView txtInviteGuests;
@@ -34,6 +40,8 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     private LinearLayoutManager manager;
     private boolean iscontactsGranted;
     private Object obj;
+    private AllGuestsAdapter guestsAdapter;
+    private ArrayList<GuestsList> guestsLists = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +87,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         try {
-//obj = Class.forName().cast(req);
+            obj = Class.forName(GuestsReq.class.getName()).cast(req);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,10 +126,43 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
+                            Guests response = Common.getSpecificDataObject(objectResponse, Guests.class);
+                            guestsLists = (ArrayList<GuestsList>) response.response;
+                            if (guestsLists != null && guestsLists.size() > 0) {
+                                layoutNoGuests.setVisibility(View.GONE);
+                                RlGuestsLists.setVisibility(View.VISIBLE);
+                                guestsAdapter = new AllGuestsAdapter(InviteGuestActivity.this, guestsLists);
+                                rvGuestsLists.setAdapter(guestsAdapter);
+                                guestsAdapter.setOnItemClickListener(new AllGuestsAdapter.OnitemClickListener() {
+                                    @Override
+                                    public void onItemClick(View view, int position) {
+                                        switch (view.getId()) {
+                                            case R.id.imgCallGuest:
+                                                callToGuest(position);
+                                                break;
+                                            case R.id.imgDeleteGuest:
+                                                callDeleteWS(position);
+                                                break;
+                                            case R.id.imgGuestEdit:
+                                                callEditGuestDetailsWS(position);
+                                                break;
+                                        }
+                                    }
+                                });
 
+                            } else {
+                                layoutNoGuests.setVisibility(View.VISIBLE);
+                                RlGuestsLists.setVisibility(View.GONE);
+                            }
+                            break;
+                        case 2:
+                            break;
+                        case 3:
                             break;
                     }
                 } else {
+                    layoutNoGuests.setVisibility(View.VISIBLE);
+                    RlGuestsLists.setVisibility(View.GONE);
                     Common.showToast(InviteGuestActivity.this, jsonObject.optString("message"));
                 }
             } catch (Exception e) {
@@ -129,5 +170,36 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
             }
 
         }
+    }
+
+    private void callEditGuestDetailsWS(int pos) {
+        GuestEditReq req = new GuestEditReq();
+        req.guestId = guestsLists.get(pos).id;
+        req.name = guestsLists.get(pos).name;
+        req.vehicleNo = guestsLists.get(pos).vehicleNo;
+        try {
+            obj = Class.forName(GuestEditReq.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 2, " edit_guest", true);
+
+    }
+
+    private void callDeleteWS(int position) {
+// remove_guest
+        GuestEditReq req = new GuestEditReq();
+        req.guestId = guestsLists.get(position).id;
+
+        try {
+            obj = Class.forName(GuestEditReq.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 3, "remove_guest", true);
+    }
+
+    private void callToGuest(int position) {
+
     }
 }

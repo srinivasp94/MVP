@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
@@ -186,6 +187,28 @@ public class ApplicationController {
                 break;
             case AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PICK_CONTACT_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_VIEW_INVITE_GUEST_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.VIEW_INVITE_GUEST_SCREEN,(Bundle)eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.EDIT_GUEST_SCREEN,(Bundle)eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_CITY_SCREEN,(Bundle)eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_SOCIETY_SCREEN,(Bundle)eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_BUILDING_SCREEN,(Bundle)eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_SELECT_FLAT_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_FLAT_SCREEN,(Bundle)eventObjects);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event id");

@@ -12,11 +12,16 @@
     <color name="mainbackgroundhome">#e1c4d3</color>
 
 
+    <color name="yello">#ffc000</color>
+    <color name="reddark">#e51c3f</color>
+    <color name="green">#f622a35e</color>
+
     <color name="transparent">#d4faf6f6</color>
     <color name="graylight">#e9e9ea</color>
     <color name="red">#e51c3f</color>
     <color name="light_green">#48c57a</color>
     <color name="light_gray_bg">#f8f8f8</color>
+    <color name="viewcolor">#ccc</color>
 
 
 </resources>

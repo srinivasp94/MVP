@@ -14,13 +14,18 @@ public class GuestsReq {
     public String userType;
     @SerializedName("user_id")
     @Expose
-    public int userId;
+    public String userId;
     @SerializedName("admin_id")
     @Expose
     public String adminId;
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("otpSentType", otpSentType).append("userType", userType).append("userId", userId).append("adminId", adminId).toString();
+        return new ToStringBuilder(this)
+                .append("otpSentType", otpSentType)
+                .append("userType", userType)
+                .append("userId", userId)
+                .append("adminId", adminId)
+                .toString();
     }
 }

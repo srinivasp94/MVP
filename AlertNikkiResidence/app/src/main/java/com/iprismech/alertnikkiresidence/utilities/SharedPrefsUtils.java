@@ -102,8 +102,8 @@ public class SharedPrefsUtils {
     }
 
 
-    public Integer getId() {
-        return preferences.getInt(KEY_ID, 0);
+    public String getId() {
+        return preferences.getString(KEY_ID, "");
     }
 
     public String getAdminID() {

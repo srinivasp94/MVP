@@ -1,26 +1,28 @@
 package com.iprismech.alertnikkiresidence.activity;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.ContactsAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.ContactModel;
+import com.iprismech.alertnikkiresidence.utilities.Common;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -69,10 +71,28 @@ public class PickContactsActivity extends BaseAbstractActivity implements View.O
         new LoadContacts().execute();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.llInvite:
+                ArrayList<ContactModel> contactSelected = new ArrayList<>();
+                for (int i = 0; i < contactList.size(); i++) {
+                    if (contactList.get(i).isContactChecked()) {
+                        contactSelected.add(contactList.get(i));
+                    }
+                }
+                if (contactSelected.size() > 0) {
+                    Bundle bundle = new Bundle();
+//                    bundle.putParcelableArrayList("Key_Contacts", contactSelected);
+//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_INVITE_GUEST_SCREEN,bundle);
+                    Intent intent = new Intent(PickContactsActivity.this, ViewInviteGuestActivity.class);
+                    intent.putParcelableArrayListExtra("Key_Contacts", contactSelected);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Common.showToast(PickContactsActivity.this, "Please Select Contacts");
+                }
 
                 break;
         }
@@ -306,7 +326,7 @@ public class PickContactsActivity extends BaseAbstractActivity implements View.O
                     } while (dataCursor.moveToNext()); // Now move to next
                     // cursor
 
-                    contactList.add(new ContactModel(Long.toString(contctId), displayName, mobilePhone));// Finally add
+                    contactList.add(new ContactModel(Long.toString(contctId), displayName, mobilePhone, false));// Finally add
                     // items to
                     // array list
                 }

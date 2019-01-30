@@ -4,19 +4,24 @@ import android.support.annotation.IntDef;
 
 
 import com.iprismech.alertnikkiresidence.MainActivity;
+import com.iprismech.alertnikkiresidence.activity.GuestEditActivity;
 import com.iprismech.alertnikkiresidence.activity.IntroScreensActivity;
 import com.iprismech.alertnikkiresidence.activity.InviteGuestActivity;
 import com.iprismech.alertnikkiresidence.activity.LoginActivity;
 import com.iprismech.alertnikkiresidence.activity.OtpVerificationActivity;
 import com.iprismech.alertnikkiresidence.activity.PasscodeActivity;
 import com.iprismech.alertnikkiresidence.activity.PickContactsActivity;
+import com.iprismech.alertnikkiresidence.activity.SelectCityActivity;
+import com.iprismech.alertnikkiresidence.activity.SelectSocietyActivity;
 import com.iprismech.alertnikkiresidence.activity.SignupActivity;
 import com.iprismech.alertnikkiresidence.activity.SplashScreenActivity;
+import com.iprismech.alertnikkiresidence.activity.ViewInviteGuestActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.EDIT_GUEST_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.INTRO_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.INVITE_GUEST_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.LOGIN_SCREEN;
@@ -24,8 +29,13 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PASSCODE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PICK_CONTACT_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_BUILDING_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_CITY_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_FLAT_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_SOCIETY_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SIGNUP_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SPLASH_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.VIEW_INVITE_GUEST_SCREEN;
 
 
 /**
@@ -41,7 +51,9 @@ public class ViewFactory {
 
     @Retention(RetentionPolicy.CLASS)
     @IntDef({SPLASH_SCREEN, INTRO_SCREEN, MAIN_SCREEN, LOGIN_SCREEN, SIGNUP_SCREEN, OTPVERIFICATION_SCREEN,
-            PASSCODE_SCREEN,INVITE_GUEST_SCREEN,PICK_CONTACT_SCREEN})
+            PASSCODE_SCREEN, INVITE_GUEST_SCREEN, PICK_CONTACT_SCREEN, VIEW_INVITE_GUEST_SCREEN,
+            EDIT_GUEST_SCREEN, SELECT_CITY_SCREEN, SELECT_SOCIETY_SCREEN, SELECT_BUILDING_SCREEN,
+            SELECT_FLAT_SCREEN})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -53,6 +65,12 @@ public class ViewFactory {
         int PASSCODE_SCREEN = 1007;
         int INVITE_GUEST_SCREEN = 1008;
         int PICK_CONTACT_SCREEN = 1009;
+        int VIEW_INVITE_GUEST_SCREEN = 1010;
+        int EDIT_GUEST_SCREEN = 1011;
+        int SELECT_CITY_SCREEN = 1012;
+        int SELECT_SOCIETY_SCREEN = 1013;
+        int SELECT_BUILDING_SCREEN = 1014;
+        int SELECT_FLAT_SCREEN = 1015;
 
 
     }
@@ -99,6 +117,19 @@ public class ViewFactory {
                 return InviteGuestActivity.class;
             case PICK_CONTACT_SCREEN:
                 return PickContactsActivity.class;
+            case VIEW_INVITE_GUEST_SCREEN:
+                return ViewInviteGuestActivity.class;
+            case EDIT_GUEST_SCREEN:
+                return GuestEditActivity.class;
+            case SELECT_CITY_SCREEN:
+                return SelectCityActivity.class;
+            case SELECT_SOCIETY_SCREEN:
+                return SelectSocietyActivity.class;
+            case SELECT_BUILDING_SCREEN:
+                return GuestEditActivity.class;
+            case SELECT_FLAT_SCREEN:
+                return GuestEditActivity.class;
+
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

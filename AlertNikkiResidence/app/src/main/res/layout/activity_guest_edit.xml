@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.GuestEditActivity">
+
+    <include layout="@layout/common_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Name"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtname"
+            style="@style/customEdittext"
+            android:hint="Enter Name" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Mobile Number"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtMobileNumber"
+            style="@style/customEdittext"
+            android:hint="Enter Mobile Number" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Date"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtDate"
+            style="@style/customEdittext"
+            android:editable="false"
+            android:focusable="false"
+            android:hint="Please Select Date" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="If they have any Vehicle? Please enter details(Optional)"
+            android:textColor="@color/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:padding="@dimen/_2sdp"
+            android:weightSum="5">
+
+            <android.support.v7.widget.AppCompatEditText
+                style="@style/customEdittext"
+                android:layout_width="0dp"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/black_border_small" />
+
+            <android.support.v7.widget.AppCompatEditText
+                style="@style/customEdittext"
+                android:layout_width="0dp"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/black_border_small" />
+
+            <android.support.v7.widget.AppCompatEditText
+                style="@style/customEdittext"
+                android:layout_width="0dp"
+                android:layout_marginLeft="@dimen/_2sdp"
+                android:layout_marginRight="@dimen/_2sdp"
+                android:layout_weight="1"
+                android:background="@drawable/black_border_small" />
+
+            <android.support.v7.widget.AppCompatEditText
+                style="@style/customEdittext"
+                android:layout_width="0dp"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
