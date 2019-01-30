@@ -12,9 +12,10 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
+            android:id="@+id/iv_maid_img"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/_10sdp"
             android:src="@drawable/dummy" />
@@ -32,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Peter Cruiser"
+                android:id="@+id/tv_staff_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
@@ -43,17 +45,19 @@
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_staff_cat"
                     android:text="Maid-" />
 
                 <ImageView
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_15sdp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/dummy" />
+                    android:src="@drawable/home_icon" />
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tv_working_flats"
                     android:text="5+ flats" />
             </LinearLayout>
 
@@ -63,10 +67,11 @@
                 android:orientation="horizontal"
                 android:weightSum="1">
 
-                <TextView
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.0"
+                    android:id="@+id/tv_rating"
                     android:textColor="@color/black" />
 
                 <RatingBar
@@ -80,6 +85,7 @@
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
             android:layout_width="@dimen/_40sdp"
+            android:id="@+id/tv_add_staff"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center"
             android:background="@drawable/black_border_small"

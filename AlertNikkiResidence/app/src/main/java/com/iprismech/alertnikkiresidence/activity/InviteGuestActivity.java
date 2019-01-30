@@ -1,6 +1,7 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
+
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -89,6 +90,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         try {
             obj = Class.forName(GuestsReq.class.getName()).cast(req);
         } catch (Exception e) {
+
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "guests", true);
