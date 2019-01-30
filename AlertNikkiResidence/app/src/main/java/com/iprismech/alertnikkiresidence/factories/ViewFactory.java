@@ -130,6 +130,9 @@ public class ViewFactory {
             case SELECT_FLAT_SCREEN:
                 return GuestEditActivity.class;
 
+
+
+
             default:
                 throw new IllegalStateException("Invalid screen id");
         }
