@@ -6,7 +6,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 
-
 /**
  * Created by Prasad on 7/5/2017.
  */
@@ -41,6 +40,11 @@ public interface AppConstants {
         int LAUNCH_SELECT_SOCIETY_SCREEN = 113;
         int LAUNCH_SELECT_BUILDING_SCREEN = 114;
         int LAUNCH_SELECT_FLAT_SCREEN = 115;
+
+        int LAUNCH_CHOOSE_MAID = 120;
+        int LAUNCH_ADD_STAFF_SCREEN = 121;
+        int LAUNCH_MYSTAFF_ALERTS = 122;
+        int LAUNCH_STAFF_PROFILE= 121;
 
 
 
