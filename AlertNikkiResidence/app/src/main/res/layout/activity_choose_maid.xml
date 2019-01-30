@@ -3,38 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/contactus_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:background="#e20d2d">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+    <include layout="@layout/common_header" />
 
-            <ImageView
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:id="@+id/back_mystaff"
-                android:src="@drawable/leftarrow_white" />
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Choose Maid"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/rview_choose_maid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/rview_choose_maid">
+        android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>
 
