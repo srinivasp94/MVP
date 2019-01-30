@@ -189,27 +189,42 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PICK_CONTACT_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_VIEW_INVITE_GUEST_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.VIEW_INVITE_GUEST_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.VIEW_INVITE_GUEST_SCREEN, (Bundle) eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.EDIT_GUEST_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.EDIT_GUEST_SCREEN, (Bundle) eventObjects);
                 break;
 
             case AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_CITY_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_CITY_SCREEN, (Bundle) eventObjects);
                 break;
 
             case AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_SOCIETY_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_SOCIETY_SCREEN, (Bundle) eventObjects);
                 break;
 
             case AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_BUILDING_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_BUILDING_SCREEN, (Bundle) eventObjects);
                 break;
 
             case AppConstants.EventIds.LAUNCH_SELECT_FLAT_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_FLAT_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_FLAT_SCREEN, (Bundle) eventObjects);
                 break;
+
+            case AppConstants.EventIds.LAUNCH_CHOOSE_MAID:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.CHOOSE_MAID_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_STAFF_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MYSTAFF_ALERTS_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_STAFF_PROFILE:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.STAFF_PROFILE_SCREEN, (Bundle) eventObjects);
+                break;
+
+
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

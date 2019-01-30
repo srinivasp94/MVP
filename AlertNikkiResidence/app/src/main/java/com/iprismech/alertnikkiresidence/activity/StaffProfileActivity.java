@@ -59,7 +59,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
 
 
         ll_make_call = findViewById(R.id.ll_make_call);
-        ll_gate_pass = findViewById(R.id.ll_send_gate_pass);
+        ll_gate_pass = findViewById(R.id.ll_gate_pass);
         ll_staff_delete = findViewById(R.id.ll_staff_delete);
         ll_attendance_history = findViewById(R.id.ll_attendance_history);
         ll_give_rating = findViewById(R.id.ll_give_rating);

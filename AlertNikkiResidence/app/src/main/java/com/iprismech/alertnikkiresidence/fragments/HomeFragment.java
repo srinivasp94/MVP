@@ -65,7 +65,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN);
                 break;
             case R.id.layoutMyStaff:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LAUNCH_MYSTAFF_SCREEN);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
                 break;
             case R.id.layoutGateAlerts:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);

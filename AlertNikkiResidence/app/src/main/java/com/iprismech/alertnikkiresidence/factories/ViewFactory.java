@@ -4,10 +4,13 @@ import android.support.annotation.IntDef;
 
 
 import com.iprismech.alertnikkiresidence.MainActivity;
+import com.iprismech.alertnikkiresidence.activity.AddStaffActivity;
+import com.iprismech.alertnikkiresidence.activity.ChooseMaidActivity;
 import com.iprismech.alertnikkiresidence.activity.GuestEditActivity;
 import com.iprismech.alertnikkiresidence.activity.IntroScreensActivity;
 import com.iprismech.alertnikkiresidence.activity.InviteGuestActivity;
 import com.iprismech.alertnikkiresidence.activity.LoginActivity;
+import com.iprismech.alertnikkiresidence.activity.MyStaffAlerts;
 import com.iprismech.alertnikkiresidence.activity.OtpVerificationActivity;
 import com.iprismech.alertnikkiresidence.activity.PasscodeActivity;
 import com.iprismech.alertnikkiresidence.activity.PickContactsActivity;
@@ -15,17 +18,22 @@ import com.iprismech.alertnikkiresidence.activity.SelectCityActivity;
 import com.iprismech.alertnikkiresidence.activity.SelectSocietyActivity;
 import com.iprismech.alertnikkiresidence.activity.SignupActivity;
 import com.iprismech.alertnikkiresidence.activity.SplashScreenActivity;
+import com.iprismech.alertnikkiresidence.activity.StaffProfileActivity;
 import com.iprismech.alertnikkiresidence.activity.ViewInviteGuestActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.ADD_STAFF_SCREEN;
+
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.CHOOSE_MAID_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.EDIT_GUEST_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.INTRO_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.INVITE_GUEST_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.LOGIN_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAIN_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MYSTAFF_ALERTS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PASSCODE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PICK_CONTACT_SCREEN;
@@ -35,6 +43,7 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_SOCIETY_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SIGNUP_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SPLASH_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.STAFF_PROFILE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.VIEW_INVITE_GUEST_SCREEN;
 
 
@@ -53,7 +62,7 @@ public class ViewFactory {
     @IntDef({SPLASH_SCREEN, INTRO_SCREEN, MAIN_SCREEN, LOGIN_SCREEN, SIGNUP_SCREEN, OTPVERIFICATION_SCREEN,
             PASSCODE_SCREEN, INVITE_GUEST_SCREEN, PICK_CONTACT_SCREEN, VIEW_INVITE_GUEST_SCREEN,
             EDIT_GUEST_SCREEN, SELECT_CITY_SCREEN, SELECT_SOCIETY_SCREEN, SELECT_BUILDING_SCREEN,
-            SELECT_FLAT_SCREEN})
+            SELECT_FLAT_SCREEN, CHOOSE_MAID_SCREEN, ADD_STAFF_SCREEN, MYSTAFF_ALERTS_SCREEN, STAFF_PROFILE_SCREEN})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -71,6 +80,12 @@ public class ViewFactory {
         int SELECT_SOCIETY_SCREEN = 1013;
         int SELECT_BUILDING_SCREEN = 1014;
         int SELECT_FLAT_SCREEN = 1015;
+
+
+        int CHOOSE_MAID_SCREEN = 1016;
+        int ADD_STAFF_SCREEN = 1017;
+        int MYSTAFF_ALERTS_SCREEN = 1018;
+        int STAFF_PROFILE_SCREEN = 1019;
 
 
     }
@@ -129,8 +144,14 @@ public class ViewFactory {
                 return GuestEditActivity.class;
             case SELECT_FLAT_SCREEN:
                 return GuestEditActivity.class;
-
-
+            case CHOOSE_MAID_SCREEN:
+                return ChooseMaidActivity.class;
+            case ADD_STAFF_SCREEN:
+                return AddStaffActivity.class;
+            case MYSTAFF_ALERTS_SCREEN:
+                return MyStaffAlerts.class;
+            case STAFF_PROFILE_SCREEN:
+                return StaffProfileActivity.class;
 
 
             default:

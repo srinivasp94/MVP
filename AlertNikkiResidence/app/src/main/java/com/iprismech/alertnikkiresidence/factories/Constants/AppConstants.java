@@ -44,7 +44,7 @@ public interface AppConstants {
         int LAUNCH_CHOOSE_MAID = 120;
         int LAUNCH_ADD_STAFF_SCREEN = 121;
         int LAUNCH_MYSTAFF_ALERTS = 122;
-        int LAUNCH_STAFF_PROFILE= 121;
+        int LAUNCH_STAFF_PROFILE= 123;
 
 
 
