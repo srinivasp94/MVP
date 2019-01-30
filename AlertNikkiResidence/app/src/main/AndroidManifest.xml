@@ -37,6 +37,11 @@
         <activity android:name=".activity.GuestEditActivity" />
         <activity android:name=".activity.SelectCityActivity" />
         <activity android:name=".activity.SelectSocietyActivity"></activity>
+
+        <activity android:name=".activity.AddStaffActivity" />
+        <activity android:name=".activity.ChooseMaidActivity" />
+        <activity android:name=".activity.MyStaffAlerts" />
+        <activity android:name=".activity.StaffProfileActivity" />
     </application>
 
 </manifest>
