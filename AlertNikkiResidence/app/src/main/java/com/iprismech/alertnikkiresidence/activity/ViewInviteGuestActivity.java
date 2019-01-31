@@ -1,6 +1,7 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +39,8 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     private EditText edtdate;
     private LinearLayout InviteGuests;
     private Object obj;
+
+    int itemPosition= 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,11 +97,16 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                             adapter.notifyDataSetChanged();
                             break;
                         case R.id.imgEdit:
-                            Bundle bundle1 = new Bundle();
+                            /*Bundle bundle1 = new Bundle();
                             bundle1.putString("Key_Name", contactsList.get(position).getContactName());
                             bundle1.putString("Key_Contact", contactsList.get(position).getContactNumber());
                             bundle1.putString("Key_Tag", "ViewGuest");
-                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN, bundle1);
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN, bundle1);*/
+                            Intent intent = new Intent(ViewInviteGuestActivity.this, GuestEditActivity.class);
+                            intent.putParcelableArrayListExtra("Key_Contacts", contactsList);
+                            intent.putExtra("Key_Position", position);
+                            startActivity(intent);
+                            finish();
                             break;
                     }
                 }
@@ -115,35 +123,39 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                 TimeUtils.showDatePickerDialog(ViewInviteGuestActivity.this, "", edtdate);
                 break;
             case R.id.llInviteGuests:
-                ArrayList<Contact> list = new ArrayList<>();
-                Contact contact = new Contact();
-                for (int i = 0; i < contactsList.size(); i++) {
-                    contact.name = contactsList.get(i).getContactName();
-                    contact.mobile = contactsList.get(i).getContactNumber();
-                    contact.vehicleNo = contactsList.get(i).getVehiclenumber();
-                    list.add(contact);
+                if (edtdate.getText().toString().length() == 0) {
+                    Common.showToast(ViewInviteGuestActivity.this, "Please Select Date");
+                } else {
+                    ArrayList<Contact> list = new ArrayList<>();
+                    Contact contact = new Contact();
+                    for (int i = 0; i < contactsList.size(); i++) {
+                        contact.name = contactsList.get(i).getContactName();
+                        contact.mobile = contactsList.get(i).getContactNumber();
+                        contact.vehicleNo = contactsList.get(i).getVehiclenumber();
+                        list.add(contact);
+                    }
+                    Guestinvite req = new Guestinvite();
+                    req.adminId = "2";
+                    req.otpSentType = "1";
+                    req.userId = SharedPrefsUtils.getInstance(ViewInviteGuestActivity.this).getId();
+                    req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
+
+                    ArrayList<Guestinvite.WeekDate> week = new ArrayList<>();
+                    Guestinvite.WeekDate weekdate = new Guestinvite.WeekDate();
+                    weekdate.date = edtdate.getText().toString();
+                    week.add(weekdate);
+
+                    req.weekDates = week;
+                    req.contacts = list;
+
+
+                    try {
+                        obj = Class.forName(Guestinvite.class.getName()).cast(req);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    new RetrofitRequester(this).callPostServices(obj, 1, "send_invite_guest", true);
                 }
-                Guestinvite req = new Guestinvite();
-                req.adminId = "2";
-                req.otpSentType = "1";
-                req.userId = SharedPrefsUtils.getInstance(ViewInviteGuestActivity.this).getId();
-                req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
-
-                ArrayList<Guestinvite.WeekDate> week = new ArrayList<>();
-                Guestinvite.WeekDate weekdate = new Guestinvite.WeekDate();
-                weekdate.date = edtdate.getText().toString();
-                week.add(weekdate);
-
-                req.weekDates = week;
-                req.contacts = list;
-
-
-                try {
-                    obj = Class.forName(Guestinvite.class.getName()).cast(req);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                new RetrofitRequester(this).callPostServices(obj, 1, "send_invite_guest", true);
                 break;
         }
     }
@@ -164,7 +176,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                             break;
                     }
                 } else {
-                    Common.showToast(ViewInviteGuestActivity.this,jsonObject.optString("message"));
+                    Common.showToast(ViewInviteGuestActivity.this, jsonObject.optString("message"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

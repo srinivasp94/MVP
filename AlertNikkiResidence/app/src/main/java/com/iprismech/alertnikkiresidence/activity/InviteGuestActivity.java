@@ -2,6 +2,8 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +45,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     private Object obj;
     private AllGuestsAdapter guestsAdapter;
     private ArrayList<GuestsList> guestsLists = new ArrayList<>();
+    private int itemPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +119,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         }
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -158,8 +162,16 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                             }
                             break;
                         case 2:
+
                             break;
                         case 3:
+                            if (guestsLists.size() > 1) {
+                                guestsLists.remove(itemPosition);
+                                guestsAdapter.notifyDataSetChanged();
+                            } else {
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN);
+                                finish();
+                            }
                             break;
                     }
                 } else {
@@ -190,6 +202,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
 
     private void callDeleteWS(int position) {
 // remove_guest
+        itemPosition = position;
         GuestEditReq req = new GuestEditReq();
         req.guestId = guestsLists.get(position).id;
 
@@ -202,6 +215,9 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     }
 
     private void callToGuest(int position) {
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
+        callIntent.setData(Uri.parse("tel:" + guestsLists.get(position).mobile));
+        startActivity(callIntent);
 
     }
 }
