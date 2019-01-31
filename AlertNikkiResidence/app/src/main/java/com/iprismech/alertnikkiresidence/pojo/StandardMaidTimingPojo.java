@@ -48,6 +48,15 @@ public class StandardMaidTimingPojo {
         private String id;
         private String title;
         private int booked_status;
+        public boolean selectitem=false;
+
+        public boolean isSelectitem() {
+            return selectitem;
+        }
+
+        public void setSelectitem(boolean selectitem) {
+            this.selectitem = selectitem;
+        }
 
         public String getId() {
             return id;

@@ -1,10 +1,12 @@
 package com.iprismech.alertnikkiresidence.adapters;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -171,6 +173,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                     });
 
                     tv_ok.setOnClickListener(new View.OnClickListener() {
+                        @SuppressLint("WrongConstant")
                         @Override
                         public void onClick(View v) {
                             if (tv_from_date.getText().toString().isEmpty()) {
@@ -179,8 +182,9 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 Toast.makeText(context, "Please select End Date", Toast.LENGTH_SHORT).show();
                             }
                             else {
-
-                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
+                                Bundle bundle = new Bundle();
+                                bundle.putString("Key_MaidId",chooseMaidPojo.getResponse().get(getAdapterPosition()).getId());
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS,bundle);
                             }
                         }
                     });

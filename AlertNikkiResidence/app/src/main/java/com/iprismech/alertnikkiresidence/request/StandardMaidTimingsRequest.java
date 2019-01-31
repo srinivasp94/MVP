@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class StandardMaidTimingsRequest {
     @SerializedName("maid_id")
     @Expose
-    public String service_id;
+    public String maid_id;
     @SerializedName("admin_id")
     @Expose
     public String adminId;
@@ -16,7 +16,7 @@ public class StandardMaidTimingsRequest {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("service_id", service_id)
+                .append("service_id", maid_id)
                 .append("adminId", adminId)
                 .toString();
     }
