@@ -45,6 +45,8 @@ public interface AppConstants {
         int LAUNCH_ADD_STAFF_SCREEN = 121;
         int LAUNCH_MYSTAFF_ALERTS = 122;
         int LAUNCH_STAFF_PROFILE= 123;
+        int LAUNCH_STANDARD_TIMINGS= 124;
+
 
 
 

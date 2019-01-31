@@ -224,7 +224,9 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.STAFF_PROFILE_SCREEN, (Bundle) eventObjects);
                 break;
 
-
+            case AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.STANDARD_TIMINGS_SCREEN, (Bundle) eventObjects);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

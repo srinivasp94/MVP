@@ -19,6 +19,7 @@ import com.iprismech.alertnikkiresidence.activity.SelectSocietyActivity;
 import com.iprismech.alertnikkiresidence.activity.SignupActivity;
 import com.iprismech.alertnikkiresidence.activity.SplashScreenActivity;
 import com.iprismech.alertnikkiresidence.activity.StaffProfileActivity;
+import com.iprismech.alertnikkiresidence.activity.StaffStandardTimingActivity;
 import com.iprismech.alertnikkiresidence.activity.ViewInviteGuestActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 
@@ -44,6 +45,7 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SIGNUP_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SPLASH_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.STAFF_PROFILE_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.STANDARD_TIMINGS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.VIEW_INVITE_GUEST_SCREEN;
 
 
@@ -62,7 +64,7 @@ public class ViewFactory {
     @IntDef({SPLASH_SCREEN, INTRO_SCREEN, MAIN_SCREEN, LOGIN_SCREEN, SIGNUP_SCREEN, OTPVERIFICATION_SCREEN,
             PASSCODE_SCREEN, INVITE_GUEST_SCREEN, PICK_CONTACT_SCREEN, VIEW_INVITE_GUEST_SCREEN,
             EDIT_GUEST_SCREEN, SELECT_CITY_SCREEN, SELECT_SOCIETY_SCREEN, SELECT_BUILDING_SCREEN,
-            SELECT_FLAT_SCREEN, CHOOSE_MAID_SCREEN, ADD_STAFF_SCREEN, MYSTAFF_ALERTS_SCREEN, STAFF_PROFILE_SCREEN})
+            SELECT_FLAT_SCREEN, CHOOSE_MAID_SCREEN, ADD_STAFF_SCREEN, MYSTAFF_ALERTS_SCREEN, STAFF_PROFILE_SCREEN, STANDARD_TIMINGS_SCREEN})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -86,6 +88,7 @@ public class ViewFactory {
         int ADD_STAFF_SCREEN = 1017;
         int MYSTAFF_ALERTS_SCREEN = 1018;
         int STAFF_PROFILE_SCREEN = 1019;
+        int STANDARD_TIMINGS_SCREEN = 1020;
 
 
     }
@@ -153,7 +156,8 @@ public class ViewFactory {
             case STAFF_PROFILE_SCREEN:
                 return StaffProfileActivity.class;
 
-
+            case STANDARD_TIMINGS_SCREEN:
+                return StaffStandardTimingActivity.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

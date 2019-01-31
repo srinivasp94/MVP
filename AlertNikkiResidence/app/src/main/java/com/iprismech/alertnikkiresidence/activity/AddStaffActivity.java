@@ -57,7 +57,8 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                 String jsonString = gson.toJson(objectResponse);
                 dailyHelpsListPojo = gson.fromJson(jsonString, DailyHelpsListPojo.class);
                 JSONObject jsonObject = new JSONObject(jsonString);
-                if (jsonObject.optBoolean("status")) {
+                if (jsonObject.optBoolean("status"))
+                {
                     daily_helps_adapter = new DailyHelpsAdapter(AddStaffActivity.this, dailyHelpsListPojo);
                     gv_daily_helps.setAdapter(daily_helps_adapter);
                     gv_daily_helps.setOnItemClickListener(new AdapterView.OnItemClickListener() {

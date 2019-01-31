@@ -16,11 +16,11 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/back_mystaff"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:padding="@dimen/_8sdp"
-                android:id="@+id/back_mystaff"
                 android:src="@drawable/leftarrow_white" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
@@ -36,8 +36,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-       >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:id="@+id/layoutNoStaff"

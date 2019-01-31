@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.activity.ChooseMaidActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
+import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.ChooseMaidPojo;
 import com.iprismech.alertnikkiresidence.utilities.Constants;
 import com.squareup.picasso.Picasso;
@@ -176,6 +178,10 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                             } else if (tv_end_date.getText().toString().isEmpty()) {
                                 Toast.makeText(context, "Please select End Date", Toast.LENGTH_SHORT).show();
                             }
+                            else {
+
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
+                            }
                         }
                     });
 
@@ -209,7 +215,6 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
 
                         }
                     });
-
                     alertDialog.show();
                 }
             });

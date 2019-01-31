@@ -34,10 +34,19 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         return new ViewHolder(view);
     }
 
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull StaffListAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.tv_no_of_flats.setText(myStaff_maids_list_pojo.getResponse().get(i).getWorking_flats());
+        viewHolder.tv_no_of_flats.setText(myStaff_maids_list_pojo.getResponse().get(i).getWorking_flats() + " flats");
         viewHolder.tv_staff_name.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_name());
         viewHolder.tv_maid_type.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_designation());
         viewHolder.tv_staff_rating.setText(myStaff_maids_list_pojo.getResponse().get(i).getRating());
@@ -74,11 +83,29 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("maid_id",myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getId());
+                    bundle.putString("maid_id", myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getMaid_id());
+                    bundle.putString("user_maid_id", myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getId());
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STAFF_PROFILE, bundle);
                 }
             });
-
+            ll_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListner != null) {
+                        mListner.onItemClick(v, getAdapterPosition());
+//                        myStaff_maids_list_pojo.getResponse().remove(getAdapterPosition());
+//                        notifyDataSetChanged();
+                    }
+                }
+            });
+            ll_make_call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListner != null) {
+                        mListner.onItemClick(v, getAdapterPosition());
+                    }
+                }
+            });
         }
     }
 }
