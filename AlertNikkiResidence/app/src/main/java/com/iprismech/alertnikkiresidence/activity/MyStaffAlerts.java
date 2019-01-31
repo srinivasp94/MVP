@@ -1,6 +1,8 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -17,6 +20,7 @@ import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.MyStaff_Maids_List_Pojo;
+import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
 import com.iprismech.alertnikkiresidence.request.GuestsReq;
 import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -39,6 +43,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private Object obj;
     ImageView add_staff;
     private MyStaff_Maids_List_Pojo myStaff_maids_list_pojo;
+    private int removed_postion;
 
 
     @SuppressLint("WrongConstant")
@@ -115,7 +120,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
 
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
-                myStaff_maids_list_pojo = gson.fromJson(jsonString, MyStaff_Maids_List_Pojo.class);
+
 
                 JSONObject jsonObject = new JSONObject(jsonString);
 
@@ -127,9 +132,42 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
 
                     switch (requestId) {
                         case 1:
+                            myStaff_maids_list_pojo = gson.fromJson(jsonString, MyStaff_Maids_List_Pojo.class);
                             staffListAdapter = new StaffListAdapter(MyStaffAlerts.this, myStaff_maids_list_pojo);
                             rvSatffLists.setAdapter(staffListAdapter);
+//                            staffListAdapter.notifyDataSetChanged();
+                            staffListAdapter.setOnItemClickListener(new StaffListAdapter.OnitemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    switch (view.getId()) {
+                                        case R.id.ll_delete_maid:
+                                            removed_postion = position;
+                                            DeleteStaffRequest deleteStaffRequest = new DeleteStaffRequest();
+                                            deleteStaffRequest.user_maid_id = myStaff_maids_list_pojo.getResponse().get(position).getId();
+                                            try {
+                                                obj = Class.forName(DeleteStaffRequest.class.getName()).cast(deleteStaffRequest);
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+                                            new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
 
+                                            break;
+                                        case R.id.ll_make_call:
+                                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                                            intent.setData(Uri.parse("tel:" + myStaff_maids_list_pojo.getResponse().get(position).getMobile()));
+                                            startActivity(intent);
+                                            break;
+                                    }
+                                }
+                            });
+
+                            break;
+                        case 2:
+                            Toast.makeText(MyStaffAlerts.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                            myStaff_maids_list_pojo.getResponse().remove(removed_postion);
+//                        notifyDataSetChanged();
+                            staffListAdapter.notifyDataSetChanged();
+                            staffListAdapter.notifyItemRemoved(removed_postion);
                             break;
                     }
                 } else {
