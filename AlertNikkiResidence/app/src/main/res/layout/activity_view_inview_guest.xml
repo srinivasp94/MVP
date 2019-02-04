@@ -7,20 +7,23 @@
     android:orientation="vertical"
     tools:context=".activity.ViewInviteGuestActivity">
 
+    <include
+        android:id="@+id/header"
+        layout="@layout/common_header" />
+
+
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_margin="@dimen/_5sdp"
         android:layout_height="wrap_content">
 
-        <include
-            android:id="@+id/header"
-            layout="@layout/common_header" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/RvSelectContact"
+            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/rlDateselect"
-            android:layout_below="@+id/header"
+            android:layout_above="@+id/fab"
             android:layout_margin="@dimen/_3sdp"
             android:padding="@dimen/_2sdp">
 
@@ -30,7 +33,7 @@
             android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/RvSelectContact"
+            android:layout_above="@+id/rlDateselect"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_8sdp"
@@ -59,6 +62,7 @@
                 style="@style/customEdittext"
                 android:layout_below="@+id/dummy"
                 android:layout_alignParentLeft="true"
+                android:hint="Please Select Date"
                 android:editable="false"
                 android:focusable="false" />
 
@@ -68,8 +72,8 @@
                 android:layout_below="@+id/dummy"
                 android:layout_alignParentRight="true"
                 android:foregroundGravity="center"
-                android:padding="@dimen/_1sdp"
-                android:src="@drawable/ic_contact" />
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/ic_calendar" />
 
             <View
                 style="@style/customView"
