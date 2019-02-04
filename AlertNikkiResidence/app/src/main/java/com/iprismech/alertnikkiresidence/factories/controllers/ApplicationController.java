@@ -227,6 +227,29 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.STANDARD_TIMINGS_SCREEN, (Bundle) eventObjects);
                 break;
+
+            case AppConstants.EventIds.LAUNCH_KIDS_NOTIFY_ALERTS:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.KIDS_NOTIFY_GATE_SCREEN);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_ADD_KID_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_KID_SCREEN, (Bundle) eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_LOCAL_SERVICE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.LOCAL_SERVICE_SCREEN);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_CHOOSE_LOCAL_SERVICE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.CHOOSE_LOCAL_SERVICE_SCREEN);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_LOCAL_SERVICE_DETAILS_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.LOCAL_SERVICE_CONTACTS_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_MAID_STAFF_ATTENDANCE_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_STAFF_ATTENDANCE_HISTORY_SCREEN);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

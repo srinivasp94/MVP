@@ -2,4 +2,5 @@
     <string name="app_name">AlertNikkiResidence</string>
     <string name="otp_text">We have sent you an SMS with a OTP Code to your number for verification.</string>
     <string name="repair_amp_maintenance"><![CDATA[Repair & Maintenance]]></string>
+    <string name="add_amp_save"><![CDATA[Add & Save]]></string>
 </resources>

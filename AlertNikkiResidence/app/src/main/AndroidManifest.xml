@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -43,6 +49,13 @@
         <activity android:name=".activity.MyStaffAlerts" />
         <activity android:name=".activity.StaffProfileActivity" />
         <activity android:name=".activity.StaffStandardTimingActivity" />
+        <activity android:name=".activity.KidsGateAlertActivity" />
+        <activity android:name=".activity.AddKidActivity" />
+        <activity android:name=".activity.LocalServiceActivity" />
+        <activity android:name=".activity.ChooseLocalServiceActivity" />
+        <activity android:name=".activity.LocalServiceContactDetails" />
+        <activity android:name=".activity.MaidStaffAttendanceHistory" />
+
     </application>
 
 </manifest>

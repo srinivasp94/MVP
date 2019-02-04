@@ -133,10 +133,16 @@
                     android:textColor="@color/black" />
 
                 <RatingBar
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_10sdp"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="0.4" />
+                    android:id="@+id/rating_staff_profile"
+                    android:focusable="false"
+                    android:isIndicator="false"
+                    android:stepSize="0.1"
+                    android:numStars="5"
+                    android:rating="0"/>
             </LinearLayout>
         </LinearLayout>
 

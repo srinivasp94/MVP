@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -51,6 +52,17 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         viewHolder.tv_maid_type.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_designation());
         viewHolder.tv_staff_rating.setText(myStaff_maids_list_pojo.getResponse().get(i).getRating());
 
+        if (myStaff_maids_list_pojo.getResponse().get(i).getRating().equalsIgnoreCase("")
+                || myStaff_maids_list_pojo.getResponse().get(i).getRating().isEmpty()
+                || myStaff_maids_list_pojo.getResponse().get(i).getRating() == null) {
+            viewHolder.rating_staff.setRating(Float.parseFloat("0.0"));
+
+        } else {
+            viewHolder.rating_staff.setRating(Float.parseFloat(myStaff_maids_list_pojo.getResponse().get(i).getRating()));
+        }
+        //  viewHolder.rating_staff.setRating(Float.parseFloat("4.5"));
+
+
     }
 
     @Override
@@ -62,6 +74,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
 
         LinearLayout ll_make_call, ll_delete, ll_send_gate_pass, ll_item_staff_list;
         TextView tv_no_of_flats, tv_staff_name, tv_maid_type, tv_staff_rating;
+        RatingBar rating_staff;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +89,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             tv_staff_name = itemView.findViewById(R.id.staff_name);
             tv_maid_type = itemView.findViewById(R.id.maid_type);
             tv_staff_rating = itemView.findViewById(R.id.staff_rating);
+            rating_staff = itemView.findViewById(R.id.rating_staff_bar);
 
 
             ll_item_staff_list.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +113,14 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
                 }
             });
             ll_make_call.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListner != null) {
+                        mListner.onItemClick(v, getAdapterPosition());
+                    }
+                }
+            });
+            ll_send_gate_pass.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mListner != null) {
