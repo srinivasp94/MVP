@@ -40,7 +40,8 @@ public class MaidWeeklyAttendance extends BaseAbstractFragment<Class> implements
     @Override
     protected void initialiseViews() {
         super.initialiseViews();
-
+        Bundle arguments = getArguments();
+        String maid_id = arguments.getString("maid_id");
         rview_weekly = view.findViewById(R.id.rview_weekly);
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -50,7 +51,8 @@ public class MaidWeeklyAttendance extends BaseAbstractFragment<Class> implements
         MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
         req.adminId = "2";
         // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
-        req.maidId = "1";
+        req.maidId = maid_id;
+        // req.maidId = "1";
 
 
         //  req.userId = 22;

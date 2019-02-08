@@ -8,7 +8,7 @@ public class MaidAttendanceHistoryPojo {
     /**
      * status : true
      * message : Data Fetched Successfully!
-     * response : {"weekly_history":[{"smenu":[{"id":"59","admin_id":"2","maid_id":"1","date":"2019-02-07","in_time":"06:51:57 PM","out_time":"04:35:15 PM"}]}],"monthly_history":[{"smenu":[{"id":"59","admin_id":"2","maid_id":"1","date":"2019-02-07","in_time":"06:51:57 PM","out_time":"04:35:15 PM"}]},{"smenu":[{"id":"31","admin_id":"2","maid_id":"1","date":"2019-01-21","in_time":"03:18:44 PM","out_time":"06:12:33 PM"}]},{"smenu":[{"id":"24","admin_id":"2","maid_id":"1","date":"2019-01-17","in_time":"07:36:01 PM","out_time":"08:01:08 PM"}]}]}
+     * response : {"weekly_history":[{"smenu":[{"id":"58","admin_id":"2","maid_id":"68","date":"2019-02-05","in_time":"12:21:18 PM","out_time":"12:30:25 PM"}]},{"smenu":[{"id":"57","admin_id":"2","maid_id":"68","date":"2019-02-04","in_time":"05:10:15 PM","out_time":"03:54:20 PM"}]}],"monthly_history":[{"smenu":[{"id":"58","admin_id":"2","maid_id":"68","date":"2019-02-05","in_time":"12:21:18 PM","out_time":"12:30:25 PM"}]},{"smenu":[{"id":"57","admin_id":"2","maid_id":"68","date":"2019-02-04","in_time":"05:10:15 PM","out_time":"03:54:20 PM"}]},{"smenu":[{"id":"56","admin_id":"2","maid_id":"68","date":"2019-01-30","in_time":"02:48:23 PM","out_time":"04:14:59 PM"}]},{"smenu":[{"id":"53","admin_id":"2","maid_id":"68","date":"2019-01-29","in_time":"07:35:24 PM","out_time":"12:00:00 AM"}]},{"smenu":[{"id":"52","admin_id":"2","maid_id":"68","date":"2019-01-28","in_time":"07:26:15 PM","out_time":"06:47:54 PM"}]},{"smenu":[{"id":"44","admin_id":"2","maid_id":"68","date":"2019-01-25","in_time":"06:33:29 PM","out_time":"06:35:50 PM"}]}]}
      */
 
     private boolean status;
@@ -72,12 +72,12 @@ public class MaidAttendanceHistoryPojo {
 
             public static class SmenuBean {
                 /**
-                 * id : 59
+                 * id : 58
                  * admin_id : 2
-                 * maid_id : 1
-                 * date : 2019-02-07
-                 * in_time : 06:51:57 PM
-                 * out_time : 04:35:15 PM
+                 * maid_id : 68
+                 * date : 2019-02-05
+                 * in_time : 12:21:18 PM
+                 * out_time : 12:30:25 PM
                  */
 
                 private String id;
@@ -150,12 +150,12 @@ public class MaidAttendanceHistoryPojo {
 
             public static class SmenuBeanX {
                 /**
-                 * id : 59
+                 * id : 58
                  * admin_id : 2
-                 * maid_id : 1
-                 * date : 2019-02-07
-                 * in_time : 06:51:57 PM
-                 * out_time : 04:35:15 PM
+                 * maid_id : 68
+                 * date : 2019-02-05
+                 * in_time : 12:21:18 PM
+                 * out_time : 12:30:25 PM
                  */
 
                 private String id;
