@@ -90,7 +90,9 @@ public class ViewFactory {
             MAIN_NOTIFY_GATE, GATE_SERVICE, EDIT_GATE_SERVICE,
             SCHOOL_BUS_SCREEN, SELECT_BUS_SCREEN, BUS_ROUTE_SCREEN, ADD_BUS_SCREEN, BUS_HISTORY_SCREEN,
             PROFILE_SCREEN, FAMILY_SCREEN, ADD_FAMILY_SCREEN, OONTACT_SINGLE_SCREEN,
-    })
+            SELECT_FLAT_SCREEN, CHOOSE_MAID_SCREEN, ADD_STAFF_SCREEN, MYSTAFF_ALERTS_SCREEN,
+            STAFF_PROFILE_SCREEN, STANDARD_TIMINGS_SCREEN, KIDS_NOTIFY_GATE_SCREEN, ADD_KID_SCREEN,
+            LOCAL_SERVICE_SCREEN, CHOOSE_LOCAL_SERVICE_SCREEN, LOCAL_SERVICE_CONTACTS_SCREEN, MAID_STAFF_ATTENDANCE_HISTORY_SCREEN})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -131,6 +133,14 @@ public class ViewFactory {
         int FAMILY_SCREEN = 1201;
         int ADD_FAMILY_SCREEN = 1202;
         int OONTACT_SINGLE_SCREEN = 1203;
+
+
+        int KIDS_NOTIFY_GATE_SCREEN = 1040;
+        int ADD_KID_SCREEN = 1041;
+        int LOCAL_SERVICE_SCREEN = 1042;
+        int CHOOSE_LOCAL_SERVICE_SCREEN = 1043;
+        int LOCAL_SERVICE_CONTACTS_SCREEN = 1044;
+        int MAID_STAFF_ATTENDANCE_HISTORY_SCREEN = 1045;
 
 
     }
@@ -218,6 +228,20 @@ public class ViewFactory {
                 return AddBusActivity.class;
             case BUS_HISTORY_SCREEN:
                 return BushistoryActivity.class;
+            case KIDS_NOTIFY_GATE_SCREEN:
+                return KidsGateAlertActivity.class;
+
+            case LOCAL_SERVICE_SCREEN:
+                return LocalServiceActivity.class;
+
+            case CHOOSE_LOCAL_SERVICE_SCREEN:
+                return ChooseLocalServiceActivity.class;
+            case LOCAL_SERVICE_CONTACTS_SCREEN:
+                return LocalServiceContactDetails.class;
+            case ADD_KID_SCREEN:
+                return AddKidActivity.class;
+            case MAID_STAFF_ATTENDANCE_HISTORY_SCREEN:
+                return MaidStaffAttendanceHistory.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

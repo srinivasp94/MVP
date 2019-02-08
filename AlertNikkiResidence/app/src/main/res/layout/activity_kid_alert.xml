@@ -4,34 +4,37 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/contactus_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_60sdp"
-        android:background="#e20d2d">
+    <!--<android.support.v7.widget.Toolbar-->
+    <!--android:id="@+id/contactus_toolbar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/_60sdp"-->
+    <!--android:background="#e20d2d">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="horizontal">-->
 
-            <ImageView
-                android:id="@+id/back_mystaff"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:src="@drawable/leftarrow_white" />
+    <!--<ImageView-->
+    <!--android:id="@+id/back_mystaff"-->
+    <!--android:layout_width="@dimen/_40sdp"-->
+    <!--android:layout_height="@dimen/_40sdp"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:padding="@dimen/_8sdp"-->
+    <!--android:src="@drawable/leftarrow_white" />-->
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="My Staff"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
+    <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="center"-->
+    <!--android:text="My Staff"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="@dimen/_14sdp" />-->
+    <!--</LinearLayout>-->
+    <!--</android.support.v7.widget.Toolbar>-->
+    <include layout="@layout/common_header">
+
+    </include>
 
 
     <RelativeLayout
@@ -39,7 +42,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/layoutNoStaff"
+            android:id="@+id/layoutNoKid"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -60,7 +63,7 @@
                 android:textAlignment="center" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:id="@+id/txtAddStaff"
+                android:id="@+id/txtAddKid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -71,31 +74,30 @@
                 android:paddingTop="@dimen/_8sdp"
                 android:paddingRight="@dimen/_15sdp"
                 android:paddingBottom="@dimen/_8sdp"
-                android:text="Add Staff"
+                android:text="Add Kid"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
         </LinearLayout>
 
         <RelativeLayout
-            android:id="@+id/LayoutStaff"
+            android:id="@+id/LayoutKid"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvStaffLists"
+                android:id="@+id/rvKidsLists"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/_25sdp"
-                >
+                android:paddingBottom="@dimen/_30sdp">
 
             </android.support.v7.widget.RecyclerView>
 
             <ImageView
-                android:id="@+id/fab_add_staff"
+                android:id="@+id/add_kid"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_alignParentRight="true"

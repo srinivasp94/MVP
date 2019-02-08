@@ -44,8 +44,8 @@ public interface AppConstants {
         int LAUNCH_CHOOSE_MAID = 120;
         int LAUNCH_ADD_STAFF_SCREEN = 121;
         int LAUNCH_MYSTAFF_ALERTS = 122;
-        int LAUNCH_STAFF_PROFILE= 123;
-        int LAUNCH_STANDARD_TIMINGS= 124;
+        int LAUNCH_STAFF_PROFILE = 123;
+        int LAUNCH_STANDARD_TIMINGS = 124;
 
         int LAUNCH_MAIN_NOTIFY_GATE= 190;
         int LAUNCH_GATE_SERVICE= 191;
@@ -69,8 +69,12 @@ public interface AppConstants {
 
 
 
-
-
+        int LAUNCH_KIDS_NOTIFY_ALERTS = 140;
+        int LAUNCH_ADD_KID_SCREEN = 141;
+        int LAUNCH_LOCAL_SERVICE_SCREEN = 142;
+        int LAUNCH_CHOOSE_LOCAL_SERVICE_SCREEN = 143;
+        int LAUNCH_LOCAL_SERVICE_DETAILS_SCREEN = 144;
+        int LAUNCH_MAID_STAFF_ATTENDANCE_HISTORY_SCREEN = 145;
 
 
     }

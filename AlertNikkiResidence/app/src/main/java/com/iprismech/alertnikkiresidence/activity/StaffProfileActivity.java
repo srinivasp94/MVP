@@ -1,12 +1,26 @@
 package com.iprismech.alertnikkiresidence.activity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.StrictMode;
+import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -19,12 +33,14 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.adapters.UploadImagesAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.StaffProfilePojo;
 import com.iprismech.alertnikkiresidence.request.ChooseMaidRequest;
 import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
+import com.iprismech.alertnikkiresidence.request.DigitalPassRequest;
 import com.iprismech.alertnikkiresidence.request.GiveStaffRatingRequest;
 import com.iprismech.alertnikkiresidence.request.StaffProfileRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -34,13 +50,19 @@ import com.iprismech.alertnikkiresidence.utilities.Constants;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StaffProfileActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private LinearLayout ll_make_call, ll_gate_pass, ll_staff_delete, ll_attendance_history, ll_give_rating, ll_available_slots;
     private TextView tv_satff_name, tv_staff_type, tv_working_flats, tv_staff_rating;
     private EditText et_staff_descrption;
     private ImageView iv_staff;
+    private RatingBar rating_staff_profile;
 
     String rating = "0.0", user_id, user_type;
 
@@ -50,6 +72,15 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
     private StaffProfilePojo staffprofilePojo;
     private AlertDialog alertDialog;
     private String user_maid_id;
+    private String base64profile;
+    private UploadImagesAdapter uploadImagesAdapter;
+    private Bitmap profile;
+    private ArrayList<Bitmap> uploadimages = new ArrayList<>();
+    private JSONArray jArray = new JSONArray();
+    private ArrayList<String> arrayList = new ArrayList<>();
+    private int i;
+    private RecyclerView rcvuploadimages;
+    List<DigitalPassRequest.ImageItems> imageIt = new ArrayList<>();
 
     @Override
     public void onClick(View v) {
@@ -60,6 +91,65 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                 startActivity(intent);
                 break;
             case R.id.ll_gate_pass:
+                LayoutInflater inflater1 = LayoutInflater.from(StaffProfileActivity.this);
+//        getLayoutInflater().inflate(R.layout.alert_alerts,null);
+                View view1 = inflater1.inflate(R.layout.dialog_alert_staff_gate_pass, null);
+                alertDialog = new AlertDialog.Builder(StaffProfileActivity.this).create();
+                alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                alertDialog.setView(view1);
+                alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                alertDialog.setCancelable(true);
+
+                TextView tv_btn_upload_images, tv_cancel, tv_submit;
+                final EditText et_comment;
+                tv_btn_upload_images = view1.findViewById(R.id.tv_btn_upload_images);
+                tv_cancel = view1.findViewById(R.id.tv_btn_pass_cancel);
+                tv_submit = view1.findViewById(R.id.tv_btn_pass_submit);
+                et_comment = view1.findViewById(R.id.et_comment);
+                rcvuploadimages = view1.findViewById(R.id.rview_add_images);
+                tv_btn_upload_images.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+                        StrictMode.setVmPolicy(builder.build());
+                        //     permissionsRequest();
+                        showPictureDialog("");
+                    }
+                });
+
+                tv_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alertDialog.dismiss();
+                    }
+                });
+                alertDialog.show();
+                tv_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (et_comment.getText().toString().isEmpty() || et_comment.getText().toString().equalsIgnoreCase("")) {
+                            Toast.makeText(StaffProfileActivity.this, "Please write description", Toast.LENGTH_SHORT).show();
+                        } else {
+                            DigitalPassRequest digitalPassRequest = new DigitalPassRequest();
+                            digitalPassRequest.adminId = "2";
+                            digitalPassRequest.userId = SharedPrefsUtils.getInstance(StaffProfileActivity.this).getId();
+                            digitalPassRequest.userType = SharedPrefsUtils.getInstance(StaffProfileActivity.this).getuserType();
+                            digitalPassRequest.maidId = maid_id;
+                            digitalPassRequest.description = et_comment.getText().toString();
+                            digitalPassRequest.entryIn = "17:20:20";
+                            digitalPassRequest.entryOut = "18:20:20";
+                           // digitalPassRequest.images = (List<DigitalPassRequest.ImageItems>) jArray;
+                            digitalPassRequest.images=imageIt;
+                            try {
+                                obj = Class.forName(DigitalPassRequest.class.getName()).cast(digitalPassRequest);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 4, "maid_digital_pass", true);
+
+                        }
+                    }
+                });
 
                 break;
             case R.id.ll_staff_delete:
@@ -78,21 +168,21 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
             case R.id.ll_give_rating:
                 LayoutInflater inflater = LayoutInflater.from(context);
 //        getLayoutInflater().inflate(R.layout.alert_alerts,null);
-                View view1 = inflater.inflate(R.layout.dialog_alert_rating, null);
+                View view2 = inflater.inflate(R.layout.dialog_alert_rating, null);
 
                 alertDialog = new AlertDialog.Builder(context).create();
                 alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                alertDialog.setView(view1);
+                alertDialog.setView(view2);
                 alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 alertDialog.setCancelable(true);
                 final RatingBar give_rating;
                 TextView tv_not_now, tv_rating_submit;
 
 
-                give_rating = view1.findViewById(R.id.give_staff_rating);
-                tv_not_now = view1.findViewById(R.id.tv_not_now_rating);
-                tv_rating_submit = view1.findViewById(R.id.tv_submit_rating);
-                et_staff_descrption = view1.findViewById(R.id.et_staff_description);
+                give_rating = view2.findViewById(R.id.give_staff_rating);
+                tv_not_now = view2.findViewById(R.id.tv_not_now_rating);
+                tv_rating_submit = view2.findViewById(R.id.tv_submit_rating);
+                et_staff_descrption = view2.findViewById(R.id.et_staff_description);
 
                 tv_rating_submit.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -158,6 +248,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
         tv_staff_rating = findViewById(R.id.tv_staff_rating);
         tv_working_flats = findViewById(R.id.tv_staff_working_flats);
         iv_staff = findViewById(R.id.iv_staff);
+        rating_staff_profile = findViewById(R.id.rating_staff_profile);
 
 
         ll_make_call = findViewById(R.id.ll_make_call);
@@ -199,6 +290,125 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
     }
 
 
+    private void showPictureDialog(final String base64) {
+        android.app.AlertDialog.Builder pictureDialog = new android.app.AlertDialog.Builder(StaffProfileActivity.this);
+        pictureDialog.setTitle("Select Action");
+//        String[] pictureDialogItems = {
+//                "Select photo from gallery",
+//                "Capture photo from camera"
+//        };
+        String[] pictureDialogItems = {
+                "Capture photo from camera"
+        };
+        pictureDialog.setItems(pictureDialogItems,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which) {
+                            case 0:
+                                takePhotoFromCamera(base64);
+                                break;
+//                            case 1:
+//                                takePhotoFromCamera(base64) ;
+//                                break;
+                        }
+                    }
+                });
+        pictureDialog.show();
+    }
+
+    private void takePhotoFromCamera(String base64) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(StaffProfileActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(StaffProfileActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(StaffProfileActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Log.d("hhhh", "Permissions not granted");
+                // ask for permission
+                ActivityCompat.requestPermissions(getParent(), new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            }
+        }
+        try {
+            //   FileName = System.currentTimeMillis() + ".jpg";
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, 1);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_CANCELED) {
+            return;
+        } else if (requestCode == 1) {
+
+            profile = (Bitmap) data.getExtras().get("data");
+            uploadimages.add(profile);
+            new Async_BitmapWorkerTaskForProfile().execute();
+
+            //saveImage(thumbnail);
+        }
+    }
+
+    class Async_BitmapWorkerTaskForProfile extends AsyncTask<Integer, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+        }
+
+        // Compress and Decode image in background.
+        @Override
+        protected String doInBackground(Integer... params) {
+
+            Bitmap profilebit = profile;
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            profilebit.compress(Bitmap.CompressFormat.JPEG, 70, stream);
+            byte[] byte_arr = stream.toByteArray();
+            base64profile = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+            return base64profile.trim();
+        }
+
+        // This method is run on the UI thread
+        @Override
+        protected void onPostExecute(String string) {
+            try {
+                //   JsonPrimitive firstHost = new JsonPrimitive("data:image/png;base64," + string);
+                JSONObject jsonObject = new JSONObject();
+
+
+                DigitalPassRequest.ImageItems imageItems = new DigitalPassRequest.ImageItems();
+                imageItems.image = base64profile;
+                imageIt.add(imageItems);
+
+
+                jsonObject.put("image", base64profile);
+                jArray.put(jsonObject);
+                //  arrayList.add("data:image/png;base64," + string);
+                arrayList.add(string);
+                i = i + 1;
+                rcvuploadimages.setVisibility(View.VISIBLE);
+//                LinearLayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+//                mLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                LinearLayoutManager layoutManager = new LinearLayoutManager(StaffProfileActivity.this, LinearLayoutManager.HORIZONTAL, false);
+                rcvuploadimages.setLayoutManager(layoutManager);
+                rcvuploadimages.setHasFixedSize(true);
+                rcvuploadimages.setItemAnimator(new DefaultItemAnimator());
+                uploadImagesAdapter = new UploadImagesAdapter(uploadimages, StaffProfileActivity.this);
+                rcvuploadimages.setAdapter(uploadImagesAdapter);
+                uploadImagesAdapter.notifyDataSetChanged();
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
@@ -222,6 +432,15 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             tv_staff_type.setText(staffprofilePojo.getResponse().getDesignation());
                             tv_staff_rating.setText(staffprofilePojo.getResponse().getRating());
                             tv_working_flats.setText(staffprofilePojo.getResponse().getFlats());
+                            if (staffprofilePojo.getResponse().getRating().equalsIgnoreCase("")
+                                    || staffprofilePojo.getResponse().getRating().isEmpty()
+                                    || staffprofilePojo.getResponse().getRating() == null) {
+                                rating_staff_profile.setRating(Float.parseFloat("0.0"));
+
+                            } else {
+                                rating_staff_profile.setRating(Float.parseFloat(staffprofilePojo.getResponse().getRating()));
+                            }
+
                             //user_maid_id=staffprofilePojo.getResponse().getId();
                             break;
                         case 2:
@@ -233,6 +452,9 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             Toast.makeText(StaffProfileActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
                             finish();
+                            break;
+                        case 4:
+                            Toast.makeText(StaffProfileActivity.this, "Gate pass have been Sent to security Sucessfully", Toast.LENGTH_SHORT).show();
                             break;
                     }
 

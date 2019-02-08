@@ -74,10 +74,10 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_SCREEN);
                 break;
             case R.id.layoutKidsGate:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_KIDS_NOTIFY_ALERTS);
                 break;
             case R.id.LayoutLocalServices:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOCAL_SERVICE_SCREEN);
                 break;
         }
     }

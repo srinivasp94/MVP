@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -37,7 +43,8 @@
         <activity android:name=".activity.ViewInviteGuestActivity" />
         <activity android:name=".activity.GuestEditActivity" />
         <activity android:name=".activity.SelectCityActivity" />
-        <activity android:name=".activity.SelectSocietyActivity" />
+        <activity android:name=".activity.SelectSocietyActivity"></activity>
+
         <activity android:name=".activity.AddStaffActivity" />
         <activity android:name=".activity.ChooseMaidActivity" />
         <activity android:name=".activity.MyStaffAlerts" />
@@ -56,6 +63,13 @@
                 <action
                     android:name="android.intent.action.MAIN"
                     android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.StaffStandardTimingActivity" />
+        <activity android:name=".activity.KidsGateAlertActivity" />
+        <activity android:name=".activity.AddKidActivity" />
+        <activity android:name=".activity.LocalServiceActivity" />
+        <activity android:name=".activity.ChooseLocalServiceActivity" />
+        <activity android:name=".activity.LocalServiceContactDetails" />
+        <activity android:name=".activity.MaidStaffAttendanceHistory" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
