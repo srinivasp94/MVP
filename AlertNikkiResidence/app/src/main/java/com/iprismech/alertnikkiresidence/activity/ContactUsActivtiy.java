@@ -22,8 +22,8 @@ public class ContactUsActivtiy extends BaseAbstractActivity implements View.OnCl
     @Override
     protected void initializeViews() {
         super.initializeViews();
-        ll_make_call_contact_us.findViewById(R.id.ll_make_call_contact_us);
-        tv_number_contact_us.findViewById(R.id.tv_number_contact_us);
+        ll_make_call_contact_us = findViewById(R.id.ll_make_call_contact_us);
+        tv_number_contact_us = findViewById(R.id.tv_number_contact_us);
 
 
         ll_make_call_contact_us.setOnClickListener(new View.OnClickListener() {

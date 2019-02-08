@@ -1,11 +1,13 @@
 package com.iprismech.alertnikkiresidence.activity.profile;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -20,6 +22,7 @@ import com.iprismech.alertnikkiresidence.request.ProfileReq;
 import com.iprismech.alertnikkiresidence.response.ProfileRes;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.Constants;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
@@ -36,7 +39,9 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
     private Object obj;
     RecyclerView rvProfileitems;
     LinearLayoutManager manager;
+    LinearLayout LinearMysocirty;
     TextView MySociety,
+            Management, Emergeny, NoticeBoard,
             FamilyMembers,
             VisitorsHistory,
             MyFlat,
@@ -70,6 +75,11 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         MyFlat.setOnClickListener(this);
         Digital.setOnClickListener(this);
         Logout.setOnClickListener(this);
+        LinearMysocirty.setOnClickListener(this);
+        Management.setOnClickListener(this);
+        Emergeny.setOnClickListener(this);
+        NoticeBoard.setOnClickListener(this);
+
     }
 
     @Override
@@ -91,6 +101,12 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         MyFlat = findViewById(R.id.MyFlat);
         Digital = findViewById(R.id.Digital);
         Logout = findViewById(R.id.Logout);
+
+        Management = findViewById(R.id.Management);
+        Emergeny = findViewById(R.id.Emergeny);
+        NoticeBoard = findViewById(R.id.NoticeBoard);
+        LinearMysocirty = findViewById(R.id.LinearMysocirty);
+
 
 
 
@@ -118,24 +134,56 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
 
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.Management:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN);
+                break;
+            case R.id.Emergeny:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EMERGENCY_CONTACT_SCREEN);
+                break;
+            case R.id.NoticeBoard:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN);
+                break;
             case R.id.imgQrcode:
                 break;
             case R.id.MySociety:
-
+                boolean isvisible = false;
+                if (isvisible == false) {
+                    LinearMysocirty.setVisibility(View.VISIBLE);
+                    isvisible = true;
+                } else {
+                    LinearMysocirty.setVisibility(View.GONE);
+                }
                 break;
             case R.id.FamilyMembers:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FAMILY_SCREEN);
                 break;
             case R.id.VisitorsHistory:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN);
                 break;
             case R.id.MyFlat:
                 break;
             case R.id.Digital:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);
                 break;
             case R.id.Logout:
+                AlertUtils.showSimpleAlert(ProfileActivity.this, "Are You sure to Logout...?", "Logout", "Logout", "Cancel", new AlertUtils.onClicklistners() {
+                    @Override
+                    public void onpositiveclick() {
+                        SharedPrefsUtils.logoutUser();
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
+                        finish();
+                    }
+
+                    @Override
+                    public void onNegativeClick() {
+
+                    }
+                });
+
                 break;
         }
     }

@@ -6,170 +6,175 @@
     android:background="@drawable/login_background"
     android:theme="@style/AppTheme.NoActionBar">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="@dimen/_120sdp"
-            android:layout_height="@dimen/_120sdp"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:scaleType="centerInside"
-            android:src="@drawable/app_logo" />
-
-        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:text="- Please Login Here -"
-            android:textColor="@color/graydark"
-            android:textSize="@dimen/_14sdp" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="@dimen/_200sdp"
-            android:layout_height="@dimen/_110sdp"
-            android:layout_gravity="center_horizontal"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="match_parent" />
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/app_logo" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:text="- Please Login Here -"
+                android:textColor="@color/graydark"
+                android:textSize="@dimen/_14sdp" />
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:background="@color/white"
-                android:orientation="vertical">
+                android:layout_width="@dimen/_200sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                        android:id="@+id/edt_loginMobile"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:background="@null"
-                        android:hint="Registered Mobile Number"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
+                        android:layout_height="@dimen/_45sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                            android:id="@+id/edt_loginMobile"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@null"
+                            android:hint="Registered Mobile Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/graylight"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
+
+                        <EditText
+                            android:id="@+id/edt_loginPasscode"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0.98"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <ImageView
+                            android:id="@+id/imgShowPassword"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/dummy" />
+                    </LinearLayout>
+
                 </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/_60sdp">
+
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/txtForgotpassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/black" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/graylight"></View>
+                    android:background="@color/graylight">
 
-                <LinearLayout
+                </View>
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgLogin"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/dummy" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/txtHavePasscode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:text="If you have a passcode?"
+                    android:textColor="@color/red" />
+
+                <View
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <EditText
-                        android:id="@+id/edt_loginPasscode"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="0.98"
-                        android:background="@null"
-                        android:gravity="center_vertical"
-                        android:hint="Password"
-                        android:maxLines="1"
-                        android:inputType="textPassword"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
-
-                    <ImageView
-                        android:id="@+id/imgShowPassword"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/dummy" />
-                </LinearLayout>
-
+                    android:layout_height="1dp"
+                    android:background="@color/red"></View>
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:orientation="vertical"
-            android:paddingRight="@dimen/_60sdp">
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:id="@+id/txtForgotpassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_5sdp"
-                android:text="Forgot Password?"
-                android:textColor="@color/black" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/graylight">
-
-            </View>
-        </LinearLayout>
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgLogin"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:padding="@dimen/_2sdp"
-            android:src="@drawable/dummy" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical">
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:id="@+id/txtHavePasscode"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/_4sdp"
-                android:layout_height="wrap_content"
-                android:text="If you have a passcode?"
-                android:textColor="@color/red" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/red"></View>
-        </LinearLayout>
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="@dimen/_200sdp"

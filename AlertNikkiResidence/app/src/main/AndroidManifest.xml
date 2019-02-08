@@ -58,12 +58,18 @@
         <activity android:name=".activity.schoolbus.BusRouteActivity" />
         <activity android:name=".activity.schoolbus.AddBusActivity" />
         <activity android:name=".activity.schoolbus.BushistoryActivity" />
-        <activity android:name=".activity.profile.ProfileActivity">
+        <activity android:name=".activity.profile.ProfileActivity"/>
 <!--            <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
                     android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.StaffStandardTimingActivity" />
+
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        <!--</activity>-->
+
+        <!--<activity android:name=".activity.StaffStandardTimingActivity" />-->
         <activity android:name=".activity.KidsGateAlertActivity" />
         <activity android:name=".activity.AddKidActivity" />
         <activity android:name=".activity.LocalServiceActivity" />
@@ -77,11 +83,6 @@
         <activity android:name=".activity.ContactUsActivtiy" />
         <activity android:name=".activity.VisitorsHistoryActivity" />
         <activity android:name=".activity.MaidAttendanceHistory" />
-
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
         <activity android:name=".activity.profile.FamilyMembersActivity" />
         <activity android:name=".activity.profile.AddFamilyActivity" />
         <activity android:name=".activity.profile.ContactSingleActivity"></activity>

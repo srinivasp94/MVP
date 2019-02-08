@@ -49,7 +49,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_add_family_member, null);
-        return null;
+        return view;
     }
 
     @Override
@@ -61,6 +61,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
     protected void setListenerToViews() {
         super.setListenerToViews();
         txtAddFamily.setOnClickListener(this);
+        fab.setOnClickListener(this);
     }
 
     @Override

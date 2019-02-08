@@ -1,8 +1,6 @@
 package com.iprismech.alertnikkiresidence.fragments;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -24,8 +22,8 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 public class HomeFragment extends BaseAbstractFragment<Class> implements View.OnClickListener {
     private LinearLayout layoutInviteGuests, layoutMyStaff, layoutGateAlerts,
             layoutSchoolBus, layoutKidsGate, LayoutLocalServices;
-    private String[] slide_menu_txt = {"Profile", "Notifications", "Contact Us", "Alert Security", "Privacy Policy"};
-    private int[] icons = {R.drawable.ic_profile, R.drawable.ic_notofocation, R.drawable.ic_notofocation, R.drawable.ic_notofocation, R.drawable.ic_privacy_policy};
+    private String[] slide_menu_txt = {"Profile", "Notifications", "Contact Us", "Privacy Policy"};
+    private int[] icons = {R.drawable.ic_profile, R.drawable.ic_notofocation, R.drawable.ic_notofocation, R.drawable.ic_privacy_policy};
     private Slidemenu_adapter slidemenu_adapter;
     private ListView slidemenulistview;
     private DrawerLayout drawer_layout;
@@ -100,23 +98,27 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 if (i == 0) {
 
                     drawer_layout.closeDrawer(Gravity.LEFT);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PROFILE_SCREEN);
                 } else if (i == 1) {
                     drawer_layout.closeDrawer(Gravity.LEFT);
                     //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN);
                     //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EMERGENCY_CONTACT_SCREEN);
-                    //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN);
                     //  ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN);
+//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN);
 
                 } else if (i == 2) {
 
                     drawer_layout.closeDrawer(Gravity.LEFT);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CONTACT_US_SCREEN);
                 } else if (i == 3) {
 
                     drawer_layout.closeDrawer(Gravity.LEFT);
+//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN);
                 } else if (i == 4) {
 
                     drawer_layout.closeDrawer(Gravity.LEFT);
+//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_P);
                 }
             }
         });
