@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,11 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
         } else {
             viewHolder.contactPhone.setText("No Contact");
         }
+        if (!TextUtils.isEmpty(model.getVehiclenumber())) {
+            viewHolder.txtVehicleNumber.setText(model.getVehiclenumber());
+        } else {
+            viewHolder.txtVehicleNumber.setText("No Vehilcle");
+        }
 
     }
 
@@ -62,7 +68,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView contactName, contactPhone;
+        TextView contactName, contactPhone,txtVehicleNumber;
         ImageView contactPic, imgDelete, imgEdit;
 
         public ViewHolder(@NonNull View itemView) {
@@ -72,6 +78,7 @@ public class ContactViewAdapter extends RecyclerView.Adapter<ContactViewAdapter.
             contactPhone = itemView.findViewById(R.id.txtContactNumber);
             imgDelete = itemView.findViewById(R.id.imgDelete);
             imgEdit = itemView.findViewById(R.id.imgEdit);
+            txtVehicleNumber = itemView.findViewById(R.id.txtVehicleNumber);
 
             imgDelete.setOnClickListener(this);
             imgEdit.setOnClickListener(this);

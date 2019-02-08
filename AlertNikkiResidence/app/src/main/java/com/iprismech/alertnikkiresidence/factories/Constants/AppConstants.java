@@ -47,6 +47,27 @@ public interface AppConstants {
         int LAUNCH_STAFF_PROFILE = 123;
         int LAUNCH_STANDARD_TIMINGS = 124;
 
+        int LAUNCH_MAIN_NOTIFY_GATE= 190;
+        int LAUNCH_GATE_SERVICE= 191;
+        int LAUNCH_EDIT_GATE_SERVICE= 192;
+
+        int LAUNCH_SCHOOL_BUS_SCREEN= 194;
+        int LAUNCH_SELECT_BUS_SCREEN= 195;
+        int LAUNCH_BUS_ROUTE_SCREEN= 196;
+        int LAUNCH_ADD_BUS_SCREEN= 197;
+        int LAUNCH_BUS_HISTORY_SCREEN= 198;
+
+
+
+        int LAUNCH_PROFILE_SCREEN= 200;
+        int LAUNCH_FAMILY_SCREEN= 201;
+        int LAUNCH_ADD_FAMILY_SCREEN= 202;
+        int LAUNCH_OONTACT_SINGLE_SCREEN= 203;
+
+
+
+
+
 
         int LAUNCH_KIDS_NOTIFY_ALERTS = 140;
         int LAUNCH_ADD_KID_SCREEN = 141;

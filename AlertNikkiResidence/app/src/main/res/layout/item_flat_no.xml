@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:background="@color/mainbackground"
     android:gravity="center_horizontal">
 
     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:layout_width="@dimen/_60sdp"
-        android:layout_height="@dimen/_30sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="101"
-        android:paddingHorizontal="@dimen/_5sdp"
-        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:paddingLeft="@dimen/_12sdp"
+        android:paddingRight="@dimen/_12sdp"
+        android:paddingTop="@dimen/_4sdp"
+        android:paddingBottom="@dimen/_4sdp"
         android:gravity="center"
+        android:textSize="@dimen/_13sdp"
+        android:elevation="@dimen/_2sdp"
         android:textColor="@color/black"
-        android:layout_marginTop="@dimen/_10sdp"
         android:id="@+id/tv_item_flat_number"
         android:background="@drawable/search_bg_new"/>
 

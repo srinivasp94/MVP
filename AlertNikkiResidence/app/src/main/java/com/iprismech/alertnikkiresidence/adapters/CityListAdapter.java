@@ -21,6 +21,7 @@ public class CityListAdapter extends BaseAdapter {
     public CityListAdapter(Context context, ArrayList<CityList> list) {
         this.context = context;
         this.list = list;
+        layoutInflater =(LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override

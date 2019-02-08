@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    android:gravity="center"
+    android:padding="@dimen/_5sdp">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/viewContact"
+        android:layout_centerInParent="true"
+        style="@style/DefaultCustomTextView"
+        android:layout_alignParentTop="true"
+        android:text="Contacts"
+        android:textSize="@dimen/_13sdp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/viewOthers"
+        style="@style/DefaultCustomTextView"
+        android:layout_below="@+id/viewContact"
+        android:text="Others"
+        android:textSize="@dimen/_13sdp" />
+
+</RelativeLayout>

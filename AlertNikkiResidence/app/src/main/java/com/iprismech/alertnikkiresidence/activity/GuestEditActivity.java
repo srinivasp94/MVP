@@ -1,31 +1,43 @@
 package com.iprismech.alertnikkiresidence.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.ContactModel;
+import com.iprismech.alertnikkiresidence.request.GuestEditReq;
+import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
+import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class GuestEditActivity extends BaseAbstractActivity implements View.OnClickListener {
+public class GuestEditActivity extends BaseAbstractActivity implements View.OnClickListener,RetrofitResponseListener {
     private EditText edtName, edtMobile, edtDate, edtVehicle1, edtVehicle2, edtVehicle3, edtVehicle4;
     private TextView txtSave;
     private String Name = "", Contact = "", tag = "";
+    private String screenid, guestName, guestPhn,guestId;
 
     private ArrayList<ContactModel> contactsList = new ArrayList<>();
     private int position = 0;
+    private Object obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guest_edit);
+//        setContentView(R.layout.activity_guest_edit);
     }
 
     @Override
@@ -43,6 +55,60 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
     protected void setListenerToViews() {
         super.setListenerToViews();
         txtSave.setOnClickListener(this);
+        edtVehicle1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edtVehicle1.getText().toString().length() == 2) {
+                    edtVehicle2.requestFocus();
+                }
+            }
+        });
+        edtVehicle2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edtVehicle2.getText().toString().length() == 2) {
+                    edtVehicle3.requestFocus();
+                }
+            }
+        });
+        edtVehicle3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (edtVehicle3.getText().toString().length() == 2) {
+                    edtVehicle4.requestFocus();
+                }
+            }
+        });
 
     }
 
@@ -57,8 +123,14 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
            /* Name = bundle.getString("Key_Name", "");
             Contact = bundle.getString("Key_Contact", "");
             tag = bundle.getString("Key_Tag", "");*/
-            Name = contactsList.get(position).getContactName();
-            Contact = contactsList.get(position).getContactNumber();
+//            Name = contactsList.get(position).getContactName();
+//            Contact = contactsList.get(position).getContactNumber();
+            contactsList = bundle.getParcelableArrayList("Key_Contacts");
+            position = bundle.getInt("Key_Position", 0);
+            screenid = bundle.getString("Key_id", "");
+            guestId = bundle.getString("Key_GuestId", "");
+            guestName = bundle.getString("Key_Name", "");
+            guestPhn = bundle.getString("Key_Mobile", "");
         }
         edtName = findViewById(R.id.edtname);
         edtMobile = findViewById(R.id.edtMobileNumber);
@@ -69,14 +141,36 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
         edtVehicle4 = findViewById(R.id.edtVehicle4);
         txtSave = findViewById(R.id.txtSave);
 
-        edtName.setText(Name);
-        edtMobile.setText(Contact);
+        /*edtName.setText(Name);
+        edtMobile.setText(Contact);*/
+        if (!screenid.equalsIgnoreCase("1") && contactsList != null && contactsList.size() > 0) {
+            edtName.setText(contactsList.get(position).getContactName());
+
+            edtMobile.setText(contactsList.get(position).getContactNumber());
+        } else {
+            edtName.setText(guestName);
+            edtMobile.setText(guestPhn);
+        }
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txtSave:
+                if (screenid.equalsIgnoreCase("1")) {
+                    GuestEditReq req = new GuestEditReq();
+                    req.guestId = guestId;
+                    req.name = guestName;
+                    req.vehicleNo = edtVehicle1.getText().toString() + " " + edtVehicle2.getText().toString() +
+                            " " + edtVehicle3.getText().toString() + " " + edtVehicle4.getText().toString();
+                    try {
+                        obj = Class.forName(GuestEditReq.class.getName()).cast(req);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    new RetrofitRequester(this).callPostServices(obj, 2, " edit_guest", true);
+                }else{
                 if (edtName.getText().toString().length() == 0 && edtMobile.getText().toString().length() == 0) {
                     Common.showToast(GuestEditActivity.this, "Please Enter Details");
                 } else if (edtName.getText().toString().length() == 0) {
@@ -87,14 +181,57 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
                     ContactModel model = new ContactModel();
                     model.setContactName(edtName.getText().toString());
                     model.setContactNumber(edtMobile.getText().toString());
-                    contactsList.add(position,model);
+                    model.setVehiclenumber(edtVehicle1.getText().toString() + " " + edtVehicle2.getText().toString() +
+                            " " + edtVehicle3.getText().toString() + " " + edtVehicle4.getText().toString());
+                    if (contactsList != null && contactsList.size() > 0) {
+                        contactsList.remove(position);
+                        contactsList.add(model);
+                    } else {
+//                    contactsList.remove(position);
+                        try {
+                            contactsList = new ArrayList<>();
+                            contactsList.add(model);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+
                     Intent intent = new Intent(GuestEditActivity.this, ViewInviteGuestActivity.class);
                     intent.putParcelableArrayListExtra("Key_Contacts", contactsList);
 //                    intent.putExtra("Key_Position", position);
                     startActivity(intent);
                     finish();
                 }
+                }
                 break;
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    @Override
+    public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+        if (objectResponse == null || objectResponse.equals("")) {
+            Common.showToast(GuestEditActivity.this, "Please Try Again");
+        } else {
+            try {
+                Gson gson = new Gson();
+                String jsonString = gson.toJson(objectResponse);
+                JSONObject jsonObject = new JSONObject(jsonString);
+                if (jsonObject.optBoolean("status")) {
+                    switch (requestId) {
+                        case 2:
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN);
+                            finish();
+                            break;
+                    }
+                } else {
+                    Common.showToast(GuestEditActivity.this,jsonObject.optString("message"));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
     }
 }

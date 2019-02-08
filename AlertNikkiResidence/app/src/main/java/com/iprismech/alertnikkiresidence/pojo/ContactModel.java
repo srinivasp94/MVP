@@ -73,6 +73,7 @@ public class ContactModel implements Parcelable {
         contactId = in.readString();
         contactName = in.readString();
         contactNumber = in.readString();
+        vehiclenumber = in.readString();
         contactisChecked = in.readByte() != 0;
     }
 
@@ -94,6 +95,7 @@ public class ContactModel implements Parcelable {
         dest.writeString(contactId);
         dest.writeString(contactName);
         dest.writeString(contactNumber);
+        dest.writeString(vehiclenumber);
         dest.writeByte((byte) (contactisChecked ? 1 : 0));
     }
 

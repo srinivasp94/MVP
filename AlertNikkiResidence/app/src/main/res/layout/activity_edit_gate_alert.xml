@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.notifygate.EditGateAlertActivity">
+
+    <include layout="@layout/common_header" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/_5sdp">
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Service Type"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtServiceType"
+            style="@style/customEdittext"
+            android:editable="false"
+            android:focusable="false"
+            android:hint="Deliver" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Person Name(Delivery Boy)"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtPersonName"
+            style="@style/customEdittext"
+
+            android:hint="Mario SDpeed Wagon" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Mobile Number"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtPhone"
+            style="@style/customEdittext"
+            android:hint="000-000-0000"
+            android:inputType="number"
+            android:maxLength="10" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*How many hours this information will valid?"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtValidHours"
+            style="@style/customEdittext"
+            android:hint=" +3"
+            android:inputType="number"
+            android:maxLength="1" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/notifyGate"
+            style="@style/DefaultCustomTextView"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/black_corner_bg"
+            android:gravity="center"
+            android:padding="@dimen/_6sdp"
+            android:text="notify Gate"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
+</LinearLayout>

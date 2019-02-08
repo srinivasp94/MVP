@@ -4,38 +4,12 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/contactus_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_70sdp"
-        android:background="#e20d2d">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:padding="@dimen/_8sdp"
-                android:src="@drawable/bg_close" />
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Select Flat / Villa"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
+    <include layout="@layout/common_header" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_4sdp"
         android:background="@drawable/search_bg_new"
         android:orientation="horizontal"
         android:weightSum="1">
@@ -65,6 +39,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rview_selectbuilding"
         android:layout_width="match_parent"
+        android:padding="@dimen/_5sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp">
 

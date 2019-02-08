@@ -275,6 +275,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="left"
+        android:background="@color/lightblack"
         android:fitsSystemWindows="true">
 
 
@@ -287,12 +288,46 @@
             android:orientation="vertical"
             android:padding="10dp">
 
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="Hi,"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="User"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_17sdp" />
+
+
             <ListView
                 android:id="@+id/slidemenulistview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:divider="#00000000" />
+
+            <View
+                style="@style/customView"
+                android:background="@color/black" />
+
+            <ImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:src="@drawable/ic_delete" />
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="Panic Alert"
+                android:textColor="@color/yello"
+                android:textSize="@dimen/_13sdp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="Press and Hold to security alert"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
         </LinearLayout>
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

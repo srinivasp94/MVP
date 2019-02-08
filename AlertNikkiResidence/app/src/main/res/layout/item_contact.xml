@@ -10,6 +10,7 @@
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
+        android:id="@+id/rlContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -17,20 +18,20 @@
             android:id="@+id/imgContact"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:padding="@dimen/_3sdp"
-
             android:layout_margin="@dimen/_2sdp"
+
+            android:padding="@dimen/_3sdp"
             android:src="@drawable/ic_contact" />
 
         <LinearLayout
             android:id="@+id/ll_dummy"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
             android:layout_alignParentTop="true"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="@dimen/_3sdp"
             android:layout_toLeftOf="@+id/checkContact"
             android:layout_toRightOf="@+id/imgContact"

@@ -50,7 +50,6 @@ public class Slidemenu_adapter extends BaseAdapter {
         TextView slidemenu_txt = view.findViewById(R.id.tv_slidemenu_layout);
         slidemenu_txt.setText(text[i]);
 
-
         return view;
     }
 }

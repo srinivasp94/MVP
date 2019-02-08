@@ -177,7 +177,7 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SIGNUP_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN,(Bundle)eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_PASSCODE_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PASSCODE_SCREEN);
@@ -226,6 +226,45 @@ public class ApplicationController {
 
             case AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.STANDARD_TIMINGS_SCREEN, (Bundle) eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAIN_NOTIFY_GATE);
+                break;
+            case AppConstants.EventIds.LAUNCH_GATE_SERVICE:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.GATE_SERVICE);
+                break;
+            case AppConstants.EventIds.LAUNCH_EDIT_GATE_SERVICE:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.EDIT_GATE_SERVICE, (Bundle) eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_SCHOOL_BUS_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SCHOOL_BUS_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_SELECT_BUS_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_BUS_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.BUS_ROUTE_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_ADD_BUS_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_BUS_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_BUS_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.BUS_HISTORY_SCREEN);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_PROFILE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PROFILE_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_FAMILY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.FAMILY_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_FAMILY_SCREEN,(Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_OONTACT_SINGLE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OONTACT_SINGLE_SCREEN);
                 break;
 
             case AppConstants.EventIds.LAUNCH_KIDS_NOTIFY_ALERTS:

@@ -17,7 +17,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     private PinEntryEditText txt_pin_entry;
     private TextView verifyotp_btn;
     private String otp = "";
-    private String strOtp;
+    private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,12 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
         verifyotp_btn = findViewById(R.id.verifyotp_btn);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            strOtp = bundle.getString("Key_OTP");
+            sOtp = bundle.getString("Key_otp");
+            sName = bundle.getString("Key_Name");
+            sPhone = bundle.getString("Key_Mobile");
+            sMail = bundle.getString("Key_Email");
+            sPassword = bundle.getString("Key_Password");
+            sBlood = bundle.getString("Key_Blood");
         }
         txt_pin_entry.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
             @Override
@@ -66,13 +71,21 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
             case R.id.verifyotp_btn:
                 if (otp.length() == 0 || otp.equalsIgnoreCase("")) {
                     Common.showToast(OtpVerificationActivity.this, "Please enter Otp.");
-                } else if (!otp.equalsIgnoreCase(strOtp)) {
+                } else if (!otp.equalsIgnoreCase(sOtp)) {
                     Common.showToast(OtpVerificationActivity.this, "Otp Not matched.");
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+//                    Bundle bundle = new Bundle();
+//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
                 } else {
                     //make service call here
                     //navigate to set resident address screens
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Key_otp",otp);
+                    bundle.putString("Key_Name",sName);
+                    bundle.putString("Key_Mobile",sPhone);
+                    bundle.putString("Key_Email",sMail);
+                    bundle.putString("Key_Password",sPassword);
+                    bundle.putString("Key_Blood",sBlood);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN,bundle);
                 }
 
                 break;

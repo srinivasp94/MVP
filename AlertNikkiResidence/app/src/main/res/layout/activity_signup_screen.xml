@@ -6,258 +6,266 @@
     android:background="@drawable/login_background"
     android:theme="@style/AppTheme.NoActionBar">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:orientation="vertical">
 
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="@dimen/_10sdp"
-                android:layout_height="match_parent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:background="@color/white"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:orientation="horizontal">
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:background="@color/white"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:background="@null"
-                        android:hint="Name"
-                        android:id="@+id/edtSignupName"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
-                </LinearLayout>
+                        android:layout_height="@dimen/_45sdp"
+                        android:orientation="horizontal">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:background="@color/graylight"></View>
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="1">
+                        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                            android:id="@+id/edtSignupName"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@null"
+                            android:hint="Name"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_gravity="center_vertical"
-                        android:layout_weight="0.98"
-                        android:background="@null"
-                        android:id="@+id/edtSignupPhone"
-                        android:gravity="center_vertical"
-                        android:hint="Mobile Number"
-                        android:inputType="number"
-                        android:maxLength="10"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:background="@color/graylight"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:background="@null"
-                        android:hint="Email"
-                        android:maxLines="1"
-                        android:id="@+id/edtSignupEmail"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
-                </LinearLayout>
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:background="@color/graylight"></View>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:background="@color/graylight"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:background="@null"
-                        android:hint="Blood Group"
-                        android:maxLines="1"
-                        android:id="@+id/edtSignupBloodGrp"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
-                </LinearLayout>
+                        android:layout_height="@dimen/_45sdp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:background="@color/graylight"></View>
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:orientation="horizontal">
+                        <EditText
+                            android:id="@+id/edtSignupPhone"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="0.98"
+                            android:background="@null"
+                            android:gravity="center_vertical"
+                            android:hint="Mobile Number"
+                            android:inputType="number"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
 
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                    </LinearLayout>
 
-                    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:background="@null"
-                        android:hint="Password"
-                        android:id="@+id/edtSignupPassword"
-                        android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
-                </LinearLayout>
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:background="@color/graylight"></View>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
-                    android:background="@color/graylight"></View>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
-
-                    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_40sdp"
-                        android:background="@null"
-                        android:hint="Confirm Password"
-                        android:inputType="textPassword"
-                        android:maxLines="1"
-                        android:id="@+id/edtSignupCnfPassword"
-                        android:paddingLeft="@dimen/_10sdp"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_11sdp" />
+                        android:layout_height="@dimen/_45sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                            android:id="@+id/edtSignupEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@null"
+                            android:hint="Email"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:background="@color/graylight"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                            android:id="@+id/edtSignupBloodGrp"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@null"
+                            android:hint="Blood Group"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:background="@color/graylight"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                            android:id="@+id/edtSignupPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@null"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:background="@color/graylight"></View>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:src="@drawable/dummy" />
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                            android:id="@+id/edtSignupCnfPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:background="@null"
+                            android:hint="Confirm Password"
+                            android:inputType="textPassword"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_11sdp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/_40sdp"
+                        android:background="@color/graylight"></View>
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/_60sdp"
+                android:visibility="gone">
+
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+
+                    android:text="Forgot Password?"
+                    android:textColor="@color/black" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginLeft="@dimen/_40sdp"
                     android:background="@color/graylight"></View>
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:orientation="vertical"
-            android:paddingRight="@dimen/_60sdp"
-            android:visibility="gone">
-
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgSignup"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_30sdp"
                 android:padding="@dimen/_5sdp"
+                android:src="@drawable/dummy" />
 
-                android:text="Forgot Password?"
-                android:textColor="@color/black" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/graylight"></View>
         </LinearLayout>
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_gravity="right"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_30sdp"
-            android:padding="@dimen/_5sdp"
-            android:id="@+id/imgSignup"
-            android:src="@drawable/dummy" />
-
-
-    </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="@dimen/_200sdp"
@@ -281,11 +289,11 @@
                 android:orientation="horizontal">
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/txtLogin"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="Login"
-                    android:id="@+id/txtLogin"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
