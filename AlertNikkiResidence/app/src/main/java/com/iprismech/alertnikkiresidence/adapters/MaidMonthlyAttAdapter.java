@@ -35,7 +35,6 @@ public class MaidMonthlyAttAdapter extends RecyclerView.Adapter<MaidMonthlyAttAd
         viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getIn_time());
         viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getOut_time());
     }
-
     @Override
     public int getItemCount() {
         return maidAttendanceHistoryPojo.getResponse().getMonthly_history().size();
