@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
@@ -164,7 +165,9 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                 new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "delete_user_maid", true);
                 break;
             case R.id.ll_attendance_history:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN);
+                Bundle bundle=new Bundle();
+                bundle.putString("maid_id",maid_id);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN,bundle);
                 break;
             case R.id.ll_give_rating:
                 LayoutInflater inflater = LayoutInflater.from(context);

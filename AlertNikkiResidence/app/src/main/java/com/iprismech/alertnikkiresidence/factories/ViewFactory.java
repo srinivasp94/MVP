@@ -20,6 +20,7 @@ import com.iprismech.alertnikkiresidence.activity.LocalServiceContactDetails;
 import com.iprismech.alertnikkiresidence.activity.LoginActivity;
 import com.iprismech.alertnikkiresidence.activity.MaidAttendanceHistory;
 import com.iprismech.alertnikkiresidence.activity.MaidStaffAttendanceHistory;
+import com.iprismech.alertnikkiresidence.activity.MaidViewAllAttandancesHistory;
 import com.iprismech.alertnikkiresidence.activity.ManagementCommitteActivity;
 import com.iprismech.alertnikkiresidence.activity.MyStaffAlerts;
 import com.iprismech.alertnikkiresidence.activity.NoticeBoardActivity;
@@ -56,6 +57,7 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.LOGIN_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAID_ATTENDANCE_HISTORY_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAID_STAFF_ATTENDANCE_HISTORY_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAIN_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MANAGEMENT_COMMITTE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MYSTAFF_ALERTS_SCREEN;
@@ -95,7 +97,7 @@ public class ViewFactory {
             LOCAL_SERVICE_SCREEN, CHOOSE_LOCAL_SERVICE_SCREEN, LOCAL_SERVICE_CONTACTS_SCREEN,
             MAID_STAFF_ATTENDANCE_HISTORY_SCREEN, NOTICE_BOARD_SCREEN, EMERGENCY_CONTACT_SCREEN,
             MANAGEMENT_COMMITTE_SCREEN, DIGITAL_INTERCOM_SCREEN, CONTACT_US_SCREEN,
-            VISITORS_HISTORY_SCREEN, MAID_ATTENDANCE_HISTORY_SCREEN})
+            VISITORS_HISTORY_SCREEN, MAID_ATTENDANCE_HISTORY_SCREEN,MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -135,6 +137,7 @@ public class ViewFactory {
         int CONTACT_US_SCREEN = 1050;
         int VISITORS_HISTORY_SCREEN = 1051;
         int MAID_ATTENDANCE_HISTORY_SCREEN = 1052;
+        int MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN = 1053;
 
 
     }
@@ -234,6 +237,8 @@ public class ViewFactory {
                 return VisitorsHistoryActivity.class;
             case MAID_ATTENDANCE_HISTORY_SCREEN:
                 return MaidAttendanceHistory.class;
+            case MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN:
+                return MaidViewAllAttandancesHistory.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

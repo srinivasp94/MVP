@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+
+    android:weightSum="3">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtDate"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:gravity="center"
+            style="@style/ItemDefaultCustomTextView"
+            android:text="dd/mm/yy" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtInOutAm"
+        style="@style/ItemDefaultCustomTextView"
+        android:layout_width="0dp"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@+id/dunny"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dd/mm/yy" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtinoutPm"
+        style="@style/ItemDefaultCustomTextView"
+        android:layout_width="0dp"
+        android:layout_alignParentRight="true"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="dd/mm/yy" />
+</LinearLayout>
+
+</RelativeLayout>

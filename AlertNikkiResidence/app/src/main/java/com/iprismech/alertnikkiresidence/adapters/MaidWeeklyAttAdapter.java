@@ -1,6 +1,8 @@
 package com.iprismech.alertnikkiresidence.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
+import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.MaidAttendanceHistoryPojo;
 
 public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdapter.ViewHolder> {
@@ -42,13 +46,25 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtDate, txtInOutAm, txtinoutPm;
+        TextView txtDate, txtInOutAm, txtinoutPm,tv_view_all;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtDate = itemView.findViewById(R.id.txtDate);
             txtInOutAm = itemView.findViewById(R.id.txtInOutAm);
             txtinoutPm = itemView.findViewById(R.id.txtinoutPm);
+            tv_view_all = itemView.findViewById(R.id.tv_view_all);
+            tv_view_all.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("WrongConstant")
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("case", "Weekly");
+                    bundle.putInt("position", getAdapterPosition());
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
+
+                }
+            });
 
         }
     }

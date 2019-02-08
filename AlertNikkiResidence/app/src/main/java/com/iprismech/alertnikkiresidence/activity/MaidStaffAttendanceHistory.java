@@ -15,11 +15,13 @@ public class MaidStaffAttendanceHistory extends BaseAbstractActivity implements 
 
     @Override
     protected void setListenerToViews() {
+
         super.setListenerToViews();
     }
 
     @Override
     protected void initializeViews() {
+
         super.initializeViews();
     }
 

@@ -269,8 +269,12 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.VISITORS_HISTORY_SCREEN);
                 break;
-                case AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_ATTENDANCE_HISTORY_SCREEN);
+            case AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_ATTENDANCE_HISTORY_SCREEN,(Bundle) eventObjects);
+                break;
+
+            case AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, (Bundle) eventObjects);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event id");

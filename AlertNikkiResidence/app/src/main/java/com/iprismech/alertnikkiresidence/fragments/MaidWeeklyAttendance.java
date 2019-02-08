@@ -41,7 +41,6 @@ public class MaidWeeklyAttendance extends BaseAbstractFragment<Class> implements
     protected void initialiseViews() {
         super.initialiseViews();
 
-
         rview_weekly = view.findViewById(R.id.rview_weekly);
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
