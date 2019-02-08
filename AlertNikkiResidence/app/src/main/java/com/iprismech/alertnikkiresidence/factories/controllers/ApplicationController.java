@@ -289,6 +289,28 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_MAID_STAFF_ATTENDANCE_HISTORY_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_STAFF_ATTENDANCE_HISTORY_SCREEN);
                 break;
+
+            case AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.NOTICE_BOARD_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_EMERGENCY_CONTACT_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.EMERGENCY_CONTACT_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MANAGEMENT_COMMITTE_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.DIGITAL_INTERCOM_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_CONTACT_US_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.CONTACT_US_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.VISITORS_HISTORY_SCREEN);
+                break;
+                case AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_ATTENDANCE_HISTORY_SCREEN);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

@@ -180,16 +180,19 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 Toast.makeText(context, "Please select From Date", Toast.LENGTH_SHORT).show();
                             } else if (tv_end_date.getText().toString().isEmpty()) {
                                 Toast.makeText(context, "Please select End Date", Toast.LENGTH_SHORT).show();
-                            }
-                            else {
+                            } else {
                                 Bundle bundle = new Bundle();
-                                bundle.putString("Key_MaidId",chooseMaidPojo.getResponse().get(getAdapterPosition()).getId());
-                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS,bundle);
+                                bundle.putString("Key_MaidId", chooseMaidPojo.getResponse().get(getAdapterPosition()).getId());
+                                bundle.putString("WorkingType", "1");
+                                bundle.putString("From_Date", tv_from_date.getText().toString());
+                                bundle.putString("ToDate", tv_end_date.getText().toString());
+
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
                             }
                         }
                     });
-
                     r_btn_perm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                        @SuppressLint("WrongConstant")
                         @Override
                         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                             if (isChecked) {
@@ -197,9 +200,13 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 ll_date_picker.setVisibility(View.GONE);
                                 tv_ok.setVisibility(View.GONE);
 
+                                Bundle bundle = new Bundle();
+                                bundle.putString("Key_MaidId", chooseMaidPojo.getResponse().get(getAdapterPosition()).getId());
+                                bundle.putString("WorkingType", "2");
+                                bundle.putString("From_Date", "");
+                                bundle.putString("ToDate", "");
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
                             }
-
-
                         }
                     });
 

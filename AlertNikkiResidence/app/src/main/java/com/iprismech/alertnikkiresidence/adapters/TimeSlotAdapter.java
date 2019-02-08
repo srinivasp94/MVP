@@ -89,13 +89,24 @@ public class TimeSlotAdapter extends BaseAdapter {
         TextView txttimeSlots;
 
     }
+//
+//    public ArrayList<StandardMaidTimingPojo.ResponseBean> getSelectedSlots() {
+//        ArrayList<StandardMaidTimingPojo.ResponseBean> list = new ArrayList<>();
+//
+//        for (int i = 0; i < pojo.getResponse().size(); i++) {
+//            if (pojo.getResponse().get(i).isSelectitem()) {
+//                list.add(pojo.getResponse().get(i));
+//            }
+//        }
+//
+//        return list;
 
-    public ArrayList<StandardMaidTimingPojo.ResponseBean> getSelectedSlots() {
-        ArrayList<StandardMaidTimingPojo.ResponseBean> list = new ArrayList<>();
+    public ArrayList<String> getSelectedSlots() {
+        ArrayList<String> list = new ArrayList<>();
 
         for (int i = 0; i < pojo.getResponse().size(); i++) {
             if (pojo.getResponse().get(i).isSelectitem()) {
-                list.add(pojo.getResponse().get(i));
+                list.add(pojo.getResponse().get(i).getId());
             }
         }
 
