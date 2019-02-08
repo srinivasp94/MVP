@@ -82,6 +82,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
     private RecyclerView rcvuploadimages;
     List<DigitalPassRequest.ImageItems> imageIt = new ArrayList<>();
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -138,8 +139,8 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             digitalPassRequest.description = et_comment.getText().toString();
                             digitalPassRequest.entryIn = "17:20:20";
                             digitalPassRequest.entryOut = "18:20:20";
-                           // digitalPassRequest.images = (List<DigitalPassRequest.ImageItems>) jArray;
-                            digitalPassRequest.images=imageIt;
+                            // digitalPassRequest.images = (List<DigitalPassRequest.ImageItems>) jArray;
+                            digitalPassRequest.images = imageIt;
                             try {
                                 obj = Class.forName(DigitalPassRequest.class.getName()).cast(digitalPassRequest);
                             } catch (Exception e) {
@@ -163,7 +164,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                 new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "delete_user_maid", true);
                 break;
             case R.id.ll_attendance_history:
-
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN);
                 break;
             case R.id.ll_give_rating:
                 LayoutInflater inflater = LayoutInflater.from(context);

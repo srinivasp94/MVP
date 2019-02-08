@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    android:orientation="vertical"
+    app:cardCornerRadius="@dimen/_5sdp">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_item_staff_list"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_80sdp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/guest_image"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:src="@drawable/dummy" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_weight="0.65"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/guest_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Peter Cruiser"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+                    android:id="@+id/guest_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Guest" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                        android:id="@+id/tv_visiting_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sept 25,2018" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In"
+
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                        android:id="@+id/guest_intime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-10:30 am,"
+                        android:textColor="@color/black" />
+
+                    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:text="Out"
+                        android:textColor="@color/colorPrimaryDark" />
+
+                    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                        android:id="@+id/guest_outtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="-12:00 pm"
+                        android:textColor="@color/black" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+                android:id="@+id/tv_allow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_weight="0.2"
+                android:background="@drawable/green_bg"
+                android:gravity="center"
+                android:padding="@dimen/_3sdp"
+                android:text="Allowed"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/graylight"></View>
+
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

@@ -55,6 +55,14 @@
         <activity android:name=".activity.ChooseLocalServiceActivity" />
         <activity android:name=".activity.LocalServiceContactDetails" />
         <activity android:name=".activity.MaidStaffAttendanceHistory" />
+        <activity android:name=".activity.NoticeBoardActivity" />
+        <activity android:name=".activity.EmergencyContactActivity" />
+        <activity android:name=".activity.ManagementCommitteActivity" />
+        <activity android:name=".activity.DigitalInterComSettingsActivity" />
+        <activity android:name=".activity.ContactUsActivtiy" />
+        <activity android:name=".activity.VisitorsHistoryActivity" />
+        <activity android:name=".activity.MaidAttendanceHistory" />
+
 
     </application>
 

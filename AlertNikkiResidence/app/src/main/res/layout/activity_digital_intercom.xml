@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150sdp" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"
+            android:textColor="@color/black" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Lorem Ipsum Lorem Ipsum" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Primary number for IVR"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+            android:id="@+id/et_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@null"
+            android:hint="000-000-0000"
+            android:inputType="number"
+            android:maxLength="10"
+            android:textSize="@dimen/_12sdp" />
+
+        <View
+            style="@style/customView"
+            android:layout_marginHorizontal="@dimen/_20sdp"></View>
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Secondary number for IVR"
+            android:textColor="@color/colorPrimaryDark" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+            android:id="@+id/et_sec_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:background="@null"
+            android:hint="000-000-0000"
+            android:inputType="number"
+            android:maxLength="10"
+            android:textSize="@dimen/_12sdp" />
+
+        <View
+            style="@style/customView"
+            android:layout_marginHorizontal="@dimen/_20sdp"></View>
+    </LinearLayout>
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:id="@+id/save_intercom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/black_corner_bg"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_6sdp"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp" />
+</RelativeLayout>
