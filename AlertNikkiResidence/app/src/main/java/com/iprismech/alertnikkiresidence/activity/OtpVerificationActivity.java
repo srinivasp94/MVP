@@ -81,7 +81,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                     Bundle bundle = new Bundle();
                     bundle.putString("Key_otp",otp);
                     bundle.putString("Key_Name",sName);
-                    bundle.putString("Key_Mobile",sMail);
+                    bundle.putString("Key_Mobile",sPhone);
                     bundle.putString("Key_Email",sMail);
                     bundle.putString("Key_Password",sPassword);
                     bundle.putString("Key_Blood",sBlood);

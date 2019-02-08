@@ -106,7 +106,7 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                         bundle.putString("Key_CityId", cityLists.get(position).id);
 
                                         bundle.putString("Key_Name",sName);
-                                        bundle.putString("Key_Mobile",sMail);
+                                        bundle.putString("Key_Mobile",sPhone);
                                         bundle.putString("Key_Email",sMail);
                                         bundle.putString("Key_Password",sPassword);
                                         bundle.putString("Key_Blood",sBlood);

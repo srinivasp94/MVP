@@ -112,7 +112,7 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
                                         bundle.putString("Key_AdminId", list.get(position).adminId);
 
                                         bundle.putString("Key_Name",sName);
-                                        bundle.putString("Key_Mobile",sMail);
+                                        bundle.putString("Key_Mobile",sPhone);
                                         bundle.putString("Key_Email",sMail);
                                         bundle.putString("Key_Password",sPassword);
                                         bundle.putString("Key_Blood",sBlood);

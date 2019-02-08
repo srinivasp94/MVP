@@ -107,6 +107,8 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
                             break;
                     }
+                } else {
+                    Common.showToast(SelectFlatActivity.this, object.optString("message"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
