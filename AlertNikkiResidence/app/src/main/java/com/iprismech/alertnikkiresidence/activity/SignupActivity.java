@@ -22,7 +22,7 @@ import com.iprismech.alertnikkiresidence.utilities.Common;
 
 import org.json.JSONObject;
 
-public class SignupActivity extends BaseAbstractActivity implements View.OnClickListener,RetrofitResponseListener {
+public class SignupActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private EditText edtSignupName, edtSignupPhone, edtSignupEmail, edtSignupBloodGrp, edtSignupPassword, edtSignupCnfPassword;
     private ImageView imgSignup;
     private TextView txtLogin;
@@ -87,7 +87,7 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                     Common.showToast(SignupActivity.this, "Please Enter Password");
                 } else if (edtSignupCnfPassword.getText().toString().length() == 0) {
                     Common.showToast(SignupActivity.this, "Please Enter Confirm Password");
-                } else if (edtSignupPassword.getText().toString().contentEquals(edtSignupCnfPassword.getText().toString())) {
+                } else if (!edtSignupPassword.getText().toString().equalsIgnoreCase(edtSignupCnfPassword.getText().toString())) {
                     Common.showToast(SignupActivity.this, "Make sure password and confirm password same");
                 } else {
                     //call service here
@@ -96,14 +96,14 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                     req.mobile = edtSignupPhone.getText().toString();
                     req.emailId = edtSignupEmail.getText().toString();
                     req.password = edtSignupPassword.getText().toString();
-                    req.otpConfirmed = "no";
+                    req.otpConfirmed = "No";
                     try {
                         obj = Class.forName(SignupReq.class.getName()).cast(req);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-new RetrofitRequester(this).callPostServices(obj,1,"",true);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN);
+                    new RetrofitRequester(this).callPostServices(obj, 1, "register_user", true);
+
                 }
                 break;
         }
@@ -113,6 +113,7 @@ new RetrofitRequester(this).callPostServices(obj,1,"",true);
         return (!TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -125,7 +126,15 @@ new RetrofitRequester(this).callPostServices(obj,1,"",true);
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
-                            
+                            Common.showToast(SignupActivity.this,jsonObject.optString("message"));
+                            Bundle bundle = new Bundle();
+                            bundle.putString("Key_otp",jsonObject.optString("response"));
+                            bundle.putString("Key_Name",edtSignupName.getText().toString());
+                            bundle.putString("Key_Mobile",edtSignupPhone.getText().toString());
+                            bundle.putString("Key_Email",edtSignupEmail.getText().toString());
+                            bundle.putString("Key_Password",edtSignupPassword.getText().toString());
+                            bundle.putString("Key_Blood",edtSignupBloodGrp.getText().toString());
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN,bundle);
                             break;
                     }
                 } else {

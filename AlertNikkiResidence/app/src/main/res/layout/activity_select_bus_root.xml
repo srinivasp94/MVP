@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txtSave"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
+
+        <include layout="@layout/common_header" />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvBusRoute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_4sdp">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txt_NoItems"
+            style="@style/DefaultCustomTextView"
+            android:gravity="center"
+            android:text="No Buses Available"
+            android:textSize="@dimen/_15sdp"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:id="@+id/txtSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:background="@drawable/black_corner_bg"
+        android:gravity="center"
+        android:padding="@dimen/_8sdp"
+        android:text="Save"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp" />
+</RelativeLayout>

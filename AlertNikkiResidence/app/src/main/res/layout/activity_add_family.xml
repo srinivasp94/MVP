@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.profile.AddFamilyActivity">
+
+    <include layout="@layout/common_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Name"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtfamilyName"
+            style="@style/customEdittext"
+            android:hint="Name" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Mobile Number"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtfamilyPhn"
+            style="@style/customEdittext"
+            android:hint="Mobile Number"
+            android:inputType="number" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Relation"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtRelation"
+            style="@style/customEdittext"
+            android:hint="brother, father...." />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            style="@style/DefaultCustomTextView"
+            android:text="*Blood Group"
+            android:textColor="@color/colorPrimary" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/edtBloodGrp"
+            style="@style/customEdittext"
+            android:hint="Member blood Group" />
+
+        <View style="@style/customView" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtaddsave"
+            style="@style/DefaultCustomTextView"
+            android:layout_marginLeft="@dimen/_55sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginRight="@dimen/_55sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@color/black"
+            android:gravity="center"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/addsave"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+
+    </LinearLayout>
+
+    <View style="@style/customView" />
+
+    <android.support.v7.widget.AppCompatTextView
+        style="@style/DefaultCustomTextView"
+        android:text="OR SELECT FROM"
+        android:textColor="@color/graydark" />
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/selectContact"
+        style="@style/DefaultCustomTextView"
+        android:drawableLeft="@drawable/ic_reload"
+        android:drawablePadding="@dimen/_8sdp"
+        android:gravity="center|left"
+        android:text="Contacts"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp" />
+
+    <View style="@style/customView" />
+
+</LinearLayout>

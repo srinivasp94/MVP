@@ -39,9 +39,9 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         super.setListenerToViews();
         layoutInviteGuests.setOnClickListener(this);
         layoutMyStaff.setOnClickListener(this);
-                layoutGateAlerts.setOnClickListener(this);
+        layoutGateAlerts.setOnClickListener(this);
         layoutSchoolBus.setOnClickListener(this);
-                layoutKidsGate.setOnClickListener(this);
+        layoutKidsGate.setOnClickListener(this);
         LayoutLocalServices.setOnClickListener(this);
     }
 
@@ -68,10 +68,10 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
                 break;
             case R.id.layoutGateAlerts:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
                 break;
             case R.id.layoutSchoolBus:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_SCREEN);
                 break;
             case R.id.layoutKidsGate:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);

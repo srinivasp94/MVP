@@ -3,13 +3,18 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.annotation.SuppressLint;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -106,14 +111,16 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txtInviteGuests:
-                iscontactsGranted = AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
+                /*iscontactsGranted = AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
                 if (iscontactsGranted)
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN);*/
+                showAlertForAddGuests();
                 break;
             case R.id.fab:
-                iscontactsGranted = AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
+                showAlertForAddGuests();
+                /*iscontactsGranted = AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
                 if (iscontactsGranted)
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN);*/
 
 
         }
@@ -187,7 +194,17 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     }
 
     private void callEditGuestDetailsWS(int pos) {
-        GuestEditReq req = new GuestEditReq();
+
+        Intent intent = new Intent(InviteGuestActivity.this, GuestEditActivity.class);
+        intent.putExtra("Key_id", "1");
+        intent.putExtra("Key_GuestId", guestsLists.get(pos).id);
+        intent.putExtra("Key_Name", guestsLists.get(pos).name);
+        intent.putExtra("Key_Mobile", guestsLists.get(pos).mobile);
+        intent.putExtra("Key_Vehicle", guestsLists.get(pos).vehicleNo);
+        startActivity(intent);
+        finish();
+
+       /* GuestEditReq req = new GuestEditReq();
         req.guestId = guestsLists.get(pos).id;
         req.name = guestsLists.get(pos).name;
         req.vehicleNo = guestsLists.get(pos).vehicleNo;
@@ -196,7 +213,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new RetrofitRequester(this).callPostServices(obj, 2, " edit_guest", true);
+        new RetrofitRequester(this).callPostServices(obj, 2, " edit_guest", true);*/
 
     }
 
@@ -218,6 +235,63 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:" + guestsLists.get(position).mobile));
         startActivity(callIntent);
+
+    }
+
+    private void showAlertForAddGuests() {
+        LayoutInflater inflater = LayoutInflater.from(InviteGuestActivity.this);
+//        getLayoutInflater().inflate(R.layout.alert_alerts,null);
+        View view1 = inflater.inflate(R.layout.alert_guests, null);
+
+        final AlertDialog alertDialog = new AlertDialog.Builder(InviteGuestActivity.this).create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setView(view1);
+//        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        alertDialog.setCancelable(true);
+
+        TextView contact, others;
+        contact = view1.findViewById(R.id.viewContact);
+        others = view1.findViewById(R.id.viewOthers);
+
+        contact.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onClick(View v) {
+                iscontactsGranted = AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
+                if (iscontactsGranted)
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PICK_CONTACT_SCREEN);
+                alertDialog.dismiss();
+            }
+        });
+        others.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("WrongConstant")
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN, bundle);
+                alertDialog.dismiss();
+            }
+        });
+        alertDialog.show();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GuestsReq req = new GuestsReq();
+
+        req.adminId = "2";
+        req.otpSentType = "1";
+        req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
+        req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
+        try {
+            obj = Class.forName(GuestsReq.class.getName()).cast(req);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 1, "guests", true);
 
     }
 }

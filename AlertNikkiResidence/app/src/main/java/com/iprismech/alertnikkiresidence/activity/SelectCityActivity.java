@@ -1,14 +1,18 @@
 package com.iprismech.alertnikkiresidence.activity;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.CityListAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.response.City;
 import com.iprismech.alertnikkiresidence.response.CityList;
@@ -26,6 +30,9 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
     private CityListAdapter adapter;
     private ArrayList<CityList> cityLists = new ArrayList<>();
     private Object obj;
+    private TextView txtNoItems;
+    private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,20 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            sOtp = bundle.getString("Key_otp");
+            sName = bundle.getString("Key_Name");
+            sPhone = bundle.getString("Key_Mobile");
+            sMail = bundle.getString("Key_Email");
+            sPassword = bundle.getString("Key_Password");
+            sBlood = bundle.getString("Key_Blood");
+        }
+
+        txtNoItems = findViewById(R.id.txtNoItems);
+        listViewCity = findViewById(R.id.listview_city);
+
         try {
             obj = new Object();
         } catch (Exception e) {
@@ -77,6 +98,24 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                             if (cityLists != null && cityLists.size() > 0) {
                                 adapter = new CityListAdapter(SelectCityActivity.this, cityLists);
                                 listViewCity.setAdapter(adapter);
+                                listViewCity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @SuppressLint("WrongConstant")
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString("Key_CityId", cityLists.get(position).id);
+
+                                        bundle.putString("Key_Name",sName);
+                                        bundle.putString("Key_Mobile",sMail);
+                                        bundle.putString("Key_Email",sMail);
+                                        bundle.putString("Key_Password",sPassword);
+                                        bundle.putString("Key_Blood",sBlood);
+                                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
+                                    }
+                                });
+                            } else {
+                                txtNoItems.setVisibility(View.VISIBLE);
+                                listViewCity.setVisibility(View.GONE);
                             }
                             break;
                     }

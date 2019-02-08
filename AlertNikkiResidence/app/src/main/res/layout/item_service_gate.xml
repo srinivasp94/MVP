@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/rlItem"
+    android:padding="@dimen/_5sdp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/dummy"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_contact" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtServiceName"
+        style="@style/ItemDefaultCustomTextView"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_toRightOf="@+id/dummy"
+        android:padding="@dimen/_5sdp"
+        android:text="Service Name"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp" />
+
+    <View
+        android:layout_below="@+id/txtServiceName"
+        android:layout_toRightOf="@+id/dummy"
+        android:layout_marginLeft="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_2sdp"
+        style="@style/customView"/>
+
+
+</RelativeLayout>

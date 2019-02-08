@@ -34,13 +34,14 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     private ContactViewAdapter adapter;
     private RecyclerView rvSelectContact;
     private LinearLayoutManager manager;
-    private ArrayList<ContactModel> contactsList = new ArrayList<>();
+    ArrayList<ContactModel> contactsList;
+
     private RelativeLayout rlDateselect;
     private EditText edtdate;
     private LinearLayout InviteGuests;
     private Object obj;
 
-    int itemPosition= 0;
+    int itemPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +71,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-        final Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            contactsList = bundle.getParcelableArrayList("Key_Contacts");
-        }
-
+        contactsList = getIntent().getParcelableArrayListExtra("Key_Contacts");
         manager = new LinearLayoutManager(ViewInviteGuestActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -127,8 +124,9 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                     Common.showToast(ViewInviteGuestActivity.this, "Please Select Date");
                 } else {
                     ArrayList<Contact> list = new ArrayList<>();
-                    Contact contact = new Contact();
+                    Contact contact;
                     for (int i = 0; i < contactsList.size(); i++) {
+                        contact = new Contact();
                         contact.name = contactsList.get(i).getContactName();
                         contact.mobile = contactsList.get(i).getContactNumber();
                         contact.vehicleNo = contactsList.get(i).getVehiclenumber();
@@ -172,7 +170,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
-
+                            finish();
                             break;
                     }
                 } else {

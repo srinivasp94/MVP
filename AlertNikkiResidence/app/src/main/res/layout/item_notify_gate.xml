@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/_2sdp"
+        android:layout_margin="@dimen/_2sdp"
+        android:elevation="@dimen/_1sdp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgSErvicelogo"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_contact" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_toLeftOf="@+id/switcLayout"
+            android:layout_toRightOf="@+id/imgSErvicelogo"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txtServicepersonName"
+                style="@style/ItemDefaultCustomTextView"
+                android:text="person Name"
+                android:textSize="@dimen/_13sdp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txtServicepersonPhone"
+                style="@style/ItemDefaultCustomTextView"
+                android:text="000-000-000"
+                android:textSize="@dimen/_10sdp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txtServicevalid"
+                style="@style/ItemDefaultCustomTextView"
+                android:text="Valid till "
+                android:textSize="@dimen/_10sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/switcLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/_4sdp">
+
+            <Switch
+                android:id="@+id/switc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/imgEditOpt"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_contact" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

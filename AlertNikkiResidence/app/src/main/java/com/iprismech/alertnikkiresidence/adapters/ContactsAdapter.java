@@ -61,10 +61,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
                 contact.setContactChecked(cb.isChecked());
                 contactList.get(i).setContactChecked(cb.isChecked());
 
-                Toast.makeText(
+              /*  Toast.makeText(
                         v.getContext(),
                         "Clicked on Checkbox: " + cb.getText() + " is "
-                                + cb.isChecked(), Toast.LENGTH_LONG).show();
+                                + cb.isChecked(), Toast.LENGTH_LONG).show();*/
             }
         });
 

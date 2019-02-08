@@ -18,13 +18,14 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.SplashScreenActivity">
-           <!-- <intent-filter>
+
+            <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
                     android:theme="@style/AppTheme.NoActionBar" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity android:name=".activity.IntroScreensActivity" />
         <activity android:name=".activity.LoginActivity" />
@@ -36,21 +37,35 @@
         <activity android:name=".activity.ViewInviteGuestActivity" />
         <activity android:name=".activity.GuestEditActivity" />
         <activity android:name=".activity.SelectCityActivity" />
-        <activity android:name=".activity.SelectSocietyActivity"></activity>
-
+        <activity android:name=".activity.SelectSocietyActivity" />
         <activity android:name=".activity.AddStaffActivity" />
         <activity android:name=".activity.ChooseMaidActivity" />
         <activity android:name=".activity.MyStaffAlerts" />
         <activity android:name=".activity.StaffProfileActivity" />
-        <activity android:name=".activity.StaffStandardTimingActivity" >
-            <intent-filter>
+        <activity android:name=".activity.StaffStandardTimingActivity" />
+        <activity android:name=".activity.notifygate.NotifyGateMainActivity" />
+        <activity android:name=".activity.notifygate.GateServicesActivity" />
+        <activity android:name=".activity.notifygate.EditGateAlertActivity" />
+        <activity android:name=".activity.schoolbus.SchoolBus_MainActivity" />
+        <activity android:name=".activity.schoolbus.SelectSchoolActivity" />
+        <activity android:name=".activity.schoolbus.BusRouteActivity" />
+        <activity android:name=".activity.schoolbus.AddBusActivity" />
+        <activity android:name=".activity.schoolbus.BushistoryActivity" />
+        <activity android:name=".activity.profile.ProfileActivity">
+<!--            <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
                     android:theme="@style/AppTheme.NoActionBar" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
+        <activity android:name=".activity.profile.FamilyMembersActivity" />
+        <activity android:name=".activity.profile.AddFamilyActivity" />
+        <activity android:name=".activity.profile.ContactSingleActivity"></activity>
+
+        <activity android:name=".activity.SelectBuildingActvity"></activity>
+        <activity android:name=".activity.SelectFlatActivity"></activity>
     </application>
 
 </manifest>

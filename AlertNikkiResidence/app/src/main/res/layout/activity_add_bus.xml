@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.schoolbus.AddBusActivity">
+
+    <include layout="@layout/common_header" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="*School Name"
+                android:textColor="@color/colorPrimary" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtSclName"
+                style="@style/customEdittext"
+                android:hint="School Name" />
+
+            <View style="@style/customView" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="*School Address"
+                android:textColor="@color/colorPrimary" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtSclAddress"
+                style="@style/customEdittext"
+                android:hint="Address " />
+
+            <View style="@style/customView" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="*School LandLine Number"
+                android:textColor="@color/colorPrimary" />
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/edtLandLine"
+                style="@style/customEdittext"
+                android:hint="School LandLine Number"
+                android:maxLength="11" />
+
+            <View style="@style/customView" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/busRequest"
+                style="@style/DefaultCustomTextView"
+                android:layout_margin="@dimen/_55sdp"
+                android:background="@color/black"
+                android:gravity="center"
+                android:padding="@dimen/_6sdp"
+                android:text="Request"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

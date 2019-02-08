@@ -14,31 +14,53 @@ import com.iprismech.alertnikkiresidence.activity.MyStaffAlerts;
 import com.iprismech.alertnikkiresidence.activity.OtpVerificationActivity;
 import com.iprismech.alertnikkiresidence.activity.PasscodeActivity;
 import com.iprismech.alertnikkiresidence.activity.PickContactsActivity;
+import com.iprismech.alertnikkiresidence.activity.SelectBuildingActvity;
 import com.iprismech.alertnikkiresidence.activity.SelectCityActivity;
+import com.iprismech.alertnikkiresidence.activity.SelectFlatActivity;
 import com.iprismech.alertnikkiresidence.activity.SelectSocietyActivity;
 import com.iprismech.alertnikkiresidence.activity.SignupActivity;
 import com.iprismech.alertnikkiresidence.activity.SplashScreenActivity;
 import com.iprismech.alertnikkiresidence.activity.StaffProfileActivity;
 import com.iprismech.alertnikkiresidence.activity.StaffStandardTimingActivity;
 import com.iprismech.alertnikkiresidence.activity.ViewInviteGuestActivity;
+import com.iprismech.alertnikkiresidence.activity.notifygate.EditGateAlertActivity;
+import com.iprismech.alertnikkiresidence.activity.notifygate.GateServicesActivity;
+import com.iprismech.alertnikkiresidence.activity.notifygate.NotifyGateMainActivity;
+import com.iprismech.alertnikkiresidence.activity.schoolbus.AddBusActivity;
+import com.iprismech.alertnikkiresidence.activity.schoolbus.BusRouteActivity;
+import com.iprismech.alertnikkiresidence.activity.schoolbus.BushistoryActivity;
+import com.iprismech.alertnikkiresidence.activity.schoolbus.SchoolBus_MainActivity;
+import com.iprismech.alertnikkiresidence.activity.schoolbus.SelectSchoolActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.ADD_BUS_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.ADD_FAMILY_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.ADD_STAFF_SCREEN;
 
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.BUS_HISTORY_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.BUS_ROUTE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.CHOOSE_MAID_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.EDIT_GATE_SERVICE;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.EDIT_GUEST_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.FAMILY_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.GATE_SERVICE;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.INTRO_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.INVITE_GUEST_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.LOGIN_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAIN_NOTIFY_GATE;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MAIN_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MYSTAFF_ALERTS_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OONTACT_SINGLE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PASSCODE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PICK_CONTACT_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.PROFILE_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SCHOOL_BUS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_BUILDING_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_BUS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_CITY_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_FLAT_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.SELECT_SOCIETY_SCREEN;
@@ -64,7 +86,11 @@ public class ViewFactory {
     @IntDef({SPLASH_SCREEN, INTRO_SCREEN, MAIN_SCREEN, LOGIN_SCREEN, SIGNUP_SCREEN, OTPVERIFICATION_SCREEN,
             PASSCODE_SCREEN, INVITE_GUEST_SCREEN, PICK_CONTACT_SCREEN, VIEW_INVITE_GUEST_SCREEN,
             EDIT_GUEST_SCREEN, SELECT_CITY_SCREEN, SELECT_SOCIETY_SCREEN, SELECT_BUILDING_SCREEN,
-            SELECT_FLAT_SCREEN, CHOOSE_MAID_SCREEN, ADD_STAFF_SCREEN, MYSTAFF_ALERTS_SCREEN, STAFF_PROFILE_SCREEN, STANDARD_TIMINGS_SCREEN})
+            SELECT_FLAT_SCREEN, CHOOSE_MAID_SCREEN, ADD_STAFF_SCREEN, MYSTAFF_ALERTS_SCREEN, STAFF_PROFILE_SCREEN, STANDARD_TIMINGS_SCREEN,
+            MAIN_NOTIFY_GATE, GATE_SERVICE, EDIT_GATE_SERVICE,
+            SCHOOL_BUS_SCREEN, SELECT_BUS_SCREEN, BUS_ROUTE_SCREEN, ADD_BUS_SCREEN, BUS_HISTORY_SCREEN,
+            PROFILE_SCREEN, FAMILY_SCREEN, ADD_FAMILY_SCREEN, OONTACT_SINGLE_SCREEN,
+    })
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -89,6 +115,22 @@ public class ViewFactory {
         int MYSTAFF_ALERTS_SCREEN = 1018;
         int STAFF_PROFILE_SCREEN = 1019;
         int STANDARD_TIMINGS_SCREEN = 1020;
+
+        int MAIN_NOTIFY_GATE = 1090;
+        int GATE_SERVICE = 1091;
+        int EDIT_GATE_SERVICE = 1092;
+
+
+        int SCHOOL_BUS_SCREEN = 1094;
+        int SELECT_BUS_SCREEN = 1095;
+        int BUS_ROUTE_SCREEN = 1096;
+        int ADD_BUS_SCREEN = 1097;
+        int BUS_HISTORY_SCREEN = 1098;
+
+        int PROFILE_SCREEN = 1200;
+        int FAMILY_SCREEN = 1201;
+        int ADD_FAMILY_SCREEN = 1202;
+        int OONTACT_SINGLE_SCREEN = 1203;
 
 
     }
@@ -144,9 +186,9 @@ public class ViewFactory {
             case SELECT_SOCIETY_SCREEN:
                 return SelectSocietyActivity.class;
             case SELECT_BUILDING_SCREEN:
-                return GuestEditActivity.class;
+                return SelectBuildingActvity.class;
             case SELECT_FLAT_SCREEN:
-                return GuestEditActivity.class;
+                return SelectFlatActivity.class;
             case CHOOSE_MAID_SCREEN:
                 return ChooseMaidActivity.class;
             case ADD_STAFF_SCREEN:
@@ -158,6 +200,24 @@ public class ViewFactory {
 
             case STANDARD_TIMINGS_SCREEN:
                 return StaffStandardTimingActivity.class;
+
+            case MAIN_NOTIFY_GATE:
+                return NotifyGateMainActivity.class;
+            case GATE_SERVICE:
+                return GateServicesActivity.class;
+            case EDIT_GATE_SERVICE:
+                return EditGateAlertActivity.class;
+
+            case SCHOOL_BUS_SCREEN:
+                return SchoolBus_MainActivity.class;
+            case SELECT_BUS_SCREEN:
+                return SelectSchoolActivity.class;
+            case BUS_ROUTE_SCREEN:
+                return BusRouteActivity.class;
+            case ADD_BUS_SCREEN:
+                return AddBusActivity.class;
+            case BUS_HISTORY_SCREEN:
+                return BushistoryActivity.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }
