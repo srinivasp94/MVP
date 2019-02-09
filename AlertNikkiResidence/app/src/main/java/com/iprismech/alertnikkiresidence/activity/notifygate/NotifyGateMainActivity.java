@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +41,16 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
     private ArrayList<NotifyGateList> gateLists = new ArrayList<>();
     private NotifyFGateAdapter notifyFGateAdapter;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +69,9 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
         super.setListenerToViews();
         txtNotify.setOnClickListener(this);
         fab.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -67,6 +81,12 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
 
         manager = new LinearLayoutManager(NotifyGateMainActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        txtitle = findViewById(R.id.txtitle);
+
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Notify Gate");
+
 
         ll_gateAlerts = findViewById(R.id.llGateAlerts);
         rl_listItems = findViewById(R.id.relativeListitems);
@@ -105,6 +125,10 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
             case R.id.fab:
                 //Navigete to services
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_GATE_SERVICE);
+                break;
+            case R.id.imgClose:
+
+                onBackPressed();
                 break;
         }
     }

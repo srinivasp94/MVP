@@ -3,79 +3,76 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-
-
-    <LinearLayout
-        android:id="@+id/ll_kid"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_alignParentStart="true"
-
-        android:layout_marginHorizontal="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_75sdp"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/white_bg_corner"
-        android:orientation="vertical">
-
-
-        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Jon Doe"
-             />
-
-        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="Pass Code"
-            android:gravity="center"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textSize="@dimen/_12sdp" />
-
-
-
-        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:text="Blood Group-'O'+ve"
-         />
-
-        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-            android:id="@+id/gate_pass_scott_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="101, Block A,Ayyappa Society"
-            android:maxLines="1"
-            android:gravity="center"
-            android:singleLine="true"
-            android:textSize="@dimen/_12sdp" />
-
-
-
-       <ImageView
-           android:layout_width="match_parent"
-           android:layout_height="@dimen/_180sdp"
-           android:src="@drawable/dummy"/>
-
-    </LinearLayout>
-
     <ImageView
         android:id="@+id/kid_icon"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
         android:layout_alignBaseline="@+id/ll_kid"
-
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
         android:src="@drawable/dummy" />
+
+    <LinearLayout
+        android:id="@+id/ll_kid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_75sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/white_bg_corner"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+            android:id="@+id/tzxtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center"
+            android:text="Jon Doe" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:id="@+id/txtPasscode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="Pass Code"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="@dimen/_12sdp" />
+
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+            android:id="@+id/txtBlood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="Blood Group-'O'+ve" />
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+            android:id="@+id/txtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="101, Block A,Ayyappa Society"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textSize="@dimen/_12sdp" />
+
+
+        <ImageView
+            android:id="@+id/imgQrcode"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_160sdp"
+            android:padding="@dimen/_10sdp"
+            android:src="@drawable/dummy" />
+
+    </LinearLayout>
 
 
 </RelativeLayout>

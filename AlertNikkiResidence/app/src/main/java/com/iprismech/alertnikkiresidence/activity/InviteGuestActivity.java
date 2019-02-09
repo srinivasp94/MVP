@@ -15,6 +15,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -52,6 +53,16 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     private ArrayList<GuestsList> guestsLists = new ArrayList<>();
     private int itemPosition;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +90,12 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Invite Guest");
+        imgClose.setOnClickListener(this);
+
         manager = new LinearLayoutManager(InviteGuestActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
@@ -110,6 +127,9 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.txtInviteGuests:
                 /*iscontactsGranted = AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
                 if (iscontactsGranted)

@@ -16,7 +16,7 @@
         android:src="@drawable/leftarrow_white" />
 
     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:id="@+id/txttitle"
+        android:id="@+id/txtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"

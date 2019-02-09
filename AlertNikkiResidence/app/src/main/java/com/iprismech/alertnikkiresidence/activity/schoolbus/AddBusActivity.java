@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -22,6 +23,16 @@ public class AddBusActivity extends BaseAbstractActivity implements RetrofitResp
     private TextView busRequest;
     private Object obj;
     private String sclName, address, landline;
+
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +55,7 @@ public class AddBusActivity extends BaseAbstractActivity implements RetrofitResp
     protected void setListenerToViews() {
         super.setListenerToViews();
         busRequest.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +67,10 @@ public class AddBusActivity extends BaseAbstractActivity implements RetrofitResp
         edtSclAddress = findViewById(R.id.edtSclAddress);
         edtLandLine = findViewById(R.id.edtLandLine);
         busRequest = findViewById(R.id.busRequest);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Add Bus");
 
 
     }
@@ -87,6 +103,9 @@ public class AddBusActivity extends BaseAbstractActivity implements RetrofitResp
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.busRequest:
 
                 sclName = edtSclName.getText().toString();

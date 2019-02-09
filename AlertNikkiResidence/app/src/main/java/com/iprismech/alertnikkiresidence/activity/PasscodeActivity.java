@@ -27,6 +27,9 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
     private EditText edtPasscode;
     private Object obj;
     private SharedPrefsUtils utils;
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
 
 
     @Override
@@ -50,14 +53,17 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
         super.setListenerToViews();
         imgBack.setOnClickListener(this);
         btnLoginWithPasscode.setOnClickListener(this);
+        imgBack.setOnClickListener(this);
     }
 
     @Override
     protected void initializeViews() {
+
         super.initializeViews();
         utils = new SharedPrefsUtils(PasscodeActivity.this);
         title = findViewById(R.id.textTitle);
         imgBack = findViewById(R.id.imgClose);
+        title.setText("Passcode");
         btnLoginWithPasscode = findViewById(R.id.btnLoginWithPasscode);
         edtPasscode = findViewById(R.id.edtPasscode);
     }
@@ -65,6 +71,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
             case R.id.btnLoginWithPasscode:
                 if (edtPasscode.getText().toString().length() == 0) {
                     Common.showToast(PasscodeActivity.this, "Please Enter Passcode");

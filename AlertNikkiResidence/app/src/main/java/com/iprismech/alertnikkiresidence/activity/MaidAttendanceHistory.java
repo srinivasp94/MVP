@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -16,10 +17,24 @@ import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListene
 public class MaidAttendanceHistory extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private FragmentManager fragmentManager;
     private TextView tv_weekly, tv_monthly;
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.tv_weekly:
 
                 final int sdk = android.os.Build.VERSION.SDK_INT;
@@ -79,6 +94,11 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
     @Override
     protected void initializeViews() {
         super.initializeViews();
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Maid Attendence");
+        imgClose.setOnClickListener(this);
 
         String maid_id = getIntent().getExtras().getString("maid_id", "");
         tv_weekly = findViewById(R.id.tv_weekly);

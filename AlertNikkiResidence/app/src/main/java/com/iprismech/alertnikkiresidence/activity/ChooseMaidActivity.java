@@ -3,6 +3,8 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -25,9 +27,25 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
     private ChooseMaidPojo chooseMaidPojo;
     private LinearLayoutManager manager;
     private RetrofitResponseListener retrofitResponseListener;
+
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
 
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override
@@ -35,6 +53,10 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
         super.initializeViews();
         retrofitResponseListener=this;
         rview_choosemaid = findViewById(R.id.rview_choose_maid);
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Choose Maid");
+        imgClose.setOnClickListener(this);
 
         String service_id = getIntent().getExtras().getString("ServiceID");
 

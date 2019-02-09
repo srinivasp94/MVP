@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -24,6 +25,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class GateServicesActivity extends BaseAbstractActivity implements RetrofitResponseListener {
+    private ImageView imgClose;
+    private TextView txtitle;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     private RecyclerView rv_services;
     private LinearLayoutManager manager;
     private Object obj;
@@ -50,12 +60,23 @@ public class GateServicesActivity extends BaseAbstractActivity implements Retrof
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Notify Gate Services");
 
         rv_services = findViewById(R.id.rv_services);
         txt_NoItems = findViewById(R.id.txt_NoItems);
@@ -120,4 +141,5 @@ public class GateServicesActivity extends BaseAbstractActivity implements Retrof
 
         }
     }
+
 }

@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,9 +15,25 @@ public class ContactUsActivtiy extends BaseAbstractActivity implements View.OnCl
     private LinearLayout ll_make_call_contact_us;
     private TextView tv_number_contact_us;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override
@@ -24,7 +41,10 @@ public class ContactUsActivtiy extends BaseAbstractActivity implements View.OnCl
         super.initializeViews();
         ll_make_call_contact_us = findViewById(R.id.ll_make_call_contact_us);
         tv_number_contact_us = findViewById(R.id.tv_number_contact_us);
-
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Contact Us");
+        imgClose.setOnClickListener(this);
 
         ll_make_call_contact_us.setOnClickListener(new View.OnClickListener() {
             @Override

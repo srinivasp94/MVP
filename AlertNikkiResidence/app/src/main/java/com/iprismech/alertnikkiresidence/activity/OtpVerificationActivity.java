@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
@@ -18,6 +19,17 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     private TextView verifyotp_btn;
     private String otp = "";
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
+
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +59,12 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
         super.initializeViews();
         txt_pin_entry = findViewById(R.id.txt_pin_entry);
         verifyotp_btn = findViewById(R.id.verifyotp_btn);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("OTP Verification");
+        imgClose.setOnClickListener(this);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             sOtp = bundle.getString("Key_otp");
@@ -68,6 +86,10 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.verifyotp_btn:
                 if (otp.length() == 0 || otp.equalsIgnoreCase("")) {
                     Common.showToast(OtpVerificationActivity.this, "Please enter Otp.");

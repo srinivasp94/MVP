@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -30,9 +32,23 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
     private DailyHelpsAdapter daily_helps_adapter;
     private RetrofitResponseListener retrofitResponseListener;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override
@@ -57,8 +73,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                 String jsonString = gson.toJson(objectResponse);
                 dailyHelpsListPojo = gson.fromJson(jsonString, DailyHelpsListPojo.class);
                 JSONObject jsonObject = new JSONObject(jsonString);
-                if (jsonObject.optBoolean("status"))
-                {
+                if (jsonObject.optBoolean("status")) {
                     daily_helps_adapter = new DailyHelpsAdapter(AddStaffActivity.this, dailyHelpsListPojo);
                     gv_daily_helps.setAdapter(daily_helps_adapter);
                     gv_daily_helps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,7 +102,11 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
         ApplicationController.getInstance().setContext(context);
 
         gv_daily_helps = findViewById(R.id.gv_daily_helps_list);
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Add Staff");
 
+        imgClose.setOnClickListener(this);
 
         DailyHelpsList dailyHelpsReq = new DailyHelpsList();
 

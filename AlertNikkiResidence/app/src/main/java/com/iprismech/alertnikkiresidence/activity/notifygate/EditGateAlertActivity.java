@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.activity.notifygate;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -19,10 +20,12 @@ import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 import org.json.JSONObject;
 
 public class EditGateAlertActivity extends BaseAbstractActivity implements RetrofitResponseListener, View.OnClickListener {
+    private ImageView imgClose;
+    private TextView txtitle;
     private EditText edtServiceType, edtPersonName, edtPhone, edtValidHours;
     private TextView notifyGate;
     private Object obj;
-    private String serviceName, serviceId,screen, gateId,
+    private String serviceName, serviceId, screen, gateId,
             Name = "", Mobile = "", Valid = "";
 
     @Override
@@ -46,6 +49,7 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
     protected void setListenerToViews() {
         super.setListenerToViews();
         notifyGate.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +67,9 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
             Mobile = bundle.getString("Key_Mobile", "");
             Valid = bundle.getString("Key_Valid", "");
         }
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Edit Notify Gate");
 
         notifyGate = findViewById(R.id.notifyGate);
         edtServiceType = findViewById(R.id.edtServiceType);
@@ -90,7 +97,7 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                     Common.showToast(EditGateAlertActivity.this, "Enter Name");
                 } else if (strPhone.length() == 0 || strPhone.length() < 10) {
                     Common.showToast(EditGateAlertActivity.this, "Enter Mobile");
-                } else if (strValidTill.length()==0) {
+                } else if (strValidTill.length() == 0) {
                     Common.showToast(EditGateAlertActivity.this, "Enter Valid till ");
                 } else if (screen.equalsIgnoreCase("2")) {
                     //edit_notify_gate_alert
@@ -127,6 +134,9 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
 
                 }
                 break;
+            case R.id.imgClose:
+                onBackPressed();
+                break;
         }
     }
 
@@ -159,4 +169,9 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 }

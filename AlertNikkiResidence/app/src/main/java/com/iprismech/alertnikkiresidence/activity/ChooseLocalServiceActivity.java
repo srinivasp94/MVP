@@ -3,6 +3,8 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -24,9 +26,25 @@ public class ChooseLocalServiceActivity extends BaseAbstractActivity implements 
     private Object obj;
     private LocalServicesListPojo localServicesListPojo;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override
@@ -41,6 +59,11 @@ public class ChooseLocalServiceActivity extends BaseAbstractActivity implements 
         layoutManager = new LinearLayoutManager(ChooseLocalServiceActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Choose Local Services");
+
+        imgClose.setOnClickListener(this);
 
         LocalServicesListRequest req = new LocalServicesListRequest();
         req.adminId = "2";

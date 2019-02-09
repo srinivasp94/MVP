@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -40,6 +41,17 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
     ArrayList<FamilyList> familyLists = new ArrayList<>();
     private FamilyAdapter familyAdapter;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +74,8 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
         super.setListenerToViews();
         txtAddFamily.setOnClickListener(this);
         fab.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
+
     }
 
     @Override
@@ -71,6 +85,9 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
 
         layoutManager = new LinearLayoutManager(FamilyMembersActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Family Members");
 
         linearLayout = findViewById(R.id.lLayout);
         relativeLayout = findViewById(R.id.rLayoutSchools);
@@ -135,6 +152,9 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
             case R.id.fab:
                 Bundle bundle1 = new Bundle();
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN,bundle1);
+                break;
+            case R.id.imgClose:
+                onBackPressed();
                 break;
         }
     }

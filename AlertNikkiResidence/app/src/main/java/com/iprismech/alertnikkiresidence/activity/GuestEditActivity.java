@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -34,6 +35,18 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
     private int position = 0;
     private Object obj;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +68,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
     protected void setListenerToViews() {
         super.setListenerToViews();
         txtSave.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
         edtVehicle1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -132,6 +146,12 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
             guestName = bundle.getString("Key_Name", "");
             guestPhn = bundle.getString("Key_Mobile", "");
         }
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Guest");
+
+
         edtName = findViewById(R.id.edtname);
         edtMobile = findViewById(R.id.edtMobileNumber);
         edtDate = findViewById(R.id.edtDate);
@@ -157,7 +177,11 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.txtSave:
+
                 if (screenid.equalsIgnoreCase("1")) {
                     GuestEditReq req = new GuestEditReq();
                     req.guestId = guestId;

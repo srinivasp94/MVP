@@ -13,7 +13,9 @@ import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -34,6 +36,15 @@ public class PickContactsActivity extends BaseAbstractActivity implements View.O
     private ArrayList<ContactModel> contactList = new ArrayList<>();
     private ContactsAdapter adapter;
     RelativeLayout llInvite;
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +73,11 @@ public class PickContactsActivity extends BaseAbstractActivity implements View.O
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
 
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Contacts");
+        imgClose.setOnClickListener(this);
+
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         llInvite = findViewById(R.id.llInvite);
@@ -75,6 +91,9 @@ public class PickContactsActivity extends BaseAbstractActivity implements View.O
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.llInvite:
                 ArrayList<ContactModel> contactSelected = new ArrayList<>();
                 for (int i = 0; i < contactList.size(); i++) {

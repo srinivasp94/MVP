@@ -38,6 +38,7 @@ public class SharedPrefsUtils {
 
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_PROFILE_PIC = "profile_image";
+    public static final String KEY_QRCODE= "qrcode";
     public static final String KEY_TOKEN = "token_id";
 
     //user type =1/2

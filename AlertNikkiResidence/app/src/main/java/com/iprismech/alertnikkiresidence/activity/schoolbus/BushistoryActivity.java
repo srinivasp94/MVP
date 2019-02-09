@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -29,6 +31,14 @@ public class BushistoryActivity extends BaseAbstractActivity implements Retrofit
     RecyclerView rv_expandable;
     ArrayList<WeeklyHistory> list = new ArrayList<>();
     private Object obj;
+    private ImageView imgClose;
+    private TextView txtitle;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +61,21 @@ public class BushistoryActivity extends BaseAbstractActivity implements Retrofit
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Bus History");
         rv_expandable = findViewById(R.id.rv_expandable);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(BushistoryActivity.this);

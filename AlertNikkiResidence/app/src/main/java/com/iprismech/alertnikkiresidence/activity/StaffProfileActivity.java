@@ -82,11 +82,24 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
     private int i;
     private RecyclerView rcvuploadimages;
     List<DigitalPassRequest.ImageItems> imageIt = new ArrayList<>();
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.ll_make_call:
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:" + staffprofilePojo.getResponse().getMobile()));
@@ -246,6 +259,11 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
         retrofitResponseListener = this;
         maid_id = getIntent().getExtras().getString("maid_id");
         user_maid_id = getIntent().getExtras().getString("user_maid_id");
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Staff Profile");
+        imgClose.setOnClickListener(this);
 
         tv_satff_name = findViewById(R.id.tv_staff_name);
         tv_staff_type = findViewById(R.id.tv_staff_type);

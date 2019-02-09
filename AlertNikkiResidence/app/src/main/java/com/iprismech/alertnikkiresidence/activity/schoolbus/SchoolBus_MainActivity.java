@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -42,6 +43,15 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
     private SchoolBusInfoAdapter busInfoAdapter;
     LinearLayoutManager layoutManager;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +73,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
         super.setListenerToViews();
         fab.setOnClickListener(this);
         txtbusAlerts.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
     }
 
     @Override
@@ -71,6 +82,10 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
         ApplicationController.getInstance().setContext(context);
         layoutManager = new LinearLayoutManager(SchoolBus_MainActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("School Bus");
 
         linearLayout = findViewById(R.id.lLayout);
         relativeLayout = findViewById(R.id.rLayoutSchools);
@@ -102,6 +117,10 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                 break;
             case R.id.txtBus:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_BUS_SCREEN);
+                break;
+
+            case R.id.imgClose:
+                onBackPressed();
                 break;
         }
     }

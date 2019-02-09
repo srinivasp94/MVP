@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -33,6 +34,17 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
     private BusRoutesAdapter routesAdapter;
     TextView txt_NoItems, txtSave;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +70,14 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
 //                saveBusRouteWS();
             }
         });
+
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
     private void saveBusRouteWS(String routeID) {
@@ -79,6 +99,10 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Bus Routes");
 
         layoutManager = new LinearLayoutManager(BusRouteActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -5,13 +5,21 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/layoutheader"
+        layout="@layout/common_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:layout_below="@+id/layoutheader"
         android:background="@color/white"
         app:tabGravity="fill"
-        android:layout_alignParentTop="true"
         app:tabMode="fixed">
 
     </android.support.design.widget.TabLayout>
@@ -28,9 +36,9 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
-        android:layout_below="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/tabLayout"
         android:layout_margin="@dimen/_2sdp"
         android:background="@color/mainbackground"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />

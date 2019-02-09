@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -27,6 +28,20 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
     private String name, phn, realtion, bldGrp;
     private Object obj;
     private String strName = "", strNumber = "";
+
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
 
@@ -51,6 +66,9 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
         super.setListenerToViews();
         selectContact.setOnClickListener(this);
         txtaddsave.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
+
+
     }
 
     @Override
@@ -63,6 +81,9 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
             strNumber = bundle.getString("Key_Number", "");
 
         }
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Add Fammily ");
 
         selectContact = findViewById(R.id.selectContact);
         txtaddsave = findViewById(R.id.txtaddsave);
@@ -82,6 +103,9 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.txtaddsave:
                 name = edtfamilyName.getText().toString();
                 phn = edtfamilyPhn.getText().toString();

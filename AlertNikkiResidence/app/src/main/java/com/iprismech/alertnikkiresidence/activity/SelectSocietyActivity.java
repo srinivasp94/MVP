@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SelectSocietyActivity extends BaseAbstractActivity implements RetrofitResponseListener {
+public class SelectSocietyActivity extends BaseAbstractActivity implements RetrofitResponseListener, View.OnClickListener {
 
     private ListView listViewCity;
     private SocietyListAdapter adapter;
@@ -34,7 +35,16 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
     private TextView txtNoItems;
     private String id;
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
+    private ImageView imgClose;
+    private 	TextView txtitle;
 
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +81,10 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
             sPassword = bundle.getString("Key_Password");
             sBlood = bundle.getString("Key_Blood");
         }
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Select Society");
+        imgClose.setOnClickListener(this);
 
         txtNoItems = findViewById(R.id.txtNoItems);
         listViewCity = findViewById(R.id.listview_city);
@@ -133,6 +147,16 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
                 e.printStackTrace();
             }
 
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.imgClose:
+                onBackPressed();
+                break;
         }
     }
 }

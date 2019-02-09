@@ -6,6 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
@@ -19,15 +21,34 @@ import java.util.List;
 public class VisitorsHistoryActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Visitors History");
+        imgClose.setOnClickListener(this);
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager = findViewById(R.id.viewpager);

@@ -23,7 +23,7 @@
                 android:layout_width="@dimen/_50sdp"
                 android:layout_height="@dimen/_50sdp"
                 android:padding="@dimen/_10sdp"
-                android:src="@drawable/dummy" />
+                android:src="@drawable/ic_menu" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="0dp"
@@ -39,7 +39,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center"
                 android:padding="@dimen/_8sdp"
-                android:src="@drawable/dummy" />
+                android:src="@drawable/ic_notofocation" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,7 +71,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/ic_invite_guest" />
 
                     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/ic_staff" />
 
                     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -134,7 +134,8 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
-                android:background="@color/white"
+
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="@dimen/_15sdp">
 
                 <LinearLayout
@@ -148,7 +149,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/ic_notify_gate" />
 
                     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -167,7 +168,7 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
-                android:background="@color/white"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="@dimen/_15sdp">
 
                 <LinearLayout
@@ -181,7 +182,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/ic_school_bus" />
 
                     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -209,7 +210,7 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
-                android:background="@color/white"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="@dimen/_15sdp">
 
                 <LinearLayout
@@ -223,7 +224,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/ic_kids_gate" />
 
                     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"
@@ -242,7 +243,7 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
-                android:background="@color/white"
+                app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="@dimen/_15sdp">
 
                 <LinearLayout
@@ -256,7 +257,7 @@
                         android:layout_height="@dimen/_50sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:src="@drawable/dummy" />
+                        android:src="@drawable/ic_local_services" />
 
                     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                         android:layout_width="wrap_content"

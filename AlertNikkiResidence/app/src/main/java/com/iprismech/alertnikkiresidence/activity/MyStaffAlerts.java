@@ -81,10 +81,25 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private int i;
     private RecyclerView rcvuploadimages;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.txtAddStaff:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
                 break;
@@ -97,6 +112,11 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     @Override
     protected void initializeViews() {
         super.initializeViews();
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("My Staff alerts");
+        imgClose.setOnClickListener(this);
 
         retrofitResponseListener = this;
         ApplicationController.getInstance().setContext(context);

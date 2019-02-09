@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,16 +36,27 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
     // ArrayList<StandardMaidTimingPojo.ResponseBean> list = new ArrayList<>();
     ArrayList<String> list = new ArrayList<>();
     String working_type, maid_id, start_date, end_date;
-//    getSelectedSlots
+    //    getSelectedSlots
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.txtAddSlots:
                 list = slotAdapter.getSelectedSlots();
                 if (list != null && list.size() > 0) {
 //intent pass here or service call here
-
 
                     AddStaffMaidRequest req = new AddStaffMaidRequest();
                     req.adminId = "2";
@@ -88,6 +100,10 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Staff Timings");
+        imgClose.setOnClickListener(this);
         gv_timeslots = findViewById(R.id.gv_timeslots);
         txtAddSlots = findViewById(R.id.txtAddSlots);
 

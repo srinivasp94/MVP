@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -22,13 +24,23 @@ import com.iprismech.alertnikkiresidence.utilities.Common;
 
 import org.json.JSONObject;
 
-public class SelectFlatActivity extends AppCompatActivity implements RetrofitResponseListener {
+public class SelectFlatActivity extends AppCompatActivity implements RetrofitResponseListener, View.OnClickListener {
     private RecyclerView rview;
     private Object obj;
     private FlatPojo flatPojo;
     private String adminId, buildingid, societyId;
 
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +60,11 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
             sPassword = bundle.getString("Key_Password");
             sBlood = bundle.getString("Key_Blood");
         }
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Select Falt");
+        imgClose.setOnClickListener(this);
+
         rview = findViewById(R.id.rview_selectbuilding);
 //        String buildingid = (String) getIntent().getExtras().get("building_id");
 //        String adminId = (String) getIntent().getExtras().get("building_id");
@@ -150,5 +167,15 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
 
         //  Common.commonLogs(SelectBuildingActvity.this,title+ " and "+ buildingid);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -49,9 +50,21 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     private Object obj;
     List<String> stringList = new ArrayList<>();
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.ll_select_days:
                 DaysSelction cdd = new DaysSelction(context, this);
                 cdd.show();
@@ -227,6 +240,12 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 
         screen_type = getIntent().getExtras().getString("screen", "");
         kid_id = getIntent().getExtras().getString("kid_id", "");
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Add Kid");
+
+
         kid_name = findViewById(R.id.kid_name_add_kid);
         et_purpose = findViewById(R.id.kid_purpose_add);
         ll_select_days = findViewById(R.id.ll_select_days);
@@ -247,6 +266,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
         ll_kid_out_time.setOnClickListener(this);
         ll_kid_in_time.setOnClickListener(this);
         btn_add_save.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
 
     }
 

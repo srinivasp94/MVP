@@ -6,9 +6,9 @@
     android:background="@drawable/login_background"
     android:theme="@style/AppTheme.NoActionBar">
 
-    <ScrollView
+    <!--<ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content">-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -174,7 +174,7 @@
                     android:background="@color/red"></View>
             </LinearLayout>
         </LinearLayout>
-    </ScrollView>
+    <!--</ScrollView>-->
 
     <LinearLayout
         android:layout_width="@dimen/_200sdp"

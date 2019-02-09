@@ -3,6 +3,8 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -26,10 +28,26 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
     private int postion;
     private String from_case;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
 
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
     }
 
     @Override
@@ -81,6 +99,10 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
         from_case = getIntent().getExtras().getString("case");
         postion = getIntent().getExtras().getInt("position");
 
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Maids");
+        imgClose.setOnClickListener(this);
 
         rview_viewall = findViewById(R.id.rview_viewall);
         manager = new LinearLayoutManager(MaidViewAllAttandancesHistory.this);

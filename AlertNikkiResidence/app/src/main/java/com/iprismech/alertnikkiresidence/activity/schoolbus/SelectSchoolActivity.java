@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -35,6 +36,19 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
     private SelectSchoolAdapter schoolAdapter;
     FloatingActionButton fab;
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +70,9 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
     protected void setListenerToViews() {
         super.setListenerToViews();
         fab.setOnClickListener(this);
+
+        imgClose.setOnClickListener(this);
+
     }
 
     @Override
@@ -64,6 +81,10 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         ApplicationController.getInstance().setContext(context);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Select School");
 
 
         //search_school_bus
@@ -133,6 +154,10 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         switch (v.getId()) {
             case R.id.fab:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_BUS_SCREEN);
+                break;
+
+            case R.id.imgClose:
+                onBackPressed();
                 break;
         }
     }

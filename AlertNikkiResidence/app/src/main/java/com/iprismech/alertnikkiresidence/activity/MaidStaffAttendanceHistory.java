@@ -1,15 +1,35 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 
 public class MaidStaffAttendanceHistory extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
+
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
+
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
 
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
 
     }
 
@@ -23,6 +43,10 @@ public class MaidStaffAttendanceHistory extends BaseAbstractActivity implements 
     protected void initializeViews() {
 
         super.initializeViews();
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Maids");
+        imgClose.setOnClickListener(this);
     }
 
     @Override

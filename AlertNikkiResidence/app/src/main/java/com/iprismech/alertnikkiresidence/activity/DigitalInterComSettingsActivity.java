@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -28,6 +29,16 @@ public class DigitalInterComSettingsActivity extends BaseAbstractActivity implem
     private TextView tv_save;
     private RetrofitResponseListener retrofitResponseListener;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_digital_intercom, null);
@@ -42,6 +53,16 @@ public class DigitalInterComSettingsActivity extends BaseAbstractActivity implem
     @Override
     protected void initializeViews() {
         super.initializeViews();
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Digital Communication");
+        imgClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         retrofitResponseListener = this;
         et_primary_number = findViewById(R.id.et_primary);

@@ -75,11 +75,26 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
     private int mImageid, CAMERA_DOC = 100, GALLERY_DOC = 101;
     private String mTitle, base64profile = "";
 
+    private ImageView imgClose;
+    private 	TextView txtitle;
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 
     @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.txtAddKid:
                 Bundle bundle = new Bundle();
                 bundle.putString("screen", "Add kid");
@@ -104,6 +119,11 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Kids Gate");
+        imgClose.setOnClickListener(this);
 
         retrofitResponseListener = this;
         txtAddKid = findViewById(R.id.txtAddKid);

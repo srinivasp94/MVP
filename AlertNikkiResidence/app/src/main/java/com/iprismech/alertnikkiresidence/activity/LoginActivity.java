@@ -147,6 +147,7 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
                                 utils.setString(SharedPrefsUtils.KEY_FLAT_NAME, responseObj.optString("flat_name"));
                                 utils.setString(SharedPrefsUtils.KEY_PASSCODE, responseObj.optString("passcode"));
                                 utils.setString(SharedPrefsUtils.KEY_PROFILE_PIC, responseObj.optString("image"));
+                                utils.setString(SharedPrefsUtils.KEY_QRCODE, responseObj.optString("qrcode"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
                             } else if (responseObj.optInt("user_type") == 2) {
                                 //Family Member

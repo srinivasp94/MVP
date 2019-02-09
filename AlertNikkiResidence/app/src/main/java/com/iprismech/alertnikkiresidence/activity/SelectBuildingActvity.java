@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -23,7 +25,7 @@ import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
-public class SelectBuildingActvity extends BaseAbstractActivity implements RetrofitResponseListener {
+public class SelectBuildingActvity extends BaseAbstractActivity implements RetrofitResponseListener, View.OnClickListener {
     private RecyclerView rview_select_building;
     private Object obj;
     private BuildingsPojo buildingsPojo;
@@ -32,6 +34,16 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     private String society_id = "", adminId = "";
 
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -50,6 +62,11 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Select Building");
+        imgClose.setOnClickListener(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -145,4 +162,13 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.imgClose:
+                onBackPressed();
+                break;
+        }
+    }
 }

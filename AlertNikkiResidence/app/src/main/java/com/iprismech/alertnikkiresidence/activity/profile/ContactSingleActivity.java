@@ -13,7 +13,9 @@ import android.provider.ContactsContract;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -30,6 +32,14 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class ContactSingleActivity extends BaseAbstractActivity implements View.OnClickListener {
+    private ImageView imgClose;
+    private TextView txtitle;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +67,8 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
     protected void setListenerToViews() {
         super.setListenerToViews();
         llInvite.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
+
     }
 
     @Override
@@ -67,6 +79,9 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
         LinearLayoutManager manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         llInvite = findViewById(R.id.llInvite);
+        txtitle = findViewById(R.id.txtitle);
+        imgClose = findViewById(R.id.imgClose);
+        txtitle.setText("Contacts");
         llInvite.setVisibility(View.GONE);
         rv_contacts = findViewById(R.id.rv_contacts);
         rv_contacts.setLayoutManager(manager);
@@ -78,6 +93,9 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.llInvite:
                 ArrayList<ContactModel> contactSelected = new ArrayList<>();
                 for (int i = 0; i < contactList.size(); i++) {

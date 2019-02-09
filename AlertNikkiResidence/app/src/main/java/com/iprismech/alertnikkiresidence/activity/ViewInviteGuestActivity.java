@@ -8,8 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -42,6 +44,17 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     private Object obj;
 
     int itemPosition = 0;
+    private ImageView imgClose;
+    private TextView txtitle;
+
+
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +87,11 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
         contactsList = getIntent().getParcelableArrayListExtra("Key_Contacts");
         manager = new LinearLayoutManager(ViewInviteGuestActivity.this);
         manager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Guest");
+        imgClose.setOnClickListener(this);
 
         rvSelectContact = findViewById(R.id.RvSelectContact);
         rlDateselect = findViewById(R.id.rlDateselect);
@@ -116,6 +134,9 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.edtGuestDate:
                 TimeUtils.showDatePickerDialog(ViewInviteGuestActivity.this, "", edtdate);
                 break;

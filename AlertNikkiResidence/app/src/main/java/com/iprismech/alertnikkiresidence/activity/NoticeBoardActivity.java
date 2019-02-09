@@ -3,6 +3,8 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -24,10 +26,24 @@ public class NoticeBoardActivity extends BaseAbstractActivity implements View.On
     private Object obj;
     private NoticeBoardPojo noticeBoardPojo;
 
+    private ImageView imgClose;
+    private TextView txtitle;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
 
+        }
     }
 
     @Override
@@ -44,6 +60,11 @@ public class NoticeBoardActivity extends BaseAbstractActivity implements View.On
     @Override
     protected void initializeViews() {
         super.initializeViews();
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("NOtice Board");
+        imgClose.setOnClickListener(this);
 
 
         rview_notice_board = findViewById(R.id.rview_notice_board);
