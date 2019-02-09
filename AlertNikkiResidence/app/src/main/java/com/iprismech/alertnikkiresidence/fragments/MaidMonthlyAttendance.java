@@ -41,7 +41,8 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
     @Override
     protected void initialiseViews() {
         super.initialiseViews();
-
+        Bundle arguments = getArguments();
+        String maid_id = arguments.getString("maid_id");
 
         rview_monthly = view.findViewById(R.id.rview_monthly);
         manager = new LinearLayoutManager(getActivity());
@@ -52,7 +53,7 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
         MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
         req.adminId = "2";
         // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
-        req.maidId = "1";
+        req.maidId = maid_id;
 
 
         //  req.userId = 22;

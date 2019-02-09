@@ -1,6 +1,7 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -17,6 +18,8 @@ import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListene
 public class MaidAttendanceHistory extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private FragmentManager fragmentManager;
     private TextView tv_weekly, tv_monthly;
+    private MaidWeeklyAttendance fragment;
+    private MaidMonthlyAttendance fragment1;
     private ImageView imgClose;
     private 	TextView txtitle;
 
@@ -56,7 +59,7 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
 //                tv_weekly.setBackgroundColor(Color.parseColor("#fff"));
 //                tv_monthly.setBackgroundColor(Color.parseColor("#000"));
                 fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_maid_att, new MaidWeeklyAttendance(), "").commit();
+                fragmentManager.beginTransaction().replace(R.id.frame_maid_att, fragment, "").commit();
                 break;
             case R.id.tv_monthly:
 //                tv_weekly.setBackgroundColor(Color.parseColor("#000"));
@@ -80,7 +83,7 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
                 }
 
                 fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_maid_att, new MaidMonthlyAttendance(), "").commit();
+                fragmentManager.beginTransaction().replace(R.id.frame_maid_att, fragment1, "").commit();
                 break;
         }
     }
@@ -101,6 +104,15 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         imgClose.setOnClickListener(this);
 
         String maid_id = getIntent().getExtras().getString("maid_id", "");
+
+        fragment = new MaidWeeklyAttendance();
+        fragment1 = new MaidMonthlyAttendance();
+        Bundle arguments = new Bundle();
+        arguments.putString("maid_id", maid_id);
+        fragment.setArguments(arguments);
+        fragment1.setArguments(arguments);
+
+
         tv_weekly = findViewById(R.id.tv_weekly);
         tv_monthly = findViewById(R.id.tv_monthly);
 
@@ -110,7 +122,8 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         try {
 
             fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().add(R.id.frame_maid_att, new MaidWeeklyAttendance(), "").commit();
+            fragmentManager.beginTransaction().add(R.id.frame_maid_att, fragment, "").commit();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -34,10 +34,14 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
 
     @Override
     public void onBindViewHolder(@NonNull MaidWeeklyAttAdapter.ViewHolder viewHolder, int i) {
-        int count = maidAttendanceHistoryPojo.getResponse().getWeekly_history().size();
-        viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getDate());
-        viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getIn_time());
-        viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getOut_time());
+        int count = maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().size();
+        try {
+            viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getDate());
+            viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getIn_time());
+            viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getOut_time());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -46,7 +50,7 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtDate, txtInOutAm, txtinoutPm,tv_view_all;
+        TextView txtDate, txtInOutAm, txtinoutPm, tv_view_all;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
