@@ -47,7 +47,7 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/dummy" />
+                android:src="@drawable/location" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="0dp"
@@ -75,7 +75,7 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/dummy" />
+                android:src="@drawable/buildin_scocity" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="0dp"
@@ -103,7 +103,7 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/dummy" />
+                android:src="@drawable/building" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="0dp"
@@ -131,7 +131,7 @@
             <ImageView
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/dummy" />
+                android:src="@drawable/home_small" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="0dp"
@@ -157,9 +157,9 @@
             android:weightSum="1">
 
             <ImageView
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:src="@drawable/dummy" />
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:src="@drawable/user" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="0dp"

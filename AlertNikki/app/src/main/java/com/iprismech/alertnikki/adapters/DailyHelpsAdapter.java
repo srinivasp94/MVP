@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,20 +18,54 @@ import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 
 import java.util.ArrayList;
 
-public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.ViewHolder> {
+public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private ArrayList<DailyHelpsList> arrayList;
+    private ArrayList<DailyHelpsList> temp;
+    private ArrayList<DailyHelpsList> filteredHelpsList = new ArrayList<>();
 
     public DailyHelpsAdapter(Context context, ArrayList<DailyHelpsList> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+        this.temp = arrayList;
     }
 
     private OnitemClickListener mListner;
 
     public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
         mListner = onitemClickListener;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString  = constraint.toString();
+                if (charString.isEmpty()) {
+                    filteredHelpsList = temp;
+
+                } else {
+                    filteredHelpsList.clear();
+                    for (DailyHelpsList helpsList: temp) {
+                        if (helpsList.name.contains(charString.toLowerCase())) {
+                            filteredHelpsList.add(helpsList);
+                        }
+                    }
+                    filteredHelpsList = filteredHelpsList;
+                }
+                FilterResults results = new FilterResults();
+                results.values = filteredHelpsList;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                arrayList = (ArrayList<DailyHelpsList>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public interface OnitemClickListener {

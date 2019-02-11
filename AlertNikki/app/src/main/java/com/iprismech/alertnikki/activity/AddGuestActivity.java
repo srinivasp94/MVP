@@ -466,8 +466,8 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         } else if (mTitle.equalsIgnoreCase("Gas Delivery ")) {
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
         } else if (mTitle.equalsIgnoreCase("Courier Boy")) {
-            new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
-        }
+                new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
+            }
         else if (mTitle.equalsIgnoreCase("Swiggy")||mTitle.equalsIgnoreCase("Food Panda")||mTitle.equalsIgnoreCase("Zomoto")||mTitle.equalsIgnoreCase("Uber Eats")
                 ||mTitle.equalsIgnoreCase("Other")||mTitle.equalsIgnoreCase("Paytm")||mTitle.equalsIgnoreCase("Amazon")
                 ||mTitle.equalsIgnoreCase("FlipKart") ||mTitle.equalsIgnoreCase("Myntra")){

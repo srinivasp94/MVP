@@ -40,6 +40,7 @@ public class NotifiGateAlerts {
     @Expose
     public MemberDigital member;
 
+
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("userType", userType).append("userId", userId).append("notifyGateId", notifyGateId).append("personName", personName).append("personMobile", personMobile).append("fromDate", fromDate).append("fromDateTime", fromDateTime).append("toDateTime", toDateTime).append("service", service).append("member", member).toString();

@@ -314,9 +314,9 @@
                 android:background="@color/black" />
 
             <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:src="@drawable/ic_delete" />
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:src="@drawable/sos_nav" />
             <android.support.v7.widget.AppCompatTextView
                 style="@style/DefaultCustomTextView"
                 android:text="Panic Alert"

@@ -23,7 +23,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     private LinearLayout layoutInviteGuests, layoutMyStaff, layoutGateAlerts,
             layoutSchoolBus, layoutKidsGate, LayoutLocalServices;
     private String[] slide_menu_txt = {"Profile", "Notifications", "Contact Us", "Privacy Policy"};
-    private int[] icons = {R.drawable.ic_profile, R.drawable.ic_notofocation, R.drawable.ic_notofocation, R.drawable.ic_privacy_policy};
+    private int[] icons = {R.drawable.ic_profile, R.drawable.ic_notofocation, R.drawable.contact_us, R.drawable.ic_privacy_policy};
     private Slidemenu_adapter slidemenu_adapter;
     private ListView slidemenulistview;
     private DrawerLayout drawer_layout;

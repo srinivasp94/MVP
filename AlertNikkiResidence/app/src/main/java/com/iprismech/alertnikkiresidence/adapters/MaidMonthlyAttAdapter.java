@@ -34,11 +34,15 @@ public class MaidMonthlyAttAdapter extends RecyclerView.Adapter<MaidMonthlyAttAd
 
     @Override
     public void onBindViewHolder(@NonNull MaidMonthlyAttAdapter.ViewHolder viewHolder, int i) {
-      //  int count = maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().size();
-        int count = maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().size();
-        viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getDate());
-        viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getIn_time());
-        viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getOut_time());
+        //  int count = maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().size();
+        try {
+            int count = maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().size();
+            viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getDate());
+            viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getIn_time());
+            viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(count - 1).getOut_time());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

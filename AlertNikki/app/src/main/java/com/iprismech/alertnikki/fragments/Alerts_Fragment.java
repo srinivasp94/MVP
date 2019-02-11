@@ -25,6 +25,7 @@ import com.iprismech.alertnikki.Response.DigitalGatepassAlert;
 import com.iprismech.alertnikki.Response.KidsGateAlerts;
 import com.iprismech.alertnikki.Response.NotifiGateAlerts;
 import com.iprismech.alertnikki.adapters.AlertsAdapter;
+import com.iprismech.alertnikki.adapters.GatepassImagesAdapter;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.Common;
@@ -74,8 +75,6 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
-
-
     }
 
     @Override
@@ -93,8 +92,9 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new RetrofitRequester(this).callPostServices(obj, 1, "alerts", true);
+        new RetrofitRequester(this).
 
+                callPostServices(obj, 1, "alerts", true);
 
         rv_alerts.setLayoutManager(manager);
 
@@ -115,9 +115,8 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                         case 1:
 
 
-
                             AlertModel alertModel = Common.getSpecificDataObject(objectResponse, AlertModel.class);
-                         //   AlertModel alertModel = gson.fromJson(jsonString,AlertModel.class);
+                            //   AlertModel alertModel = gson.fromJson(jsonString,AlertModel.class);
 
                             digital_ist = alertModel.digitalGatepassAlerts;
                             NotifyList = alertModel.notifyGateAlerts;
@@ -144,6 +143,11 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                     alertsCommon.residence_type = " ";
                                     alertsCommon.Building = digital_ist.get(i).member.building;
                                     alertsCommon.memberType = digital_ist.get(i).member.memberType;
+                                    try {
+                                        alertsCommon.imagesLists = digital_ist.get(i).images;
+                                    } catch (Exception e) {
+
+                                    }
                                     commonAlertsList.add(alertsCommon);
                                 }
                             }
@@ -249,13 +253,13 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 //        alertDialog.setCancelable(false);
 
         TextView tv_kid_Name, tv_purpose, tv_intime, tv_outtime, tv_gingWith, bt_deny, btn_allow;
-        ImageView HelperPic,img_guardian_pic;
+        ImageView HelperPic, img_guardian_pic;
         tv_kid_Name = view1.findViewById(R.id.tv_alert_kid_name);
         tv_purpose = view1.findViewById(R.id.tv_helper_passcode);
         tv_intime = view1.findViewById(R.id.tv_kids_intime);
         tv_outtime = view1.findViewById(R.id.tv_kids_alert_outtime);
         tv_gingWith = view1.findViewById(R.id.tv_goingWith);
-        img_guardian_pic=view1.findViewById(R.id.img_guardian_pic);
+        img_guardian_pic = view1.findViewById(R.id.img_guardian_pic);
 
 
         tv_kid_Name.setText(commonAlertsList.get(position).name);
@@ -263,7 +267,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         tv_intime.setText(commonAlertsList.get(position).inTime);
         tv_outtime.setText(commonAlertsList.get(position).outTime);
         tv_gingWith.setText(commonAlertsList.get(position).Description);
-        Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL +commonAlertsList.get(position).profilePic).into(img_guardian_pic);
+        Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL + commonAlertsList.get(position).profilePic).into(img_guardian_pic);
 
 
         btn_allow = view1.findViewById(R.id.tv_allow_kids_alert);
@@ -339,15 +343,22 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.setView(view1);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
 
         TextView tv_Name, tv_purpose, tv_description, btn_allow;
         ImageView HelperPic;
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
         tv_Name = view1.findViewById(R.id.tv_alert_staff_alert_name);
         tv_purpose = view1.findViewById(R.id.tv_role);
         tv_description = view1.findViewById(R.id.tv_no_response_content);
         HelperPic = view1.findViewById(R.id.img_alertPic);
+
+        RecyclerView rv_digitalImages = view1.findViewById(R.id.rv_digitalImages);
+        rv_digitalImages.setLayoutManager(linearLayoutManager);
+
         btn_allow = view1.findViewById(R.id.bt_allow);
         tv_Name.setText(commonAlertsList.get(position).name);
         tv_purpose.setText(commonAlertsList.get(position).service);
@@ -356,6 +367,8 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL + commonAlertsList.get(position).profilePic)
                 .error(R.drawable.dummy).into(HelperPic);
 
+        GatepassImagesAdapter gatepassImagesAdapter = new GatepassImagesAdapter(getActivity(), commonAlertsList.get(position).imagesLists);
+        rv_digitalImages.setAdapter(gatepassImagesAdapter);
         btn_allow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

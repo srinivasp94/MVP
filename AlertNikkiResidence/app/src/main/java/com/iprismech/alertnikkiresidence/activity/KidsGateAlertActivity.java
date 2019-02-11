@@ -113,6 +113,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
         super.setListenerToViews();
         txtAddKid.setOnClickListener(this);
         add_kid.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
     }
 
     @Override
@@ -123,7 +124,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
         txtitle = findViewById(R.id.txtitle);
         imgClose= findViewById(R.id.imgClose);
         txtitle.setText("Kids Gate");
-        imgClose.setOnClickListener(this);
+
 
         retrofitResponseListener = this;
         txtAddKid = findViewById(R.id.txtAddKid);

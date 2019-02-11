@@ -1,5 +1,6 @@
 package com.iprismech.alertnikki.fragments;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
@@ -79,6 +82,41 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "daily_helps", true);
+
+        msearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.length()>2)
+                    helpsAdapter.getFilter().filter(s);
+                return false;
+            }
+        });
+        ImageView closeButton = (ImageView) msearchView.findViewById(R.id.search_close_btn);
+        closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msearchView.setQuery("",true);
+                msearchView.setFocusable(false);
+
+                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                //Find the currently focused view, so we can grab the correct window token from it.
+                View view = getActivity().getCurrentFocus();
+                //If no view currently has focus, create a new one, just so we can grab a window token from it
+                if (view == null) {
+                    view = new View(getActivity());
+                }
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+
+                helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
+                rv_DailyHelps.setLayoutManager(manager);
+                helpsAdapter.notifyDataSetChanged();
+            }
+        });
 
 
     }

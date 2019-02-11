@@ -63,7 +63,7 @@
 
                         android:id="@+id/txtAddress"
                         style="@style/ItemDefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/home_icon"
                         android:text="Name"
                         android:textSize="@dimen/_11sdp" />
                 </LinearLayout>
@@ -131,7 +131,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/MySociety"
                     style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/buildin_scocity"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="My Society"
@@ -179,7 +179,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/FamilyMembers"
                     style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/familly"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Family Members"
@@ -188,7 +188,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/VisitorsHistory"
                     style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/visitor_history"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Visitors History"
@@ -197,7 +197,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/MyFlat"
                     style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/building_samll"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="My Flat"
@@ -206,7 +206,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/Digital"
                     style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/digital_inter"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Digital Intervom Settings"
@@ -215,7 +215,7 @@
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/Logout"
                     style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/ic_delete"
+                    android:drawableLeft="@drawable/logout_ic"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Logout"

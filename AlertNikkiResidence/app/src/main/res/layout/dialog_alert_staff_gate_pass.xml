@@ -68,63 +68,63 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/_5sdp"-->
+            <!--android:layout_marginTop="@dimen/_10sdp"-->
+            <!--android:orientation="horizontal">-->
 
-            <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/ic_movein" />
+            <!--<ImageView-->
+                <!--android:layout_width="@dimen/_18sdp"-->
+                <!--android:layout_height="@dimen/_18sdp"-->
+                <!--android:src="@drawable/ic_movein" />-->
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:text="Entry In "
-                android:textColor="@color/colorPrimaryDark" />
+            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                <!--android:text="Entry In "-->
+                <!--android:textColor="@color/colorPrimaryDark" />-->
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
-                android:id="@+id/tv_maid_staff_entry_in_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:text="-10:30 am"
-                android:textColor="@color/black" />
+            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+                <!--android:id="@+id/tv_maid_staff_entry_in_time"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                <!--android:text="-10:30 am"-->
+                <!--android:textColor="@color/black" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="@dimen/_5sdp"-->
+            <!--android:layout_marginTop="@dimen/_10sdp"-->
+            <!--android:orientation="horizontal">-->
 
-            <ImageView
-                android:layout_width="@dimen/_18sdp"
-                android:layout_height="@dimen/_18sdp"
-                android:src="@drawable/ic_movein" />
+            <!--<ImageView-->
+                <!--android:layout_width="@dimen/_18sdp"-->
+                <!--android:layout_height="@dimen/_18sdp"-->
+                <!--android:src="@drawable/ic_movein" />-->
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:text="Out "
-                android:textColor="@color/colorPrimaryDark" />
+            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                <!--android:text="Out "-->
+                <!--android:textColor="@color/colorPrimaryDark" />-->
 
-            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
-                android:id="@+id/tv_maid_staff_entry_out_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:text="-12:00 pm"
-                android:textColor="@color/black" />
+            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+                <!--android:id="@+id/tv_maid_staff_entry_out_time"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="@dimen/_10sdp"-->
+                <!--android:text="-12:00 pm"-->
+                <!--android:textColor="@color/black" />-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:id="@+id/tv_btn_upload_images"

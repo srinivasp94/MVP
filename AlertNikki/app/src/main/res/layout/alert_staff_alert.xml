@@ -74,8 +74,9 @@
             </View>
 
             <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_digitalImages"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_10sdp">
 
@@ -101,7 +102,11 @@
                         android:background="@drawable/green_btn_bgr"
                         android:gravity="center"
                         android:paddingHorizontal="@dimen/_15sdp"
-                        android:text="Ok (or) Allow"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:paddingTop="@dimen/_5sdp"
+                        android:paddingRight="@dimen/_8sdp"
+                        android:paddingBottom="@dimen/_5sdp"
+                        android:text="Allow"
                         android:textColor="#fff"
                         android:textSize="@dimen/_13sdp" />
                 </RelativeLayout>

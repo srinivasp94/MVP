@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.List;
+
 public class DigitalGatepassAlert {
     @SerializedName("user_type")
     @Expose
@@ -33,11 +35,24 @@ public class DigitalGatepassAlert {
     @SerializedName("member")
     @Expose
     public MemberDigital member;
+    @SerializedName("images")
+    @Expose
+    public List<DigitalGateImagesList> images = null;
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("userType", userType).append("userId", userId).append("listId", listId).append("date", date).append("entryIn", entryIn).append("entryOut", entryOut).append("image", image).append("description", description).append("member", member).toString();
+        return new ToStringBuilder(this)
+                .append("userType", userType)
+                .append("userId", userId)
+                .append("listId", listId)
+                .append("date", date)
+                .append("entryIn", entryIn)
+                .append("entryOut", entryOut)
+                .append("image", image)
+                .append("description", description)
+                .append("member", member)
+                .append("images", images)
+                .toString();
     }
-
 }
 
