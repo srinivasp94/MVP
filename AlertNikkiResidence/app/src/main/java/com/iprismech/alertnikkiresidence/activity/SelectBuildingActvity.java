@@ -31,12 +31,11 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     private BuildingsPojo buildingsPojo;
     private LinearLayoutManager manager;
     //    private OnItemClickListener onItemClickListener;
-    private String society_id = "", adminId = "";
+    private String society_id = "", adminId = "", cityId = "", cityName, societyname;
 
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
     private ImageView imgClose;
     private TextView txtitle;
-
 
 
     @Override
@@ -64,14 +63,19 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
         ApplicationController.getInstance().setContext(context);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select Building");
         imgClose.setOnClickListener(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            society_id = bundle.getString("Key_SocietyId", "");
             adminId = bundle.getString("Key_AdminId", "");
+            society_id = bundle.getString("Key_SocietyId", "");
+            cityId = bundle.getString("Key_CityId", "");
+
+            societyname = bundle.getString("Key_SocietyName", "");
+            cityName = bundle.getString("Key_CityName", "");
+
 
             sOtp = bundle.getString("Key_otp");
             sName = bundle.getString("Key_Name");
@@ -136,13 +140,18 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     }
 
     private void getdataFromAdapter(int position) {
-        String id = buildingsPojo.getResponse().get(position).getId();
+        String buildingid = buildingsPojo.getResponse().get(position).getId();
         String title = buildingsPojo.getResponse().get(position).getTitle();
 
         Intent returnIntent = new Intent(SelectBuildingActvity.this, SelectFlatActivity.class);
-        returnIntent.putExtra("Key_id", id);
+        returnIntent.putExtra("Key_id", buildingid);
         returnIntent.putExtra("Key_AdminId", adminId);
         returnIntent.putExtra("Key_SocietyId", society_id);
+        returnIntent.putExtra("Key_CityId", society_id);
+
+        returnIntent.putExtra("Key_SocietyName", societyname);
+        returnIntent.putExtra("Key_CityName", cityName);
+        returnIntent.putExtra("Key_BuildingName", title);
 
         returnIntent.putExtra("Key_Name", sName);
         returnIntent.putExtra("Key_Mobile", sPhone);

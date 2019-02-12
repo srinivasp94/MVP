@@ -53,7 +53,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:text="Blood Group-'O'+ve" />
 
-        <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:id="@+id/txtAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

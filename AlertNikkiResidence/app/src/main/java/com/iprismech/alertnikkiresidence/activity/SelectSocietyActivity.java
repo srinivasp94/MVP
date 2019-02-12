@@ -33,11 +33,11 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
     private Object obj;
     private ArrayList<SocietyList> list = new ArrayList<>();
     private TextView txtNoItems;
-    private String id;
+    private String cityid;
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
+    private String cityName;
 
 
     @Override
@@ -45,6 +45,7 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
         super.onBackPressed();
         finish();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +73,9 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
         ApplicationController.getInstance().setContext(context);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            id = bundle.getString("Key_CityId", "");
+            cityid = bundle.getString("Key_CityId", "");
+            cityName= bundle.getString("Key_CityName", "");
+//            bundle.putString("Key_CityName", cityLists.get(position).title);
 
             sOtp = bundle.getString("Key_otp");
             sName = bundle.getString("Key_Name");
@@ -82,7 +85,7 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
             sBlood = bundle.getString("Key_Blood");
         }
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select Society");
         imgClose.setOnClickListener(this);
 
@@ -90,7 +93,7 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
         listViewCity = findViewById(R.id.listview_city);
 
         SocietyReq req = new SocietyReq();
-        req.cityId = id;
+        req.cityId = cityid;
 
         try {
             obj = Class.forName(SocietyReq.class.getName()).cast(req);
@@ -123,13 +126,16 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Bundle bundle = new Bundle();
                                         bundle.putString("Key_SocietyId", list.get(position).id);
+                                        bundle.putString("Key_CityId", cityid);
                                         bundle.putString("Key_AdminId", list.get(position).adminId);
+                                        bundle.putString("Key_CityName",cityName);
+                                        bundle.putString("Key_SocietyName", list.get(position).title);
 
-                                        bundle.putString("Key_Name",sName);
-                                        bundle.putString("Key_Mobile",sPhone);
-                                        bundle.putString("Key_Email",sMail);
-                                        bundle.putString("Key_Password",sPassword);
-                                        bundle.putString("Key_Blood",sBlood);
+                                        bundle.putString("Key_Name", sName);
+                                        bundle.putString("Key_Mobile", sPhone);
+                                        bundle.putString("Key_Email", sMail);
+                                        bundle.putString("Key_Password", sPassword);
+                                        bundle.putString("Key_Blood", sBlood);
                                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN, bundle);
                                     }
                                 });

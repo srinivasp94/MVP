@@ -11,7 +11,9 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
@@ -42,8 +44,7 @@
         <activity android:name=".activity.ViewInviteGuestActivity" />
         <activity android:name=".activity.GuestEditActivity" />
         <activity android:name=".activity.SelectCityActivity" />
-        <activity android:name=".activity.SelectSocietyActivity"></activity>
-
+        <activity android:name=".activity.SelectSocietyActivity" />
         <activity android:name=".activity.AddStaffActivity" />
         <activity android:name=".activity.ChooseMaidActivity" />
         <activity android:name=".activity.MyStaffAlerts" />
@@ -57,18 +58,21 @@
         <activity android:name=".activity.schoolbus.BusRouteActivity" />
         <activity android:name=".activity.schoolbus.AddBusActivity" />
         <activity android:name=".activity.schoolbus.BushistoryActivity" />
-        <activity android:name=".activity.profile.ProfileActivity"/>
-<!--            <intent-filter>
+        <activity android:name=".activity.profile.ProfileActivity" />
+        <!--
+                <intent-filter>
                 <action
                     android:name="android.intent.action.MAIN"
                     android:theme="@style/AppTheme.NoActionBar" />
 
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        <!--</activity>-->
+            </intent-filter>
+        -->
+        <!-- </activity> -->
 
-        <!--<activity android:name=".activity.StaffStandardTimingActivity" />-->
+
+        <!-- <activity android:name=".activity.StaffStandardTimingActivity" /> -->
         <activity android:name=".activity.KidsGateAlertActivity" />
         <activity android:name=".activity.AddKidActivity" />
         <activity android:name=".activity.LocalServiceActivity" />
@@ -84,11 +88,11 @@
         <activity android:name=".activity.MaidAttendanceHistory" />
         <activity android:name=".activity.profile.FamilyMembersActivity" />
         <activity android:name=".activity.profile.AddFamilyActivity" />
-        <activity android:name=".activity.profile.ContactSingleActivity"></activity>
+        <activity android:name=".activity.profile.ContactSingleActivity" />
         <activity android:name=".activity.MaidViewAllAttandancesHistory" />
-
-        <activity android:name=".activity.SelectBuildingActvity"></activity>
-        <activity android:name=".activity.SelectFlatActivity"></activity>
+        <activity android:name=".activity.SelectBuildingActvity" />
+        <activity android:name=".activity.SelectFlatActivity" />
+        <activity android:name=".DetailActivity"></activity>
     </application>
 
 </manifest>

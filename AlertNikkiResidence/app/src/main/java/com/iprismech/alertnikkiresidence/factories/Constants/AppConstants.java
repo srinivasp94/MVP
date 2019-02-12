@@ -85,6 +85,7 @@ public interface AppConstants {
         int LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN=153;
 
 
+        int LAUNCH_DETAIL_SCREEN = 208;
     }
 
     public static final long INTERVAL = 1000 * 1;

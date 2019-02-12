@@ -315,6 +315,9 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, (Bundle) eventObjects);
                 break;
+            case AppConstants.EventIds.LAUNCH_DETAIL_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.DETAIL_SCREEN, (Bundle) eventObjects);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }
