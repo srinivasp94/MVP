@@ -324,6 +324,9 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_RESET_PASSWORD_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.RESET_PASSWORD_SCREEN, (Bundle) eventObjects);
                 break;
+            case AppConstants.EventIds.LAUNCH_DETAIL_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.DETAIL_SCREEN, (Bundle) eventObjects);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }

@@ -22,24 +22,18 @@ public class AddServiceAdapter extends BaseAdapter {
     Context context;
    // DailyHelpsListpojo dailyHelpsPojo;
     List<DailyHelpsListpojo.ResponseBean.SlistBean> dailyHelpsPojo;
-
     public AddServiceAdapter(FragmentActivity activity, List<DailyHelpsListpojo.ResponseBean.SlistBean> dailyHelpsPojo) {
         this.context=activity;
         this.dailyHelpsPojo=dailyHelpsPojo;
-
     }
-
     @Override
     public int getCount() {
         return dailyHelpsPojo.size();
     }
-
     @Override
     public Object getItem(int position) {
-
         return dailyHelpsPojo.get(position).getId();
     }
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -61,5 +55,4 @@ public class AddServiceAdapter extends BaseAdapter {
                 error(R.drawable.dummy).into(iv_item_addservice);
         return convertView;
     }
-
 }

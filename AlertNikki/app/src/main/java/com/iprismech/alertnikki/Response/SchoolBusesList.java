@@ -51,9 +51,34 @@ public class SchoolBusesList {
     @Expose
     public  BusSchedule attendence = null;
 
+    @SerializedName("route_id")
+    @Expose
+    public  String route_id;
+    @SerializedName("route")
+    @Expose
+    public  String route;
+
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("adminId", adminId).append("flatId", flatId).append("requestType", requestType).append("schoolBusName", schoolBusName).append("driverName", driverName).append("mobile", mobile).append("vehicleNumber", vehicleNumber).append("address", address).append("status", status).append("createdOn", createdOn).append("modifiedOn", modifiedOn).append("deleteStatus", deleteStatus).append("attendence", attendence).toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("adminId", adminId)
+                .append("flatId", flatId)
+                .append("requestType", requestType)
+                .append("schoolBusName", schoolBusName)
+                .append("driverName", driverName)
+                .append("mobile", mobile)
+                .append("vehicleNumber", vehicleNumber)
+                .append("address", address)
+                .append("status", status)
+                .append("createdOn", createdOn)
+                .append("modifiedOn", modifiedOn)
+                .append("deleteStatus", deleteStatus)
+                .append("attendence", attendence)
+                .append("route_id", route_id)
+                .append("route", route)
+                .toString();
     }
 
     public class BusSchedule {

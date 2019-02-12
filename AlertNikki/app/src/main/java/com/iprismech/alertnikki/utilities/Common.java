@@ -41,7 +41,7 @@ public class Common {
 
 //        progressDialog.setMessage("Please Wait.....");
 
-        progressDialog.setCancelable(false);
+        progressDialog.setCancelable(true);
 
         if (!((Activity) context).isFinishing()) {
 

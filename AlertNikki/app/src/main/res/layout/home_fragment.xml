@@ -20,14 +20,15 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/_8sdp"
             android:gravity="center"
-            android:text="Entry Code"
+            android:text="Enter Pass Code"
+            android:id="@+id/tv_code_type"
             android:textColor="@color/viewcolor"
             android:textSize="@dimen/_16sdp" />
 
         <LinearLayout
             android:id="@+id/ll_edittext"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_marginLeft="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_8sdp"
@@ -37,7 +38,7 @@
             android:padding="@dimen/_5sdp"
             android:visibility="gone">
 
-            <EditText
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                 android:id="@+id/edt_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -102,11 +103,11 @@
                 android:maxLength="5"
                 android:singleLine="true"
                 android:textIsSelectable="false"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_22sdp"
                 app:pinBackgroundDrawable="@drawable/bg_pin"
                 app:pinBackgroundIsSquare="true"
                 app:pinCharacterSpacing="4dp"
-                app:pinTextBottomPadding="16dp"
+                app:pinTextBottomPadding="10dp"
                 tools:ignore="SpUsage" />
 
 
@@ -125,7 +126,7 @@
             android:padding="@dimen/_10sdp">
 
 
-            <EditText
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
                 android:id="@+id/edt_otp1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -155,7 +156,7 @@
             android:weightSum="2">
 
             <LinearLayout
-                android:id="@+id/qrcode_Scan_Layout"
+                android:id="@+id/ll_keypad"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_3sdp"
@@ -170,7 +171,8 @@
                     android:id="@+id/qr"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:src="@drawable/qrcode" />
+                    android:padding="@dimen/_20sdp"
+                    android:src="@drawable/ic_keypad_active" />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:layout_width="match_parent"
@@ -178,7 +180,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_8sdp"
                     android:gravity="center"
-                    android:text="QR CODE"
+                    android:text="KEY PAD"
                     android:textSize="@dimen/_14sdp" />
             </LinearLayout>
 

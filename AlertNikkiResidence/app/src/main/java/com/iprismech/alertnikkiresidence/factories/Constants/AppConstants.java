@@ -88,6 +88,7 @@ public interface AppConstants {
         int LAUNCH_RESET_PASSWORD_SCREEN=156;
 
 
+        int LAUNCH_DETAIL_SCREEN = 208;
     }
 
     public static final long INTERVAL = 1000 * 1;

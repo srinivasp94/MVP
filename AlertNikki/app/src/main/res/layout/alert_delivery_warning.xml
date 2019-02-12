@@ -36,6 +36,7 @@
                     android:layout_height="@dimen/_50sdp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginTop="5dp"
+                    android:id="@+id/guest_img"
                     android:src="@drawable/dummy" />
             </LinearLayout>
 

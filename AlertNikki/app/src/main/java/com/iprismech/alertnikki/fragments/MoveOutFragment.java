@@ -205,11 +205,17 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
                             break;
                         case 3:
                             moveOutPojo=new Gson().fromJson(jsonString, MoveOutPojo.class);
-                            Toast.makeText(getActivity(), moveOutPojo.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Request has been sent to Admin", Toast.LENGTH_SHORT).show();
+                            getActivity().onBackPressed();
+
+
                     }
+
+
                 }
                 else{
-                    Toast.makeText(getActivity(), "Request already has been sent to Admin", Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(getActivity(), "Request already has been sent to Admin", Toast.LENGTH_SHORT).show();
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -285,7 +291,7 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
                 building_id = data.getStringExtra("id");
                 String name = data.getStringExtra("name");
                 tv_building_name.setText(name);
-                Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
 

@@ -28,12 +28,12 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
     private RecyclerView rview;
     private Object obj;
     private FlatPojo flatPojo;
-    private String adminId, buildingid, societyId;
+    private String adminId, buildingid, societyId, cityId,
+            societyname, cityName, buildingName;
 
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
     private ImageView imgClose;
     private TextView txtitle;
-
 
 
     @Override
@@ -52,6 +52,11 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
             buildingid = bundle.getString("Key_id", "");
             adminId = bundle.getString("Key_AdminId", "");
             societyId = bundle.getString("Key_SocietyId", "");
+            cityId = bundle.getString("Key_CityId", "");
+
+            societyname = bundle.getString("Key_SocietyName", "");
+            cityName = bundle.getString("Key_CityName", "");
+            buildingName = bundle.getString("Key_BuildingName", "");
 
             sOtp = bundle.getString("Key_otp");
             sName = bundle.getString("Key_Name");
@@ -61,7 +66,7 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
             sBlood = bundle.getString("Key_Blood");
         }
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select Falt");
         imgClose.setOnClickListener(this);
 
@@ -121,7 +126,8 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
                             });
                             break;
                         case 2:
-                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                            //lead to Detail page
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
                             break;
                     }
                 } else {
@@ -134,38 +140,34 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
 
     }
 
+    @SuppressLint("WrongConstant")
     private void getdataFromAdapter(int position) {
         String id = flatPojo.getResponse().get(position).getId();
         String title = flatPojo.getResponse().get(position).getTitle();
 
-        /*Intent returnIntent = new Intent();
-        returnIntent.putExtra("buildingid", buildingid);
-        returnIntent.putExtra("name", title);
-        setResult(Activity.RESULT_OK, returnIntent);
-        finish();*/
-        RegisterConfirm req = new RegisterConfirm();
 
-        req.name = sName;
-        req.mobile = sPhone;
-        req.emailId = sMail;
-        req.password = sPassword;
-        req.otpConfirmed = "Yes";
-        req.bloodGroup = sBlood;
-        req.adminId = adminId;
-        req.cityId = id;
-        req.societyId = societyId;
-        req.buildingId = id;
-        req.flatId = flatPojo.getResponse().get(position).getId();
-        req.residenceTypeId = "";
+        Bundle bundle = new Bundle();
+        bundle.putString("Key_id", id);
+        bundle.putString("Key_AdminId", adminId);
+        bundle.putString("Key_SocietyId", societyId);
+        bundle.putString("Key_CityId", cityId);
+        bundle.putString("Key_BuildingId", buildingid);
 
-        try {
-            obj = Class.forName(RegisterConfirm.class.getName()).cast(req);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        new RetrofitRequester(this).callPostServices(obj, 2, "register_user", true);
+        bundle.putString("Key_SocietyName", societyname);
+        bundle.putString("Key_CityName", cityName);
+        bundle.putString("Key_BuildingName", buildingName);
+        bundle.putString("Key_FlatName", title);
 
-        //  Common.commonLogs(SelectBuildingActvity.this,title+ " and "+ buildingid);
+        bundle.putString("Key_Name", sName);
+        bundle.putString("Key_Mobile", sPhone);
+        bundle.putString("Key_Email", sMail);
+        bundle.putString("Key_Password", sPassword);
+        bundle.putString("Key_Blood", sBlood);
+
+        bundle.putString("Key_CityID", cityId);
+        bundle.putString("Key_BuildingId", flatPojo.getResponse().get(position).getBuilding_id());
+        bundle.putString("Key_FlatId", flatPojo.getResponse().get(position).getId());
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DETAIL_SCREEN, bundle);
 
     }
 

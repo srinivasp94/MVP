@@ -118,6 +118,7 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Bundle bundle = new Bundle();
                                         bundle.putString("Key_CityId", cityLists.get(position).id);
+                                        bundle.putString("Key_CityName", cityLists.get(position).title);
 
                                         bundle.putString("Key_Name",sName);
                                         bundle.putString("Key_Mobile",sPhone);

@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.factories;
 import android.support.annotation.IntDef;
 
 
+import com.iprismech.alertnikkiresidence.DetailActivity;
 import com.iprismech.alertnikkiresidence.MainActivity;
 import com.iprismech.alertnikkiresidence.activity.AddKidActivity;
 import com.iprismech.alertnikkiresidence.activity.AddStaffActivity;
@@ -70,6 +71,7 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.CHOOSE_LOCAL_SERVICE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.CHOOSE_MAID_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.CONTACT_US_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.DETAIL_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.DIGITAL_INTERCOM_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.EDIT_GATE_SERVICE;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.EDIT_GATE_SERVICE;
@@ -132,6 +134,8 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 
 public class ViewFactory {
 
+
+
     @Retention(RetentionPolicy.CLASS)
     @IntDef({SPLASH_SCREEN, INTRO_SCREEN, MAIN_SCREEN, LOGIN_SCREEN, SIGNUP_SCREEN,
             OTPVERIFICATION_SCREEN,
@@ -184,6 +188,7 @@ public class ViewFactory {
         int FAMILY_SCREEN = 1201;
         int ADD_FAMILY_SCREEN = 1202;
         int OONTACT_SINGLE_SCREEN = 1203;
+        int DETAIL_SCREEN = 1208;
 
 
         int KIDS_NOTIFY_GATE_SCREEN = 1040;
@@ -258,9 +263,9 @@ public class ViewFactory {
             case SELECT_SOCIETY_SCREEN:
                 return SelectSocietyActivity.class;
             case SELECT_BUILDING_SCREEN:
-                return GuestEditActivity.class;
+                return SelectBuildingActvity.class;
             case SELECT_FLAT_SCREEN:
-                return GuestEditActivity.class;
+                return SelectFlatActivity.class;
             case CHOOSE_MAID_SCREEN:
                 return ChooseMaidActivity.class;
             case ADD_STAFF_SCREEN:
@@ -335,6 +340,11 @@ public class ViewFactory {
             case RESET_PASSWORD_SCREEN:
                 return ResetPasswordActivity.class;
 
+            case MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN:
+                return MaidViewAllAttandancesHistory.class;
+
+            case DETAIL_SCREEN:
+                return DetailActivity.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

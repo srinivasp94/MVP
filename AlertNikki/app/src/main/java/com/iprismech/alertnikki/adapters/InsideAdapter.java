@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,13 +17,14 @@ import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 
 import java.util.ArrayList;
 
-public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHolder>{
+public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHolder> implements Filterable {
     private Context context;
     private ArrayList<ResponseVisitMember> arrayList;
-
+    private ArrayList<ResponseVisitMember> temp;
     public InsideAdapter(Context context, ArrayList<ResponseVisitMember> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+        this.temp = arrayList;
     }
     private OnitemClickListener mListner;
 
@@ -29,8 +32,56 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
         mListner = onitemClickListener;
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString  = constraint.toString();
+                if (charString.isEmpty()) {
+                    arrayList = temp;
+
+                } else {
+
+
+
+//                    filteredHelpsList.clear();
+//                    for (ResponseVisitMember visitMember: temp) {
+//                        if (visitMember.name.contains(charString.toLowerCase())) {
+//                            filteredHelpsList.add(visitMember);
+//                        }
+//                    }
+//                    filteredHelpsList = arrayList;
+
+                    ArrayList<ResponseVisitMember> filteredList = new ArrayList<>();
+                    for (ResponseVisitMember row : temp) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.name.toLowerCase().contains(charString.toLowerCase() )){
+
+                            filteredList.add(row);
+                        }
+                    }
+
+                    arrayList = filteredList;
+
+                }
+                FilterResults results = new FilterResults();
+                results.values = arrayList;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                arrayList = (ArrayList<ResponseVisitMember>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     public interface OnitemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position,ArrayList<ResponseVisitMember> arrayList);
     }
 
     @NonNull
@@ -47,7 +98,7 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
         ResponseVisitMember member = arrayList.get(i);
         holder.guestName.setText(member.name);
         holder.type.setText(member.type);
-        holder.invitedBy.setText(member.userName);
+        holder.invitedBy.setText(member.userName+" "+member.buildingName);
         holder.address.setText(member.flatName);
 //        holder.timesince.setText(member.inTime + "");
         try {
@@ -83,10 +134,11 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
             ll_rootVisitor.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View v) {
             if (mListner != null) {
-                mListner.onItemClick(v, getPosition());
+                mListner.onItemClick(v, getAdapterPosition(),arrayList);
             }
 
         }

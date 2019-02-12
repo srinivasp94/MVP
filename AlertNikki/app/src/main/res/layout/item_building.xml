@@ -8,10 +8,12 @@
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
         android:id="@+id/tv_item_building"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/_20sdp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_5sdp"
+        android:textSize="@dimen/_20sdp"
+        android:textColor="@color/black"
         android:text="Block A" />
 
     <View

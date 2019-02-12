@@ -6,11 +6,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
@@ -22,6 +27,7 @@ import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
 import com.iprismech.alertnikki.adapters.DailyHelpsAdapter;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikki.utilities.AlertUtils;
 import com.iprismech.alertnikki.utilities.Common;
 import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
 
@@ -31,7 +37,7 @@ import java.util.ArrayList;
 
 public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
 
-    private SearchView msearchView;
+    private EditText msearchView;
     private RecyclerView rv_DailyHelps;
     private DailyHelpsAdapter helpsAdapter;
     private LinearLayoutManager manager;
@@ -39,6 +45,8 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
     private ArrayList<DailyHelpsList> dailyHelps_List = new ArrayList<>();
     private Object obj;
     private int item_position;
+    private LinearLayout ll_noResponse, ll_search;
+
 
     @Override
     protected View getFragmentView() {
@@ -69,8 +77,11 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        msearchView = view.findViewById(R.id.searchview_admin);
+        msearchView = view.findViewById(R.id.search_admin_staff);
         rv_DailyHelps = view.findViewById(R.id.rv_adminstaff);
+
+        ll_search = view.findViewById(R.id.ll_search);
+        ll_noResponse = view.findViewById(R.id.ll_noResponse);
 
         AdminStaff staff = new AdminStaff();
         staff.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
@@ -83,42 +94,61 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "daily_helps", true);
 
-        msearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//        msearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String s) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String s) {
+//                if (s.length()>2)
+//                    helpsAdapter.getFilter().filter(s);
+//                return false;
+//            }
+//        });
+
+        msearchView.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                return false;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                if (s.length()>2)
-                    helpsAdapter.getFilter().filter(s);
-                return false;
-            }
-        });
-        ImageView closeButton = (ImageView) msearchView.findViewById(R.id.search_close_btn);
-        closeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                msearchView.setQuery("",true);
-                msearchView.setFocusable(false);
-
-                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                //Find the currently focused view, so we can grab the correct window token from it.
-                View view = getActivity().getCurrentFocus();
-                //If no view currently has focus, create a new one, just so we can grab a window token from it
-                if (view == null) {
-                    view = new View(getActivity());
-                }
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-
-                helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
-                rv_DailyHelps.setLayoutManager(manager);
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //if (s.length()>=2)
+                helpsAdapter.getFilter().filter(s);
                 helpsAdapter.notifyDataSetChanged();
+                // return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
-
+        // ImageView closeButton = (ImageView) msearchView.findViewById(R.id.search_close_btn);
+//        closeButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                msearchView.setQuery("",true);
+//                msearchView.setFocusable(false);
+//
+//                InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+//                //Find the currently focused view, so we can grab the correct window token from it.
+//                View view = getActivity().getCurrentFocus();
+//                //If no view currently has focus, create a new one, just so we can grab a window token from it
+//                if (view == null) {
+//                    view = new View(getActivity());
+//                }
+//                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//
+//                helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
+//                rv_DailyHelps.setLayoutManager(manager);
+//                helpsAdapter.notifyDataSetChanged();
+//            }
+//        });
     }
 
     @Override
@@ -139,61 +169,95 @@ public class DailyHelps_Fragement extends BaseAbstractFragment<Class> implements
 
                                 for (int i = 0; i < arrayList.size(); i++) {
                                     if (arrayList.get(i).attendence.adminId != null) {
-                                        Common.commonLogs(getActivity(), "123daily  " + arrayList.get(i).name);
+                                        //Common.commonLogs(getActivity(), "123daily  " + arrayList.get(i).name);
                                         dailyHelps_List.add(arrayList.get(i));
-                                        if (dailyHelps_List != null && dailyHelps_List.size() > 0) {
-                                            helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
-                                            rv_DailyHelps.setLayoutManager(manager);
-                                            rv_DailyHelps.setAdapter(helpsAdapter);
-                                            helpsAdapter.setOnItemClickListener(new DailyHelpsAdapter.OnitemClickListener() {
-                                                @Override
-                                                public void onItemClick(View view, int position) {
-                                                    call_out_DailyHelps_WS(position);
-                                                }
-                                            });
-                                        } else {
-                                            Common.showToast(getActivity(), "No Data Found");
-                                        }
-                                    }
-                                    else {
-                                        Common.showToast(getActivity(), "No Data Found");
                                     }
                                 }
 
+                                if (dailyHelps_List != null && dailyHelps_List.size() > 0) {
+                                    ll_noResponse.setVisibility(View.GONE);
+                                    ll_search.setVisibility(View.VISIBLE);
+//                                    ll_search.setVisibility(View.VISIBLE);
+                                    helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
+                                    rv_DailyHelps.setLayoutManager(manager);
+                                    rv_DailyHelps.setAdapter(helpsAdapter);
+                                    helpsAdapter.notifyDataSetChanged();
+                                    helpsAdapter.setOnItemClickListener(new DailyHelpsAdapter.OnitemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, final int position, final ArrayList<DailyHelpsList> arrayList) {
+
+                                            AlertUtils.showSimpleAlert(getActivity(), "Do you want to send him/her out", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                                                @Override
+                                                public void onpositiveclick() {
+                                                    call_out_DailyHelps_WS(position, arrayList);
+                                                }
+
+                                                @Override
+                                                public void onNegativeClick() {
+
+                                                }
+                                            });
+
+                                        }
+                                    });
+                                } else {
+
+                                    //  Common.showToast(getActivity(), "No Data Found");
+                                    ll_noResponse.setVisibility(View.VISIBLE);
+                                    ll_search.setVisibility(View.GONE);
+                                }
                             } else {
-                                Common.showToast(getActivity(), "No Data found");
+                                // Common.showToast(getActivity(), "No Data Found");
+                                ll_search.setVisibility(View.GONE);
+
+
                             }
+//                                }
+
+                   /* } else{
+                        // Common.showToast(getActivity(), "No Data found");
+                    }*/
 
 
-                            break;
-                        case 2:
-                            Common.showToast(getActivity(), object.optString("message"));
-                            dailyHelps_List.remove(item_position);
-                            helpsAdapter.notifyDataSetChanged();
-                            break;
-                    }
-                } else {
-                    Common.showToast(getActivity(), object.optString("message"));
+                    break;
+                    case 2:
+                        Common.showToast(getActivity(), object.optString("message"));
+                        dailyHelps_List.remove(item_position);
+                        msearchView.setText("");
+//                            helpsAdapter = new DailyHelpsAdapter(getActivity(), dailyHelps_List);
+//                            rv_DailyHelps.setLayoutManager(manager);
+//                            rv_DailyHelps.setAdapter(helpsAdapter);
+
+
+                        helpsAdapter.notifyDataSetChanged();
+                        Toast.makeText(getActivity(), "Removed Successfully", Toast.LENGTH_SHORT).show();
+
+                        break;
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } else{
+                Common.showToast(getActivity(), object.optString("message"));
             }
-
-
+        } catch(Exception e){
+            e.printStackTrace();
         }
+
+
     }
 
-    private void call_out_DailyHelps_WS(int position) {
+}
+
+    private void call_out_DailyHelps_WS(int position, ArrayList<DailyHelpsList> arrayList1) {
 //        out_daily_helps
         item_position = position;
         OutAdminStaff req = new OutAdminStaff();
-        req.attendenceId = dailyHelps_List.get(position).attendence.id;
+        req.attendenceId = arrayList1.get(position).attendence.id;
+        dailyHelps_List = arrayList1;
         try {
             obj = Class.forName(OutAdminStaff.class.getName()).cast(req);
         } catch (Exception e) {
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 2, "out_daily_helps", true);
-
+        helpsAdapter.notifyDataSetChanged();
     }
 }

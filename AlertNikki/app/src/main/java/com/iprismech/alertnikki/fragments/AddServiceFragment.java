@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AddServiceFragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener, View.OnClickListener,ItemClickListener  {
+public class AddServiceFragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener, View.OnClickListener, ItemClickListener {
 
     /*    private List<String> listDataHeader;
         private List<String> childdata;*/
@@ -49,7 +49,7 @@ public class AddServiceFragment extends BaseAbstractFragment<Class> implements R
     private DailyHelpsListpojo dailyHelpsListpojo;
     private Object obj;
     private RetrofitResponseListener retrofitResponseListener;
-    private GridView  gv_tutors, gv_vendors, gv_societadmin, gv_fulltimehelps;
+    private GridView gv_tutors, gv_vendors, gv_societadmin, gv_fulltimehelps;
     private AddServiceAdapter addServiceAdapter, vendorsAdapter, tutorsAdapter, fulltimeHelpsAdapter, socity_admin_Adapter;
     private TextView tv_add_service_dailyhelps;
     private ImageView addservicetype_img;
@@ -104,8 +104,14 @@ public class AddServiceFragment extends BaseAbstractFragment<Class> implements R
         retrofitResponseListener = this;
         // expListView = view.findViewById(R.id.lvExp);
         //  tv_add_service_dailyhelps = view.findViewById(R.id.add_service_dailyhelps);
-        gv_daily_helps = (ExpandableHeightGridView)view.findViewById(R.id.gv_add_service);
+        gv_daily_helps = (ExpandableHeightGridView) view.findViewById(R.id.gv_add_service);
         gv_daily_helps.setExpanded(true);
+        try {
+            gv_daily_helps.setPadding(0, 0, 0, 10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         gv_vendors = view.findViewById(R.id.gv_vendor_service);
         gv_tutors = view.findViewById(R.id.gv_tutor);
         gv_fulltimehelps = view.findViewById(R.id.gv_fulltimehelps_service);
@@ -138,10 +144,9 @@ public class AddServiceFragment extends BaseAbstractFragment<Class> implements R
         // setting list adapter
 //        expListView.setAdapter(listAdapter);
 
-        mRecyclerView = (RecyclerView)view. findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);
         sectionedExpandableLayoutHelper = new SectionedExpandableLayoutHelper(getActivity(),
-                mRecyclerView,  this, 3);
-
+                mRecyclerView, this, 3);
 
 
         //tv_add_service_dailyhelps.setOnClickListener(this);
@@ -199,7 +204,7 @@ public class AddServiceFragment extends BaseAbstractFragment<Class> implements R
                             items1 = (ArrayList<DailyHelpsListpojo.ResponseBean.SlistBean>) responseBeans.get(1).getSlist();
                             sectionedExpandableLayoutHelper.addSection("vendors", items1);
 
-                            items1= (ArrayList<DailyHelpsListpojo.ResponseBean.SlistBean>) responseBeans.get(1).getSlist();
+                            items1 = (ArrayList<DailyHelpsListpojo.ResponseBean.SlistBean>) responseBeans.get(1).getSlist();
                             sectionedExpandableLayoutHelper.addSection("Tutors", items1);
 
                             items1 = (ArrayList<DailyHelpsListpojo.ResponseBean.SlistBean>) responseBeans.get(1).getSlist();
@@ -207,7 +212,6 @@ public class AddServiceFragment extends BaseAbstractFragment<Class> implements R
 
                             items1 = (ArrayList<DailyHelpsListpojo.ResponseBean.SlistBean>) responseBeans.get(1).getSlist();
                             sectionedExpandableLayoutHelper.addSection("Society admin staff", items1);
-
 
 
                             sectionedExpandableLayoutHelper.notifyDataSetChanged();

@@ -9,16 +9,48 @@
         android:id="@+id/rl_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:background="@color/white">
 
-        <android.support.v7.widget.SearchView
-            android:id="@+id/searchview_admin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            app:defaultQueryHint="Search Staff">
+        <!--<android.support.v7.widget.SearchView-->
+            <!--android:id="@+id/searchview_admin"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/white"-->
+            <!--app:defaultQueryHint="Search Staff">-->
 
-        </android.support.v7.widget.SearchView>
+        <!--</android.support.v7.widget.SearchView>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:background="@drawable/search_bg_new"
+            android:orientation="horizontal"
+            android:id="@+id/ll_search"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:src="@drawable/search_icon">
+
+            </ImageView>
+
+            <com.iprismech.alertnikki.customviews.CustomEditTextNormal
+                android:id="@+id/search_admin_staff"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9"
+                android:background="@null"
+                android:hint="Search here"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_11sdp"
+                android:visibility="visible" />
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -27,9 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_view"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="@dimen/_80sdp"
 
+        android:layout_marginTop="189dp"
         android:layout_marginBottom="@dimen/_80sdp"
         android:gravity="center"
         android:orientation="vertical"
@@ -41,7 +74,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:src="@drawable/pending" />
 
-        <TextView
+        <com.iprismech.alertnikki.customviews.CustomTextViewBold
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -56,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/rl_view"
         android:layout_margin="@dimen/_2sdp"
+
         >
 
     </android.support.v7.widget.RecyclerView>

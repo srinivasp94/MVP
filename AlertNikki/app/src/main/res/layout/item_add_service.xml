@@ -2,23 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_item_categoty"
     android:layout_width="@dimen/_70sdp"
-    android:layout_height="@dimen/_50sdp"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    >
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingVertical="@dimen/_7sdp">
 
         <ImageView
+            android:id="@+id/iv_item_addservice"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_30sdp"
-            android:id="@+id/iv_item_addservice"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/dummy" />
 
         <com.iprismech.alertnikki.customviews.CustomTextViewNormal
             android:id="@+id/daily_hepler_category"
-            android:layout_width="@dimen/_50sdp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center_horizontal"
