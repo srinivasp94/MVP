@@ -34,8 +34,23 @@ public class DeliveryBoy_Req {
     @Expose
     public String service_from;
 
+    @SerializedName("added_from")
+    @Expose
+    public String added_from;
+
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("adminId", adminId).append("name", name).append("mobile", mobile).append("buildingId", buildingId).append("flatId", flatId).append("deliveryFrom", deliveryFrom).append("vehicleNo", vehicleNo).append("photo", photo).append("service_from", service_from).toString();
+        return new ToStringBuilder(this)
+                .append("adminId", adminId)
+                .append("name", name)
+                .append("mobile", mobile)
+                .append("buildingId", buildingId)
+                .append("flatId", flatId)
+                .append("deliveryFrom", deliveryFrom)
+                .append("vehicleNo", vehicleNo)
+                .append("photo", photo)
+                .append("service_from", service_from)
+                .append("added_from", added_from)
+                .toString();
     }
 }

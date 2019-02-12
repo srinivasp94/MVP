@@ -16,7 +16,9 @@ public class SchoolBus {
     public String message;
     @SerializedName("response")
     @Expose
+
     public List<SchoolBusesList> response = null;
+
 
     @Override
     public String toString() {

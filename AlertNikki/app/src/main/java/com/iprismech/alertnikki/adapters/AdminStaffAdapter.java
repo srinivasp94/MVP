@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
+import com.iprismech.alertnikki.Response.ResponseVisitMember;
 import com.iprismech.alertnikki.Response.StaffResponse;
 import com.iprismech.alertnikki.utilities.Constants;
 import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
@@ -19,13 +22,16 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.ViewHolder> {
+public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.ViewHolder>  implements Filterable {
     private Context context;
     private ArrayList<StaffResponse> arrayList;
+    private ArrayList<StaffResponse> temp;
+
 
     public AdminStaffAdapter(Context context, ArrayList<StaffResponse> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+        this.temp = arrayList;
     }
 
     private OnitemClickListener mListner;
@@ -34,8 +40,56 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
         mListner = onitemClickListener;
     }
 
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString  = constraint.toString();
+                if (charString.isEmpty()) {
+                    arrayList = temp;
+
+                } else {
+
+
+
+//                    filteredHelpsList.clear();
+//                    for (ResponseVisitMember visitMember: temp) {
+//                        if (visitMember.name.contains(charString.toLowerCase())) {
+//                            filteredHelpsList.add(visitMember);
+//                        }
+//                    }
+//                    filteredHelpsList = arrayList;
+
+                    ArrayList<StaffResponse> filteredList = new ArrayList<>();
+                    for (StaffResponse row : temp) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.name.toLowerCase().contains(charString.toLowerCase() )){
+
+                            filteredList.add(row);
+                        }
+                    }
+
+                    arrayList = filteredList;
+
+                }
+                FilterResults results = new FilterResults();
+                results.values = arrayList;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                arrayList = (ArrayList<StaffResponse>) results.values;
+                notifyDataSetChanged();
+            }
+        };
+    }
+
     public interface OnitemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position,ArrayList<StaffResponse> arrayList);
     }
 
     @NonNull
@@ -92,7 +146,7 @@ public class AdminStaffAdapter extends RecyclerView.Adapter<AdminStaffAdapter.Vi
         @Override
         public void onClick(View v) {
             if (mListner != null) {
-                mListner.onItemClick(v, getPosition());
+                mListner.onItemClick(v, getAdapterPosition(),arrayList);
             }
         }
     }

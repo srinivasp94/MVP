@@ -1,7 +1,5 @@
 package com.iprismech.alertnikki.Response;
 
-import android.provider.MediaStore;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
@@ -24,16 +22,13 @@ public class AlertsCommon {
     public String residence_type;
     public String Building;
     public String memberType;
+
     public List<DigitalGateImagesList> imagesLists;
 
     public AlertsCommon() {
-
     }
 
-    public AlertsCommon(String date, String service, String description, String type_alert, String inTime,
-                        String outTime, String profilePic, String id, String passcode, String name, String phone,
-                        String society, String flat, String residence_type, String building,
-                        String memberType, List<DigitalGateImagesList> imagesLists) {
+    public AlertsCommon(String date, String service, String description, String type_alert, String inTime, String outTime, String profilePic, String id, String passcode, String name, String phone, String society, String flat, String residence_type, String building, String memberType, List<DigitalGateImagesList> imagesLists) {
         this.date = date;
         this.service = service;
         Description = description;

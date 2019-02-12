@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.iprismech.alertnikki.R;
+
 import com.iprismech.alertnikki.Response.DigitalGateImagesList;
 import com.iprismech.alertnikki.utilities.Constants;
 import com.squareup.picasso.Picasso;

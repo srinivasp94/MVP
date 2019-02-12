@@ -197,7 +197,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.setView(view1);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
 
         TextView tv_Name, tv_blood, tv_passcode, tv_address, tv_usertype;
         TextView bt_allow, bt_Ok;

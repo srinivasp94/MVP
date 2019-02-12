@@ -271,6 +271,7 @@
                 android:paddingVertical="@dimen/_5sdp"
                 android:singleLine="true"
                 android:maxLines="1"
+                android:maxLength="20"
                 android:textSize="@dimen/_12sdp" />
             <com.iprismech.alertnikki.customviews.CustomTextViewBold
                 android:layout_width="match_parent"

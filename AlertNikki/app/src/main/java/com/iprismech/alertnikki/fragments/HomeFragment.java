@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.gson.Gson;
@@ -50,6 +51,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     private LinearLayout qrcode, lMobile, lVehicle, lOtp, ll_edittextAll, lPasscode;
     private EditText edt_text, edt_all;
     private Object obj;
+    private TextView tv_code_type;
     RetrofitResponseListener responseListener;
     MainActivity activity;
     private String tag = "";
@@ -57,7 +59,8 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     private PinEntryEditText pinPhone, pinOTP, pinVehicleNumber;
 
     private ImageView imgHome, imgStaff, imgVisitor, imgBell, imgCab, imgDailyHelps, imgDelivery, imgSchool, imgMore;
-    private String vehiclenumber= "";
+    private String vehiclenumber = "";
+    private LinearLayout ll_keypad;
 
     @Override
     protected View getFragmentView() {
@@ -79,10 +82,11 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
-        qrcode.setOnClickListener(this);
+        // qrcode.setOnClickListener(this);
         lMobile.setOnClickListener(this);
         lOtp.setOnClickListener(this);
         lVehicle.setOnClickListener(this);
+        ll_keypad.setOnClickListener(this);
         edt_text.addTextChangedListener(this);
         edt_all.addTextChangedListener(new TextWatcher() {
             @Override
@@ -100,7 +104,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 if (tag.equalsIgnoreCase("mobile")) {
                     String phn = edt_all.getText().toString();
                     if (phn.length() == 0 || phn.length() < 10) {
-                        Common.showToast(getActivity(), "Not a valid Phone Number");
+//                        Common.showToast(getActivity(), "Not a valid Phone Number");
                     }
                     if (phn.length() == 10) {
                         call_PhoneWS(phn);
@@ -110,7 +114,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                     String otp = edt_all.getText().toString();
                     if (otp.length() == 0 || otp.length() < 4) {
-                        Common.showToast(getActivity(), "Not a valid otp");
+//                        Common.showToast(getActivity(), "Not a valid otp");
                     }
                     if (otp.length() == 4) {
                         callOTP_WS(otp);
@@ -121,7 +125,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                     String vehicle = edt_all.getText().toString();
                     if (vehicle.length() == 0 || vehicle.length() < 4) {
-                        Common.showToast(getActivity(), "Not a valid Vehicle Number");
+//                        Common.showToast(getActivity(), "Not a valid Vehicle Number");
                     }
                     if (vehicle.length() == 4) {
                         call_vehicle_WS(vehicle);
@@ -209,13 +213,15 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
         activity = (MainActivity) getActivity();
 
-        qrcode = view.findViewById(R.id.qrcode_Scan_Layout);
+        //qrcode = view.findViewById(R.id.qrcode_Scan_Layout);
         lMobile = view.findViewById(R.id.ll_mobile);
         lOtp = view.findViewById(R.id.ll_otp);
         lVehicle = view.findViewById(R.id.ll_vehicle);
+        tv_code_type = view.findViewById(R.id.tv_code_type);
 
         ll_edittextAll = view.findViewById(R.id.ll_edittext);
         lPasscode = view.findViewById(R.id.ll_passcode);
+        ll_keypad = view.findViewById(R.id.ll_keypad);
 
         edt_all = view.findViewById(R.id.edt_all);
         edt_text = view.findViewById(R.id.edt_otp1);
@@ -247,9 +253,14 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.qrcode_Scan_Layout:
-                Intent intent = new Intent(getActivity(), ScannerActivity.class);
-                startActivity(intent);
+//            case R.id.qrcode_Scan_Layout:
+//                Intent intent = new Intent(getActivity(), ScannerActivity.class);
+//                startActivity(intent);
+//                break;
+            case R.id.ll_keypad:
+                FragmentManager manager = activity.getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fm_container, new HomeFragment(), "Home Fragment").commit();
+//
                 break;
             case R.id.ll_mobile:
                 try {
@@ -265,9 +276,10 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                     edt_all.setHint("Please Enter Mobile Number");
                     edt_all.setText("");
                     edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(10)});
+                    tv_code_type.setText("Enter Mobile Number");
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Common.commonLogs(getActivity(), "123common" + e.toString());
+                    // Common.commonLogs(getActivity(), "123common" + e.toString());
                 }
 
                 break;
@@ -283,6 +295,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 pinOTP.setVisibility(View.VISIBLE);
                 pinVehicleNumber.setVisibility(View.GONE);
                 edt_all.setHint("Please Enter OTP");
+                tv_code_type.setText("Enter OTP");
                 edt_all.setText("");
                 edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 break;
@@ -297,8 +310,10 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 pinPhone.setVisibility(View.GONE);
                 pinOTP.setVisibility(View.GONE);
                 pinVehicleNumber.setVisibility(View.VISIBLE);
+                tv_code_type.setText("Enter Vehicle Number");
                 edt_all.setHint("Please Enter Vehicle Number");
                 edt_all.setText("");
+
                 edt_all.setFilters(new InputFilter[]{new InputFilter.LengthFilter(4)});
                 break;
         }
@@ -400,7 +415,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                Common.commonLogs(getActivity(), "123Helps" + e.toString());
+                                //  Common.commonLogs(getActivity(), "123Helps" + e.toString());
                             }
                             break;
                         case 3:
@@ -436,32 +451,48 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                                 imgMore.setImageResource(R.drawable.ic_bottom_more);
 
-
-                            } catch (Exception e) {
+                            }
+                            catch (Exception e)
+                            {
                                 e.printStackTrace();
-                                Common.commonLogs(getActivity(), "123Staff" + e.toString());
+                                // Common.commonLogs(getActivity(), "123Staff" + e.toString());
                             }
                             break;
                         case 4:
                             JSONObject mobileResponse = object.optJSONObject("response");
 
+                            pinPhone.setText("");
+                            pinOTP.setText("");
+                            pinVehicleNumber.setText("");
+
                             showCustomDialogForThroug_Mobile(getActivity(), mobileResponse);
+
 
                             break;
                         case 5:
                             JSONObject otpResponse = object.optJSONObject("response");
+                            pinPhone.setText("");
+                            pinOTP.setText("");
+                            pinVehicleNumber.setText("");
                             showCustomDialogForAdminThroughOTP(getActivity(), otpResponse);
                             break;
                         case 6:
                             JSONObject vehileResponse = object.optJSONObject("response");
+                            pinPhone.setText("");
+                            pinOTP.setText("");
+                            pinVehicleNumber.setText("");
                             Bundle bundle = new Bundle();
-                            bundle.putString("Key_vehicle",vehiclenumber );
+                            bundle.putString("Key_vehicle", vehiclenumber);
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_THROUGH_VEHICLE_SCREEN, bundle);
                             break;
 
                     }
                 } else {
-                    Common.showToast(getActivity(), object.optString("message"));
+                    //Common.showToast(getActivity(), object.optString("message"));
+                    pinPhone.setText("");
+                    pinOTP.setText("");
+                    pinVehicleNumber.setText("");
+                    Toast.makeText(getActivity(), "No data found with entered details", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -480,7 +511,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.setView(view1);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
 
         TextView tv_Name, tv_Role, tv_Passcode, tv_worksin, bt_deny, btn_allow;
         ImageView HelperPic;
@@ -589,7 +620,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 }
                 new RetrofitRequester(responseListener).callPostServices(obj, 3, "allow_admin_staff", true);
                 alertDialog.dismiss();
-                edt_text.setText("");
+
             }
         });
 
@@ -659,7 +690,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.setView(view1);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
 
         TextView tv_Name, tv_Passcode, tv_mobile, tv_flat, tv_building, tv_society, tv_city, tv_residency, btn_tv_allow_ok;
         ImageView img_through_mobile_pic;
@@ -687,7 +718,6 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         tv_society.setText(mobileResponse.optString("society"));
         tv_residency.setText("" + mobileResponse.optString("residence_type"));
 
-
         //  tv_worksin.setText("" + responseObject.optString("flats"));
 
         btn_tv_allow_ok.setOnClickListener(new View.OnClickListener() {
@@ -710,7 +740,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.setView(view1);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
 
         TextView tv_Name, tv_Passcode, tv_mobile, tv_flat, tv_building, tv_society, tv_city, tv_residency, btn_tv_allow_ok;
         ImageView img_through_otp_pic;

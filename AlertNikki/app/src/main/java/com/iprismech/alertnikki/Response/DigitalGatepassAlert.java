@@ -35,6 +35,7 @@ public class DigitalGatepassAlert {
     @SerializedName("member")
     @Expose
     public MemberDigital member;
+
     @SerializedName("images")
     @Expose
     public List<DigitalGateImagesList> images = null;
