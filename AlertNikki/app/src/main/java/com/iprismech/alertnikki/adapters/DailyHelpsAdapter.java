@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.DailyHelpsList;
+import com.iprismech.alertnikki.Response.ResponseVisitMember;
 import com.iprismech.alertnikki.utilities.timeutilities.SlotDivision;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
     private Context context;
     private ArrayList<DailyHelpsList> arrayList;
     private ArrayList<DailyHelpsList> temp;
-    private ArrayList<DailyHelpsList> filteredHelpsList = new ArrayList<>();
+    //private ArrayList<DailyHelpsList> filteredHelpsList = new ArrayList<>();
 
     public DailyHelpsAdapter(Context context, ArrayList<DailyHelpsList> arrayList) {
         this.context = context;
@@ -44,19 +45,36 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
             protected FilterResults performFiltering(CharSequence constraint) {
                 String charString  = constraint.toString();
                 if (charString.isEmpty()) {
-                    filteredHelpsList = temp;
+                    arrayList = temp;
 
                 } else {
-                    filteredHelpsList.clear();
-                    for (DailyHelpsList helpsList: temp) {
-                        if (helpsList.name.contains(charString.toLowerCase())) {
-                            filteredHelpsList.add(helpsList);
+
+
+
+//                    filteredHelpsList.clear();
+//                    for (ResponseVisitMember visitMember: temp) {
+//                        if (visitMember.name.contains(charString.toLowerCase())) {
+//                            filteredHelpsList.add(visitMember);
+//                        }
+//                    }
+//                    filteredHelpsList = arrayList;
+
+                    ArrayList<DailyHelpsList> filteredList = new ArrayList<>();
+                    for (DailyHelpsList row : temp) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.name.toLowerCase().contains(charString.toLowerCase() )){
+
+                            filteredList.add(row);
                         }
                     }
-                    filteredHelpsList = filteredHelpsList;
+
+                    arrayList = filteredList;
+
                 }
                 FilterResults results = new FilterResults();
-                results.values = filteredHelpsList;
+                results.values = arrayList;
                 return results;
             }
 
@@ -69,7 +87,7 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
     }
 
     public interface OnitemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick(View view, int position,ArrayList<DailyHelpsList> arrayList);
     }
 
     @NonNull
@@ -119,7 +137,7 @@ public class DailyHelpsAdapter extends RecyclerView.Adapter<DailyHelpsAdapter.Vi
         @Override
         public void onClick(View v) {
             if (mListner != null)
-                mListner.onItemClick(v, getPosition());
+                mListner.onItemClick(v, getAdapterPosition(),arrayList);
         }
     }
 }

@@ -13,6 +13,7 @@ public class AdminStaff {
     @Expose
     public String search;
 
+
     @Override
     public String toString() {
         return new ToStringBuilder(this).append("adminId", adminId).append("search", search).toString();

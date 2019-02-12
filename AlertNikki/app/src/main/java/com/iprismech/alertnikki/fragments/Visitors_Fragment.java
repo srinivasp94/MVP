@@ -53,7 +53,6 @@ public class Visitors_Fragment extends BaseAbstractFragment<Class> implements Re
     @Override
     protected View getFragmentView() {
         view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_visitors, null);
-
         return view;
     }
 
@@ -61,7 +60,6 @@ public class Visitors_Fragment extends BaseAbstractFragment<Class> implements Re
     public void setPresenter() {
 
     }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -70,7 +68,6 @@ public class Visitors_Fragment extends BaseAbstractFragment<Class> implements Re
 
     @Override
     protected void setListenerToViews() {
-
         super.setListenerToViews();
     }
 
@@ -109,20 +106,15 @@ public class Visitors_Fragment extends BaseAbstractFragment<Class> implements Re
 
         viewPager = (ViewPager) view.findViewById(R.id.viewpager);
         setupViewPager(viewPager);
-
         tabLayout = (TabLayout) view.findViewById(R.id.tabLayout);
-
         tabLayout.setupWithViewPager(viewPager);
 
 // tabLayout.setScrollPosition(1,0f,true);
         viewPager.setCurrentItem(1);
         //  insidecount();
         //   waitingcount();
-
         //visitors_count();
     }
-
-
 
     private void setupViewPager(ViewPager viewPager) {
         final ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());

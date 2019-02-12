@@ -66,15 +66,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 
         Map<String, String> msg = remoteMessage.getData();
-        String msgbody=msg.get("message");
-        Log.d("msg_data",msg.get("message"));
+        String msgbody = msg.get("message");
+        Log.d("msg_data", msg.get("message"));
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         if (msgbody.equalsIgnoreCase("Services person is coming check alerts")) {
-             intent = new Intent(this, MainActivity.class);
+            intent = new Intent(this, MainActivity.class);
             intent.putExtra("key", "visitors");
-        }
-        else {
-             intent = new Intent(this, MainActivity.class);
+        } else {
+            intent = new Intent(this, MainActivity.class);
             intent.putExtra("key", "alerts");
         }
 

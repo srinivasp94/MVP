@@ -17,6 +17,8 @@ import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,54 +54,115 @@ import java.util.ArrayList;
 
 public class AddGuestActivity extends BaseAbstractActivity<Class> implements View.OnClickListener, RetrofitResponseListener
 
-    {
+{
 
-        private ImageView close, boy_pic, companyPic;
-        private RetrofitResponseListener retrofitResponseListener;
-        private TextView title;
-        private EditText mName, mMobile, mCompany, mVehicle1, mVehicle2, mVehicle3, mVehicle4, mResidentMobile;
-        private Button sendnotify;
-        private Spinner spin_Building, spin_Flat;
-        private String mTitle, base64profile;
-        private int mImageid, CAMERA_DOC = 100, GALLERY_DOC = 101;
-        private Object obj;
-        private Spinner sp_building, sp_flat;
-        private ArrayAdapter<String> customadapter;
-        private BuildingsPojo buildingsPojo;
-        private FlatPojo flatPojo;
-        private MoveinPojo moveinPojo;
-        private ArrayList<String> building_array = new ArrayList<>();
-        private ArrayList<String> flat_array = new ArrayList<>();
-        private String building_id, flat_id;
-        private LinearLayout ll_buiding, ll_flatno;
-        private TextView tv_flat_number,tv_building_name;
+    private ImageView close, boy_pic, companyPic;
+    private RetrofitResponseListener retrofitResponseListener;
+    private TextView title;
+    private EditText mName, mMobile, mCompany, mVehicle1, mVehicle2, mVehicle3, mVehicle4, mResidentMobile;
+    private Button sendnotify;
+    private Spinner spin_Building, spin_Flat;
+    private String mTitle, base64profile;
+    private int mImageid, CAMERA_DOC = 100, GALLERY_DOC = 101;
+    private Object obj;
+    private Spinner sp_building, sp_flat;
+    private ArrayAdapter<String> customadapter;
+    private BuildingsPojo buildingsPojo;
+    private FlatPojo flatPojo;
+    private MoveinPojo moveinPojo;
+    private ArrayList<String> building_array = new ArrayList<>();
+    private ArrayList<String> flat_array = new ArrayList<>();
+    private String building_id, flat_id;
+    private LinearLayout ll_buiding, ll_flatno;
+    private TextView tv_flat_number, tv_building_name;
+    private Bitmap profilebit;
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_delivery);
     }
 
-        @Override
-        protected View getView() {
+    @Override
+    protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_add_guest, null);
         return view;
     }
 
-        @Override
-        public void setPresenter() {
+    @Override
+    public void setPresenter() {
 
     }
 
-        @Override
-        protected void setListenerToViews() {
+    @Override
+    protected void setListenerToViews() {
         super.setListenerToViews();
         sendnotify.setOnClickListener(this);
         close.setOnClickListener(this);
+
+        mVehicle1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mVehicle1.getText().toString().length() == 2)     //size as per your requirement
+                {
+                    mVehicle2.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        mVehicle2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mVehicle2.getText().toString().length() == 2)     //size as per your requirement
+                {
+                    mVehicle3.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        mVehicle3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mVehicle3.getText().toString().length() == 2)     //size as per your requirement
+                {
+                    mVehicle4.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
     }
 
-        @Override
-        protected void initializeViews() {
+    @Override
+    protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
         retrofitResponseListener = this;
@@ -112,9 +175,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         ll_buiding = findViewById(R.id.ll_building_delivery);
         ll_flatno = findViewById(R.id.ll_flatno_delivery);
         tv_building_name = findViewById(R.id.tv_building_name_delivery);
-        tv_flat_number=findViewById(R.id.tv_flat_number_delivery);
-
-
+        tv_flat_number = findViewById(R.id.tv_flat_number_delivery);
 
 
         Bundle bundle = getIntent().getExtras();
@@ -125,7 +186,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
 
         close = findViewById(R.id.img_Close);
         boy_pic = findViewById(R.id.img_deliveryBoy_pic);
-      //  companyPic = findViewById(R.id.img_deliverycompany);
+        //  companyPic = findViewById(R.id.img_deliverycompany);
 
         title = findViewById(R.id.txt_title);
 
@@ -143,7 +204,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         sendnotify = findViewById(R.id.btn_sendnotify);
 
         title.setText(mTitle);
-      //  mCompany.setText(mTitle);
+        //  mCompany.setText(mTitle);
 //        if (mImageid == 0) {
 //            companyPic.setImageResource(R.drawable.dummy);
 //        } else {
@@ -165,8 +226,8 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
 
     }
 
-        @Override
-        public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_sendnotify:
                 String sName = mName.getText().toString();
@@ -180,8 +241,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
 
                 if (sName.length() == 0 && smobile.length() == 0 && scompany.length() == 0 && sv1.length() == 0 &&
                         sv2.length() == 0 && sv3.length() == 0 && sv4.length() == 0
-                        )
-                {
+                        ) {
                     Common.showToast(AddGuestActivity.this, "Please Enter all fields");
                 }
 //                else if (sName.length() == 0 || sName.length() < 6) {
@@ -191,6 +251,12 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
                     Common.showToast(AddGuestActivity.this, "Please Enter Valid 10 Digit Mobile");
                 } else if (scompany.length() == 0) {
                     Common.showToast(AddGuestActivity.this, "Please Enter Number of persons");
+                } else if (tv_building_name.getText().toString().equalsIgnoreCase("")
+                        || tv_building_name.getText().toString().isEmpty()) {
+                    Toast.makeText(AddGuestActivity.this, "Please Select Building", Toast.LENGTH_SHORT).show();
+                } else if (tv_flat_number.getText().toString().equalsIgnoreCase("")
+                        || tv_flat_number.getText().toString().isEmpty()) {
+                    Toast.makeText(AddGuestActivity.this, "Please Select Flat Number", Toast.LENGTH_SHORT).show();
                 }
 
 //                else if (sv1.length() == 0 || sv1.length() < 2) {
@@ -212,10 +278,13 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
                     alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     alertDialog.setView(dialogview);
-                    alertDialog.setCancelable(false);
+                    alertDialog.setCancelable(true);
                     TextView ok_submit, security_name, login_time;
-//                    ImageView security_img;
+                    ImageView guest_img;
                     ok_submit = dialogview.findViewById(R.id.delivery_alert_ok);
+                    guest_img = dialogview.findViewById(R.id.guest_img);
+
+                    guest_img.setImageBitmap(profilebit);
 //                    security_name=dialogview.findViewById(R.id.security_name_login);
 //                    login_time=dialogview.findViewById(R.id.login_time);
 //                    security_img=dialogview.findViewById(R.id.sec_img_login_time);
@@ -252,7 +321,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
                 break;
             case R.id.ll_flatno_delivery:
                 Intent intent_flat = new Intent(AddGuestActivity.this, SelectFlatActivity.class);
-                intent_flat.putExtra("building_id",building_id);
+                intent_flat.putExtra("building_id", building_id);
                 startActivityForResult(intent_flat, 2);
                 break;
         }
@@ -261,12 +330,14 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
     }
 
 
-
-        private void showPictureDialog(final String base64) {
+    private void showPictureDialog(final String base64) {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(context);
         pictureDialog.setTitle("Select Action");
+//        String[] pictureDialogItems = {
+//                "Select photo from gallery",
+//                "Capture photo from camera"};
+
         String[] pictureDialogItems = {
-                "Select photo from gallery",
                 "Capture photo from camera"};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
@@ -274,10 +345,11 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                choosePhotoFromGallary(base64);
+                                //   choosePhotoFromGallary(base64);
+                                takePhotoFromCamera(base64);
                                 break;
                             case 1:
-                                takePhotoFromCamera(base64);
+                                //   takePhotoFromCamera(base64);
                                 break;
                         }
                     }
@@ -285,7 +357,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         pictureDialog.show();
     }
 
-        public void choosePhotoFromGallary(String base64) {
+    public void choosePhotoFromGallary(String base64) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
@@ -303,7 +375,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
 
     }
 
-        private void takePhotoFromCamera(String base64) {
+    private void takePhotoFromCamera(String base64) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
                     && ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
@@ -324,8 +396,8 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         }
     }
 
-        @Override
-        public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
@@ -348,7 +420,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         } else if (requestCode == CAMERA_DOC) {
 
             // Variable.img_banner = profile;
-            Bitmap profilebit = (Bitmap) data.getExtras().get("data");
+            profilebit = (Bitmap) data.getExtras().get("data");
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             profilebit.compress(Bitmap.CompressFormat.JPEG, 70, stream);
             boy_pic.setImageBitmap(profilebit);
@@ -369,8 +441,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
 
             }
 
-        }
-        else if (requestCode == 2) {
+        } else if (requestCode == 2) {
             if (resultCode == Activity.RESULT_OK) {
                 flat_id = data.getStringExtra("id");
                 String name = data.getStringExtra("name");
@@ -385,7 +456,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
 
     }
 
-        protected Bitmap decodeUri(Uri selectedImage, int REQUIRED_SIZE) {
+    protected Bitmap decodeUri(Uri selectedImage, int REQUIRED_SIZE) {
         try {
             // Decode image size
             BitmapFactory.Options o = new BitmapFactory.Options();
@@ -416,13 +487,13 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
     }
 
 
-        @Override
-        public void onBackPressed() {
+    @Override
+    public void onBackPressed() {
         super.onBackPressed();
         finish();
     }
 
-        private void callWsforSendNotify() {
+    private void callWsforSendNotify() {
 
 /*
         {
@@ -448,10 +519,12 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         req.flatId = flat_id;
         //req.flatId = "1";
         req.deliveryFrom = mTitle;
+
         req.vehicleNo = mVehicle1.getText().toString() + mVehicle2.getText().toString() +
                 mVehicle3.getText().toString() + mVehicle4.getText().toString();
         req.photo = base64profile;
         req.service_from = mTitle;
+
         try {
             obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
         } catch (Exception e) {
@@ -462,21 +535,42 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
         } else if (mTitle.equalsIgnoreCase("Cab")) {
             new RetrofitRequester(this).callPostServices(obj, 3, "cab_notify", true);
         } else if (mTitle.equalsIgnoreCase("Add Guest")) {
+            DeliveryBoy_Req req1 = new DeliveryBoy_Req();
+            req1.adminId = SharedPrefsUtils.getInstance(AddGuestActivity.this).getAdmin();
+            req1.name = mName.getText().toString();
+            req1.mobile = mMobile.getText().toString();
+            req1.buildingId = building_id;
+            //req1.buildingId = "4";
+
+            req1.flatId = flat_id;
+            //req1.flatId = "4";
+            req1.deliveryFrom = mTitle;
+
+            req1.vehicleNo = mVehicle1.getText().toString() + mVehicle2.getText().toString() +
+                    mVehicle3.getText().toString() + mVehicle4.getText().toString();
+            req1.photo = base64profile;
+            req1.service_from = mTitle;
+            req1.added_from = "invite_guest";
+
+            try {
+                obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req1);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
         } else if (mTitle.equalsIgnoreCase("Gas Delivery ")) {
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
         } else if (mTitle.equalsIgnoreCase("Courier Boy")) {
-                new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
-            }
-        else if (mTitle.equalsIgnoreCase("Swiggy")||mTitle.equalsIgnoreCase("Food Panda")||mTitle.equalsIgnoreCase("Zomoto")||mTitle.equalsIgnoreCase("Uber Eats")
-                ||mTitle.equalsIgnoreCase("Other")||mTitle.equalsIgnoreCase("Paytm")||mTitle.equalsIgnoreCase("Amazon")
-                ||mTitle.equalsIgnoreCase("FlipKart") ||mTitle.equalsIgnoreCase("Myntra")){
+            new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
+        } else if (mTitle.equalsIgnoreCase("Swiggy") || mTitle.equalsIgnoreCase("Food Panda") || mTitle.equalsIgnoreCase("Zomoto") || mTitle.equalsIgnoreCase("Uber Eats")
+                || mTitle.equalsIgnoreCase("Other") || mTitle.equalsIgnoreCase("Paytm") || mTitle.equalsIgnoreCase("Amazon")
+                || mTitle.equalsIgnoreCase("FlipKart") || mTitle.equalsIgnoreCase("Myntra")) {
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
         }
     }
 
-        @Override
-        public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+    @Override
+    public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectRequest.equals("")) {
             Common.showToast(AddGuestActivity.this, "PLease Try again");
         } else {
@@ -536,5 +630,5 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
             }
         }
     }
-    }
+}
 

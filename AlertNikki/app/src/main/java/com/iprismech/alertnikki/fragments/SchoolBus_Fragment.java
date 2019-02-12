@@ -8,10 +8,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
 import com.iprismech.alertnikki.adapters.SchoolAdapter;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikki.utilities.AlertUtils;
 import com.iprismech.alertnikki.utilities.Common;
 import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
 import com.squareup.picasso.Picasso;
@@ -36,7 +40,7 @@ import java.util.ArrayList;
 
 public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
 
-    private SearchView msearchView;
+    private EditText msearchView;
     private RecyclerView rv_admin;
     private SchoolAdapter busAdapter;
     private LinearLayoutManager manager;
@@ -72,6 +76,8 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
         msearchView = view.findViewById(R.id.searchview_admin);
         rv_admin = view.findViewById(R.id.rv_adminstaff);
 
+        msearchView = view.findViewById(R.id.search_admin_staff);
+
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         rv_admin.setLayoutManager(manager);
@@ -79,7 +85,6 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
         AdminStaff staff = new AdminStaff();
         staff.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
         staff.search = "";
-
         try {
             obj = Class.forName(AdminStaff.class.getName()).cast(staff);
         } catch (Exception e) {
@@ -87,6 +92,26 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "school_buses", true);
 
+
+        msearchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //if (s.length()>=2)
+                busAdapter.getFilter().filter(s);
+                busAdapter.notifyDataSetChanged();
+                // return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -110,14 +135,26 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
                                 rv_admin.setAdapter(busAdapter);
                                 busAdapter.setOnItemClickListener(new SchoolAdapter.OnitemClickListener() {
                                     @Override
-                                    public void onItemClick(View view, int position) {
+                                    public void onItemClick(View view, final int position, final ArrayList<SchoolBusesList> busesLists) {
                                         switch (view.getId()) {
                                             case R.id.btn_out:
-                                                call_bus_out_WS(position);
+                                                AlertUtils.showSimpleAlert(getActivity(), "Do you want to send bus out", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                                                    @Override
+                                                    public void onpositiveclick() {
+                                                        call_bus_out_WS(position,busesLists);
+                                                    }
+
+                                                    @Override
+                                                    public void onNegativeClick() {
+
+                                                    }
+                                                });
+
+
                                                 break;
                                             case R.id.img_notify:
                                                 //school_bus_notify
-                                                showAlertFornotift(position);
+                                                showAlertFornotift(position,busesLists);
 //                                                call_Notify_all_WS(position);
                                                 break;
                                         }
@@ -162,13 +199,13 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
 
     }
 
-    private void showAlertFornotift(final int i) {
+    private void showAlertFornotift(final int i, final ArrayList<SchoolBusesList> busesLists) {
 
         LayoutInflater inflater = LayoutInflater.from(getActivity());
 //        getLayoutInflater().inflate(R.layout.alert_alerts,null);
         View view1 = inflater.inflate(R.layout.alert_school_bus, null);
 
-         final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
         alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         alertDialog.setView(view1);
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -190,9 +227,9 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
         staffPic = view1.findViewById(R.id.img_helper_pic);
         try {
 
-            tv_schoolName.setText(arrayList.get(i).schoolBusName);
-            tv_address.setText(arrayList.get(i).address);
-            tv_busno.setText(arrayList.get(i).vehicleNumber);
+            tv_schoolName.setText(busesLists.get(i).schoolBusName);
+            tv_address.setText(busesLists.get(i).address);
+            tv_busno.setText(busesLists.get(i).vehicleNumber);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -212,7 +249,7 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
             public void onClick(View v) {
 
 
-                call_Notify_all_WS(i);
+                call_Notify_all_WS(i,busesLists);
                 alertDialog.dismiss();
             }
         });
@@ -221,10 +258,11 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
 
     }
 
-    private void call_Notify_all_WS(int position) {
+    private void call_Notify_all_WS(int position, ArrayList<SchoolBusesList> busesLists) {
         SchoolBusNotify req = new SchoolBusNotify();
         req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
-        req.schoolBusId = arrayList.get(position).id;
+        req.schoolBusId = busesLists.get(position).id;
+        req.route_id=busesLists.get(position).route_id;
 
         try {
             obj = Class.forName(SchoolBusNotify.class.getName()).cast(req);
@@ -236,19 +274,23 @@ public class SchoolBus_Fragment extends BaseAbstractFragment<Class> implements R
 
     }
 
-    private void call_bus_out_WS(int position) {
+    private void call_bus_out_WS(int position,ArrayList<SchoolBusesList> busesLists) {
+
+
+
 
         SchoolBus_Out req = new SchoolBus_Out();
         req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
-        req.attendenceId = arrayList.get(position).attendence.id;
-        req.schoolBusId = arrayList.get(position).id;
+        req.attendenceId = busesLists.get(position).attendence.id;
+        req.schoolBusId = busesLists.get(position).id;
+        req.route_id=busesLists.get(position).route_id;
+
         try {
             obj = Class.forName(SchoolBus_Out.class.getName()).cast(req);
         } catch (Exception e) {
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 2, "out_school_bus", true);
-
 
     }
 }

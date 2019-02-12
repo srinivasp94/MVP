@@ -96,6 +96,9 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
 //        setContentView(R.layout.activity_main);
         String key = getIntent().getStringExtra("key");
 
+//        Bundle bundle = getIntent().getExtras();
+//        String delivery_key=bundle.getString("key","");
+
         if (key != null) {
 
             // Here we can decide what do to -- perhaps load other parameters from the intent extras such as IDs, etc
@@ -105,11 +108,19 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
             } else if (key.equalsIgnoreCase("visitors") == true) {
                 FragmentManager manager = getSupportFragmentManager();
                 manager.beginTransaction().replace(R.id.fm_container, new Visitors_Fragment(), "Visitors").commit();
+            } else if (key.equalsIgnoreCase("delivery") == true) {
+                FragmentManager manager = getSupportFragmentManager();
+                manager.beginTransaction().replace(R.id.fm_container, new Delivery_Fragment(), "").commit();
             }
-        } else {
-            // Activity was not launched with a menuFragment selected -- continue as if this activity was opened from a launcher (for example)
-
         }
+//        else if (delivery_key!= null){
+//            if(delivery_key=="delivery"||delivery_key.equalsIgnoreCase("delivery")){
+//
+//            }
+//            // Activity was not launched with a menuFragment selected -- continue as if this activity was opened from a launcher (for example)
+//            FragmentManager manager = getSupportFragmentManager();
+//            manager.beginTransaction().replace(R.id.fm_container, new Delivery_Fragment(), "").commit();
+//        }
 
     }
 
@@ -238,20 +249,25 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 11, "visitors_count", false);
-        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 12, "alerts_count", true);
+        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "visitors_count", false);
+        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 4, "alerts_count", true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.qrcode_Scan_Layout:
-                //  ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_QRCODE);
-                /*FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fm_container,new QrCode_Fragment(),"").commit();*/
-                Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
-                startActivity(intent);
-                break;
+//            case R.id.qrcode_Scan_Layout:
+//                //  ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_QRCODE);
+//                /*FragmentManager fragmentManager = getSupportFragmentManager();
+//                fragmentManager.beginTransaction().replace(R.id.fm_container,new QrCode_Fragment(),"").commit();*/
+//                Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+//                startActivity(intent);
+//                break;
             case R.id.ll_top_adminstaff:
                 tv_bottom_cab.setTextColor(getResources().getColor(R.color.white));
                 tv_bottom_dailt_helps.setTextColor(getResources().getColor(R.color.white));
@@ -335,9 +351,9 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                 iv_bottom_more.setImageResource(R.drawable.ic_bottom_more);
 
 
-                String[] list = {"My Login Time", "Add data", "About Us", "Logout", "SOS"};
+                String[] list = {"My Login Time", "Add data", "About Us", "Logout", "SOS", "QR Code"};
                 Integer[] imageslist = {R.drawable.ic_clock,
-                        R.drawable.ic_adddata, R.drawable.ic_about, R.drawable.ic_logout, R.drawable.ic_sos};
+                        R.drawable.ic_adddata, R.drawable.ic_about, R.drawable.ic_logout, R.drawable.ic_sos, R.drawable.qrcode};
 
 
                 LayoutInflater dialoginflater = LayoutInflater.from(MainActivity.this);
@@ -353,12 +369,13 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                 alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 alertDialog.setView(dialogview);
                 alertDialog.setCancelable(true);
-                LinearLayout ll_mylogintime, ll_adda_data, ll_aboutus, ll_logout, ll_sos;
+                LinearLayout ll_mylogintime, ll_adda_data, ll_aboutus, ll_logout, ll_sos, ll_qrcode;
                 ll_mylogintime = dialogview.findViewById(R.id.ll_mylogintime);
                 ll_adda_data = dialogview.findViewById(R.id.ll_add_data);
                 ll_aboutus = dialogview.findViewById(R.id.ll_aboutus);
                 ll_logout = dialogview.findViewById(R.id.ll_logout);
                 ll_sos = dialogview.findViewById(R.id.ll_sos);
+                ll_qrcode = dialogview.findViewById(R.id.ll_qrcode);
                 ll_mylogintime.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -418,7 +435,13 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                     }
                 });
 
-
+                ll_qrcode.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 alertDialog.show();
                 break;
 
@@ -701,7 +724,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                             alertDialog.getWindow().getAttributes().windowAnimations = R.style.dialog_animation;
                             alertDialog.show();
                             break;
-                        case 11:
+                        case 3:
 
 //                        {"status":true,"message":"Data fetched Successfully!","visitors_count":8}
 
@@ -711,7 +734,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                             sharedPrefsUtils.visitor_count(object.optInt("visitors_count_inside"), object.optInt("visitors_count"));
 
                             break;
-                        case 12:
+                        case 4:
 //                        {"status":true,"message":"Data fetched Successfully!","alerts_count":3}
 
                             badge_alerts.setText("" + object.optInt("alerts_count"));

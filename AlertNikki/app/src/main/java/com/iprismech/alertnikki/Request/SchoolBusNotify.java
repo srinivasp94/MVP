@@ -13,9 +13,16 @@ public class SchoolBusNotify {
     @SerializedName("admin_id")
     @Expose
     public String adminId;
+    @SerializedName("route_id")
+    @Expose
+    public String route_id;
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("schoolBusId", schoolBusId).append("adminId", adminId).toString();
+        return new ToStringBuilder(this)
+                .append("schoolBusId", schoolBusId)
+                .append("adminId", adminId)
+                .append("route_id", route_id)
+                .toString();
     }
 }

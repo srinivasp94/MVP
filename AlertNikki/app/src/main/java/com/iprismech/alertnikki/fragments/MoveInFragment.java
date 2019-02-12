@@ -190,7 +190,9 @@ public class MoveInFragment extends BaseAbstractFragment<Class> implements Retro
                             break;
                         case 3:
                             moveinPojo = new Gson().fromJson(jsonString, MoveinPojo.class);
-                            Toast.makeText(getActivity(), moveinPojo.getMessage(), Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(), moveinPojo.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Request has been sent to Admin", Toast.LENGTH_SHORT).show();
+                            getActivity().onBackPressed();
                     }
                 }
             } catch (Exception e) {
@@ -271,7 +273,7 @@ public class MoveInFragment extends BaseAbstractFragment<Class> implements Retro
                         building_id = data.getStringExtra("id");
                         String name = data.getStringExtra("name");
                         tv_building_name.setText(name);
-                        Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
+                      //  Toast.makeText(getActivity(), building_id + "and" + name, Toast.LENGTH_SHORT).show();
                     }
                     if (resultCode == Activity.RESULT_CANCELED) {
 

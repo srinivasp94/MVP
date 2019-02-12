@@ -282,6 +282,8 @@ public class UploadPhotoFragment extends BaseAbstractFragment<Class> implements 
                         case 1:
                             AddServiceSendReqPojo addServiceSendReqPojo = new Gson().fromJson(jsonString, AddServiceSendReqPojo.class);
                             Toast.makeText(getActivity(), "Request Posted Successfully", Toast.LENGTH_SHORT).show();
+                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fm_container,new HomeFragment(),"").commit();
 
                     }
                 }

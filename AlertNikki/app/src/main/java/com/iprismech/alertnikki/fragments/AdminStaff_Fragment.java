@@ -5,20 +5,26 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.AdminStaff;
 import com.iprismech.alertnikki.Request.OutAdminStaff;
 import com.iprismech.alertnikki.Response.Admin_Staff;
+import com.iprismech.alertnikki.Response.ResponseVisitMember;
 import com.iprismech.alertnikki.Response.StaffResponse;
 import com.iprismech.alertnikki.adapters.AdminStaffAdapter;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikki.utilities.AlertUtils;
 import com.iprismech.alertnikki.utilities.Common;
 import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
 
@@ -27,8 +33,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
-    private SearchView msearchView;
-    private LinearLayout ll_noResponse;
+
+    private LinearLayout ll_noResponse, ll_search;
     private RecyclerView rv_admin;
     private AdminStaffAdapter staffAdapter;
     private LinearLayoutManager manager;
@@ -36,6 +42,8 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
     private ArrayList<StaffResponse> arrayListnew = new ArrayList<>();
     private Object obj;
     RetrofitResponseListener responseListener;
+    private EditText msearchView;
+
     private int itemPosition;
 
     @Override
@@ -72,9 +80,10 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
 
         responseListener = this;
 
-        msearchView = view.findViewById(R.id.searchview_admin);
+        msearchView = view.findViewById(R.id.search_admin_staff);
         rv_admin = view.findViewById(R.id.rv_adminstaff);
-        //ll_noResponse = view.findViewById(R.id.ll_noResponse);
+        ll_search = view.findViewById(R.id.ll_search);
+        ll_noResponse = view.findViewById(R.id.ll_noResponse);
         rv_admin.setLayoutManager(manager);
 
         AdminStaff staff = new AdminStaff();
@@ -86,11 +95,33 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "admin_staff", true);
+
+        msearchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //if (s.length()>=2)
+                staffAdapter.getFilter().filter(s);
+                staffAdapter.notifyDataSetChanged();
+                // return false;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
+
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectRequest.equals("")) {
             Common.showToast(getActivity(), "PLease Try again");
+
         } else {
             try {
                 Gson gson = new Gson();
@@ -104,23 +135,43 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                             if (arrayList != null && arrayList.size() > 0) {
                                 for (int i = 0; i < arrayList.size(); i++) {
                                     if (arrayList.get(i).attendence.id == null || arrayList.get(i).attendence.id.equalsIgnoreCase("")) {
+                                       /* ll_search.setVisibility(View.GONE);
+                                        ll_noResponse.setVisibility(View.VISIBLE);*/
+
                                     } else {
-                                        arrayListnew.add(arrayList.get(i));
+                                        /*ll_search.setVisibility(View.VISIBLE);
+                                        ll_noResponse.setVisibility(View.GONE);
+*/                                        arrayListnew.add(arrayList.get(i));
                                     }
                                 }
                                 if (arrayListnew != null && arrayListnew.size() > 0) {
                                     staffAdapter = new AdminStaffAdapter(getActivity(), arrayListnew);
                                     rv_admin.setAdapter(staffAdapter);
+                                    staffAdapter.notifyDataSetChanged();
 
                                     staffAdapter.setOnItemClickListener(new AdminStaffAdapter.OnitemClickListener() {
                                         @Override
-                                        public void onItemClick(View view, int position) {
+                                        public void onItemClick(View view, final int position, final ArrayList<StaffResponse> arrayList) {
 //                                        out_admin_staff
-                                            call_staff_outWS(position);
+
+                                            AlertUtils.showSimpleAlert(getActivity(), "Do you want to send him/her out", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                                                @Override
+                                                public void onpositiveclick() {
+                                                    call_staff_outWS(position, arrayList);
+                                                }
+
+                                                @Override
+                                                public void onNegativeClick() {
+
+                                                }
+                                            });
+
+
                                         }
                                     });
                                 } else {
-                                    ll_noResponse.setVisibility(View.GONE);
+                                    ll_noResponse.setVisibility(View.VISIBLE);
+                                    ll_search.setVisibility(View.GONE);
                                 }
                             } else {
                                 Common.showToast(getActivity(), "Items Not Found");
@@ -130,8 +181,8 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
                             Common.showToast(getActivity(), object.optString("message"));
                             JSONObject responseStaff = object.optJSONObject("response");
                             arrayList.remove(itemPosition);
-
                             staffAdapter.notifyDataSetChanged();
+                            Toast.makeText(getActivity(), "Removed Successfully", Toast.LENGTH_SHORT).show();
                             break;
                     }
                 } else {
@@ -145,10 +196,12 @@ public class AdminStaff_Fragment extends BaseAbstractFragment<Class> implements 
         }
     }
 
-    private void call_staff_outWS(int position) {
+    private void call_staff_outWS(int position, ArrayList<StaffResponse> arrayList1) {
+
+
         itemPosition = position;
         OutAdminStaff req = new OutAdminStaff();
-        req.attendenceId = arrayList.get(position).staffId;
+        req.attendenceId = arrayList1.get(position).attendence.id;
 
         try {
             obj = Class.forName(OutAdminStaff.class.getName()).cast(req);

@@ -37,10 +37,13 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_35sdp"
+                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_10sdp"
                     android:background="@drawable/search_bg_new"
                     android:orientation="horizontal"
+                    android:visibility="gone"
+
+
                     android:weightSum="1">
 
                     <ImageView
@@ -120,8 +123,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:text="Mobile Number"
                             android:gravity="center"
+                            android:text="Mobile Number"
                             android:textSize="@dimen/_8sdp" />
                     </LinearLayout>
 
@@ -230,15 +233,15 @@
                         android:src="@drawable/spinner_img" />
                 </LinearLayout>
 
-                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
-                    android:id="@+id/gv_add_service"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:isScrollContainer="true"
-                    android:numColumns="4">
 
-                </com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+                    <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                        android:id="@+id/gv_add_service"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:isScrollContainer="true"
+                        android:numColumns="4">
+
+                    </com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
 
                 <View
                     android:layout_width="match_parent"

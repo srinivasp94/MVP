@@ -62,6 +62,14 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         Bundle bundle = getIntent().getExtras();
         String visitor_id = bundle.getString("Key_Visitor_id");
         String type_id = bundle.getString("Key_Type_id");
+        String name = bundle.getString("Name");
+
+
+        mName.setText(name);
+        mType.setText(type_id);
+
+
+
 
 
         Visitors_Common_Req visitors_common_req = new Visitors_Common_Req();
