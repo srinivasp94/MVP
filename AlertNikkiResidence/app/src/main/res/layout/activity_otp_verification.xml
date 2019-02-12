@@ -14,7 +14,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/_40sdp"
-        android:src="@drawable/dummy" />
+        android:src="@drawable/forgot_password" />
 
     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
         android:id="@+id/txt_verification"

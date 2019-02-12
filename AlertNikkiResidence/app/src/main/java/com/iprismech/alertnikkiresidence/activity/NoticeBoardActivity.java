@@ -63,7 +63,7 @@ public class NoticeBoardActivity extends BaseAbstractActivity implements View.On
 
         txtitle = findViewById(R.id.txtitle);
         imgClose= findViewById(R.id.imgClose);
-        txtitle.setText("NOtice Board");
+        txtitle.setText("Notice Board");
         imgClose.setOnClickListener(this);
 
 

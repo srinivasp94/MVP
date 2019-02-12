@@ -177,7 +177,7 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SIGNUP_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN, (Bundle) eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_PASSCODE_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.PASSCODE_SCREEN);
@@ -261,7 +261,7 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.FAMILY_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_FAMILY_SCREEN,(Bundle) eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_FAMILY_SCREEN, (Bundle) eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_OONTACT_SINGLE_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.OONTACT_SINGLE_SCREEN);
@@ -309,11 +309,20 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.VISITORS_HISTORY_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_ATTENDANCE_HISTORY_SCREEN,(Bundle) eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_ATTENDANCE_HISTORY_SCREEN, (Bundle) eventObjects);
                 break;
 
             case AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_FORGOT_PASSWORD_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.FORGOT_PASSWORD_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_FORGOT_PASSWORD_OTP_VERIFICATIONSCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.FORGOT_PASSWORD_OTP_VERIFICATION_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_RESET_PASSWORD_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.RESET_PASSWORD_SCREEN, (Bundle) eventObjects);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event id");

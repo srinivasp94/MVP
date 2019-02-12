@@ -53,7 +53,6 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
         txtForgotpassword.setOnClickListener(this);
         txtHavepasscode.setOnClickListener(this);
         btnSignup.setOnClickListener(this);
-
     }
 
     @Override
@@ -100,6 +99,7 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
             case R.id.imgShowPassword:
                 break;
             case R.id.txtForgotpassword:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FORGOT_PASSWORD_SCREEN);
                 break;
             case R.id.txtHavePasscode:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PASSCODE_SCREEN);
@@ -138,8 +138,8 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
                                 String prefBuilding = responseObj.optString("building_id");
                                 String prefUserType = responseObj.optString("user_type");
 
-                                utils.createUserSession(userid, prefPhone, prefEmail
-                                        , prefSociety, prefCity, prefFlat, prefBuilding, prefUserType);
+
+                                utils.createUserSession(userid, prefPhone, prefEmail, prefSociety, prefCity, prefFlat, prefBuilding, prefUserType);
 
                                 utils.setString(SharedPrefsUtils.KEY_NAME, responseObj.optString("name"));
                                 utils.setString(SharedPrefsUtils.KEY_SOCIETY_NAME, responseObj.optString("society_name"));

@@ -12,12 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.Slidemenu_adapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractFragment;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 public class HomeFragment extends BaseAbstractFragment<Class> implements View.OnClickListener {
     private LinearLayout layoutInviteGuests, layoutMyStaff, layoutGateAlerts,
@@ -27,7 +29,8 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
     private Slidemenu_adapter slidemenu_adapter;
     private ListView slidemenulistview;
     private DrawerLayout drawer_layout;
-    private ImageView menu_icon;
+    private ImageView menu_icon, iv_notification;
+    private TextView tv_flat_building;
 
     @Override
     protected View getFragmentView() {
@@ -55,6 +58,8 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         layoutSchoolBus.setOnClickListener(this);
         layoutKidsGate.setOnClickListener(this);
         LayoutLocalServices.setOnClickListener(this);
+        iv_notification.setOnClickListener(this);
+
     }
 
     @Override
@@ -66,6 +71,10 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         layoutSchoolBus = view.findViewById(R.id.layoutSchoolBus);
         layoutKidsGate = view.findViewById(R.id.layoutKidsGate);
         LayoutLocalServices = view.findViewById(R.id.LayoutLocalServices);
+        iv_notification = view.findViewById(R.id.iv_notification);
+        tv_flat_building = view.findViewById(R.id.tv_flat_building);
+
+        tv_flat_building.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_FLAT_NAME )+ "," + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY_NAME)  );
 
 
         drawer_layout = view.findViewById(R.id.drawer_layout);
@@ -146,6 +155,9 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 break;
             case R.id.LayoutLocalServices:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOCAL_SERVICE_SCREEN);
+                break;
+            case R.id.iv_notification:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN);
                 break;
         }
     }

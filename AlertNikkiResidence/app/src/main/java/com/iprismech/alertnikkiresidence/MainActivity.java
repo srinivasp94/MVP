@@ -12,18 +12,30 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.adapters.Slidemenu_adapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.fragments.HomeFragment;
+import com.iprismech.alertnikkiresidence.request.UpdateDeviceToken;
+import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
+import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
-public class MainActivity extends BaseAbstractActivity<Class> {
+import org.json.JSONObject;
+
+public class MainActivity extends BaseAbstractActivity<Class> implements RetrofitResponseListener {
     FragmentManager fragmentManager;
+    private Object obj;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_home_screen);
+        FirebaseApp.initializeApp(MainActivity.this);
     }
 
     @Override
@@ -40,7 +52,7 @@ public class MainActivity extends BaseAbstractActivity<Class> {
     @Override
     protected void initializeViews() {
         super.initializeViews();
-        ApplicationController.getInstance().setContext(context);
+       // ApplicationController.getInstance().setContext(context);
         try {
 
             fragmentManager = getSupportFragmentManager();
@@ -50,10 +62,45 @@ public class MainActivity extends BaseAbstractActivity<Class> {
         }
 
 
+        String refreshedToken = FirebaseInstanceId.getInstance().getToken();
+        UpdateDeviceToken updateDeviceToken = new UpdateDeviceToken();
+        updateDeviceToken.user_id = SharedPrefsUtils.getInstance(MainActivity.this).getId();
+        //updateDeviceToken.security_id = "1";
+        updateDeviceToken.token = refreshedToken;
+        try {
+            obj = Class.forName(UpdateDeviceToken.class.getName()).cast(updateDeviceToken);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 1, "update_user_device_token", true);
+
+
     }
 
     @Override
     public void setPresenter() {
 
+    }
+
+    @Override
+    public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+        if (objectResponse == null || objectRequest.equals("")) {
+            Common.showToast(getApplicationContext(), "PLease Try again");
+        } else {
+            try {
+                Gson gson = new Gson();
+                String jsonString = gson.toJson(objectResponse);
+                JSONObject object = new JSONObject(jsonString);
+
+                if (object.optBoolean("status") == true) {
+                    switch (requestId) {
+                        case 1:
+                            JSONObject jsonObject = object.optJSONObject("response");
+                            break;
+                    }
+                }
+            }catch (Exception e){
+            e.printStackTrace();}
+        }
     }
 }

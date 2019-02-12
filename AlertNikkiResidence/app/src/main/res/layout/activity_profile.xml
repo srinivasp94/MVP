@@ -149,7 +149,7 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/NoticeBoard"
                         style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/notice_board"
                         android:drawablePadding="@dimen/_5sdp"
                         android:gravity="center|left"
                         android:text="Notice Board"
@@ -158,16 +158,16 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/Emergeny"
                         style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/emergency_call"
                         android:drawablePadding="@dimen/_5sdp"
                         android:gravity="center|left"
-                        android:text="Emergeny Contact"
+                        android:text="Emergency Contact"
                         android:textSize="@dimen/_12sdp" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/Management"
                         style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/management_cmt"
                         android:drawablePadding="@dimen/_5sdp"
                         android:gravity="center|left"
                         android:text="Management Committee"
@@ -234,5 +234,4 @@
         </LinearLayout>
 
     </ScrollView>
-
 </LinearLayout>
