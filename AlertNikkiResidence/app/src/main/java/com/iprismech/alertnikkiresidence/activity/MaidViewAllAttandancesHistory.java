@@ -113,7 +113,10 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
 
         MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
 
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(MaidViewAllAttandancesHistory.this).getAdminID();
+        // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
+//        req.maidId = "1";
+//        req.adminId = "2";
         req.maidId = maid_id;
         //req.maidId = "1";
 

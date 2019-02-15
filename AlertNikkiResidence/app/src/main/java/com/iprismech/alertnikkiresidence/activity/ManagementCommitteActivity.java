@@ -17,6 +17,7 @@ import com.iprismech.alertnikkiresidence.request.NoticeBoardRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -66,7 +67,7 @@ public class ManagementCommitteActivity extends BaseAbstractActivity implements 
 
 
         NoticeBoardRequest req = new NoticeBoardRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(ManagementCommitteActivity.this).getAdminID();
 
         //  req.userId = 22;
         try {

@@ -2,6 +2,7 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -46,8 +47,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     int itemPosition = 0;
     private ImageView imgClose;
     private TextView txtitle;
-
-
+    private FloatingActionButton fab;
 
 
     @Override
@@ -78,6 +78,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
         super.setListenerToViews();
         edtdate.setOnClickListener(this);
         InviteGuests.setOnClickListener(this);
+        fab.setOnClickListener(this);
     }
 
     @Override
@@ -89,7 +90,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
         manager.setOrientation(LinearLayoutManager.VERTICAL);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Guest");
         imgClose.setOnClickListener(this);
 
@@ -97,6 +98,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
         rlDateselect = findViewById(R.id.rlDateselect);
         InviteGuests = findViewById(R.id.llInviteGuests);
         edtdate = findViewById(R.id.edtGuestDate);
+        fab = findViewById(R.id.fab);
 
         rvSelectContact.setLayoutManager(manager);
         if (contactsList != null && contactsList.size() > 0) {
@@ -123,6 +125,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                             startActivity(intent);
                             finish();
                             break;
+
                     }
                 }
             });
@@ -154,7 +157,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                         list.add(contact);
                     }
                     Guestinvite req = new Guestinvite();
-                    req.adminId = "2";
+                    req.adminId = SharedPrefsUtils.getInstance(ViewInviteGuestActivity.this).getAdminID();
                     req.otpSentType = "1";
                     req.userId = SharedPrefsUtils.getInstance(ViewInviteGuestActivity.this).getId();
                     req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
@@ -175,6 +178,14 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                     }
                     new RetrofitRequester(this).callPostServices(obj, 1, "send_invite_guest", true);
                 }
+                break;
+            case R.id.fab:
+                Intent intent1 = new Intent(ViewInviteGuestActivity.this, GuestEditActivity.class);
+                intent1.putParcelableArrayListExtra("Key_Contacts", contactsList);
+                intent1.putExtra("Key_id","3" );
+                intent1.putExtra("Key_Position", "0");
+                startActivity(intent1);
+                finish();
                 break;
         }
     }

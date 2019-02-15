@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.activity.SOSActivity;
 import com.iprismech.alertnikkiresidence.adapters.HistorySchoolAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
@@ -20,6 +21,7 @@ import com.iprismech.alertnikkiresidence.response.WeeklyHistory;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -84,7 +86,7 @@ public class BushistoryActivity extends BaseAbstractActivity implements Retrofit
 
         //schoolbus_attendence_history
         SchoolHistoryReq req = new SchoolHistoryReq();
-        req.adminId = "2";
+        req.adminId =SharedPrefsUtils.getInstance(BushistoryActivity.this).getAdminID();
         req.schoolbusId = "1";
 
         try {

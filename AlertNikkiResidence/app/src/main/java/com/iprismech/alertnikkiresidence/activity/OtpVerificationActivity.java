@@ -24,6 +24,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     private TextView txtitle;
 
 
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -108,6 +109,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                     bundle.putString("Key_Blood", sBlood);
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
                 }
+
                 break;
         }
     }

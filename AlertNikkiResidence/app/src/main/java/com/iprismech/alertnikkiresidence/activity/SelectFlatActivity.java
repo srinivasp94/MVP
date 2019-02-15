@@ -118,6 +118,7 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
                                 public void onItemClick(View view, int position) {
                                     switch (view.getId()) {
                                         case R.id.tv_item_flat_number:
+
                                             getdataFromAdapter(position);
                                             break;
                                     }

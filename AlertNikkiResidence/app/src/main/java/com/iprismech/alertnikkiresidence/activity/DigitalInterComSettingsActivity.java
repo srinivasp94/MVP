@@ -14,7 +14,6 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 import com.iprismech.alertnikkiresidence.pojo.GetDigitalInterComPojo;
 import com.iprismech.alertnikkiresidence.request.DigitalIntercomRequest;
 import com.iprismech.alertnikkiresidence.request.DigitalntercomSettingsRequest;
-import com.iprismech.alertnikkiresidence.request.StandardMaidTimingsRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
@@ -84,7 +83,7 @@ public class DigitalInterComSettingsActivity extends BaseAbstractActivity implem
             @Override
             public void onClick(View v) {
                 DigitalntercomSettingsRequest req = new DigitalntercomSettingsRequest();
-                req.adminId = "2";
+                req.adminId = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getAdminID();
                 req.userId = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getId();
                 req.userType = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getuserType();
                 req.primaryNumber = et_primary_number.getText().toString();

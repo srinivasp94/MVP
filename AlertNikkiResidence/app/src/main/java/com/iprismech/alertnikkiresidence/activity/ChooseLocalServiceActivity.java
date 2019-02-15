@@ -15,6 +15,7 @@ import com.iprismech.alertnikkiresidence.request.LocalServicesListRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -66,7 +67,7 @@ public class ChooseLocalServiceActivity extends BaseAbstractActivity implements 
         imgClose.setOnClickListener(this);
 
         LocalServicesListRequest req = new LocalServicesListRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(ChooseLocalServiceActivity.this).getAdminID();
         //  req.userId = 22;
         try {
             obj = Class.forName(LocalServicesListRequest.class.getName()).cast(req);

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.activity.AddStaffActivity;
 import com.iprismech.alertnikkiresidence.pojo.DailyHelpsListPojo;
-import com.iprismech.alertnikkiresidence.request.DailyHelpsList;
 import com.iprismech.alertnikkiresidence.utilities.Constants;
 import com.squareup.picasso.Picasso;
 

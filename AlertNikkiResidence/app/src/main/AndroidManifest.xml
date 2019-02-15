@@ -80,6 +80,11 @@
         <activity android:name=".activity.profile.ContactSingleActivity" />
         <activity android:name=".activity.profile.MyFlatActivity" />
         <activity android:name=".activity.MaidViewAllAttandancesHistory" />
+        <activity android:name=".activity.SelectBuildingActvity" />
+        <activity android:name=".activity.SelectFlatActivity" />
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".activity.SOSActivity" />
+        <activity android:name=".activity.profile.AddVehicleActivity"></activity>
         <activity android:name=".activity.ForgotPasswordActivity" />
         <activity android:name=".activity.ForgotPasswordOTPVerificationActivity" />
         <activity android:name=".activity.ResetPasswordActivity" />

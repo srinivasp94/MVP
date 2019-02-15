@@ -110,7 +110,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
 
         DailyHelpsList dailyHelpsReq = new DailyHelpsList();
 
-        dailyHelpsReq.adminId = "2";
+        dailyHelpsReq.adminId = SharedPrefsUtils.getInstance(AddStaffActivity.this).getAdminID();
         //flatListRequest.building_id="4";
         try {
             obj = Class.forName(DailyHelpsList.class.getName()).cast(dailyHelpsReq);

@@ -31,6 +31,8 @@ import com.iprismech.alertnikkiresidence.response.SearchBusList;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -52,6 +54,9 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
     private RetrofitResponseListener retrofitResponseListener;
     private SchoolBusSearchPojo schoolBusSearchPojo;
     private ListView searchresults;
+
+
+
 
 
     @Override
@@ -84,7 +89,6 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
 
         imgClose.setOnClickListener(this);
 
-
     }
 
     @Override
@@ -99,6 +103,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
         et_search = findViewById(R.id.et_search);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select School");
 
 
@@ -109,7 +114,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         rv_schools.setLayoutManager(layoutManager);
 
         SearchBusReq req = new SearchBusReq();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(SelectSchoolActivity.this).getAdminID();
         req.schoolBusName = "";
         try {
             obj = Class.forName(SearchBusReq.class.getName()).cast(req);
@@ -171,7 +176,9 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
                                     public void onItemClick(View view, int position) {
                                         switch (view.getId()) {
                                             case R.id.rootLayout:
-                                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN);
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("KEY_BUS_ID", busList.get(position).id);
+                                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN, bundle);
                                                 break;
                                         }
 

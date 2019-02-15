@@ -35,8 +35,8 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
     TextView txt_NoItems, txtSave;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
+    private String busid;
 
 
     @Override
@@ -82,26 +82,29 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
 
     private void saveBusRouteWS(String routeID) {
         SaveSchoolBusRoute req = new SaveSchoolBusRoute();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(BusRouteActivity.this).getAdminID();
+
         req.userId = SharedPrefsUtils.getInstance(BusRouteActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
-        req.schoolBusId = "";
+        req.schoolBusId = busid;
         req.routeId = routeID;
         try {
             obj = Class.forName(SaveSchoolBusRoute.class.getName()).cast(req);
         } catch (Exception e) {
 
         }
-        new RetrofitRequester(this).callPostServices(obj, 2, "", true);
+        new RetrofitRequester(this).callPostServices(obj, 2, "save_user_schoolbus", true);
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+        Bundle bundle = getIntent().getExtras();
+        busid = bundle.getString("KEY_BUS_ID", "");
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Bus Routes");
 
         layoutManager = new LinearLayoutManager(BusRouteActivity.this);
@@ -117,8 +120,9 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
         rv_busRoute.setLayoutManager(layoutManager);
 
         BusRouteReq req = new BusRouteReq();
-        req.adminId = "2";
-        req.schoolBusId = "1";
+        req.adminId = SharedPrefsUtils.getInstance(BusRouteActivity.this).getAdminID();
+
+        req.schoolBusId = busid ;
 
         try {
             obj = Class.forName(BusRouteReq.class.getName()).cast(req);

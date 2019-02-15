@@ -83,12 +83,14 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
                     req.mobile = "";
                     req.password = "";
                     req.passcode = edtPasscode.getText().toString();
+
                     try {
                         obj = Class.forName(LoginReq.class.getName()).cast(req);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    new RetrofitRequester(this).callPostServices(obj, 1, "login", true);
+//                    new RetrofitRequester(this).callPostServices(obj, 1, "login", true);
+                    new RetrofitRequester(this).callPostServices(obj, 1, "userdata_with_passcode", true);
 //                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
                 }
 

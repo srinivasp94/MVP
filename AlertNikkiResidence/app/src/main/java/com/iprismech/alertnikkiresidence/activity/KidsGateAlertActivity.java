@@ -2,7 +2,6 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,7 +31,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.KidsListAdapter;
 import com.iprismech.alertnikkiresidence.adapters.StaffListAdapter;
@@ -41,12 +38,9 @@ import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.KidsListPojo;
-import com.iprismech.alertnikkiresidence.pojo.MyStaff_Maids_List_Pojo;
 import com.iprismech.alertnikkiresidence.request.DeleteKidRequest;
-import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
 import com.iprismech.alertnikkiresidence.request.KidGatePassRequest;
 import com.iprismech.alertnikkiresidence.request.KidsListRequest;
-import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
@@ -135,7 +129,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
 
 
         KidsListRequest req = new KidsListRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(KidsGateAlertActivity.this).getAdminID();
         req.user_id = SharedPrefsUtils.getInstance(KidsGateAlertActivity.this).getId();
         req.user_type = SharedPrefsUtils.getInstance(KidsGateAlertActivity.this).getuserType();
         // req.user_id = "1";

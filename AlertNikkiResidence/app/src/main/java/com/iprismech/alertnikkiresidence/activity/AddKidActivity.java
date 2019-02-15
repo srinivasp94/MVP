@@ -183,7 +183,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         AddKidPojo kidPojo = new AddKidPojo();
                         try {
 
-                            kidPojo.adminId = "2";
+                            kidPojo.adminId =SharedPrefsUtils.getInstance(AddKidActivity.this).getAdminID();
                             kidPojo.kidName = kid_name.getText().toString();
                             kidPojo.userId = SharedPrefsUtils.getInstance(AddKidActivity.this).getId();
 

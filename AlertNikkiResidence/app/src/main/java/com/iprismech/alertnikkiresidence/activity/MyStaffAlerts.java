@@ -136,7 +136,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
         rvSatffLists.setLayoutManager(manager);
 
         StaffRequest req = new StaffRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(MyStaffAlerts.this).getAdminID();
         req.userId = SharedPrefsUtils.getInstance(MyStaffAlerts.this).getId();
         //  req.userId = 22;
         try {
@@ -285,7 +285,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                                         Toast.makeText(MyStaffAlerts.this, "Please write description", Toast.LENGTH_SHORT).show();
                                                     } else {
                                                         DigitalPassRequest digitalPassRequest = new DigitalPassRequest();
-                                                        digitalPassRequest.adminId = "2";
+                                                        digitalPassRequest.adminId = SharedPrefsUtils.getInstance(MyStaffAlerts.this).getAdminID();
                                                         digitalPassRequest.userId = SharedPrefsUtils.getInstance(MyStaffAlerts.this).getId();
                                                         digitalPassRequest.userType = SharedPrefsUtils.getInstance(MyStaffAlerts.this).getuserType();
                                                         digitalPassRequest.maidId = myStaff_maids_list_pojo.getResponse().get(removed_postion).getId();

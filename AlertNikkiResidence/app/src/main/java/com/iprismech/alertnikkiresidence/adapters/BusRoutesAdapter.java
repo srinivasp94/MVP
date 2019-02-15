@@ -47,14 +47,14 @@ public class BusRoutesAdapter extends RecyclerView.Adapter<BusRoutesAdapter.View
         final BusRouteList model = routeLists.get(i);
         viewHolder.textView.setText(model.route);
 
-        viewHolder.itemView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
-        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
+//        viewHolder.itemView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+/*        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 model.setSelected(!model.isSelected());
                 viewHolder.itemView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
             }
-        });
+        });*/
     }
 
     @Override

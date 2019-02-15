@@ -316,9 +316,11 @@
                 android:background="@color/black" />
 
             <ImageView
+                android:id="@+id/imgSOS"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:src="@drawable/sos_nav" />
+
             <android.support.v7.widget.AppCompatTextView
                 style="@style/DefaultCustomTextView"
                 android:text="Panic Alert"
