@@ -6,8 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -16,6 +23,8 @@ import com.iprismech.alertnikkiresidence.adapters.SelectSchoolAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.pojo.SchoolBusSearchPojo;
+import com.iprismech.alertnikkiresidence.request.SchoolBusSearchReq;
 import com.iprismech.alertnikkiresidence.request.SearchBusReq;
 import com.iprismech.alertnikkiresidence.response.SearchBus;
 import com.iprismech.alertnikkiresidence.response.SearchBusList;
@@ -26,21 +35,23 @@ import com.iprismech.alertnikkiresidence.utilities.Common;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class SelectSchoolActivity extends BaseAbstractActivity implements RetrofitResponseListener, View.OnClickListener {
-    RecyclerView rv_schools;
-    TextView txt_NoItems;
-    LinearLayoutManager layoutManager;
+    private RecyclerView rv_schools;
+    private TextView txt_NoItems;
+    private LinearLayoutManager layoutManager;
     private Object obj;
     private ArrayList<SearchBusList> busList = new ArrayList();
     private SelectSchoolAdapter schoolAdapter;
-    ImageView fab;
-
+    private ImageView fab;
+    private EditText et_search;
     private ImageView imgClose;
-    private 	TextView txtitle;
-
-
-
+    private TextView txtitle;
+    private RetrofitResponseListener retrofitResponseListener;
+    private SchoolBusSearchPojo schoolBusSearchPojo;
+    private ListView searchresults;
 
 
     @Override
@@ -73,17 +84,21 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
 
         imgClose.setOnClickListener(this);
 
+
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
+
+        retrofitResponseListener = this;
         ApplicationController.getInstance().setContext(context);
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
+        et_search = findViewById(R.id.et_search);
         txtitle.setText("Select School");
 
 
@@ -101,6 +116,36 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         } catch (Exception e) {
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "search_school_bus", true);
+
+
+        et_search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.length() > 2) {
+                    SchoolBusSearchReq req_bus_search = new SchoolBusSearchReq();
+                    req_bus_search.adminId = "2";
+                    req_bus_search.school_bus_name = (String) s;
+                    try {
+                        obj = Class.forName(SchoolBusSearchReq.class.getName()).cast(req_bus_search);
+                    } catch (Exception e) {
+                    }
+                    new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "search_school_bus", true);
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
     }
 
     @Override
@@ -137,6 +182,27 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
                                 rv_schools.setVisibility(View.GONE);
                             }
                             break;
+                        case 2:
+                            schoolBusSearchPojo = gson.fromJson(jsonString, SchoolBusSearchPojo.class);
+                            String[] shops = new String[schoolBusSearchPojo.getResponse().size()];
+                            for (int i = 0; i < schoolBusSearchPojo.getResponse().size(); i++) {
+                                shops[i] = schoolBusSearchPojo.getResponse().get(i).getSchool_bus_name();
+                            }
+
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, R.layout.simple_list1, shops);
+                            //selected item will look like a spinner set from XML
+                            spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_list1);
+                            spinnerArrayAdapter.notifyDataSetChanged();
+                            searchresults.setAdapter(spinnerArrayAdapter);
+                            searchresults.setVisibility(View.VISIBLE);
+                            spinnerArrayAdapter.notifyDataSetChanged();
+                            searchresults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                                }
+                            });
+                            break;
                     }
                 } else {
                     Common.showToast(SelectSchoolActivity.this, jsonObject.optString("message"));
@@ -158,6 +224,9 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
 
             case R.id.imgClose:
                 onBackPressed();
+                break;
+            case R.id.et_search:
+
                 break;
         }
     }
