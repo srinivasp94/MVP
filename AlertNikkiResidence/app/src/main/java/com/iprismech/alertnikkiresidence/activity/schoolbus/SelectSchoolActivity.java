@@ -1,6 +1,7 @@
 package com.iprismech.alertnikkiresidence.activity.schoolbus;
 
 import android.annotation.SuppressLint;
+import android.inputmethodservice.Keyboard;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -48,15 +50,12 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
     private ArrayList<SearchBusList> busList = new ArrayList();
     private SelectSchoolAdapter schoolAdapter;
     private ImageView fab;
-    private EditText et_search;
+    private SearchView et_search;
     private ImageView imgClose;
     private TextView txtitle;
     private RetrofitResponseListener retrofitResponseListener;
     private SchoolBusSearchPojo schoolBusSearchPojo;
     private ListView searchresults;
-
-
-
 
 
     @Override
@@ -86,7 +85,6 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
     protected void setListenerToViews() {
         super.setListenerToViews();
         fab.setOnClickListener(this);
-
         imgClose.setOnClickListener(this);
 
     }
@@ -105,7 +103,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         et_search = findViewById(R.id.et_search);
         imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select School");
-
+        searchresults = findViewById(R.id.searchresults);
 
         //search_school_bus
         rv_schools = findViewById(R.id.rv_schools);
@@ -123,18 +121,19 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
         new RetrofitRequester(this).callPostServices(obj, 1, "search_school_bus", true);
 
 
-        et_search.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+        et_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            public boolean onQueryTextChange(String s) {
                 if (s.length() > 2) {
                     SchoolBusSearchReq req_bus_search = new SchoolBusSearchReq();
                     req_bus_search.adminId = "2";
-                    req_bus_search.school_bus_name = (String) s;
+                    req_bus_search.school_bus_name = ""+s;
                     try {
                         obj = Class.forName(SchoolBusSearchReq.class.getName()).cast(req_bus_search);
                     } catch (Exception e) {
@@ -142,13 +141,41 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
                     new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "search_school_bus", true);
 
                 }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+                return false;
             }
         });
+
+
+//        et_search.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                if (s.length() > 2) {
+//                    SchoolBusSearchReq req_bus_search = new SchoolBusSearchReq();
+//                    req_bus_search.adminId = "2";
+//                    req_bus_search.school_bus_name = ""+s;
+//                    try {
+//                        obj = Class.forName(SchoolBusSearchReq.class.getName()).cast(req_bus_search);
+//                    } catch (Exception e) {
+//                    }
+//                    new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "search_school_bus", true);
+//
+//
+//                }
+//            }
+//
+//            @Override
+//            public void afterTextChanged(Editable s) {
+//
+//
+//
+//
+//            }
+//        });
 
 
     }
@@ -190,23 +217,28 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
                             }
                             break;
                         case 2:
+                            et_search.setFocusable(true);
                             schoolBusSearchPojo = gson.fromJson(jsonString, SchoolBusSearchPojo.class);
                             String[] shops = new String[schoolBusSearchPojo.getResponse().size()];
                             for (int i = 0; i < schoolBusSearchPojo.getResponse().size(); i++) {
                                 shops[i] = schoolBusSearchPojo.getResponse().get(i).getSchool_bus_name();
                             }
-
-                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(context, R.layout.simple_list1, shops);
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(SelectSchoolActivity.this, R.layout.simple_list1, shops);
                             //selected item will look like a spinner set from XML
                             spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_list1);
                             spinnerArrayAdapter.notifyDataSetChanged();
                             searchresults.setAdapter(spinnerArrayAdapter);
-                            searchresults.setVisibility(View.VISIBLE);
                             spinnerArrayAdapter.notifyDataSetChanged();
+
+
                             searchresults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @SuppressLint("WrongConstant")
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("KEY_BUS_ID", schoolBusSearchPojo.getResponse().get(position).getId());
+                                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN, bundle);
                                 }
                             });
                             break;

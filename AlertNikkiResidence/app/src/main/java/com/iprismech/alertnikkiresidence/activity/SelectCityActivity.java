@@ -3,6 +3,7 @@ package com.iprismech.alertnikkiresidence.activity;
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -34,7 +35,8 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
     private TextView txtNoItems;
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
+
 
 
 
@@ -80,7 +82,7 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
             sBlood = bundle.getString("Key_Blood");
         }
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select City");
         imgClose.setOnClickListener(this);
 
@@ -120,11 +122,11 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                         bundle.putString("Key_CityId", cityLists.get(position).id);
                                         bundle.putString("Key_CityName", cityLists.get(position).title);
 
-                                        bundle.putString("Key_Name",sName);
-                                        bundle.putString("Key_Mobile",sPhone);
-                                        bundle.putString("Key_Email",sMail);
-                                        bundle.putString("Key_Password",sPassword);
-                                        bundle.putString("Key_Blood",sBlood);
+                                        bundle.putString("Key_Name", sName);
+                                        bundle.putString("Key_Mobile", sPhone);
+                                        bundle.putString("Key_Email", sMail);
+                                        bundle.putString("Key_Password", sPassword);
+                                        bundle.putString("Key_Blood", sBlood);
                                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
 
                                     }
