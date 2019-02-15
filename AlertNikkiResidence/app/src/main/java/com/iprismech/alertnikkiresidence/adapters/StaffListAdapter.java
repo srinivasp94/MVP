@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -75,6 +76,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         LinearLayout ll_make_call, ll_delete, ll_send_gate_pass, ll_item_staff_list;
         TextView tv_no_of_flats, tv_staff_name, tv_maid_type, tv_staff_rating;
         RatingBar rating_staff;
+        Switch switch_noti;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +85,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             ll_send_gate_pass = itemView.findViewById(R.id.ll_send_gate_pass);
             ll_delete = itemView.findViewById(R.id.ll_delete_maid);
             ll_item_staff_list = itemView.findViewById(R.id.ll_item_staff_list);
+            switch_noti = itemView.findViewById(R.id.switch_noti);
 
 
             tv_no_of_flats = itemView.findViewById(R.id.no_flats);

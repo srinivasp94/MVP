@@ -33,7 +33,7 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
     private LinearLayout ll_gateAlerts;
     private RelativeLayout rl_listItems;
     private RecyclerView rvGateAlerts;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private TextView txtNotify;
     private Object obj;
     private LinearLayoutManager manager;

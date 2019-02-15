@@ -11,25 +11,27 @@ import android.view.ViewGroup;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
-import com.iprismech.alertnikkiresidence.adapters.MaidMonthlyAttAdapter;
+import com.iprismech.alertnikkiresidence.adapters.BusMonthlyAttAdapter;
+import com.iprismech.alertnikkiresidence.adapters.BusWeeklyAttAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractFragment;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
-import com.iprismech.alertnikkiresidence.pojo.MaidAttendanceHistoryPojo;
-import com.iprismech.alertnikkiresidence.request.MaidAttendanceHistoryReq;
+import com.iprismech.alertnikkiresidence.pojo.SchoolBusHistoryPojo;
+import com.iprismech.alertnikkiresidence.request.BusAttendanceHistoryRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 
 import org.json.JSONObject;
 
-public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implements View.OnClickListener, RetrofitResponseListener {
-    private MaidMonthlyAttAdapter maidMonthlyAttAdapter;
+public class BusMonthlyAttendance extends BaseAbstractFragment<Class> implements View.OnClickListener, RetrofitResponseListener {
+
+    private BusMonthlyAttAdapter busMonthlyAttAdapter;
     private RecyclerView rview_monthly;
     private LinearLayoutManager manager;
-    MaidAttendanceHistoryPojo maidAttendanceHistoryPojo;
+    private SchoolBusHistoryPojo schoolBusHistoryPojo;
     private Object obj;
-    private String maid_id;
+    private String school_bus_id;
 
     @Override
     public void onClick(View v) {
@@ -43,31 +45,7 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
     }
 
     @Override
-    protected void initialiseViews() {
-        super.initialiseViews();
-        Bundle arguments = getArguments();
-        maid_id = arguments.getString("maid_id");
-
-        rview_monthly = view.findViewById(R.id.rview_monthly);
-        manager = new LinearLayoutManager(getActivity());
-        manager.setOrientation(LinearLayoutManager.VERTICAL);
-        rview_monthly.setLayoutManager(manager);
-
-
-        MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
-        req.adminId = "2";
-        // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
-        req.maidId = maid_id;
-
-
-        //  req.userId = 22;
-        try {
-            obj = Class.forName(MaidAttendanceHistoryReq.class.getName()).cast(req);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        new RetrofitRequester(this).callPostServices(obj, 1, "maid_attendence_history", true);
-
+    public void setPresenter() {
 
     }
 
@@ -77,13 +55,10 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
         return view;
     }
 
-    @Override
-    public void setPresenter() {
-
-    }
 
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+
         if (objectResponse == null || objectResponse.equals("")) {
             Common.showToast(getActivity(), "Please Try Again");
         } else {
@@ -94,11 +69,11 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
-                            maidAttendanceHistoryPojo = gson.fromJson(jsonString, MaidAttendanceHistoryPojo.class);
-                            maidMonthlyAttAdapter = new MaidMonthlyAttAdapter(getActivity(), maidAttendanceHistoryPojo);
-                            rview_monthly.setAdapter(maidMonthlyAttAdapter);
-                            maidMonthlyAttAdapter.notifyDataSetChanged();
-                            maidMonthlyAttAdapter.setOnItemClickListener(new MaidMonthlyAttAdapter.OnitemClickListener() {
+                            schoolBusHistoryPojo = gson.fromJson(jsonString, SchoolBusHistoryPojo.class);
+                            busMonthlyAttAdapter = new BusMonthlyAttAdapter(getActivity(), schoolBusHistoryPojo);
+                            rview_monthly.setAdapter(busMonthlyAttAdapter);
+                            busMonthlyAttAdapter.notifyDataSetChanged();
+                            busMonthlyAttAdapter.setOnItemClickListener(new BusMonthlyAttAdapter.OnitemClickListener() {
                                 @SuppressLint("WrongConstant")
                                 @Override
                                 public void onItemClick(View view, int position) {
@@ -107,14 +82,13 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
                                             Bundle bundle = new Bundle();
                                             bundle.putString("case", "Monthly");
                                             bundle.putInt("position", position);
-                                            bundle.putString("maid_id", maid_id);
-                                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
-
+                                            bundle.putString("school_bus_id", school_bus_id);
+                                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_BUS_ATTENDANCE_HISTORY_SCREEN, bundle);
                                             break;
                                     }
-
                                 }
                             });
+                            break;
                     }
                 } else {
                     Common.showToast(getActivity(), jsonObject.optString("message"));
@@ -124,5 +98,36 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
             }
 
         }
+    }
+
+    @Override
+    protected void initialiseViews() {
+        super.initialiseViews();
+
+
+        Bundle arguments = getArguments();
+        school_bus_id = arguments.getString("school_bus_id");
+        rview_monthly = view.findViewById(R.id.rview_monthly);
+        manager = new LinearLayoutManager(getActivity());
+        manager.setOrientation(LinearLayoutManager.VERTICAL);
+        rview_monthly.setLayoutManager(manager);
+
+
+        BusAttendanceHistoryRequest req = new BusAttendanceHistoryRequest();
+        req.adminId = "2";
+        // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
+        req.schoolbus_id = school_bus_id;
+        // req.schoolbus_id = "1";
+        // req.maidId = "1";
+
+
+        //  req.userId = 22;
+        try {
+            obj = Class.forName(BusAttendanceHistoryRequest.class.getName()).cast(req);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new RetrofitRequester(this).callPostServices(obj, 1, "schoolbus_attendence_history", true);
+
     }
 }

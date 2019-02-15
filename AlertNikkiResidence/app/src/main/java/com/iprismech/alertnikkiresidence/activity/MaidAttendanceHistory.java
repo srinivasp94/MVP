@@ -21,7 +21,7 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
     private MaidWeeklyAttendance fragment;
     private MaidMonthlyAttendance fragment1;
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
 
 
 
@@ -101,7 +101,7 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         txtitle = findViewById(R.id.txtitle);
         imgClose= findViewById(R.id.imgClose);
         txtitle.setText("Maid Attendence");
-        imgClose.setOnClickListener(this);
+
 
         String maid_id = getIntent().getExtras().getString("maid_id", "");
 
@@ -116,8 +116,7 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         tv_weekly = findViewById(R.id.tv_weekly);
         tv_monthly = findViewById(R.id.tv_monthly);
 
-        tv_weekly.setOnClickListener(this);
-        tv_monthly.setOnClickListener(this);
+
 
         try {
 
@@ -127,6 +126,14 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void setListenerToViews() {
+        super.setListenerToViews();
+        tv_weekly.setOnClickListener(this);
+        tv_monthly.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
     }
 
     @Override

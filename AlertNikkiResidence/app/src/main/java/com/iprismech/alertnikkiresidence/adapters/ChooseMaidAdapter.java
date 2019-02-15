@@ -186,6 +186,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("WorkingType", "1");
                                 bundle.putString("From_Date", tv_from_date.getText().toString());
                                 bundle.putString("ToDate", tv_end_date.getText().toString());
+                                bundle.putString("Key_screen", "Choose Maid");
 
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
                             }

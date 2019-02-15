@@ -181,6 +181,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                         }
                         new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "delete_user_maid", true);
                     }
+
                     @Override
                     public void onNegativeClick() {
 
@@ -249,7 +250,10 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                 break;
             case R.id.ll_available_slots:
 
-
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("Key_screen", "Avalable");
+                bundle1.putString("Key_MaidId", maid_id);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle1);
 
                 break;
         }

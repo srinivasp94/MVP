@@ -14,23 +14,18 @@ import android.widget.TextView;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
-import com.iprismech.alertnikkiresidence.pojo.MaidAttendanceHistoryPojo;
+import com.iprismech.alertnikkiresidence.pojo.SchoolBusHistoryPojo;
 
-public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdapter.ViewHolder> {
+public class BusMonthlyAttAdapter extends RecyclerView.Adapter<BusMonthlyAttAdapter.ViewHolder> {
     private Context context;
-    private MaidAttendanceHistoryPojo maidAttendanceHistoryPojo;
+    private SchoolBusHistoryPojo schoolBusHistoryPojo;
 
-    public MaidWeeklyAttAdapter(FragmentActivity activity, MaidAttendanceHistoryPojo maidAttendanceHistoryPojo) {
+    public BusMonthlyAttAdapter(FragmentActivity activity, SchoolBusHistoryPojo schoolBusHistoryPojo) {
         this.context = activity;
-        this.maidAttendanceHistoryPojo = maidAttendanceHistoryPojo;
+        this.schoolBusHistoryPojo = schoolBusHistoryPojo;
     }
 
-    @NonNull
-    @Override
-    public MaidWeeklyAttAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_histroy_maid, viewGroup, false);
-        return new ViewHolder(view);
-    }
+
     private OnitemClickListener mListner;
 
     public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
@@ -41,22 +36,26 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
         void onItemClick(View view, int position);
     }
 
+    @NonNull
     @Override
-    public void onBindViewHolder(@NonNull MaidWeeklyAttAdapter.ViewHolder viewHolder, int i) {
-        int count = maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().size();
-        try {
-            viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getDate());
-            viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getIn_time());
-            viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getOut_time());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+    public BusMonthlyAttAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_histroy_maid, viewGroup, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        for (int j = 0; j < schoolBusHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().size(); j++) {
+            viewHolder.txtDate.setText(schoolBusHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(j).getSchoolbus_name()+'\n'+schoolBusHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(j).getDate());
+            viewHolder.txtInOutAm.setText(schoolBusHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(j).getIn_time());
+            viewHolder.txtinoutPm.setText(schoolBusHistoryPojo.getResponse().getMonthly_history().get(i).getSmenu().get(j).getOut_time());
+
         }
     }
 
     @Override
     public int getItemCount() {
-        return maidAttendanceHistoryPojo.getResponse().getWeekly_history().size();
+        return schoolBusHistoryPojo.getResponse().getMonthly_history().size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -68,15 +67,17 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
             txtInOutAm = itemView.findViewById(R.id.txtInOutAm);
             txtinoutPm = itemView.findViewById(R.id.txtinoutPm);
             tv_view_all = itemView.findViewById(R.id.tv_view_all);
+            tv_view_all.setOnClickListener(this);
+
 
             tv_view_all.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("WrongConstant")
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
-                    bundle.putString("case", "Weekly");
+                    bundle.putString("case", "Monthly");
                     bundle.putInt("position", getAdapterPosition());
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_BUS_ATTENDANCE_HISTORY_SCREEN, bundle);
 
                 }
             });
@@ -85,9 +86,7 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
 
         @Override
         public void onClick(View v) {
-            if (mListner != null) {
-                mListner.onItemClick(v, getAdapterPosition());
-            }
+
         }
     }
 }

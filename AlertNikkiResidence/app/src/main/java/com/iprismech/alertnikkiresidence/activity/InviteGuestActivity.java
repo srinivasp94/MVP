@@ -44,7 +44,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     private TextView txtInviteGuests;
     private RelativeLayout RlGuestsLists;
     private LinearLayout layoutNoGuests;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private RecyclerView rvGuestsLists;
     private LinearLayoutManager manager;
     private boolean iscontactsGranted;
@@ -162,6 +162,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                             Guests response = Common.getSpecificDataObject(objectResponse, Guests.class);
                             guestsLists = (ArrayList<GuestsList>) response.response;
                             if (guestsLists != null && guestsLists.size() > 0) {
+                                txtitle.setText("Invite Guest" + "(" + guestsLists.size() + ")");
                                 layoutNoGuests.setVisibility(View.GONE);
                                 RlGuestsLists.setVisibility(View.VISIBLE);
                                 guestsAdapter = new AllGuestsAdapter(InviteGuestActivity.this, guestsLists);

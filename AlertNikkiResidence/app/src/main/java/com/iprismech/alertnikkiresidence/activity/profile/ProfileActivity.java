@@ -190,6 +190,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN);
                 break;
             case R.id.MyFlat:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN);
                 break;
             case R.id.Digital:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);

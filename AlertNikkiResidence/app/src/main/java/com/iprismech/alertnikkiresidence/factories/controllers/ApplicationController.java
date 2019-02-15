@@ -327,6 +327,15 @@ public class ApplicationController {
             case AppConstants.EventIds.LAUNCH_DETAIL_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.DETAIL_SCREEN, (Bundle) eventObjects);
                 break;
+            case AppConstants.EventIds.LAUNCH_SCHOOL_BUS_HISTORY:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SCHOOL_BUS_HISTORY_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_VIEW_ALL_BUS_ATTENDANCE_HISTORY_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.BUS_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, (Bundle) eventObjects);
+                break;
+            case AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MY_FLATS_SCREEN);
+                break;
             default:
                 throw new IllegalStateException("Invalid Event id");
         }
