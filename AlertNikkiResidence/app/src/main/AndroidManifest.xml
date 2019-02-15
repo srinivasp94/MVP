@@ -92,7 +92,9 @@
         <activity android:name=".activity.MaidViewAllAttandancesHistory" />
         <activity android:name=".activity.SelectBuildingActvity" />
         <activity android:name=".activity.SelectFlatActivity" />
-        <activity android:name=".DetailActivity"></activity>
+        <activity android:name=".DetailActivity" />
+        <activity android:name=".activity.SOSActivity" />
+        <activity android:name=".activity.profile.AddVehicleActivity"></activity>
     </application>
 
 </manifest>

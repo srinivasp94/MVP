@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="@dimen/_2sdp"
         android:layout_margin="@dimen/_2sdp"
-        android:elevation="@dimen/_1sdp">
+        android:background="@color/white"
+        android:elevation="@dimen/_1sdp"
+        android:padding="@dimen/_2sdp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgSErvicelogo"
@@ -70,7 +69,7 @@
                 android:layout_width="@dimen/_18sdp"
                 android:layout_height="@dimen/_18sdp"
                 android:layout_gravity="end"
-                android:src="@drawable/ic_contact" />
+                android:src="@drawable/ic_three_dots" />
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

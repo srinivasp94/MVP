@@ -11,19 +11,18 @@
         android:id="@+id/header"
         layout="@layout/common_header" />
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp">
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/RvSelectContact"
-            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/fab"
+            android:layout_alignParentTop="true"
             android:layout_margin="@dimen/_3sdp"
             android:padding="@dimen/_2sdp">
 
@@ -36,8 +35,7 @@
             android:layout_above="@+id/rlDateselect"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:src="@drawable/black_border_small" />
+            android:layout_marginBottom="@dimen/_8sdp" />
 
 
         <RelativeLayout
@@ -62,9 +60,9 @@
                 style="@style/customEdittext"
                 android:layout_below="@+id/dummy"
                 android:layout_alignParentLeft="true"
-                android:hint="Please Select Date"
                 android:editable="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:hint="Please Select Date" />
 
             <ImageView
                 android:layout_width="@dimen/_25sdp"

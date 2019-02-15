@@ -39,7 +39,6 @@ import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.StaffProfilePojo;
-import com.iprismech.alertnikkiresidence.request.ChooseMaidRequest;
 import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
 import com.iprismech.alertnikkiresidence.request.DigitalPassRequest;
 import com.iprismech.alertnikkiresidence.request.GiveStaffRatingRequest;
@@ -146,7 +145,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             Toast.makeText(StaffProfileActivity.this, "Please write description", Toast.LENGTH_SHORT).show();
                         } else {
                             DigitalPassRequest digitalPassRequest = new DigitalPassRequest();
-                            digitalPassRequest.adminId = "2";
+                            digitalPassRequest.adminId = SharedPrefsUtils.getInstance(StaffProfileActivity.this).getAdminID();
                             digitalPassRequest.userId = SharedPrefsUtils.getInstance(StaffProfileActivity.this).getId();
                             digitalPassRequest.userType = SharedPrefsUtils.getInstance(StaffProfileActivity.this).getuserType();
                             digitalPassRequest.maidId = maid_id;
@@ -286,7 +285,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
 
 
         StaffProfileRequest staffProfileRequest = new StaffProfileRequest();
-        staffProfileRequest.adminId = "2";
+        staffProfileRequest.adminId = SharedPrefsUtils.getInstance(StaffProfileActivity.this).getAdminID();
         staffProfileRequest.maidId = maid_id;
         //staffProfileRequest.maidId = "2";
         try {

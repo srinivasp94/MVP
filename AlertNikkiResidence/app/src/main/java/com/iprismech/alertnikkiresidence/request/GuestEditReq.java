@@ -16,10 +16,17 @@ public class GuestEditReq {
     @SerializedName("vehicle_no")
     @Expose
     public String vehicleNo;
+    @SerializedName("date")
+    @Expose
+    public String date;
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("guestId", guestId).append("name", name).append("vehicleNo", vehicleNo).toString();
+        return new ToStringBuilder(this)
+                .append("guestId", guestId)
+                .append("name", name)
+                .append("vehicleNo", vehicleNo)
+                .append("date", date)
+                .toString();
     }
-
 }

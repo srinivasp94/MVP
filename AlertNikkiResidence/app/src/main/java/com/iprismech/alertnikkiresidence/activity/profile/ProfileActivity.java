@@ -3,9 +3,8 @@ package com.iprismech.alertnikkiresidence.activity.profile;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -17,13 +16,9 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
-import com.iprismech.alertnikkiresidence.activity.InviteGuestActivity;
-import com.iprismech.alertnikkiresidence.adapters.ProfileAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
-import com.iprismech.alertnikkiresidence.pojo.User;
-import com.iprismech.alertnikkiresidence.pojo.UsersData;
 import com.iprismech.alertnikkiresidence.request.ProfileReq;
 import com.iprismech.alertnikkiresidence.response.ProfileRes;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -35,9 +30,6 @@ import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProfileActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     ImageView imgProfile, imgQrcode;

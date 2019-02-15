@@ -15,6 +15,7 @@ import com.iprismech.alertnikkiresidence.request.RequestBus;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -121,7 +122,7 @@ public class AddBusActivity extends BaseAbstractActivity implements RetrofitResp
                 } else {
                     //school_bus_request
                     RequestBus req = new RequestBus();
-                    req.adminId = "2";
+                    req.adminId = SharedPrefsUtils.getInstance(AddBusActivity.this).getAdminID();
                     req.flatId = "";
                     req.schoolBusName = edtSclName.getText().toString();
                     req.address = edtSclAddress.getText().toString();

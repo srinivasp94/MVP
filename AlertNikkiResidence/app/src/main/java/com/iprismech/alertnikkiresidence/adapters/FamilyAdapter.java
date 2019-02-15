@@ -23,6 +23,16 @@ public class FamilyAdapter extends RecyclerView.Adapter<FamilyAdapter.ViewHolder
         this.familyLists = familyLists;
     }
 
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -43,7 +53,7 @@ public class FamilyAdapter extends RecyclerView.Adapter<FamilyAdapter.ViewHolder
         return familyLists.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txtFamilyName, txtFamilyphn, txtFamilyRelation;
         ImageView imgDelete;
 
@@ -53,6 +63,15 @@ public class FamilyAdapter extends RecyclerView.Adapter<FamilyAdapter.ViewHolder
             txtFamilyphn = itemView.findViewById(R.id.txtFamilyphn);
             txtFamilyRelation = itemView.findViewById(R.id.txtFamilyRelation);
             imgDelete = itemView.findViewById(R.id.imgDelete);
+
+            imgDelete.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getAdapterPosition());
+            }
         }
     }
 }

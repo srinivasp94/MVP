@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
@@ -20,30 +21,44 @@ import com.iprismech.alertnikkiresidence.request.GuestEditReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.TimeUtils;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class GuestEditActivity extends BaseAbstractActivity implements View.OnClickListener,RetrofitResponseListener {
+public class GuestEditActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private EditText edtName, edtMobile, edtDate, edtVehicle1, edtVehicle2, edtVehicle3, edtVehicle4;
     private TextView txtSave;
     private String Name = "", Contact = "", tag = "";
-    private String screenid, guestName, guestPhn,guestId;
+    private String screenid, guestName, guestPhn, guestId;
 
     private ArrayList<ContactModel> contactsList = new ArrayList<>();
     private int position = 0;
     private Object obj;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
+    private String mMobile = "";
 
 
-
-
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if (screenid.equalsIgnoreCase("1")) {
+            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_INVITE_GUEST_SCREEN);
+            finish();
+        } else if (screenid.equalsIgnoreCase("3")) {
+            Intent intent = new Intent(GuestEditActivity.this, ViewInviteGuestActivity.class);
+            intent.putParcelableArrayListExtra("Key_Contacts", contactsList);
+//                    intent.putExtra("Key_Position", position);
+            startActivity(intent);
+            finish();
+
+        } else {
+
+        }
         finish();
     }
 
@@ -69,6 +84,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
         super.setListenerToViews();
         txtSave.setOnClickListener(this);
         imgClose.setOnClickListener(this);
+        edtDate.setOnClickListener(this);
         edtVehicle1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -148,7 +164,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
         }
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Guest");
 
 
@@ -163,13 +179,24 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
 
         /*edtName.setText(Name);
         edtMobile.setText(Contact);*/
-        if (!screenid.equalsIgnoreCase("1") && contactsList != null && contactsList.size() > 0) {
+        if (!screenid.equalsIgnoreCase("1") && !screenid.equalsIgnoreCase("3") && contactsList != null && contactsList.size() > 0) {
             edtName.setText(contactsList.get(position).getContactName());
-
-            edtMobile.setText(contactsList.get(position).getContactNumber());
+            int len = contactsList.get(position).getContactNumber().length();
+            int length = 0;
+            if (len > 10) {
+                mMobile = contactsList.get(position).getContactNumber().substring(len - 10);
+            }
+//            edtMobile.setText(contactsList.get(position).getContactNumber());
+            edtMobile.setText(mMobile);
         } else {
             edtName.setText(guestName);
-            edtMobile.setText(guestPhn);
+            int len = guestPhn.length();
+            int length = 0;
+            if (len > 10) {
+                mMobile = guestPhn.substring(len - 10);
+            }
+            if (!TextUtils.isEmpty(guestPhn))
+                edtMobile.setText(guestPhn);
         }
 
     }
@@ -180,12 +207,16 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
             case R.id.imgClose:
                 onBackPressed();
                 break;
+            case R.id.edtDate:
+                TimeUtils.showDatePickerDialog(GuestEditActivity.this, "", edtDate);
+                break;
             case R.id.txtSave:
 
                 if (screenid.equalsIgnoreCase("1")) {
                     GuestEditReq req = new GuestEditReq();
                     req.guestId = guestId;
-                    req.name = guestName;
+                    req.name = edtName.getText().toString();
+                    req.date = edtDate.getText().toString();
                     req.vehicleNo = edtVehicle1.getText().toString() + " " + edtVehicle2.getText().toString() +
                             " " + edtVehicle3.getText().toString() + " " + edtVehicle4.getText().toString();
                     try {
@@ -194,39 +225,49 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
                         e.printStackTrace();
                     }
                     new RetrofitRequester(this).callPostServices(obj, 2, " edit_guest", true);
-                }else{
-                if (edtName.getText().toString().length() == 0 && edtMobile.getText().toString().length() == 0) {
-                    Common.showToast(GuestEditActivity.this, "Please Enter Details");
-                } else if (edtName.getText().toString().length() == 0) {
-                    Common.showToast(GuestEditActivity.this, "Please Enter Name");
-                } else if (edtMobile.getText().toString().length() == 0 || edtMobile.getText().toString().length() < 10) {
-                    Common.showToast(GuestEditActivity.this, "Please Enter phone");
-                } else {
+                } else if (screenid.equalsIgnoreCase("3")) {
                     ContactModel model = new ContactModel();
                     model.setContactName(edtName.getText().toString());
                     model.setContactNumber(edtMobile.getText().toString());
-                    model.setVehiclenumber(edtVehicle1.getText().toString() + " " + edtVehicle2.getText().toString() +
+                    model.setVehiclenumber(edtVehicle1.getText().toString() + "" + edtVehicle2.getText().toString() +
                             " " + edtVehicle3.getText().toString() + " " + edtVehicle4.getText().toString());
-                    if (contactsList != null && contactsList.size() > 0) {
-                        contactsList.remove(position);
-                        contactsList.add(model);
-                    } else {
-//                    contactsList.remove(position);
-                        try {
-                            contactsList = new ArrayList<>();
-                            contactsList.add(model);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-
+                    contactsList.add(model);
                     Intent intent = new Intent(GuestEditActivity.this, ViewInviteGuestActivity.class);
                     intent.putParcelableArrayListExtra("Key_Contacts", contactsList);
 //                    intent.putExtra("Key_Position", position);
                     startActivity(intent);
                     finish();
-                }
+                } else {
+                    if (edtName.getText().toString().length() == 0 && edtMobile.getText().toString().length() == 0) {
+                        Common.showToast(GuestEditActivity.this, "Please Enter Details");
+                    } else if (edtName.getText().toString().length() == 0) {
+                        Common.showToast(GuestEditActivity.this, "Please Enter Name");
+                    } else if (edtMobile.getText().toString().length() == 0 || edtMobile.getText().toString().length() < 10) {
+                        Common.showToast(GuestEditActivity.this, "Please Enter phone");
+                    } else {
+                        ContactModel model = new ContactModel();
+                        model.setContactName(edtName.getText().toString());
+                        model.setContactNumber(edtMobile.getText().toString());
+                        model.setVehiclenumber(edtVehicle1.getText().toString() + "" + edtVehicle2.getText().toString() +
+                                " " + edtVehicle3.getText().toString() + " " + edtVehicle4.getText().toString());
+                        if (contactsList != null && contactsList.size() > 0) {
+                            contactsList.remove(position);
+                            contactsList.add(model);
+                        } else {
+//                    contactsList.remove(position);
+                            try {
+                                contactsList = new ArrayList<>();
+                                contactsList.add(model);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        Intent intent = new Intent(GuestEditActivity.this, ViewInviteGuestActivity.class);
+                        intent.putParcelableArrayListExtra("Key_Contacts", contactsList);
+//                    intent.putExtra("Key_Position", position);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
                 break;
         }
@@ -250,7 +291,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
                             break;
                     }
                 } else {
-                    Common.showToast(GuestEditActivity.this,jsonObject.optString("message"));
+                    Common.showToast(GuestEditActivity.this, jsonObject.optString("message"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

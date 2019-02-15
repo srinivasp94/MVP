@@ -9,14 +9,12 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
-import com.iprismech.alertnikkiresidence.activity.MyStaffAlerts;
 import com.iprismech.alertnikkiresidence.adapters.TimeSlotAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.StandardMaidTimingPojo;
 import com.iprismech.alertnikkiresidence.request.AddStaffMaidRequest;
-import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.request.StandardMaidTimingsRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
@@ -26,7 +24,6 @@ import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class StaffStandardTimingActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private Object obj;
@@ -59,7 +56,7 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
 //intent pass here or service call here
 
                     AddStaffMaidRequest req = new AddStaffMaidRequest();
-                    req.adminId = "2";
+                    req.adminId = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getAdminID();;
                     req.userType = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getuserType();
                     req.flatId = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getFlatId();
                     req.maidId = maid_id;
@@ -115,7 +112,7 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
 
 
         StandardMaidTimingsRequest req = new StandardMaidTimingsRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getAdminID();
         req.maid_id = maid_id;
         try {
             obj = Class.forName(StandardMaidTimingsRequest.class.getName()).cast(req);

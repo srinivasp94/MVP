@@ -12,7 +12,6 @@ import com.iprismech.alertnikkiresidence.adapters.ChooseMaidAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.pojo.ChooseMaidPojo;
 import com.iprismech.alertnikkiresidence.request.ChooseMaidRequest;
-import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
@@ -62,7 +61,7 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
 
         ChooseMaidRequest chooseMaidRequest = new ChooseMaidRequest();
        // chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getId();
-        chooseMaidRequest.adminId = "2";
+        chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getAdminID();;
         chooseMaidRequest.service_id = service_id;
        // chooseMaidRequest.service_id = "2";
 

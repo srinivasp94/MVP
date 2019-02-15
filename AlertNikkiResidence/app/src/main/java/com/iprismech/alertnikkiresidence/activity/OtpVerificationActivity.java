@@ -108,6 +108,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                     bundle.putString("Key_Password",sPassword);
                     bundle.putString("Key_Blood",sBlood);
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN,bundle);
+                    finish();
                 }
 
                 break;

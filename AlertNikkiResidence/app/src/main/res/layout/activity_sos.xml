@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sos_bg"
+    android:orientation="vertical"
+    tools:context=".activity.SOSActivity">
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtCountdown"
+        style="@style/DefaultCustomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circular_bgr"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:text="10"
+        android:textSize="@dimen/_35sdp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtcallActive"
+        android:visibility="gone"
+        style="@style/DefaultCustomTextView"
+        android:layout_centerInParent="true"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_below="@+id/txtCountdown"
+        android:padding="@dimen/_8sdp"
+        android:text="Call Activated !"
+        android:textSize="@dimen/_15sdp" />
+</RelativeLayout>

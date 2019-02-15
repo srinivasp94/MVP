@@ -108,8 +108,8 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
 
         GuestsReq req = new GuestsReq();
 
-        req.adminId = "2";
-        req.otpSentType = "1";
+        req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
+        req.otpSentType =SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         try {
@@ -301,8 +301,8 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         super.onResume();
         GuestsReq req = new GuestsReq();
 
-        req.adminId = "2";
-        req.otpSentType = "1";
+        req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
+        req.otpSentType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         try {

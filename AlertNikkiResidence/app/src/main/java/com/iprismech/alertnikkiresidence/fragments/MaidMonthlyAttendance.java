@@ -17,6 +17,7 @@ import com.iprismech.alertnikkiresidence.request.MaidAttendanceHistoryReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -51,7 +52,7 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
 
 
         MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdminID();
         // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
         req.maidId = maid_id;
 

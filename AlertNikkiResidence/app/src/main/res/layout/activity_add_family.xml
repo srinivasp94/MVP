@@ -36,6 +36,7 @@
             android:id="@+id/edtfamilyPhn"
             style="@style/customEdittext"
             android:hint="Mobile Number"
+            android:maxLength="10"
             android:inputType="number" />
 
         <View style="@style/customView" />

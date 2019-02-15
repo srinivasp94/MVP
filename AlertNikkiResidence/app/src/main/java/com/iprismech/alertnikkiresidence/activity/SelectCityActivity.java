@@ -126,6 +126,7 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                         bundle.putString("Key_Password",sPassword);
                                         bundle.putString("Key_Blood",sBlood);
                                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
+
                                     }
                                 });
                             } else {

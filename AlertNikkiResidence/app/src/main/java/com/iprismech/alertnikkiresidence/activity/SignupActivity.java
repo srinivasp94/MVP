@@ -135,6 +135,7 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                             bundle.putString("Key_Password",edtSignupPassword.getText().toString());
                             bundle.putString("Key_Blood",edtSignupBloodGrp.getText().toString());
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN,bundle);
+                            finish();
                             break;
                     }
                 } else {

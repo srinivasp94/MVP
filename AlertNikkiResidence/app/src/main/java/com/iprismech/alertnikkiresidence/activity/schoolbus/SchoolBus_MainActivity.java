@@ -96,7 +96,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
         txtbusAlerts = findViewById(R.id.txtBus);
 
         SchoolBusReq req = new SchoolBusReq();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(SchoolBus_MainActivity.this).getAdminID();
         req.userId = SharedPrefsUtils.getInstance(this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
 

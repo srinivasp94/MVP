@@ -192,6 +192,8 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
                                 public void onItemClick(View view, int position) {
                                     switch (view.getId()) {
                                         case R.id.txttenent:
+                                            TextView textView = view.findViewById(R.id.txttenent);
+                                            textView.setBackgroundColor(getResources().getColor(R.color.mainbackgroundhome));
                                             typeId = list.get(position).id;
                                             typename = list.get(position).title;
                                             break;

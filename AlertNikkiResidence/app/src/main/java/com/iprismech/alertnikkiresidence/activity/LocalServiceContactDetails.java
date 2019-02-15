@@ -15,6 +15,7 @@ import com.iprismech.alertnikkiresidence.request.LocalServiceContactsRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -51,7 +52,7 @@ public class LocalServiceContactDetails extends BaseAbstractActivity implements 
 
 
         LocalServiceContactsRequest req = new LocalServiceContactsRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(LocalServiceContactDetails.this).getAdminID();
         req.service_id = service_id;
         try {
             obj = Class.forName(LocalServiceContactsRequest.class.getName()).cast(req);

@@ -1,6 +1,7 @@
 package com.iprismech.alertnikkiresidence.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.activity.SOSActivity;
 import com.iprismech.alertnikkiresidence.adapters.Slidemenu_adapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractFragment;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
@@ -85,6 +87,14 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
             }
         });
         slidemenulistview = view.findViewById(R.id.slidemenulistview);
+        ImageView imgSOS = view.findViewById(R.id.imgSOS);
+        imgSOS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SOSActivity.class);
+                startActivity(intent);
+            }
+        });
 
         slidemenu_adapter = new Slidemenu_adapter(getActivity(), slide_menu_txt, icons);
 

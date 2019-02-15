@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
@@ -30,11 +31,8 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
     private String strName = "", strNumber = "";
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
-
-
-
+    private TextView txtitle;
+    private String mMobile = "";
 
 
     @Override
@@ -80,9 +78,16 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
             strName = bundle.getString("Key_Name", "");
             strNumber = bundle.getString("Key_Number", "");
 
+            int len = strNumber.length();
+            int length = 0;
+            if (len > 10) {
+                mMobile = strNumber.substring(len - 10);
+            }
+//            strNumber.substring(len);
+
         }
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Add Fammily ");
 
         selectContact = findViewById(R.id.selectContact);
@@ -93,8 +98,8 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
         edtBloodGrp = findViewById(R.id.edtBloodGrp);
         if (!TextUtils.isEmpty(strName))
             edtfamilyName.setText(strName);
-        if (!TextUtils.isEmpty(strNumber))
-            edtfamilyPhn.setText(strNumber);
+        if (!TextUtils.isEmpty(mMobile))
+            edtfamilyPhn.setText(mMobile);
 
 
     }
@@ -137,10 +142,12 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
                 break;
             case R.id.selectContact:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OONTACT_SINGLE_SCREEN);
+//                finish();
                 break;
         }
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -154,6 +161,7 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
                     switch (requestId) {
                         case 1:
                             Common.showToast(AddFamilyActivity.this, jsonObject.optString("message"));
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FAMILY_SCREEN);
                             finish();
                             break;
                     }
