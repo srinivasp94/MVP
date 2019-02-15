@@ -21,7 +21,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
 
 
 
@@ -61,7 +61,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
         verifyotp_btn = findViewById(R.id.verifyotp_btn);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("OTP Verification");
         imgClose.setOnClickListener(this);
 
@@ -101,14 +101,13 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                     //make service call here
                     //navigate to set resident address screens
                     Bundle bundle = new Bundle();
-                    bundle.putString("Key_otp",otp);
-                    bundle.putString("Key_Name",sName);
-                    bundle.putString("Key_Mobile",sPhone);
-                    bundle.putString("Key_Email",sMail);
-                    bundle.putString("Key_Password",sPassword);
-                    bundle.putString("Key_Blood",sBlood);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN,bundle);
-                    finish();
+                    bundle.putString("Key_otp", otp);
+                    bundle.putString("Key_Name", sName);
+                    bundle.putString("Key_Mobile", sPhone);
+                    bundle.putString("Key_Email", sMail);
+                    bundle.putString("Key_Password", sPassword);
+                    bundle.putString("Key_Blood", sBlood);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
                 }
 
                 break;

@@ -45,6 +45,7 @@ import com.iprismech.alertnikkiresidence.request.GiveStaffRatingRequest;
 import com.iprismech.alertnikkiresidence.request.StaffProfileRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.Constants;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
@@ -82,8 +83,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
     private RecyclerView rcvuploadimages;
     List<DigitalPassRequest.ImageItems> imageIt = new ArrayList<>();
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
 
 
     @Override
@@ -167,19 +167,31 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
 
                 break;
             case R.id.ll_staff_delete:
-                DeleteStaffRequest deleteStaffRequest = new DeleteStaffRequest();
-                deleteStaffRequest.user_maid_id = user_maid_id;
-                try {
-                    obj = Class.forName(DeleteStaffRequest.class.getName()).cast(deleteStaffRequest);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "delete_user_maid", true);
+
+                AlertUtils.showSimpleAlert(StaffProfileActivity.this, "Do you want to delete", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                    @Override
+                    public void onpositiveclick() {
+                        DeleteStaffRequest deleteStaffRequest = new DeleteStaffRequest();
+                        deleteStaffRequest.user_maid_id = user_maid_id;
+                        try {
+                            obj = Class.forName(DeleteStaffRequest.class.getName()).cast(deleteStaffRequest);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "delete_user_maid", true);
+                    }
+
+                    @Override
+                    public void onNegativeClick() {
+
+                    }
+                });
+
                 break;
             case R.id.ll_attendance_history:
-                Bundle bundle=new Bundle();
-                bundle.putString("maid_id",maid_id);
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN,bundle);
+                Bundle bundle = new Bundle();
+                bundle.putString("maid_id", maid_id);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
                 break;
             case R.id.ll_give_rating:
                 LayoutInflater inflater = LayoutInflater.from(context);
@@ -237,6 +249,11 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                 break;
             case R.id.ll_available_slots:
 
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("Key_screen", "Avalable");
+                bundle1.putString("Key_MaidId", maid_id);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle1);
+
                 break;
         }
     }
@@ -260,7 +277,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
         user_maid_id = getIntent().getExtras().getString("user_maid_id");
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Staff Profile");
         imgClose.setOnClickListener(this);
 
@@ -465,11 +482,11 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             //user_maid_id=staffprofilePojo.getResponse().getId();
                             break;
                         case 2:
-
                             Toast.makeText(StaffProfileActivity.this, "Thanks for Rating", Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
                             break;
                         case 3:
+
                             Toast.makeText(StaffProfileActivity.this, "Deleted Successfully", Toast.LENGTH_SHORT).show();
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
                             finish();

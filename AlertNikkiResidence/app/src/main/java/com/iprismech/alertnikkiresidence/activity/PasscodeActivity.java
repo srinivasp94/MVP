@@ -28,8 +28,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
     private Object obj;
     private SharedPrefsUtils utils;
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
 
 
     @Override
@@ -61,7 +60,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
 
         super.initializeViews();
         utils = new SharedPrefsUtils(PasscodeActivity.this);
-        title = findViewById(R.id.textTitle);
+        title = findViewById(R.id.txtitle);
         imgBack = findViewById(R.id.imgClose);
         title.setText("Passcode");
         btnLoginWithPasscode = findViewById(R.id.btnLoginWithPasscode);

@@ -168,7 +168,6 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
         //  Common.commonLogs(SelectBuildingActvity.this,title+ " and "+ buildingid);
 
     }
-
     @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
@@ -215,8 +214,6 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
             }
         }
     }
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

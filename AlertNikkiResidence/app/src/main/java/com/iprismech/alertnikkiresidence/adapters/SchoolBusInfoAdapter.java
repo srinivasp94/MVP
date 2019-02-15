@@ -68,14 +68,11 @@ public class SchoolBusInfoAdapter extends RecyclerView.Adapter<SchoolBusInfoAdap
             txtIntime = itemView.findViewById(R.id.txtIntime);
             txtOuttime = itemView.findViewById(R.id.txtOuttime);
             busSwitch = itemView.findViewById(R.id.busSwitch);
-
             rootRelative = itemView.findViewById(R.id.rootRelative);
-
             busSwitch.setOnClickListener(this);
 //            itemView.setOnClickListener(this);
             rootRelative.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
             if (mListner != null) {

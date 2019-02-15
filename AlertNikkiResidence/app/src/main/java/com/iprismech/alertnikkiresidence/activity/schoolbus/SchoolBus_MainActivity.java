@@ -36,7 +36,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
     private LinearLayout linearLayout;
     private RelativeLayout relativeLayout;
     private RecyclerView rvSchools;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private TextView txtbusAlerts;
     private Object obj;
     private ArrayList<SchoolBusList> schoolBusLists = new ArrayList<>();
@@ -151,7 +151,10 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                                         switch (view.getId()) {
                                             case R.id.rootRelative:
 //                                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_HISTORY_SCREEN);
-                                                startActivity(new Intent(SchoolBus_MainActivity.this, BushistoryActivity.class));
+                                                Bundle bundle=new Bundle();
+                                                bundle.putString("school_bus_id",schoolBusLists.get(position).userSchoolbusId);
+                                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_HISTORY,bundle);
+                                               // startActivity(new Intent(SchoolBus_MainActivity.this, BushistoryActivity.class));
                                                 break;
                                         }
                                     }

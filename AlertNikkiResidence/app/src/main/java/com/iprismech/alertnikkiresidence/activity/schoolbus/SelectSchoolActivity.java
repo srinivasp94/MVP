@@ -35,7 +35,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
     private Object obj;
     private ArrayList<SearchBusList> busList = new ArrayList();
     private SelectSchoolAdapter schoolAdapter;
-    FloatingActionButton fab;
+    ImageView fab;
 
     private ImageView imgClose;
     private TextView txtitle;

@@ -25,9 +25,11 @@ public class IntroScreensActivity extends BaseAbstractActivity implements View.O
 
 
     private static final Integer[] IMAGES = {
-            R.drawable.app_logo,
-            R.drawable.app_logo,
-            R.drawable.app_logo};
+            R.drawable.intro_0,
+            R.drawable.intro_1,
+            R.drawable.intr0_2,
+            R.drawable.intro_3,
+            R.drawable.intro_4};
     /*private static final String[] TITLES = {
             "Alert Nikkii",
             "Alert Nikkii",
@@ -84,9 +86,11 @@ public class IntroScreensActivity extends BaseAbstractActivity implements View.O
     }
 
     private void init() {
-        introModelList.add(new IntroModel(R.drawable.app_logo, "Alert Nikki", "Description"));
-        introModelList.add(new IntroModel(R.drawable.app_logo, "Alert Nikki", "Description"));
-        introModelList.add(new IntroModel(R.drawable.app_logo, "Alert Nikki", "Description"));
+        introModelList.add(new IntroModel(R.drawable.intro_0, "Alert Nikki", "Description"));
+        introModelList.add(new IntroModel(R.drawable.intro_1, "Alert Nikki", "Description"));
+        introModelList.add(new IntroModel(R.drawable.intr0_2, "Alert Nikki", "Description"));
+        introModelList.add(new IntroModel(R.drawable.intro_3, "Alert Nikki", "Description"));
+        introModelList.add(new IntroModel(R.drawable.intro_4, "Alert Nikki", "Description"));
         for (int i = 0; i < IMAGES.length; i++)
 //            introModelList.add(new IntroModel(IMAGES[i], TITLES[i], DESCRIPTION[i]));
             // introimageList.add(IMAGES[i]);

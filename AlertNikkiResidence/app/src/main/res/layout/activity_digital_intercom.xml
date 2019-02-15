@@ -12,7 +12,10 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_150sdp" />
+            android:layout_height="@dimen/_150sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:src="@drawable/intercom"
+            />
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="match_parent"

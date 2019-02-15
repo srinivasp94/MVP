@@ -45,6 +45,7 @@ import com.iprismech.alertnikkiresidence.request.DigitalPassRequest;
 import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
@@ -200,14 +201,25 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                     switch (view.getId()) {
                                         case R.id.ll_delete_maid:
                                             removed_postion = position;
-                                            DeleteStaffRequest deleteStaffRequest = new DeleteStaffRequest();
-                                            deleteStaffRequest.user_maid_id = myStaff_maids_list_pojo.getResponse().get(position).getId();
-                                            try {
-                                                obj = Class.forName(DeleteStaffRequest.class.getName()).cast(deleteStaffRequest);
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                            new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
+
+                                            AlertUtils.showSimpleAlert(MyStaffAlerts.this, "Do you want to delete", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                                                @Override
+                                                public void onpositiveclick() {
+                                                    DeleteStaffRequest deleteStaffRequest = new DeleteStaffRequest();
+                                                    deleteStaffRequest.user_maid_id = myStaff_maids_list_pojo.getResponse().get(removed_postion).getId();
+                                                    try {
+                                                        obj = Class.forName(DeleteStaffRequest.class.getName()).cast(deleteStaffRequest);
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                    new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
+
+                                                }
+                                                @Override
+                                                public void onNegativeClick() {
+
+                                                }
+                                            });
 
                                             break;
                                         case R.id.ll_make_call:

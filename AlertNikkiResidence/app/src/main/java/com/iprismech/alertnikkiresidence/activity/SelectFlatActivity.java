@@ -88,7 +88,7 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new RetrofitRequester(this).callPostServices(obj, 1, "flats", true);
+        new RetrofitRequester(this).callPostServices(obj, 1, "available_flats", true);
     }
 
     @SuppressLint("WrongConstant")

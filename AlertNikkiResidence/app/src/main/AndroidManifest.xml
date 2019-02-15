@@ -19,8 +19,10 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
@@ -59,20 +61,7 @@
         <activity android:name=".activity.schoolbus.AddBusActivity" />
         <activity android:name=".activity.schoolbus.BushistoryActivity" />
         <activity android:name=".activity.profile.ProfileActivity" />
-        <!--
-                <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN"
-                    android:theme="@style/AppTheme.NoActionBar" />
 
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        -->
-        <!-- </activity> -->
-
-
-        <!-- <activity android:name=".activity.StaffStandardTimingActivity" /> -->
         <activity android:name=".activity.KidsGateAlertActivity" />
         <activity android:name=".activity.AddKidActivity" />
         <activity android:name=".activity.LocalServiceActivity" />
@@ -89,12 +78,38 @@
         <activity android:name=".activity.profile.FamilyMembersActivity" />
         <activity android:name=".activity.profile.AddFamilyActivity" />
         <activity android:name=".activity.profile.ContactSingleActivity" />
+        <activity android:name=".activity.profile.MyFlatActivity" />
         <activity android:name=".activity.MaidViewAllAttandancesHistory" />
         <activity android:name=".activity.SelectBuildingActvity" />
         <activity android:name=".activity.SelectFlatActivity" />
         <activity android:name=".DetailActivity" />
         <activity android:name=".activity.SOSActivity" />
         <activity android:name=".activity.profile.AddVehicleActivity"></activity>
+        <activity android:name=".activity.ForgotPasswordActivity" />
+        <activity android:name=".activity.ForgotPasswordOTPVerificationActivity" />
+        <activity android:name=".activity.ResetPasswordActivity" />
+        <activity android:name=".activity.schoolbus.SchoolBusAttendanceHistory" />
+        <activity android:name=".activity.schoolbus.BusViewAllAttandancesHistory" />
+
+
+        <activity android:name=".activity.SelectBuildingActvity"></activity>
+        <activity android:name=".activity.SelectFlatActivity"></activity>
+        <activity android:name=".activity.AddSelectFlatActivity"></activity>
+
+        <service android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".fcm.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
     </application>
 
 </manifest>
