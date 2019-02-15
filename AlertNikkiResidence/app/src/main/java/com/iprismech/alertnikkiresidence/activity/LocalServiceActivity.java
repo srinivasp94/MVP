@@ -24,7 +24,7 @@ public class LocalServiceActivity extends BaseAbstractActivity implements View.O
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ll_service:
-                //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_LOCAL_SERVICE_SCREEN);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_LOCAL_SERVICE_SCREEN);
                 break;
             case R.id.imgClose:
                 onBackPressed();

@@ -1,5 +1,6 @@
 package com.iprismech.alertnikkiresidence.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LocalServiceContactsPojo {
@@ -30,8 +31,8 @@ public class LocalServiceContactsPojo {
         this.message = message;
     }
 
-    public List<ResponseBean> getResponse() {
-        return response;
+    public ArrayList<ResponseBean> getResponse() {
+        return (ArrayList<ResponseBean>) response;
     }
 
     public void setResponse(List<ResponseBean> response) {

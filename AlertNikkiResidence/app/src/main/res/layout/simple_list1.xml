@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.AppCompatTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="@style/ItemDefaultCustomTextView"
+    android:textColor="@color/colorPrimary"
+    android:textSize="@dimen/_13sdp"
+    android:textStyle="bold"
+    android:text="hdf"
+    android:padding="10dp"
+    android:layout_marginTop="50dp"
+    android:gravity="center_vertical"
+   />
