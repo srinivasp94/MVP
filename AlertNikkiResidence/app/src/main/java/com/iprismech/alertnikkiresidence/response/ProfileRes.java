@@ -111,10 +111,44 @@ public class ProfileRes {
         @SerializedName("residence_type")
         @Expose
         public String residenceType;
+        @SerializedName("vehicle_numbers")
+        @Expose
+        public String vehicle_numbers;
 
         @Override
         public String toString() {
-            return new ToStringBuilder(this).append("id", id).append("adminId", adminId).append("passcode", passcode).append("name", name).append("mobile", mobile).append("emailId", emailId).append("bloodGroup", bloodGroup).append("password", password).append("otp", otp).append("image", image).append("qrcode", qrcode).append("cityId", cityId).append("societyId", societyId).append("buildingId", buildingId).append("flatId", flatId).append("flats", flats).append("residenceTypeId", residenceTypeId).append("token", token).append("iosToken", iosToken).append("status", status).append("deleteStatus", deleteStatus).append("createdOn", createdOn).append("modifiedOn", modifiedOn).append("otpSubmitStatus", otpSubmitStatus).append("city", city).append("society", society).append("building", building).append("flat", flat).append("residenceType", residenceType).toString();
+            return new ToStringBuilder(this)
+                    .append("id", id)
+                    .append("adminId", adminId)
+                    .append("passcode", passcode)
+                    .append("name", name)
+                    .append("mobile", mobile)
+                    .append("emailId", emailId)
+                    .append("bloodGroup", bloodGroup)
+                    .append("password", password)
+                    .append("otp", otp)
+                    .append("image", image)
+                    .append("qrcode", qrcode)
+                    .append("cityId", cityId)
+                    .append("societyId", societyId)
+                    .append("buildingId", buildingId)
+                    .append("flatId", flatId)
+                    .append("flats", flats)
+                    .append("residenceTypeId", residenceTypeId)
+                    .append("token", token)
+                    .append("iosToken", iosToken)
+                    .append("status", status)
+                    .append("deleteStatus", deleteStatus)
+                    .append("createdOn", createdOn)
+                    .append("modifiedOn", modifiedOn)
+                    .append("otpSubmitStatus", otpSubmitStatus)
+                    .append("city", city)
+                    .append("society", society)
+                    .append("building", building)
+                    .append("flat", flat)
+                    .append("residenceType", residenceType)
+                    .append("vehicle_numbers", vehicle_numbers)
+                    .toString();
         }
     }
 }

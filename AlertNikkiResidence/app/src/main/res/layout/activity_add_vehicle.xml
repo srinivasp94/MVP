@@ -1,9 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.profile.AddVehicleActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/common_header" />
+
+    <ListView
+        android:id="@+id/txtVehicls"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/_5sdp"
+        android:layout_weight="1"
+        tools:ignore="Suspicious0dp">
+
+
+        <LinearLayout
+            android:id="@+id/layoutaddVehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtAddVehicle"
+        style="@style/ItemDefaultCustomTextView"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_gravity="center"
+        android:background="@drawable/circular_bgr"
+        android:gravity="center"
+        android:padding="@dimen/_8sdp"
+        android:text="+"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_24sdp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/txtsubmitVehicle"
+        style="@style/ItemDefaultCustomTextView"
+        android:layout_marginLeft="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/black_corner_bg"
+        android:gravity="center"
+        android:padding="@dimen/_5sdp"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
+
+</LinearLayout>
