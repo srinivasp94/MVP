@@ -75,6 +75,7 @@ public class AddVehicleActivity extends BaseAbstractActivity implements View.OnC
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_add_vehicle, null);
+
         return view;
     }
 
@@ -90,7 +91,7 @@ public class AddVehicleActivity extends BaseAbstractActivity implements View.OnC
                 onBackPressed();
                 break;
             case R.id.txtAddVehicle:
-                if (i < 4 || i == 0) {
+                if (i < 5 || i == 0) {
                     View child = getLayoutInflater().inflate(R.layout.ittem_vehicle, null);
                     // views[i] = child;
                     viewList.add(child);

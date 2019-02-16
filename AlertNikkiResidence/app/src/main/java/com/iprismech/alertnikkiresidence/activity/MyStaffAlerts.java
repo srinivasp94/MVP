@@ -29,6 +29,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 import com.iprismech.alertnikkiresidence.pojo.MyStaff_Maids_List_Pojo;
 import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
 import com.iprismech.alertnikkiresidence.request.DigitalPassRequest;
+import com.iprismech.alertnikkiresidence.request.StaffNotify;
 import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
@@ -83,8 +85,8 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private RecyclerView rcvuploadimages;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
+    private boolean switchonOff = false;
 
 
     @Override
@@ -115,7 +117,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
         super.initializeViews();
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("My Staff alerts");
         imgClose.setOnClickListener(this);
 
@@ -199,6 +201,13 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                 @Override
                                 public void onItemClick(View view, int position) {
                                     switch (view.getId()) {
+                                        case R.id.switch_noti:
+                                            Switch aSwitch = view.findViewById(R.id.switch_noti);
+                                            switchonOff = aSwitch.isChecked();
+                                            //update_maid_notification_status
+                                            staffNotifyWS(position, switchonOff);
+//
+                                            break;
                                         case R.id.ll_delete_maid:
                                             removed_postion = position;
 
@@ -215,6 +224,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                                     new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
 
                                                 }
+
                                                 @Override
                                                 public void onNegativeClick() {
 
@@ -333,6 +343,9 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                         case 3:
                             Toast.makeText(MyStaffAlerts.this, "Successfully Sent to Security", Toast.LENGTH_SHORT).show();
                             break;
+                        case 4:
+                            staffListAdapter.notifyDataSetChanged();
+                            break;
 
                     }
                 } else {
@@ -343,6 +356,28 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
             }
 
         }
+    }
+
+    private void staffNotifyWS(int position, boolean switchonOff) {
+        StaffNotify req = new StaffNotify();
+        req.adminId = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_ADMIN_ID);
+        req.maidId = myStaff_maids_list_pojo.getResponse().get(position).getMaid_id();
+        if (switchonOff) {
+
+            req.status = "1";
+            myStaff_maids_list_pojo.getResponse().get(position).setNotification_status("1");
+        } else if (switchonOff == false) {
+            req.status = "0";
+            myStaff_maids_list_pojo.getResponse().get(position).setNotification_status("0");
+
+        }
+        try {
+            obj = Class.forName(StaffNotify.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+
+        new RetrofitRequester(this).callPostServices(obj, 4, "update_maid_notification_status", false);
     }
 
     private void showPictureDialog(final String base64) {

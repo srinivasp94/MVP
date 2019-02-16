@@ -179,7 +179,8 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
 
         /*edtName.setText(Name);
         edtMobile.setText(Contact);*/
-        if (!screenid.equalsIgnoreCase("1") && !screenid.equalsIgnoreCase("3") && contactsList != null && contactsList.size() > 0) {
+        //!screenid.equalsIgnoreCase("3") &&
+        if (!screenid.equalsIgnoreCase("1") && contactsList != null && contactsList.size() > 0) {
             edtName.setText(contactsList.get(position).getContactName());
             int len = contactsList.get(position).getContactNumber().length();
             int length = 0;

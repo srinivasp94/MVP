@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -25,6 +26,7 @@ import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.request.Delete_notifygate_alert;
 import com.iprismech.alertnikkiresidence.request.NotifyGate;
+import com.iprismech.alertnikkiresidence.request.NotifyGateNotify;
 import com.iprismech.alertnikkiresidence.response.NotifyGateList;
 import com.iprismech.alertnikkiresidence.response.NotifyGateRes;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -50,6 +52,7 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
 
     private ImageView imgClose;
     private TextView txtitle;
+    private boolean alertStatus = false;
 
 
     @Override
@@ -91,7 +94,6 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
 
         imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Notify Gate");
-
 
         ll_gateAlerts = findViewById(R.id.llGateAlerts);
         rl_listItems = findViewById(R.id.relativeListitems);
@@ -163,7 +165,9 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
                                     public void onItemClick(View view, int position) {
                                         switch (view.getId()) {
                                             case R.id.switc:
-                                                callOnOffWs(position);
+                                                Switch aSwitch = view.findViewById(R.id.switc);
+                                                alertStatus = aSwitch.isChecked();
+                                                callOnOffWs(position, alertStatus);
                                                 break;
                                             case R.id.imgEditOpt:
                                                 showDialogalert(NotifyGateMainActivity.this, view.getLeft() - (view.getRight() * 2),
@@ -188,6 +192,9 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
                             finish();
                             break;
+                        case 4:
+                            notifyFGateAdapter.notifyDataSetChanged();
+                            break;
                     }
                 } else {
                     Common.showToast(NotifyGateMainActivity.this, jsonObject.optString("message"));
@@ -200,8 +207,28 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
         }
     }
 
-    private void callOnOffWs(int position) {
+    private void callOnOffWs(int position, boolean alertStatus) {
+//        update_notifygate_alert_status
+        /*{
+            "gate_alert_id":"7",
+                "alert_status":"0"
+        }*/
+        NotifyGateNotify req = new NotifyGateNotify();
+        req.gateAlertId = gateLists.get(position).id;
+        if (alertStatus) {
 
+            req.alertStatus = "1";
+            gateLists.get(position).alertStatus = "1";
+        } else if (alertStatus == false) {
+            req.alertStatus = "0";
+            gateLists.get(position).alertStatus = "0";
+        }
+        try {
+            obj = Class.forName(NotifyGateNotify.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+        new RetrofitRequester(this).callPostServices(obj, 4, "update_notifygate_alert_status", true);
     }
 
     @SuppressLint("WrongConstant")
