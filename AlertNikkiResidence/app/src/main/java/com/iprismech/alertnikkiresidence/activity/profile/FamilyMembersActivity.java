@@ -35,7 +35,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
     private LinearLayout linearLayout;
     private RelativeLayout relativeLayout;
     private RecyclerView rvSchools;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private TextView txtAddFamily;
     private Object obj;
     LinearLayoutManager layoutManager;

@@ -90,10 +90,9 @@
         <activity android:name=".activity.ResetPasswordActivity" />
         <activity android:name=".activity.schoolbus.SchoolBusAttendanceHistory" />
         <activity android:name=".activity.schoolbus.BusViewAllAttandancesHistory" />
+        <activity android:name=".activity.profile.NotificationActivity" />
 
 
-        <activity android:name=".activity.SelectBuildingActvity"></activity>
-        <activity android:name=".activity.SelectFlatActivity"></activity>
         <activity android:name=".activity.AddSelectFlatActivity"></activity>
 
         <service android:name=".fcm.MyFirebaseMessagingService">

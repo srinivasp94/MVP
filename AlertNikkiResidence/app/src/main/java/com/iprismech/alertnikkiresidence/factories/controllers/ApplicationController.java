@@ -245,7 +245,7 @@ public class ApplicationController {
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.SELECT_BUS_SCREEN);
                 break;
             case AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN:
-                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.BUS_ROUTE_SCREEN,(Bundle)eventObjects);
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.BUS_ROUTE_SCREEN, (Bundle) eventObjects);
                 break;
             case AppConstants.EventIds.LAUNCH_ADD_BUS_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.ADD_BUS_SCREEN);
@@ -335,6 +335,9 @@ public class ApplicationController {
                 break;
             case AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN:
                 UiController.getInstance().launchActivity(ViewFactory.ScreenIds.MY_FLATS_SCREEN);
+                break;
+            case AppConstants.EventIds.LAUNCH_NOTIFICATION_SCREEN:
+                UiController.getInstance().launchActivity(ViewFactory.ScreenIds.NOTIFICATIONS_SCREEN);
                 break;
             default:
                 throw new IllegalStateException("Invalid Event id");

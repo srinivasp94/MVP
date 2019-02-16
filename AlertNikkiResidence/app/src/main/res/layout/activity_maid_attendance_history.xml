@@ -19,11 +19,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:background="@drawable/black_corner_noboarders"
+            android:background="@color/black"
+
             android:gravity="center"
             android:text="Weekly"
             android:id="@+id/tv_weekly"
-            android:textColor="@color/black" />
+            android:textColor="@color/white" />
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"

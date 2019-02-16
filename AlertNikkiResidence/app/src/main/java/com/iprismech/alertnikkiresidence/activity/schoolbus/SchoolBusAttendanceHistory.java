@@ -43,7 +43,7 @@ public class SchoolBusAttendanceHistory extends BaseAbstractActivity implements 
                     tv_monthly.setBackgroundColor(ContextCompat.getColor(SchoolBusAttendanceHistory.this, R.color.white));
                     tv_monthly.setTextColor(ContextCompat.getColor(SchoolBusAttendanceHistory.this, R.color.black));
                 } else {
-                    tv_monthly.setBackground(ContextCompat.getDrawable(SchoolBusAttendanceHistory.this, R.color.white));
+                    tv_monthly.setBackground(ContextCompat.getDrawable(SchoolBusAttendanceHistory.this, R.drawable.black_corner_noboarders));
                     tv_monthly.setTextColor(ContextCompat.getColor(SchoolBusAttendanceHistory.this, R.color.black));
                 }
 //                tv_weekly.setBackgroundColor(Color.parseColor("#fff"));
@@ -68,7 +68,7 @@ public class SchoolBusAttendanceHistory extends BaseAbstractActivity implements 
                     tv_weekly.setBackgroundColor(ContextCompat.getColor(SchoolBusAttendanceHistory.this, R.color.white));
                     tv_weekly.setTextColor(ContextCompat.getColor(SchoolBusAttendanceHistory.this, R.color.black));
                 } else {
-                    tv_weekly.setBackground(ContextCompat.getDrawable(SchoolBusAttendanceHistory.this, R.color.white));
+                    tv_weekly.setBackground(ContextCompat.getDrawable(SchoolBusAttendanceHistory.this, R.drawable.black_corner_noboarders));
                     tv_weekly.setTextColor(ContextCompat.getColor(SchoolBusAttendanceHistory.this, R.color.black));
                 }
 
