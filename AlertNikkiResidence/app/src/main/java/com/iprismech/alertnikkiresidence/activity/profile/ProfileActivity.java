@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -61,13 +62,14 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
             Management, Emergeny, NoticeBoard,
             FamilyMembers,
             VisitorsHistory,
-            MyFlat,
+            MyFlat, MyVehicles,
             Digital,
             Logout;
     private int GALLERY_DOC = 101, CAMERA_DOC = 102;
     private ImageView imgClose;
     private TextView txtitle;
     private String base64profile;
+    private String mVehicles="";
 
 
     @Override
@@ -101,6 +103,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         FamilyMembers.setOnClickListener(this);
         VisitorsHistory.setOnClickListener(this);
         MyFlat.setOnClickListener(this);
+        MyVehicles.setOnClickListener(this);
         Digital.setOnClickListener(this);
         Logout.setOnClickListener(this);
         LinearMysocirty.setOnClickListener(this);
@@ -132,6 +135,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         FamilyMembers = findViewById(R.id.FamilyMembers);
         VisitorsHistory = findViewById(R.id.VisitorsHistory);
         MyFlat = findViewById(R.id.MyFlat);
+        MyVehicles = findViewById(R.id.MyVehicles);
         Digital = findViewById(R.id.Digital);
         Logout = findViewById(R.id.Logout);
 
@@ -203,6 +207,11 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
                 break;
             case R.id.MyFlat:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN);
+                break;
+            case R.id.MyVehicles:
+                Intent intent = new Intent(ProfileActivity.this, AddVehicleActivity.class);
+                intent.putExtra("KEY_Vehicles",mVehicles);
+                startActivity(intent);
                 break;
             case R.id.Digital:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);
@@ -433,6 +442,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
                             Picasso.with(ProfileActivity.this).load(Constants.BASE_IMAGE_URL + res.response.qrcode).into(imgQrcode);
                             txtName.setText(res.response.name);
                             txttypeOfOwn.setText(res.response.residenceType);
+                            mVehicles = res.response.vehicle_numbers;
                             txtAddress.setText(res.response.flat + ", " + res.response.building + ", " + res.response.city);
                             txtPasscode.setText("Passcode:- " + res.response.passcode);
                             break;

@@ -206,6 +206,15 @@
                     android:text="My Flat"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/MyVehicles"
+                    style="@style/DefaultCustomTextView"
+                    android:drawableLeft="@drawable/building_samll"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:gravity="center|left"
+                    android:text="My Vehicles"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/Digital"
