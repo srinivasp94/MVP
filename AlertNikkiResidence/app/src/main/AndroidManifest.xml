@@ -195,6 +195,7 @@
         <!--<activity android:name=".activity.SelectBuildingActvity"></activity>
         <activity android:name=".activity.SelectFlatActivity"></activity>
         <activity android:name=".activity.AddSelectFlatActivity"></activity>-->
+        <activity android:name=".activity.AddSelectFlatActivity"></activity>
 
         <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>

@@ -16,7 +16,11 @@ import com.iprismech.alertnikkiresidence.activity.AddSelectFlatActivity;
 import com.iprismech.alertnikkiresidence.activity.SelectFlatActivity;
 import com.iprismech.alertnikkiresidence.adapters.MyFlatsAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
+import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.MyFlatsPojo;
+import com.iprismech.alertnikkiresidence.request.DeleteFlatRequest;
+import com.iprismech.alertnikkiresidence.request.DeleteKidRequest;
 import com.iprismech.alertnikkiresidence.request.MyFlatsReq;
 import com.iprismech.alertnikkiresidence.request.UpdateFlatReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -83,8 +87,7 @@ public class MyFlatActivity extends BaseAbstractActivity implements View.OnClick
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "update_flat", true);
-
+                new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "add_flat", true);
 
             }
         }
@@ -107,6 +110,7 @@ public class MyFlatActivity extends BaseAbstractActivity implements View.OnClick
 
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -128,14 +132,42 @@ public class MyFlatActivity extends BaseAbstractActivity implements View.OnClick
                             myFlatsAdapter.setOnItemClickListener(new MyFlatsAdapter.OnitemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
+                                    switch (view.getId()) {
+                                        case R.id.iv_flat_delete:
+                                            if (myFlatsPojo.getResponse().size() == 1) {
+                                                Toast.makeText(MyFlatActivity.this, "User must contain at least one flat", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                DeleteFlatRequest req_delete = new DeleteFlatRequest();
 
+                                                req_delete.admin_id = SharedPrefsUtils.getInstance(MyFlatActivity.this).getAdminID();
+                                                req_delete.flat_id = myFlatsPojo.getResponse().get(position).getFlat_id();
+                                                req_delete.user_id = SharedPrefsUtils.getInstance(MyFlatActivity.this).getId();
+
+                                                // req.user_id = "24";
+                                                try {
+                                                    obj = Class.forName(DeleteFlatRequest.class.getName()).cast(req_delete);
+                                                } catch (Exception e) {
+                                                    e.printStackTrace();
+                                                }
+                                                new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "remove_flat", true);
+                                            }
+                                            break;
+                                    }
                                 }
                             });
                             break;
                         case 2:
                             Toast.makeText(this, "Flat Added Successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN);
+                            break;
+                        case 3:
+                            Toast.makeText(this, "Flat removed Successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN);
                             break;
                     }
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();

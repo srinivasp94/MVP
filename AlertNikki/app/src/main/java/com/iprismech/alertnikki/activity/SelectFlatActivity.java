@@ -68,7 +68,7 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
 //                            LinearLayoutManager manager = new LinearLayoutManager(SelectFlatActivity.this);
 //                            manager.setOrientation(LinearLayoutManager.VERTICAL);
                             // LinearLayoutManager linearLayoutManager=new LinearLayoutManager(SelectBuildingActvity.this,LinearLayoutManager.VERTICAL,false);
-                            rview.setLayoutManager(new GridLayoutManager(getApplicationContext(),4));
+                            rview.setLayoutManager(new GridLayoutManager(getApplicationContext(), 4));
                             FlatsAdapter adapter = new FlatsAdapter(getApplicationContext(), flatPojo);
                             rview.setAdapter(adapter);
 
@@ -91,14 +91,15 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
         }
 
     }
+
     private void getdataFromAdapter(int position) {
         String id = flatPojo.getResponse().get(position).getId();
-        String title= flatPojo.getResponse().get(position).getTitle();
+        String title = flatPojo.getResponse().get(position).getTitle();
 
         Intent returnIntent = new Intent();
-        returnIntent.putExtra("id",id);
-        returnIntent.putExtra("name",title);
-        setResult(Activity.RESULT_OK,returnIntent);
+        returnIntent.putExtra("id", id);
+        returnIntent.putExtra("name", title);
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
 
         //  Common.commonLogs(SelectBuildingActvity.this,title+ " and "+ id);

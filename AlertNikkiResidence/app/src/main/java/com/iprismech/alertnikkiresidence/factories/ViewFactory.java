@@ -48,6 +48,7 @@ import com.iprismech.alertnikkiresidence.activity.profile.AddFamilyActivity;
 import com.iprismech.alertnikkiresidence.activity.profile.ContactSingleActivity;
 import com.iprismech.alertnikkiresidence.activity.profile.FamilyMembersActivity;
 import com.iprismech.alertnikkiresidence.activity.profile.MyFlatActivity;
+import com.iprismech.alertnikkiresidence.activity.profile.NotificationActivity;
 import com.iprismech.alertnikkiresidence.activity.profile.ProfileActivity;
 import com.iprismech.alertnikkiresidence.activity.schoolbus.AddBusActivity;
 import com.iprismech.alertnikkiresidence.activity.schoolbus.BusRouteActivity;
@@ -104,6 +105,7 @@ import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MYSTAFF_ALERTS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.MY_FLATS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.NOTICE_BOARD_SCREEN;
+import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.NOTIFICATIONS_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OONTACT_SINGLE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OONTACT_SINGLE_SCREEN;
 import static com.iprismech.alertnikkiresidence.factories.ViewFactory.ScreenIds.OTPVERIFICATION_SCREEN;
@@ -153,7 +155,7 @@ public class ViewFactory {
             MANAGEMENT_COMMITTE_SCREEN, DIGITAL_INTERCOM_SCREEN, CONTACT_US_SCREEN,
             VISITORS_HISTORY_SCREEN, MAID_ATTENDANCE_HISTORY_SCREEN, MAID_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, FORGOT_PASSWORD_SCREEN,
             FORGOT_PASSWORD_OTP_VERIFICATION_SCREEN, RESET_PASSWORD_SCREEN, SCHOOL_BUS_HISTORY_SCREEN,
-            BUS_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, MY_FLATS_SCREEN})
+            BUS_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN, MY_FLATS_SCREEN, NOTIFICATIONS_SCREEN})
     public @interface ScreenIds {
 
         int SPLASH_SCREEN = 1001;
@@ -217,6 +219,7 @@ public class ViewFactory {
         int SCHOOL_BUS_HISTORY_SCREEN = 1057;
         int BUS_VIEW_ALL_ATTENDANCE_HISTORY_SCREEN = 1058;
         int MY_FLATS_SCREEN = 1059;
+        int NOTIFICATIONS_SCREEN = 1060;
 
 
     }
@@ -360,6 +363,8 @@ public class ViewFactory {
                 return BusViewAllAttandancesHistory.class;
             case MY_FLATS_SCREEN:
                 return MyFlatActivity.class;
+            case NOTIFICATIONS_SCREEN:
+                return NotificationActivity.class;
             default:
                 throw new IllegalStateException("Invalid screen id");
         }

@@ -27,10 +27,11 @@ public class UploadImagesAdapter extends RecyclerView.Adapter<UploadImagesAdapte
 
     public UploadImagesAdapter(ArrayList<Bitmap> uploadimages, Context myStaffAlerts) {
         this.images = uploadimages;
-        this.context=myStaffAlerts;
+        this.context = myStaffAlerts;
         //this.onItemClickListener = onItemClickListener;
         // status="phoneImages";
     }
+
     private UploadImagesAdapter.OnitemClickListener mListner;
 
     public void setOnItemClickListener(UploadImagesAdapter.OnitemClickListener onitemClickListener) {
@@ -83,9 +84,8 @@ public class UploadImagesAdapter extends RecyclerView.Adapter<UploadImagesAdapte
             super(itemView);
             uploaded_img = itemView.findViewById(R.id.imageupload);
             del_img = itemView.findViewById(R.id.imgdelete);
-            del_img.setOnClickListener(this);
+           // del_img.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View view) {
             if (mListner != null) {

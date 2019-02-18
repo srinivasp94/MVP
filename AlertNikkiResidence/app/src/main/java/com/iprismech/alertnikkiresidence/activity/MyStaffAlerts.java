@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -77,8 +78,8 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private Bitmap profile;
     private ArrayList<Bitmap> uploadimages = new ArrayList<>();
     private JSONArray jArray = new JSONArray();
-
-    List<DigitalPassRequest.ImageItems> imageIt = new ArrayList<>();
+    private int GALLERY_DOC = 0;
+    private List<DigitalPassRequest.ImageItems> imageIt = new ArrayList<>();
 
     private List<String> arrayList = new ArrayList<>();
     private int i;
@@ -87,6 +88,8 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private ImageView imgClose;
     private TextView txtitle;
     private boolean switchonOff = false;
+
+
 
 
     @Override
@@ -224,7 +227,6 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                                     new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
 
                                                 }
-
                                                 @Override
                                                 public void onNegativeClick() {
 
@@ -262,22 +264,22 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                                     StrictMode.setVmPolicy(builder.build());
                                                     //     permissionsRequest();
                                                     showPictureDialog("");
-                                                    v.setOnClickListener(new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View v) {
-                                                            switch (v.getId()) {
-                                                                case R.id.imgdelete:
-                                                                    jArray.remove(removed_postion);
-                                                                    uploadimages.remove(removed_postion);
-                                                                    uploadImagesAdapter.notifyDataSetChanged();
-                                                                    uploadImagesAdapter.notifyItemChanged(removed_postion);
-                                                                    if (jArray.length() == 0) {
-                                                                        //rcvuploadimages.setVisibility(View.GONE);
-                                                                    }
-                                                                    break;
-                                                            }
-                                                        }
-                                                    });
+//                                                    v.setOnClickListener(new View.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(View v) {
+//                                                            switch (v.getId()) {
+//                                                                case R.id.imgdelete:
+//                                                                    jArray.remove(removed_postion);
+//                                                                    uploadimages.remove(removed_postion);
+//                                                                    uploadImagesAdapter.notifyDataSetChanged();
+//                                                                    uploadImagesAdapter.notifyItemChanged(removed_postion);
+//                                                                    if (jArray.length() == 0) {
+//                                                                        //rcvuploadimages.setVisibility(View.GONE);
+//                                                                    }
+//                                                                    break;
+//                                                            }
+//                                                        }
+//                                                    });
                                                 }
                                             });
 
@@ -342,6 +344,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
 
                         case 3:
                             Toast.makeText(MyStaffAlerts.this, "Successfully Sent to Security", Toast.LENGTH_SHORT).show();
+                            alertDialog.dismiss();
                             break;
                         case 4:
                             staffListAdapter.notifyDataSetChanged();
@@ -383,28 +386,77 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private void showPictureDialog(final String base64) {
         android.app.AlertDialog.Builder pictureDialog = new android.app.AlertDialog.Builder(MyStaffAlerts.this);
         pictureDialog.setTitle("Select Action");
+        String[] pictureDialogItems = {
+                "Select photo from gallery",
+                "Capture photo from camera"
+        };
 //        String[] pictureDialogItems = {
 //                "Select photo from gallery",
 //                "Capture photo from camera"
-//        };
-        String[] pictureDialogItems = {
-                "Capture photo from camera"
-        };
+////        };
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
+                                choosePhotoFromGallary(base64);
+                                break;
+                            case 1:
                                 takePhotoFromCamera(base64);
                                 break;
-//                            case 1:
-//                                takePhotoFromCamera(base64) ;
-//                                break;
                         }
                     }
                 });
         pictureDialog.show();
+    }
+
+    public void choosePhotoFromGallary(String base64) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(MyStaffAlerts.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                    && ContextCompat.checkSelfPermission(MyStaffAlerts.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(MyStaffAlerts.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Log.d("hhhh", "Permissions not granted");
+                // ask for permission
+                ActivityCompat.requestPermissions(MyStaffAlerts.this, new String[]{Manifest.permission.CAMERA}, 1);
+            }
+        }
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), GALLERY_DOC);
+
+
+    }
+
+    protected Bitmap decodeUri(Uri selectedImage, int REQUIRED_SIZE) {
+        try {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o);
+            // The new size we want to scale to
+            // final int REQUIRED_SIZE =  size;
+            // Find the correct scale value. It should be the power of 2.
+            int width_tmp = o.outWidth, height_tmp = o.outHeight;
+            int scale = 1;
+            while (true) {
+                if (width_tmp / 2 < REQUIRED_SIZE
+                        || height_tmp / 2 < REQUIRED_SIZE) {
+                    break;
+                }
+                width_tmp /= 2;
+                height_tmp /= 2;
+                scale *= 2;
+            }
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void takePhotoFromCamera(String base64) {
@@ -433,6 +485,20 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
             return;
+        } else if (requestCode == GALLERY_DOC) {
+            if (data != null) {
+
+                Uri contentURI = data.getData();
+                profile = decodeUri(contentURI, 200);
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                profile.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
+                uploadimages.add(profile);
+                new Async_BitmapWorkerTaskForProfile().execute();
+                // respond to users whose devices do not support the crop action
+
+                //     new Async_BitmapWorkerTask().execute();
+                // String path = saveImage(bitmap);
+            }
         } else if (requestCode == 1) {
 
             profile = (Bitmap) data.getExtras().get("data");
