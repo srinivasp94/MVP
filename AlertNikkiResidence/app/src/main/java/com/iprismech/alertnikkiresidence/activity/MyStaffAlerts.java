@@ -30,6 +30,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 import com.iprismech.alertnikkiresidence.pojo.MyStaff_Maids_List_Pojo;
 import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
 import com.iprismech.alertnikkiresidence.request.DigitalPassRequest;
+import com.iprismech.alertnikkiresidence.request.StaffNotify;
 import com.iprismech.alertnikkiresidence.request.StaffRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
@@ -85,6 +87,9 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
 
     private ImageView imgClose;
     private TextView txtitle;
+    private boolean switchonOff = false;
+
+
 
 
     @Override
@@ -199,6 +204,13 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                 @Override
                                 public void onItemClick(View view, int position) {
                                     switch (view.getId()) {
+                                        case R.id.switch_noti:
+                                            Switch aSwitch = view.findViewById(R.id.switch_noti);
+                                            switchonOff = aSwitch.isChecked();
+                                            //update_maid_notification_status
+                                            staffNotifyWS(position, switchonOff);
+//
+                                            break;
                                         case R.id.ll_delete_maid:
                                             removed_postion = position;
 
@@ -215,7 +227,6 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                                     new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
 
                                                 }
-
                                                 @Override
                                                 public void onNegativeClick() {
 
@@ -335,6 +346,9 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                             Toast.makeText(MyStaffAlerts.this, "Successfully Sent to Security", Toast.LENGTH_SHORT).show();
                             alertDialog.dismiss();
                             break;
+                        case 4:
+                            staffListAdapter.notifyDataSetChanged();
+                            break;
 
                     }
                 } else {
@@ -347,6 +361,28 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
         }
     }
 
+    private void staffNotifyWS(int position, boolean switchonOff) {
+        StaffNotify req = new StaffNotify();
+        req.adminId = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_ADMIN_ID);
+        req.maidId = myStaff_maids_list_pojo.getResponse().get(position).getMaid_id();
+        if (switchonOff) {
+
+            req.status = "1";
+            myStaff_maids_list_pojo.getResponse().get(position).setNotification_status("1");
+        } else if (switchonOff == false) {
+            req.status = "0";
+            myStaff_maids_list_pojo.getResponse().get(position).setNotification_status("0");
+
+        }
+        try {
+            obj = Class.forName(StaffNotify.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+
+        new RetrofitRequester(this).callPostServices(obj, 4, "update_maid_notification_status", false);
+    }
+
     private void showPictureDialog(final String base64) {
         android.app.AlertDialog.Builder pictureDialog = new android.app.AlertDialog.Builder(MyStaffAlerts.this);
         pictureDialog.setTitle("Select Action");
@@ -355,8 +391,9 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                 "Capture photo from camera"
         };
 //        String[] pictureDialogItems = {
+//                "Select photo from gallery",
 //                "Capture photo from camera"
-//        };
+////        };
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override

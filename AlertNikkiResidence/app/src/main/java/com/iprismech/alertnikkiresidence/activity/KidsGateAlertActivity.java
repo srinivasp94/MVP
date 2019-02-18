@@ -27,6 +27,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ import com.iprismech.alertnikkiresidence.pojo.KidsListPojo;
 import com.iprismech.alertnikkiresidence.request.DeleteKidRequest;
 import com.iprismech.alertnikkiresidence.request.KidGatePassRequest;
 import com.iprismech.alertnikkiresidence.request.KidsListRequest;
+import com.iprismech.alertnikkiresidence.request.NotifyKid;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
@@ -70,9 +72,8 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
     private String mTitle, base64profile = "";
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
-
+    private TextView txtitle;
+    private boolean isActive;
 
 
     @Override
@@ -116,7 +117,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
         ApplicationController.getInstance().setContext(context);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Kids Gate");
 
 
@@ -257,6 +258,11 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                             alertDialog.show();
 
                                             break;
+                                        case R.id.switch_kids_noti:
+                                            Switch aSwitch = view.findViewById(R.id.switch_kids_noti);
+                                            isActive = aSwitch.isChecked();
+                                            callNotifyKidAlertsWS(position, isActive);
+                                            break;
                                     }
 
                                 }
@@ -272,6 +278,9 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                         case 3:
                             Toast.makeText(KidsGateAlertActivity.this, "Gate Pass Sent Successfully", Toast.LENGTH_SHORT).show();
                             break;
+                        case 4:
+                            kidsListAdapter.notifyDataSetChanged();
+                            break;
                     }
                 } else {
                     Common.showToast(KidsGateAlertActivity.this, jsonObject.optString("message"));
@@ -282,6 +291,25 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
 
         }
 
+    }
+
+    private void callNotifyKidAlertsWS(int position, boolean isActive) {
+        NotifyKid req = new NotifyKid();
+        req.userKidId = kidsListPojo.getResponse().get(position).getId();
+        if (isActive) {
+
+            req.status = "1";
+            kidsListPojo.getResponse().get(position).setNotification_status("1");
+        } else if (isActive == false) {
+            req.status = "0";
+            kidsListPojo.getResponse().get(position).setNotification_status("0");
+        }
+        try {
+            obj = Class.forName(NotifyKid.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+        new RetrofitRequester(this).callPostServices(obj, 4, "update_notification_kid_status", true);
     }
 
     private void showPictureDialog(final String base64) {

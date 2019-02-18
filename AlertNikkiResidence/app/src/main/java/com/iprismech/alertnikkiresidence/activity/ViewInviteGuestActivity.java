@@ -121,6 +121,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN, bundle1);*/
                             Intent intent = new Intent(ViewInviteGuestActivity.this, GuestEditActivity.class);
                             intent.putParcelableArrayListExtra("Key_Contacts", contactsList);
+                            intent.putExtra("Key_id", "3");
                             intent.putExtra("Key_Position", position);
                             startActivity(intent);
                             finish();

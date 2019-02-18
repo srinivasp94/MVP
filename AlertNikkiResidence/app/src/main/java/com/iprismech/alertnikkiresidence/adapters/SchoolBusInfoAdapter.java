@@ -49,6 +49,11 @@ public class SchoolBusInfoAdapter extends RecyclerView.Adapter<SchoolBusInfoAdap
         viewHolder.txtLocation.setText(model.address);
         viewHolder.txtIntime.setText(model.entryTime);
         viewHolder.txtOuttime.setText(model.exitTime);
+        if (model.notificationStatus.equalsIgnoreCase("0"))
+            viewHolder.busSwitch.setChecked(false);
+        else if (model.notificationStatus.equalsIgnoreCase("1"))
+            viewHolder.busSwitch.setChecked(true);
+
     }
 
     @Override

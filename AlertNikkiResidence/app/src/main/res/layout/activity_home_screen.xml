@@ -69,8 +69,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_invite_guest" />
@@ -103,8 +103,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_staff" />
@@ -147,8 +147,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_notify_gate" />
@@ -180,8 +180,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_school_bus" />
@@ -222,8 +222,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_kids_gate" />
@@ -255,8 +255,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_local_services" />

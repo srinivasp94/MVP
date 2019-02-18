@@ -52,8 +52,11 @@
 
                     <Switch
                         android:id="@+id/switch_noti"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="wrap_content" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:textOff="On"
+                        android:textOn="Off" />
 
                 </LinearLayout>
 

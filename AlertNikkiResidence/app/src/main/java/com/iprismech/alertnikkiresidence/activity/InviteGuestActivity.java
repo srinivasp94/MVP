@@ -90,7 +90,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-
+        AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Invite Guest");
@@ -109,7 +109,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         GuestsReq req = new GuestsReq();
 
         req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
-        req.otpSentType =SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
+        req.otpSentType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         try {
@@ -259,7 +259,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
 
     }
 
-    private void showAlertForAddGuests() {
+    private void  showAlertForAddGuests() {
         LayoutInflater inflater = LayoutInflater.from(InviteGuestActivity.this);
 //        getLayoutInflater().inflate(R.layout.alert_alerts,null);
         View view1 = inflater.inflate(R.layout.alert_guests, null);
