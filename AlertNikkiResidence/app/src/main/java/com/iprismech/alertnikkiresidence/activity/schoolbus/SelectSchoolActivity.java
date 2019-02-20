@@ -132,7 +132,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
             public boolean onQueryTextChange(String s) {
                 if (s.length() > 2) {
                     SchoolBusSearchReq req_bus_search = new SchoolBusSearchReq();
-                    req_bus_search.adminId = "2";
+                    req_bus_search.adminId = SharedPrefsUtils.getInstance(SelectSchoolActivity.this).getAdminID();
                     req_bus_search.school_bus_name = ""+s;
                     try {
                         obj = Class.forName(SchoolBusSearchReq.class.getName()).cast(req_bus_search);
@@ -206,6 +206,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
                                                 Bundle bundle = new Bundle();
                                                 bundle.putString("KEY_BUS_ID", busList.get(position).id);
                                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN, bundle);
+                                               finish();
                                                 break;
                                         }
 
@@ -239,6 +240,7 @@ public class SelectSchoolActivity extends BaseAbstractActivity implements Retrof
                                     Bundle bundle = new Bundle();
                                     bundle.putString("KEY_BUS_ID", schoolBusSearchPojo.getResponse().get(position).getId());
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_ROUTE_SCREEN, bundle);
+                                    finish();
                                 }
                             });
                             break;

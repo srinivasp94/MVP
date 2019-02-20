@@ -101,6 +101,8 @@ public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHo
                         Bundle bundle = new Bundle();
                         bundle.putString("screen", "Edit Kid");
                         bundle.putString("kid_id", kidsListPojo.getResponse().get(getAdapterPosition()).getId());
+                        bundle.putString("kid_name", kidsListPojo.getResponse().get(getAdapterPosition()).getKid_name());
+                        bundle.putString("kid_purpose", kidsListPojo.getResponse().get(getAdapterPosition()).getPurpose());
                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_KID_SCREEN, bundle);
 
                     }

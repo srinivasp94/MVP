@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +17,9 @@ import com.iprismech.alertnikkiresidence.adapters.CityListAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.pojo.SearchDailyHelpsPojo;
+import com.iprismech.alertnikkiresidence.pojo.SelectCityPojo;
+import com.iprismech.alertnikkiresidence.request.SearchDailyHelps;
 import com.iprismech.alertnikkiresidence.response.City;
 import com.iprismech.alertnikkiresidence.response.CityList;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -36,8 +40,11 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
     private ImageView imgClose;
     private TextView txtitle;
+    private ListView searchresults;
+    private RetrofitResponseListener retrofitResponseListener;
 
-
+    private SearchView et_search;
+    private SelectCityPojo selectCityPojo;
 
 
     @Override
@@ -71,7 +78,7 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-
+        retrofitResponseListener = this;
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             sOtp = bundle.getString("Key_otp");
@@ -86,6 +93,9 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
         txtitle.setText("Select City");
         imgClose.setOnClickListener(this);
 
+        et_search = findViewById(R.id.et_search);
+        searchresults = findViewById(R.id.searchresults);
+
         txtNoItems = findViewById(R.id.txtNoItems);
         listViewCity = findViewById(R.id.listview_city);
 
@@ -95,6 +105,30 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
 
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "cities", true);
+
+
+        et_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.length() > 2) {
+                    SearchDailyHelps searchDailyHelps = new SearchDailyHelps();
+                    searchDailyHelps.adminId = "2";
+                    searchDailyHelps.name = "" + s;
+                    try {
+                        obj = Class.forName(SearchDailyHelps.class.getName()).cast(searchDailyHelps);
+                    } catch (Exception e) {
+                    }
+                    new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "cities_search", true);
+
+                }
+                return false;
+            }
+        });
     }
 
     @Override
@@ -135,6 +169,37 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                 txtNoItems.setVisibility(View.VISIBLE);
                                 listViewCity.setVisibility(View.GONE);
                             }
+                            break;
+                        case 2:
+                            selectCityPojo = gson.fromJson(jsonString, SelectCityPojo.class);
+                            String[] shops = new String[selectCityPojo.getResponse().size()];
+                            for (int i = 0; i < selectCityPojo.getResponse().size(); i++) {
+                                shops[i] = selectCityPojo.getResponse().get(i).getTitle();
+                            }
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(SelectCityActivity.this, R.layout.simple_list1, shops);
+                            //selected item will look like a spinner set from XML
+                            spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_list1);
+                            spinnerArrayAdapter.notifyDataSetChanged();
+                            searchresults.setAdapter(spinnerArrayAdapter);
+                            spinnerArrayAdapter.notifyDataSetChanged();
+                            searchresults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("Key_CityId", cityLists.get(position).id);
+                                    bundle.putString("Key_CityName", cityLists.get(position).title);
+
+                                    bundle.putString("Key_Name", sName);
+                                    bundle.putString("Key_Mobile", sPhone);
+                                    bundle.putString("Key_Email", sMail);
+                                    bundle.putString("Key_Password", sPassword);
+                                    bundle.putString("Key_Blood", sBlood);
+                                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
+
+                                }
+                            });
+
                             break;
                     }
                 } else {

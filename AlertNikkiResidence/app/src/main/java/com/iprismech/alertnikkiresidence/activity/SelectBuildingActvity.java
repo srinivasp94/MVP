@@ -1,5 +1,6 @@
 package com.iprismech.alertnikkiresidence.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +8,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -17,7 +22,11 @@ import com.iprismech.alertnikkiresidence.adapters.BuildingsAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.BuildingsPojo;
+import com.iprismech.alertnikkiresidence.pojo.SearchBuidingPojo;
+import com.iprismech.alertnikkiresidence.pojo.SearchSocietyPojo;
 import com.iprismech.alertnikkiresidence.request.BuildingListRequest;
+import com.iprismech.alertnikkiresidence.request.SearchDailyHelps;
+import com.iprismech.alertnikkiresidence.request.SearchSocietyReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
@@ -37,7 +46,10 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     private ImageView imgClose;
     private TextView txtitle;
 
-
+    private ListView searchresults;
+    private RetrofitResponseListener retrofitResponseListener;
+    private SearchView et_search;
+    SearchBuidingPojo searchBuidingPojo;
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -61,12 +73,13 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-
+        retrofitResponseListener = this;
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Select Building");
         imgClose.setOnClickListener(this);
-
+        et_search = findViewById(R.id.et_search);
+        searchresults = findViewById(R.id.searchresults);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             adminId = bundle.getString("Key_AdminId", "");
@@ -97,6 +110,31 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
             e.printStackTrace();
         }
         new RetrofitRequester(this).callPostServices(obj, 1, "buildings", true);
+
+
+        et_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                if (s.length() > 2) {
+                    SearchDailyHelps searchDailyHelps = new SearchDailyHelps();
+                    searchDailyHelps.adminId = "2";
+                    searchDailyHelps.name = "" + s;
+                    try {
+                        obj = Class.forName(SearchDailyHelps.class.getName()).cast(searchDailyHelps);
+                    } catch (Exception e) {
+                    }
+                    new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "building_search", true);
+
+                }
+                return false;
+            }
+        });
+
     }
 
     @Override
@@ -127,6 +165,28 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
                                             getdataFromAdapter(position);
                                             break;
                                     }
+                                }
+                            });
+
+                            break;
+                        case 2:
+                            searchBuidingPojo = gson.fromJson(jsonString, SearchBuidingPojo.class);
+                            String[] shops = new String[buildingsPojo.getResponse().size()];
+                            for (int i = 0; i < buildingsPojo.getResponse().size(); i++) {
+                                shops[i] = buildingsPojo.getResponse().get(i).getTitle();
+                            }
+                            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(SelectBuildingActvity.this, R.layout.simple_list1, shops);
+                            //selected item will look like a spinner set from XML
+                            spinnerArrayAdapter.setDropDownViewResource(R.layout.simple_list1);
+                            spinnerArrayAdapter.notifyDataSetChanged();
+                            searchresults.setAdapter(spinnerArrayAdapter);
+                            spinnerArrayAdapter.notifyDataSetChanged();
+                            searchresults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    getdataFromAdapter(position);
+
                                 }
                             });
 

@@ -69,9 +69,9 @@
             <android.support.v7.widget.AppCompatEditText
                 android:id="@+id/edtValidHours"
                 style="@style/customEdittext"
-                android:hint=" +3"
-                android:inputType="number"
-                android:maxLength="1" />
+                android:hint="+3 hours"
+                android:focusable="false"
+                android:textColor="@color/black" />
 
             <View style="@style/customView" />
 
@@ -82,7 +82,7 @@
                 android:background="@drawable/black_corner_bg"
                 android:gravity="center"
                 android:padding="@dimen/_6sdp"
-                android:text="notify Gate"
+                android:text="Notify Gate"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
         </LinearLayout>

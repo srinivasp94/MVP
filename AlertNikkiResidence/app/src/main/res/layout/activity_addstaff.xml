@@ -78,7 +78,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.9"
                         android:background="@null"
-                        android:hint="Seacrh Service"
+                        android:hint="Search Service"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:textSize="@dimen/_11sdp"
@@ -94,6 +94,17 @@
         </LinearLayout>
 
     </android.support.v7.widget.Toolbar>
+
+    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="No Data Found"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        android:id="@+id/tv_nodata_txt"
+        android:textSize="@dimen/_20sdp" />
 
     <ListView
         android:id="@+id/searchresults"

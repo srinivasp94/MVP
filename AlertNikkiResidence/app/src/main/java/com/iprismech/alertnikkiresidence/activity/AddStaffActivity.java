@@ -41,7 +41,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
     private RetrofitResponseListener retrofitResponseListener;
 
     private ImageView imgClose;
-    private TextView txtitle;
+    private TextView txtitle, tv_nodata_txt;
 
     private ListView searchresults;
     private SearchView et_search;
@@ -84,7 +84,9 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                 String jsonString = gson.toJson(objectResponse);
                 switch (requestId) {
                     case 1:
+
                         dailyHelpsListPojo = gson.fromJson(jsonString, DailyHelpsListPojo.class);
+                        tv_nodata_txt.setVisibility(View.GONE);
                         JSONObject jsonObject = new JSONObject(jsonString);
                         if (jsonObject.optBoolean("status")) {
                             daily_helps_adapter = new DailyHelpsAdapter(AddStaffActivity.this, dailyHelpsListPojo);
@@ -103,8 +105,11 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
 
                         } else {
                             Common.showToast(AddStaffActivity.this, jsonObject.optString("message"));
+                            tv_nodata_txt.setVisibility(View.VISIBLE);
                         }
+
                         break;
+
                     case 2:
                         et_search.setFocusable(true);
                         searchDailyHelpsPojo = gson.fromJson(jsonString, SearchDailyHelpsPojo.class);
@@ -143,6 +148,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
         gv_daily_helps = findViewById(R.id.gv_daily_helps_list);
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
+        tv_nodata_txt = findViewById(R.id.tv_nodata_txt);
         txtitle.setText("Add Staff");
 
         imgClose.setOnClickListener(this);

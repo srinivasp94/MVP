@@ -59,9 +59,9 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     @Override
     protected void initializeViews() {
         super.initializeViews();
-        txt_pin_entry = findViewById(R.id.txt_pin_entry);
-        txtResendcode = findViewById(R.id.txtResendcode);
-        verifyotp_btn = findViewById(R.id.verifyotp_btn);
+            txt_pin_entry = findViewById(R.id.txt_pin_entry);
+            txtResendcode = findViewById(R.id.txtResendcode);
+            verifyotp_btn = findViewById(R.id.verifyotp_btn);
 
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);

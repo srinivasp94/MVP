@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,6 +11,7 @@
         android:layout_marginBottom="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginRight="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:orientation="vertical">
 
@@ -30,7 +32,7 @@
 
             <CheckBox
                 android:id="@+id/cb_alldays"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:layout_gravity="center_vertical"
 
@@ -54,9 +56,11 @@
 
             <CheckBox
                 android:id="@+id/cb_sunday"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
+                android:layout_gravity="center"
+
 
                 />
         </LinearLayout>
@@ -78,7 +82,7 @@
 
             <CheckBox
                 android:id="@+id/cb_monday"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
 
@@ -103,7 +107,7 @@
 
             <CheckBox
                 android:id="@+id/cb_tuesday"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
 
@@ -127,7 +131,7 @@
 
             <CheckBox
                 android:id="@+id/cb_wednesday"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
 
@@ -152,7 +156,7 @@
 
             <CheckBox
                 android:id="@+id/cb_thursday"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
 
@@ -177,7 +181,7 @@
 
             <CheckBox
                 android:id="@+id/cb_friday"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
 
@@ -202,7 +206,7 @@
 
             <CheckBox
                 android:id="@+id/cb_satdays"
-                android:layout_width="@dimen/_20sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/_20sdp"
                 android:gravity="center"
 

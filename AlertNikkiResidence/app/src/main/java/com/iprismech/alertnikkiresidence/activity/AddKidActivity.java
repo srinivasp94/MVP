@@ -2,11 +2,13 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -49,9 +51,11 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     private String str_selected_days, screen_type, kid_id = "";
     private Object obj;
     List<String> stringList = new ArrayList<>();
+    private Switch sw_kids_pass_days;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
+    private String kid_name_purpose,kid_name_edit;
 
     @Override
     public void onBackPressed() {
@@ -183,7 +187,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         AddKidPojo kidPojo = new AddKidPojo();
                         try {
 
-                            kidPojo.adminId =SharedPrefsUtils.getInstance(AddKidActivity.this).getAdminID();
+                            kidPojo.adminId = SharedPrefsUtils.getInstance(AddKidActivity.this).getAdminID();
                             kidPojo.kidName = kid_name.getText().toString();
                             kidPojo.userId = SharedPrefsUtils.getInstance(AddKidActivity.this).getId();
 
@@ -238,11 +242,8 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     protected void initializeViews() {
         super.initializeViews();
 
-        screen_type = getIntent().getExtras().getString("screen", "");
-        kid_id = getIntent().getExtras().getString("kid_id", "");
-
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Add Kid");
 
 
@@ -255,6 +256,28 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
         tv_kid_out_time = findViewById(R.id.tv_kid_out_time);
         tv_kid_in_tim = findViewById(R.id.tv_kid_in_time);
         btn_add_save = findViewById(R.id.btn_add_save);
+        sw_kids_pass_days = findViewById(R.id.sw_kids_pass_days);
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            screen_type = getIntent().getExtras().getString("screen", "");
+            kid_id = getIntent().getExtras().getString("kid_id", "");
+            kid_name_edit=getIntent().getExtras().getString("kid_name", "");
+            kid_name_purpose=getIntent().getExtras().getString("kid_purpose", "");
+        }
+
+        if(screen_type.equalsIgnoreCase("Edit Kid")){
+            txtitle.setText("Edit Kid");
+            kid_name.setText(kid_name_edit);
+            et_purpose.setText(kid_name_purpose);
+        }
+
+
+
+
+
+
+
 
 
     }
@@ -325,5 +348,6 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 
 
         tv_selected_days.setText("" + result_string);
+        sw_kids_pass_days.setChecked(true);
     }
 }

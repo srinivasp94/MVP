@@ -162,6 +162,7 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
                         case 2:
                             Toast.makeText(StaffStandardTimingActivity.this, "Satff added sucessfully", Toast.LENGTH_SHORT).show();
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
+                            finish();
                             break;
                     }
                 } else {

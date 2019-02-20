@@ -215,6 +215,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("Key_screen", "Choose Maid");
 
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
+                                alertDialog.dismiss();
                             }
                         }
                     });
@@ -233,6 +234,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("From_Date", "");
                                 bundle.putString("ToDate", "");
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
+                                alertDialog.dismiss();
                             }
                         }
                     });

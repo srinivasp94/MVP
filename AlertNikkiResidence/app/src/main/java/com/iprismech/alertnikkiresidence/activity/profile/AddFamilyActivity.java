@@ -160,7 +160,9 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
-                            Common.showToast(AddFamilyActivity.this, jsonObject.optString("message"));
+                          //  Common.showToast(AddFamilyActivity.this, jsonObject.optString("message"));
+
+                            Toast.makeText(this, "Family member added successfully", Toast.LENGTH_SHORT).show();
                             ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FAMILY_SCREEN);
                             finish();
                             break;

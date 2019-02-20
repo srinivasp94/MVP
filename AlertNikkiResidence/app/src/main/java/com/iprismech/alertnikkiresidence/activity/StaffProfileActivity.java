@@ -61,7 +61,7 @@ import java.util.List;
 
 public class StaffProfileActivity extends BaseAbstractActivity implements View.OnClickListener, RetrofitResponseListener {
     private LinearLayout ll_make_call, ll_gate_pass, ll_staff_delete, ll_attendance_history, ll_give_rating, ll_available_slots;
-    private TextView tv_satff_name, tv_staff_type, tv_working_flats, tv_staff_rating;
+    private TextView tv_satff_name, tv_staff_type, tv_working_flats, tv_staff_rating, tv_satff_passcode;
     private EditText et_staff_descrption;
     private ImageView iv_staff;
     private RatingBar rating_staff_profile;
@@ -289,6 +289,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
         tv_working_flats = findViewById(R.id.tv_staff_working_flats);
         iv_staff = findViewById(R.id.iv_staff);
         rating_staff_profile = findViewById(R.id.rating_staff_profile);
+        tv_satff_passcode = findViewById(R.id.tv_staff_passcode);
 
 
         ll_make_call = findViewById(R.id.ll_make_call);
@@ -349,13 +350,14 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                                 choosePhotoFromGallary(base64);
                                 break;
                             case 1:
-                                takePhotoFromCamera(base64) ;
+                                takePhotoFromCamera(base64);
                                 break;
                         }
                     }
                 });
         pictureDialog.show();
     }
+
     public void choosePhotoFromGallary(String base64) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(StaffProfileActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
@@ -373,6 +375,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
 
 
     }
+
     private void takePhotoFromCamera(String base64) {
         if (Build.VERSION.SDK_INT >= 23) {
             if (ContextCompat.checkSelfPermission(StaffProfileActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
@@ -399,9 +402,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
             return;
-        }
-
-        else if (requestCode == GALLERY_DOC) {
+        } else if (requestCode == GALLERY_DOC) {
             if (data != null) {
 
                 Uri contentURI = data.getData();
@@ -415,8 +416,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                 //     new Async_BitmapWorkerTask().execute();
                 // String path = saveImage(bitmap);
             }
-        }
-        else if (requestCode == 1) {
+        } else if (requestCode == 1) {
 
             profile = (Bitmap) data.getExtras().get("data");
             uploadimages.add(profile);
@@ -425,6 +425,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
             //saveImage(thumbnail);
         }
     }
+
     protected Bitmap decodeUri(Uri selectedImage, int REQUIRED_SIZE) {
         try {
             // Decode image size
@@ -449,12 +450,12 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
             BitmapFactory.Options o2 = new BitmapFactory.Options();
             o2.inSampleSize = scale;
             return BitmapFactory.decodeStream(getContentResolver().openInputStream(selectedImage), null, o2);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
+
     class Async_BitmapWorkerTaskForProfile extends AsyncTask<Integer, Void, String> {
 
         @Override
@@ -538,7 +539,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                                     || staffprofilePojo.getResponse().getRating().isEmpty()
                                     || staffprofilePojo.getResponse().getRating() == null) {
                                 rating_staff_profile.setRating(Float.parseFloat("0.0"));
-
+                                tv_satff_passcode.setText("Passcode :" + staffprofilePojo.getResponse().getPasscode());
                             } else {
                                 rating_staff_profile.setRating(Float.parseFloat(staffprofilePojo.getResponse().getRating()));
                             }

@@ -1,16 +1,19 @@
 package com.iprismech.alertnikkiresidence.activity.schoolbus;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.BusRoutesAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.request.BusRouteReq;
 import com.iprismech.alertnikkiresidence.request.SaveSchoolBusRoute;
@@ -105,7 +108,7 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
 
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Bus Routes");
+        txtitle.setText("Select Bus Routes");
 
         layoutManager = new LinearLayoutManager(BusRouteActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -122,7 +125,7 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
         BusRouteReq req = new BusRouteReq();
         req.adminId = SharedPrefsUtils.getInstance(BusRouteActivity.this).getAdminID();
 
-        req.schoolBusId = busid ;
+        req.schoolBusId = busid;
 
         try {
             obj = Class.forName(BusRouteReq.class.getName()).cast(req);
@@ -131,6 +134,7 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
         new RetrofitRequester(this).callPostServices(obj, 1, "school_bus_routes", true);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -167,6 +171,8 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
                             }
                             break;
                         case 2:
+                            Toast.makeText(this, "Bus route Added successfully", Toast.LENGTH_SHORT).show();
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_SCREEN);
                             finish();
                             break;
                     }
