@@ -28,6 +28,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+//        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SIGNUP_SCREEN);
         finish();
     }
 
@@ -134,6 +135,7 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                     bundle.putString("Key_Password", sPassword);
                     bundle.putString("Key_Blood", sBlood);
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
+                    finish();
                 }
 
                 break;

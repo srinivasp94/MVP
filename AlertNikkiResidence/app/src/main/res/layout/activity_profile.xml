@@ -223,7 +223,7 @@
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:textColor="@color/black"
-                    android:text="Digital Intervom Settings"
+                    android:text="Digital Intercom Settings"
                     android:textSize="@dimen/_14sdp" />
 
                 <android.support.v7.widget.AppCompatTextView

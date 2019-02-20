@@ -76,7 +76,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         iv_notification = view.findViewById(R.id.iv_notification);
         tv_flat_building = view.findViewById(R.id.tv_flat_building);
 
-        tv_flat_building.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_FLAT_NAME )+ "," + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY_NAME)  );
+        tv_flat_building.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_FLAT_NAME) + "," + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY_NAME));
 
 
         drawer_layout = view.findViewById(R.id.drawer_layout);
