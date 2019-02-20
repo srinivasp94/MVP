@@ -99,8 +99,6 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                     Common.showToast(EditGateAlertActivity.this, "Enter Name");
                 } else if (strPhone.length() == 0 || strPhone.length() < 10) {
                     Common.showToast(EditGateAlertActivity.this, "Enter Mobile");
-                } else if (strValidTill.length() == 0) {
-                    Common.showToast(EditGateAlertActivity.this, "Enter Valid till ");
                 } else if (screen.equalsIgnoreCase("2")) {
                     //edit_notify_gate_alert
                     EditGateReq req = new EditGateReq();
@@ -108,7 +106,7 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                     req.serviceId = serviceId;
                     req.name = edtPersonName.getText().toString();
                     req.mobile = strPhone;
-                    req.vaildTo = strValidTill;
+                    req.vaildTo = "3";
 
                     try {
                         obj = Class.forName(EditGateReq.class.getName()).cast(req);

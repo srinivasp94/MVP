@@ -28,8 +28,7 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
     private RetrofitResponseListener retrofitResponseListener;
 
     private ImageView imgClose;
-    private TextView txtitle;
-
+    private TextView txtitle, tv_nodata_txt;
 
 
     @Override
@@ -37,6 +36,7 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
         super.onBackPressed();
         finish();
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -50,20 +50,23 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
     @Override
     protected void initializeViews() {
         super.initializeViews();
-        retrofitResponseListener=this;
+        retrofitResponseListener = this;
         rview_choosemaid = findViewById(R.id.rview_choose_maid);
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
+        tv_nodata_txt = findViewById(R.id.tv_nodata_txt);
         txtitle.setText("Choose Maid");
         imgClose.setOnClickListener(this);
+
 
         String service_id = getIntent().getExtras().getString("ServiceID");
 
         ChooseMaidRequest chooseMaidRequest = new ChooseMaidRequest();
-       // chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getId();
-        chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getAdminID();;
+        // chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getId();
+        chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getAdminID();
+        ;
         chooseMaidRequest.service_id = service_id;
-       // chooseMaidRequest.service_id = "2";
+        // chooseMaidRequest.service_id = "2";
 
         try {
             obj = Class.forName(ChooseMaidRequest.class.getName()).cast(chooseMaidRequest);
@@ -94,15 +97,24 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
 
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
-                chooseMaidPojo = gson.fromJson(jsonString, ChooseMaidPojo.class);
                 JSONObject jsonObject = new JSONObject(jsonString);
                 if (jsonObject.optBoolean("status")) {
-                    manager = new LinearLayoutManager(ChooseMaidActivity.this);
-                    manager.setOrientation(LinearLayoutManager.VERTICAL);
-                    rview_choosemaid.setLayoutManager(manager);
-                    chooseMaidAdapter=new ChooseMaidAdapter(ChooseMaidActivity.this,chooseMaidPojo);
-                    rview_choosemaid.setAdapter(chooseMaidAdapter);
-                    chooseMaidAdapter.notifyDataSetChanged();
+
+                    chooseMaidPojo = gson.fromJson(jsonString, ChooseMaidPojo.class);
+                    if (chooseMaidPojo.getResponse().size() < 1) {
+                        tv_nodata_txt.setVisibility(View.VISIBLE);
+                    } else {
+                        tv_nodata_txt.setVisibility(View.GONE);
+                        manager = new LinearLayoutManager(ChooseMaidActivity.this);
+                        manager.setOrientation(LinearLayoutManager.VERTICAL);
+                        rview_choosemaid.setLayoutManager(manager);
+                        chooseMaidAdapter = new ChooseMaidAdapter(ChooseMaidActivity.this, chooseMaidPojo);
+                        rview_choosemaid.setAdapter(chooseMaidAdapter);
+                        chooseMaidAdapter.notifyDataSetChanged();
+                    }
+                }
+                else {
+                    tv_nodata_txt.setVisibility(View.VISIBLE);
                 }
             } catch (Exception e) {
             }

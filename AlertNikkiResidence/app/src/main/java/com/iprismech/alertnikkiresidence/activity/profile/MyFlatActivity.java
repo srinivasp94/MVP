@@ -25,6 +25,7 @@ import com.iprismech.alertnikkiresidence.request.MyFlatsReq;
 import com.iprismech.alertnikkiresidence.request.UpdateFlatReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
@@ -131,26 +132,39 @@ public class MyFlatActivity extends BaseAbstractActivity implements View.OnClick
                             myFlatsAdapter.notifyDataSetChanged();
                             myFlatsAdapter.setOnItemClickListener(new MyFlatsAdapter.OnitemClickListener() {
                                 @Override
-                                public void onItemClick(View view, int position) {
+                                public void onItemClick(View view, final int position) {
                                     switch (view.getId()) {
                                         case R.id.iv_flat_delete:
-                                            if (myFlatsPojo.getResponse().size() == 1) {
-                                                Toast.makeText(MyFlatActivity.this, "User must contain at least one flat", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                DeleteFlatRequest req_delete = new DeleteFlatRequest();
 
-                                                req_delete.admin_id = SharedPrefsUtils.getInstance(MyFlatActivity.this).getAdminID();
-                                                req_delete.flat_id = myFlatsPojo.getResponse().get(position).getFlat_id();
-                                                req_delete.user_id = SharedPrefsUtils.getInstance(MyFlatActivity.this).getId();
+                                            AlertUtils.showSimpleAlert(MyFlatActivity.this, "Do you want to delete selected flat", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                                                @Override
+                                                public void onpositiveclick() {
+                                                    if (myFlatsPojo.getResponse().size() == 1) {
+                                                        Toast.makeText(MyFlatActivity.this, "User must contain at least one flat", Toast.LENGTH_SHORT).show();
+                                                    } else {
+                                                        DeleteFlatRequest req_delete = new DeleteFlatRequest();
 
-                                                // req.user_id = "24";
-                                                try {
-                                                    obj = Class.forName(DeleteFlatRequest.class.getName()).cast(req_delete);
-                                                } catch (Exception e) {
-                                                    e.printStackTrace();
+                                                        req_delete.admin_id = SharedPrefsUtils.getInstance(MyFlatActivity.this).getAdminID();
+                                                        req_delete.flat_id = myFlatsPojo.getResponse().get(position).getFlat_id();
+                                                        req_delete.user_id = SharedPrefsUtils.getInstance(MyFlatActivity.this).getId();
+
+                                                        // req.user_id = "24";
+                                                        try {
+                                                            obj = Class.forName(DeleteFlatRequest.class.getName()).cast(req_delete);
+                                                        } catch (Exception e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "remove_flat", true);
+                                                    }
                                                 }
-                                                new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "remove_flat", true);
-                                            }
+
+                                                @Override
+                                                public void onNegativeClick() {
+
+                                                }
+                                            });
+
+
                                             break;
                                     }
                                 }

@@ -126,6 +126,7 @@
                             android:layout_weight="0.95"
                             android:hint="09:30 am"
                             android:textColor="@color/black"
+                            android:id="@+id/tv_kid_out_time"
                             android:textSize="@dimen/_13sdp" />
 
                         <ImageView
@@ -160,6 +161,7 @@
                             android:layout_weight="0.95"
                             android:hint="10:30 am"
                             android:textColor="@color/black"
+                            android:id="@+id/tv_kid_intime"
                             android:textSize="@dimen/_13sdp" />
 
                         <ImageView

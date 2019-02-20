@@ -67,7 +67,7 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
         }
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Select Falt");
+        txtitle.setText("Select Flat");
         imgClose.setOnClickListener(this);
 
         rview = findViewById(R.id.rview_selectbuilding);

@@ -67,8 +67,6 @@ public interface AppConstants {
 
 
 
-
-
         int LAUNCH_KIDS_NOTIFY_ALERTS = 140;
         int LAUNCH_ADD_KID_SCREEN = 141;
         int LAUNCH_LOCAL_SERVICE_SCREEN = 142;
