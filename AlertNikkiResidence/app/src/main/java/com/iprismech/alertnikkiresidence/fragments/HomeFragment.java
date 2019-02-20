@@ -76,7 +76,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
         iv_notification = view.findViewById(R.id.iv_notification);
         tv_flat_building = view.findViewById(R.id.tv_flat_building);
 
-        tv_flat_building.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_FLAT_NAME )+ "," + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY_NAME)  );
+        tv_flat_building.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_FLAT_NAME) + "," + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY_NAME));
 
 
         drawer_layout = view.findViewById(R.id.drawer_layout);
@@ -109,38 +109,38 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
         slidemenulistview.setAdapter(slidemenu_adapter);
 
-        slidemenulistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @SuppressLint("WrongConstant")
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            slidemenulistview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @SuppressLint("WrongConstant")
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                if (i == 0) {
+                    if (i == 0) {
 
-                    drawer_layout.closeDrawer(Gravity.LEFT);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PROFILE_SCREEN);
-                } else if (i == 1) {
-                    drawer_layout.closeDrawer(Gravity.LEFT);
-                    //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN);
-                    //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EMERGENCY_CONTACT_SCREEN);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTIFICATION_SCREEN);
-                    //  ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);
-//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN);
+                        drawer_layout.closeDrawer(Gravity.LEFT);
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PROFILE_SCREEN);
+                    } else if (i == 1) {
+                        drawer_layout.closeDrawer(Gravity.LEFT);
+                        //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN);
+                        //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EMERGENCY_CONTACT_SCREEN);
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTIFICATION_SCREEN);
+                        //  ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);
+    //                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VISITORS_HISTORY_SCREEN);
 
-                } else if (i == 2) {
+                    } else if (i == 2) {
 
-                    drawer_layout.closeDrawer(Gravity.LEFT);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CONTACT_US_SCREEN);
-                } else if (i == 3) {
+                        drawer_layout.closeDrawer(Gravity.LEFT);
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CONTACT_US_SCREEN);
+                    } else if (i == 3) {
 
-                    drawer_layout.closeDrawer(Gravity.LEFT);
-//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN);
-                } else if (i == 4) {
+                        drawer_layout.closeDrawer(Gravity.LEFT);
+    //                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MANAGEMENT_COMMITTE_SCREEN);
+                    } else if (i == 4) {
 
-                    drawer_layout.closeDrawer(Gravity.LEFT);
-//                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_P);
+                        drawer_layout.closeDrawer(Gravity.LEFT);
+    //                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_P);
+                    }
                 }
-            }
-        });
+            });
 
     }
 
