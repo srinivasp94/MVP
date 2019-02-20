@@ -147,7 +147,7 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
         returnIntent.putExtra("Key_id", buildingid);
         returnIntent.putExtra("Key_AdminId", adminId);
         returnIntent.putExtra("Key_SocietyId", society_id);
-        returnIntent.putExtra("Key_CityId", society_id);
+        returnIntent.putExtra("Key_CityId", cityId);
 
         returnIntent.putExtra("Key_SocietyName", societyname);
         returnIntent.putExtra("Key_CityName", cityName);

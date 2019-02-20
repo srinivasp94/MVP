@@ -73,6 +73,7 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
         switch (v.getId()) {
             case R.id.txtLogin:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
+                finish();
                 break;
             case R.id.imgSignup:
                 if (edtSignupName.getText().toString().length() == 0) {
@@ -126,16 +127,16 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
-                            Common.showToast(SignupActivity.this,jsonObject.optString("message"));
+                            Common.showToast(SignupActivity.this, jsonObject.optString("message"));
                             Bundle bundle = new Bundle();
-                            bundle.putString("Key_otp",jsonObject.optString("response"));
-                            bundle.putString("Key_Name",edtSignupName.getText().toString());
-                            bundle.putString("Key_Mobile",edtSignupPhone.getText().toString());
-                            bundle.putString("Key_Email",edtSignupEmail.getText().toString());
-                            bundle.putString("Key_Password",edtSignupPassword.getText().toString());
-                            bundle.putString("Key_Blood",edtSignupBloodGrp.getText().toString());
-                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN,bundle);
-                            finish();
+                            bundle.putString("Key_otp", jsonObject.optString("response"));
+                            bundle.putString("Key_Name", edtSignupName.getText().toString());
+                            bundle.putString("Key_Mobile", edtSignupPhone.getText().toString());
+                            bundle.putString("Key_Email", edtSignupEmail.getText().toString());
+                            bundle.putString("Key_Password", edtSignupPassword.getText().toString());
+                            bundle.putString("Key_Blood", edtSignupBloodGrp.getText().toString());
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OTPVERIFICATION_SCREEN, bundle);
+//                            finish();
                             break;
                     }
                 } else {
@@ -146,5 +147,12 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
             }
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
+        finish();
     }
 }

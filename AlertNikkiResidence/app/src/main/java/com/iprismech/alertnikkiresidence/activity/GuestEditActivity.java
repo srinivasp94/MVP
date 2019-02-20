@@ -165,7 +165,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
 
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Guest");
+        txtitle.setText("Edit Guest Details");
 
 
         edtName = findViewById(R.id.edtname);
@@ -186,9 +186,11 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
             int length = 0;
             if (len > 10) {
                 mMobile = contactsList.get(position).getContactNumber().substring(len - 10);
-            }
+                edtMobile.setText(mMobile);
+            } else
+                edtMobile.setText(contactsList.get(position).getContactNumber());
 //            edtMobile.setText(contactsList.get(position).getContactNumber());
-            edtMobile.setText(mMobile);
+
         } else {
             edtName.setText(guestName);
             int len = guestPhn.length();

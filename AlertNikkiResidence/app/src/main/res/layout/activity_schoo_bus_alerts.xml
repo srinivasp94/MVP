@@ -12,7 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="visible">
 
         <ImageView
             android:layout_width="match_parent"
@@ -39,7 +41,7 @@
             android:gravity="center"
             android:text="Add School Bus"
             android:textColor="@color/white"
-            android:textSize="@dimen/_13sdp" />
+            android:textSize="@dimen/_12sdp" />
     </LinearLayout>
 
     <RelativeLayout
@@ -48,7 +50,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_margin="@dimen/_2sdp"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvSchools"

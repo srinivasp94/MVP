@@ -110,12 +110,15 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
                 break;
             case R.id.txtForgotpassword:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FORGOT_PASSWORD_SCREEN);
+                finish();
                 break;
             case R.id.txtHavePasscode:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PASSCODE_SCREEN);
+                finish();
                 break;
             case R.id.btnSignup:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SIGNUP_SCREEN);
+                finish();
                 break;
         }
     }

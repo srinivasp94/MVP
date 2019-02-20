@@ -80,7 +80,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //            intent.putExtra("key", "alerts");
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Notification.Builder notificationbuilder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.dummy)
+                .setSmallIcon(R.drawable.app_logo)
                 .setContentTitle(msg.get("message"))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)

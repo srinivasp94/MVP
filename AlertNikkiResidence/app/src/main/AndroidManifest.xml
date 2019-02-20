@@ -25,6 +25,8 @@
         android:largeHeap="true"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/netconfig"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.SplashScreenActivity">
@@ -195,7 +197,12 @@
         <!--<activity android:name=".activity.SelectBuildingActvity"></activity>
         <activity android:name=".activity.SelectFlatActivity"></activity>
         <activity android:name=".activity.AddSelectFlatActivity"></activity>-->
-        <activity android:name=".activity.AddSelectFlatActivity"></activity>
+        <activity
+            android:name=".activity.AddSelectFlatActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+        <activity
+            android:name=".activity.profile.NotificationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
         <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>

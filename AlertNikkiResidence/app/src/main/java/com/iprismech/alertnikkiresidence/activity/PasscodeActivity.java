@@ -89,8 +89,8 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-//                    new RetrofitRequester(this).callPostServices(obj, 1, "login", true);
-                    new RetrofitRequester(this).callPostServices(obj, 1, "userdata_with_passcode", true);
+                    new RetrofitRequester(this).callPostServices(obj, 1, "login", true);
+//                    new RetrofitRequester(this).callPostServices(obj, 1, "userdata_with_passcode", true);
 //                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
                 }
 
@@ -104,6 +104,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
         finish();
     }
 
@@ -143,6 +144,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
                                 utils.setString(SharedPrefsUtils.KEY_PASSCODE, responseObj.optString("passcode"));
                                 utils.setString(SharedPrefsUtils.KEY_PROFILE_PIC, responseObj.optString("image"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                                finish();
                             } else if (responseObj.optInt("user_type") == 2) {
                                 //Family Member
                                 utils.setString(SharedPrefsUtils.KEY_ID, responseObj.optString("user_id"));
@@ -152,6 +154,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
                                 utils.setString(SharedPrefsUtils.KEY_EMAIL, responseObj.optString("email_id"));
                                 utils.setString(SharedPrefsUtils.KEY_USER_TYPE, responseObj.optString("user_type"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                                finish();
                             }
 
 

@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +28,16 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
     private EditText et_mobile_number;
     private TextView tv_btn_next;
     private Object obj;
+    private ImageView imgClose;
+    private 	TextView txtitle;
 
     @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.imgClose:
+                onBackPressed();
+                break;
             case R.id.tv_btn_next:
                 if (et_mobile_number.getText().toString().isEmpty()) {
                     Toast.makeText(ForgotPasswordActivity.this, "Please enter Mobile number", Toast.LENGTH_SHORT).show();
@@ -70,6 +76,8 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
         super.setListenerToViews();
         et_mobile_number.setOnClickListener(this);
         tv_btn_next.setOnClickListener(this);
+
+        imgClose.setOnClickListener(this);
     }
 
     @Override
@@ -77,6 +85,10 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
         super.initializeViews();
         et_mobile_number = findViewById(R.id.et_mobile_number);
         tv_btn_next = findViewById(R.id.tv_btn_next);
+
+        txtitle = findViewById(R.id.txtitle);
+        imgClose= findViewById(R.id.imgClose);
+        txtitle.setText("Forgot Password");
 
     }
 
@@ -111,5 +123,12 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
             }
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
+        finish();
     }
 }

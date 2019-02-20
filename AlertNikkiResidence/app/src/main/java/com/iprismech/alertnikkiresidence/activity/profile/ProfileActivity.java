@@ -227,7 +227,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
                     @Override
                     public void onpositiveclick() {
                         SharedPrefsUtils.logoutUser();
-                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOGIN_SCREEN);
+                        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SPLASH_SCREEN);
                         finish();
                     }
 

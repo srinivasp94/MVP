@@ -101,7 +101,9 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             rating_staff = itemView.findViewById(R.id.rating_staff_bar);
 
             switch_noti.setOnClickListener(this);
-
+            ll_make_call.setOnClickListener(this);
+            ll_send_gate_pass.setOnClickListener(this);
+            ll_delete.setOnClickListener(this);
 
             ll_item_staff_list.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("WrongConstant")
