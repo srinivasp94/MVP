@@ -408,7 +408,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
 
         txtName.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_NAME));
         txtPasscode.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_PASSCODE));
-//        txtBlood.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_));
+//        txtBlood.setText(SharedPrefsUtils.getString(SharedPrefsUtils.));
         txtAddress.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_FLAT_NAME + ", "
                 + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_BUILDING_NAME) + ", "
                 + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY_NAME)

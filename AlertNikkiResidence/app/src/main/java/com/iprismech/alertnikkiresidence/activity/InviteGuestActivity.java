@@ -32,6 +32,7 @@ import com.iprismech.alertnikkiresidence.response.Guests;
 import com.iprismech.alertnikkiresidence.response.GuestsList;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
@@ -109,7 +110,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         GuestsReq req = new GuestsReq();
 
         req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
-        req.otpSentType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
+        req.otpSentType = "1";
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         try {
@@ -169,13 +170,25 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                                 rvGuestsLists.setAdapter(guestsAdapter);
                                 guestsAdapter.setOnItemClickListener(new AllGuestsAdapter.OnitemClickListener() {
                                     @Override
-                                    public void onItemClick(View view, int position) {
+                                    public void onItemClick(View view, final int position) {
                                         switch (view.getId()) {
                                             case R.id.imgCallGuest:
                                                 callToGuest(position);
                                                 break;
                                             case R.id.imgDeleteGuest:
-                                                callDeleteWS(position);
+                                                AlertUtils.showSimpleAlert(InviteGuestActivity.this, "Are you sure want to  delete.?",
+                                                        "Confirmation", "Delete", "Cancel", new AlertUtils.onClicklistners() {
+                                                            @Override
+                                                            public void onpositiveclick() {
+                                                                callDeleteWS(position);
+                                                            }
+
+                                                            @Override
+                                                            public void onNegativeClick() {
+
+                                                            }
+                                                        });
+
                                                 break;
                                             case R.id.imgGuestEdit:
                                                 callEditGuestDetailsWS(position);
@@ -303,7 +316,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         GuestsReq req = new GuestsReq();
 
         req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
-        req.otpSentType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
+        req.otpSentType = "1";
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
         try {

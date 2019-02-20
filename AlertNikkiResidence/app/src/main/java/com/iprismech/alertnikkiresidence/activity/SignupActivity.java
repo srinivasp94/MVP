@@ -76,6 +76,7 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                 finish();
                 break;
             case R.id.imgSignup:
+
                 if (edtSignupName.getText().toString().length() == 0) {
                     Common.showToast(SignupActivity.this, "Please Enter Name");
                 } else if (edtSignupPhone.getText().toString().length() == 0 || edtSignupPhone.getText().toString().length() < 10) {

@@ -41,6 +41,7 @@
                 android:background="@null"
                 android:hint="Enter Passcode"
                 android:maxLength="7"
+                android:inputType="number"
                 android:padding="@dimen/_10sdp"
                 android:singleLine="true"
                 android:textSize="@dimen/_12sdp" />
@@ -52,14 +53,14 @@
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:id="@+id/btnLoginWithPasscode"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:background="@drawable/black_corner_bg"
                 android:gravity="center"
-                android:padding="@dimen/_10sdp"
+                android:padding="@dimen/_8sdp"
                 android:text="Login"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_16sdp" />
+                android:textSize="@dimen/_14sdp" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
