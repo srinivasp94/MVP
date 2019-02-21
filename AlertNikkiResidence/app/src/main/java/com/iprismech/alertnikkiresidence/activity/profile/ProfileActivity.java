@@ -69,7 +69,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
     private ImageView imgClose;
     private TextView txtitle;
     private String base64profile;
-    private String mVehicles="";
+    private String mVehicles = "";
 
 
     @Override
@@ -144,7 +144,11 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         NoticeBoard = findViewById(R.id.NoticeBoard);
         LinearMysocirty = findViewById(R.id.LinearMysocirty);
 
+        if (SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE).equalsIgnoreCase("2.0")) {
+            MyFlat.setVisibility(View.GONE);
+            MyVehicles.setVisibility(View.GONE);
 
+        }
 
 
         /*rvProfileitems = findViewById(R.id.rvProfileitems);
@@ -159,15 +163,25 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         rvProfileitems.setAdapter(adapter);*/
 
         ProfileReq req = new ProfileReq();
+
         req.userId = SharedPrefsUtils.getInstance(ProfileActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
 
-        try {
+        try
+
+        {
             obj = Class.forName(ProfileReq.class.getName()).cast(req);
-        } catch (Exception e) {
+        } catch (
+                Exception e)
+
+        {
 
         }
-        new RetrofitRequester(this).callPostServices(obj, 1, "user_profile", true);
+        new
+
+                RetrofitRequester(this).
+
+                callPostServices(obj, 1, "user_profile", true);
 
     }
 
@@ -210,7 +224,7 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
                 break;
             case R.id.MyVehicles:
                 Intent intent = new Intent(ProfileActivity.this, AddVehicleActivity.class);
-                intent.putExtra("KEY_Vehicles",mVehicles);
+                intent.putExtra("KEY_Vehicles", mVehicles);
                 startActivity(intent);
                 break;
             case R.id.Digital:

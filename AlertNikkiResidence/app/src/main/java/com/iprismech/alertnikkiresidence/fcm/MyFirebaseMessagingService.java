@@ -58,30 +58,29 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         //You can change as per the requirement.
 
         //message will contain the Push Message
-        // String message = remoteMessage.getData().get("message");
-/*
-        String message = remoteMessage.getNotification().getBody();
-*/
+//         String message = remoteMessage.getData().get("message");
+//        String message = remoteMessage.getNotification().getBody();
 
 
         Map<String, String> msg = remoteMessage.getData();
-        String msgbody = msg.get("message");
-        Log.d("msg_data", msg.get("message"));
+//        String msgbody = msg.get(0);
+        String msgbody  = remoteMessage.getData().toString();
+//        Log.d("msg_data", msg.get("message"));
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        if (msgbody.equalsIgnoreCase("Services person is coming check alerts")) {
+//        if (msgbody.equalsIgnoreCase("Services person is coming check alerts")) {
             intent = new Intent(this, SplashScreenActivity.class);
-            intent.putExtra("key", "visitors");
-        } else {
+//            intent.putExtra("key", "visitors");
+        /*} else {
             intent = new Intent(this, SplashScreenActivity.class);
             intent.putExtra("key", "alerts");
-        }
+        }*/
 
 //        Intent intent = new Intent(this, MainActivity.class);
 //            intent.putExtra("key", "alerts");
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Notification.Builder notificationbuilder = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.app_logo)
-                .setContentTitle(msg.get("message"))
+                .setContentTitle(msgbody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
                 .setFullScreenIntent(pendingIntent, true)

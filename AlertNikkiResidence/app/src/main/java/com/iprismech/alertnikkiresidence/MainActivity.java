@@ -7,10 +7,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -19,6 +21,7 @@ import com.iprismech.alertnikkiresidence.adapters.Slidemenu_adapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.fragments.HomeFragment;
+import com.iprismech.alertnikkiresidence.request.FamilydeviceToken;
 import com.iprismech.alertnikkiresidence.request.UpdateDeviceToken;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
@@ -52,7 +55,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
     @Override
     protected void initializeViews() {
         super.initializeViews();
-       // ApplicationController.getInstance().setContext(context);
+        // ApplicationController.getInstance().setContext(context);
         try {
 
             fragmentManager = getSupportFragmentManager();
@@ -60,19 +63,38 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
+//user
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        UpdateDeviceToken updateDeviceToken = new UpdateDeviceToken();
-        updateDeviceToken.user_id = SharedPrefsUtils.getInstance(MainActivity.this).getId();
-        //updateDeviceToken.security_id = "1";
-        updateDeviceToken.token = refreshedToken;
-        try {
-            obj = Class.forName(UpdateDeviceToken.class.getName()).cast(updateDeviceToken);
-        } catch (Exception e) {
-            e.printStackTrace();
+
+        if (SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE).equalsIgnoreCase("1.0")) {
+
+            UpdateDeviceToken updateDeviceToken = new UpdateDeviceToken();
+            updateDeviceToken.user_id = SharedPrefsUtils.getInstance(MainActivity.this).getId();
+            //updateDeviceToken.security_id = "1";
+            updateDeviceToken.token = refreshedToken;
+            try {
+                obj = Class.forName(UpdateDeviceToken.class.getName()).cast(updateDeviceToken);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            new RetrofitRequester(this).callPostServices(obj, 1, "update_user_device_token", true);
+
+
+
+
+        } else if (SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE).equalsIgnoreCase("2.0")) {
+
+            FamilydeviceToken req = new FamilydeviceToken();
+            req.familyMemberId = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_ID);
+            req.token = refreshedToken;
+
+            try {
+                obj = Class.forName(FamilydeviceToken.class.getName()).cast(req);
+            } catch (Exception e) {
+
+            }
+            new RetrofitRequester(this).callPostServices(obj, 2, "update_family_member_device_token", true);
         }
-        new RetrofitRequester(this).callPostServices(obj, 1, "update_user_device_token", true);
 
 
     }
@@ -97,10 +119,16 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
                         case 1:
                             JSONObject jsonObject = object.optJSONObject("response");
                             break;
+                        case 2:
+//                            JSONObject jsonObject = object.optJSONObject("response");
+                            break;
                     }
+
+
                 }
-            }catch (Exception e){
-            e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
