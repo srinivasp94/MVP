@@ -39,18 +39,14 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
         super.onBackPressed();
         finish();
     }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.imgClose:
                 onBackPressed();
                 break;
         }
     }
-
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_maid_view_all_history, null);
