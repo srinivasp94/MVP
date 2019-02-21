@@ -47,9 +47,11 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
     private SelectCityPojo selectCityPojo;
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SIGNUP_SCREEN);
         finish();
     }
 
@@ -162,7 +164,7 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                         bundle.putString("Key_Password", sPassword);
                                         bundle.putString("Key_Blood", sBlood);
                                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
-
+                                        finish();
                                     }
                                 });
                             } else {
@@ -189,13 +191,13 @@ public class SelectCityActivity extends BaseAbstractActivity implements Retrofit
                                     Bundle bundle = new Bundle();
                                     bundle.putString("Key_CityId", cityLists.get(position).id);
                                     bundle.putString("Key_CityName", cityLists.get(position).title);
-
                                     bundle.putString("Key_Name", sName);
                                     bundle.putString("Key_Mobile", sPhone);
                                     bundle.putString("Key_Email", sMail);
                                     bundle.putString("Key_Password", sPassword);
                                     bundle.putString("Key_Blood", sBlood);
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
+                                    finish();
 
                                 }
                             });

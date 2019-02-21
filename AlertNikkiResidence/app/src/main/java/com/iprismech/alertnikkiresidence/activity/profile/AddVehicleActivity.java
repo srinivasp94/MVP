@@ -1,5 +1,6 @@
 package com.iprismech.alertnikkiresidence.activity.profile;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -56,8 +57,8 @@ public class AddVehicleActivity extends BaseAbstractActivity implements View.OnC
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-        Bundle bundle = getIntent().getExtras();
-        String mVehicls = bundle.getString("KEY_Vehicles", "");
+//        Bundle bundle = getIntent().getExtras();
+//        String mVehicls = bundle.getString("KEY_Vehicles", "");
 
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
@@ -67,9 +68,9 @@ public class AddVehicleActivity extends BaseAbstractActivity implements View.OnC
         txtVehicls = findViewById(R.id.txtVehicls);
         txtsubmitVehicle = findViewById(R.id.txtsubmitVehicle);
         layoutaddVehicle = findViewById(R.id.layoutaddVehicle);
-        String[] arrVeh = mVehicls.split(",");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddVehicleActivity.this, android.R.layout.simple_list_item_1, arrVeh);
-        txtVehicls.setAdapter(adapter);
+//        String[] arrVeh = mVehicls.split(",");
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddVehicleActivity.this, android.R.layout.simple_list_item_1, arrVeh);
+//        txtVehicls.setAdapter(adapter);
     }
 
     @Override
@@ -174,6 +175,8 @@ public class AddVehicleActivity extends BaseAbstractActivity implements View.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Intent intent = new Intent(AddVehicleActivity.this, VehiclesActivity.class);
+        startActivity(intent);
         finish();
     }
 }

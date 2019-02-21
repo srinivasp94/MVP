@@ -36,9 +36,23 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
     private TextView txtitle;
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Bundle bundle = new Bundle();
+        bundle.putString("Key_SocietyId", societyId);
+        bundle.putString("Key_CityId", cityId);
+        bundle.putString("Key_AdminId", adminId);
+        bundle.putString("Key_CityName", cityName);
+        bundle.putString("Key_SocietyName", societyname);
+
+        bundle.putString("Key_Name", sName);
+        bundle.putString("Key_Mobile", sPhone);
+        bundle.putString("Key_Email", sMail);
+        bundle.putString("Key_Password", sPassword);
+        bundle.putString("Key_Blood", sBlood);
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN, bundle);
         finish();
     }
 
@@ -169,6 +183,7 @@ public class SelectFlatActivity extends AppCompatActivity implements RetrofitRes
         bundle.putString("Key_BuildingId", flatPojo.getResponse().get(position).getBuilding_id());
         bundle.putString("Key_FlatId", flatPojo.getResponse().get(position).getId());
         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DETAIL_SCREEN, bundle);
+        finish();
 
     }
 

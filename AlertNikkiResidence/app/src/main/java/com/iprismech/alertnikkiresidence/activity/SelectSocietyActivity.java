@@ -49,9 +49,18 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
 
     private SearchView et_search;
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Bundle bundle = new Bundle();
+        bundle.putString("Key_otp", sOtp);
+        bundle.putString("Key_Name", sName);
+        bundle.putString("Key_Mobile", sPhone);
+        bundle.putString("Key_Email", sMail);
+        bundle.putString("Key_Password", sPassword);
+        bundle.putString("Key_Blood", sBlood);
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
         finish();
     }
 
@@ -173,6 +182,7 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
                                         bundle.putString("Key_Password", sPassword);
                                         bundle.putString("Key_Blood", sBlood);
                                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN, bundle);
+                                        finish();
                                     }
                                 });
                             } else {
@@ -210,7 +220,7 @@ public class SelectSocietyActivity extends BaseAbstractActivity implements Retro
                                     bundle.putString("Key_Password", sPassword);
                                     bundle.putString("Key_Blood", sBlood);
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN, bundle);
-
+                                    finish();
                                 }
                             });
 

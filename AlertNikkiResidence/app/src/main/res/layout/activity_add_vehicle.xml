@@ -11,15 +11,14 @@
 
     <ListView
         android:id="@+id/txtVehicls"
-        android:visibility="visible"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_5sdp"
-        >
+        android:layout_margin="@dimen/_5sdp">
 
 
         <LinearLayout
@@ -32,18 +31,27 @@
 
     </ScrollView>
 
-    <android.support.v7.widget.AppCompatTextView
-        android:id="@+id/txtAddVehicle"
-        style="@style/ItemDefaultCustomTextView"
-        android:layout_width="@dimen/_50sdp"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_gravity="center"
-        android:background="@drawable/circular_bgr"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
         android:gravity="center"
-        android:padding="@dimen/_8sdp"
-        android:text="+"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_24sdp" />
+        android:layout_gravity="center"
+        android:background="@drawable/circular_bgr">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/txtAddVehicle"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="+"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_24sdp" />
+    </LinearLayout>
+
 
     <android.support.v7.widget.AppCompatTextView
         android:id="@+id/txtsubmitVehicle"

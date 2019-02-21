@@ -30,7 +30,7 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
     private TextView txtCity, txtSociety, txtBlock, txtFlat,
             txttypeowner, txttypeTenent, txtMultitenent, btnAdd;
     private CheckBox checkBox;
-    private ImageView imgClose;
+    private ImageView imgClose, clsFlat, clsSociety, clsBuilding, clsCity;
     private TextView txtitle;
     private Object obj;
     private String adminId, cityId, societyId, buildingid, flatId;
@@ -65,6 +65,10 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
         super.setListenerToViews();
         btnAdd.setOnClickListener(this);
         imgClose.setOnClickListener(this);
+        clsCity.setOnClickListener(this);
+        clsSociety.setOnClickListener(this);
+        clsBuilding.setOnClickListener(this);
+        clsFlat.setOnClickListener(this);
     }
 
     @Override
@@ -123,6 +127,11 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
         btnAdd = findViewById(R.id.btn_add);
         checkBox = findViewById(R.id.checkboxPrivacy);
 
+        clsCity = findViewById(R.id.imgCloseCity);
+        clsSociety = findViewById(R.id.imgClosesociety);
+        clsBuilding = findViewById(R.id.imgCloseVlock);
+        clsFlat = findViewById(R.id.imgCloseFlat);
+
         txtCity.setText(cityName);
         txtSociety.setText(societyName);
         txtBlock.setText(buildingName);
@@ -130,6 +139,7 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
 
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -138,6 +148,49 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
                 break;
             case R.id.imgClose:
                 onBackPressed();
+            case R.id.imgCloseCity:
+                Bundle bundle = new Bundle();
+                bundle.putString("Key_otp", sOtp);
+                bundle.putString("Key_Name", sName);
+                bundle.putString("Key_Mobile", sPhone);
+                bundle.putString("Key_Email", sMail);
+                bundle.putString("Key_Password", sPassword);
+                bundle.putString("Key_Blood", sBlood);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
+                finish();
+                break;
+            case R.id.imgClosesociety:
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("Key_CityId", cityId);
+                bundle1.putString("Key_CityName", cityName);
+
+                bundle1.putString("Key_Name", sName);
+                bundle1.putString("Key_Mobile", sPhone);
+                bundle1.putString("Key_Email", sMail);
+                bundle1.putString("Key_Password", sPassword);
+                bundle1.putString("Key_Blood", sBlood);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle1);
+                finish();
+                break;
+            case R.id.imgCloseVlock:
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("Key_SocietyId", societyId);
+                bundle2.putString("Key_CityId", cityId);
+                bundle2.putString("Key_AdminId", adminId);
+                bundle2.putString("Key_CityName", cityName);
+                bundle2.putString("Key_SocietyName", societyName);
+
+                bundle2.putString("Key_Name", sName);
+                bundle2.putString("Key_Mobile", sPhone);
+                bundle2.putString("Key_Email", sMail);
+                bundle2.putString("Key_Password", sPassword);
+                bundle2.putString("Key_Blood", sBlood);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_BUILDING_SCREEN, bundle2);
+                finish();
+                break;
+            case R.id.imgCloseFlat:
+                onBackPressed();
+                break;
         }
     }
 
@@ -168,6 +221,7 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
         //  Common.commonLogs(SelectBuildingActvity.this,title+ " and "+ buildingid);
 
     }
+
     @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
@@ -214,9 +268,33 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
             }
         }
     }
+
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Bundle bundle = new Bundle();
+        bundle.putString("Key_id", flatId);
+        bundle.putString("Key_AdminId", adminId);
+        bundle.putString("Key_SocietyId", societyId);
+        bundle.putString("Key_CityId", cityId);
+        bundle.putString("Key_BuildingId", buildingid);
+
+        bundle.putString("Key_SocietyName", societyName);
+        bundle.putString("Key_CityName", cityName);
+        bundle.putString("Key_BuildingName", buildingName);
+        bundle.putString("Key_FlatName", flatName);
+
+        bundle.putString("Key_Name", sName);
+        bundle.putString("Key_Mobile", sPhone);
+        bundle.putString("Key_Email", sMail);
+        bundle.putString("Key_Password", sPassword);
+        bundle.putString("Key_Blood", sBlood);
+
+        bundle.putString("Key_CityID", cityId);
+        bundle.putString("Key_BuildingId", buildingid);
+        bundle.putString("Key_FlatId", flatId);
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_FLAT_SCREEN, bundle);
         finish();
     }
 }

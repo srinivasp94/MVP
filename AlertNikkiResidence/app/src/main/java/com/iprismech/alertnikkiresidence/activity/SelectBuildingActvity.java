@@ -20,6 +20,7 @@ import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.BuildingsAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.BuildingsPojo;
 import com.iprismech.alertnikkiresidence.pojo.SearchBuidingPojo;
@@ -50,9 +51,20 @@ public class SelectBuildingActvity extends BaseAbstractActivity implements Retro
     private RetrofitResponseListener retrofitResponseListener;
     private SearchView et_search;
     SearchBuidingPojo searchBuidingPojo;
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Bundle bundle = new Bundle();
+        bundle.putString("Key_CityId", cityId);
+        bundle.putString("Key_CityName", cityName);
+
+        bundle.putString("Key_Name", sName);
+        bundle.putString("Key_Mobile", sPhone);
+        bundle.putString("Key_Email", sMail);
+        bundle.putString("Key_Password", sPassword);
+        bundle.putString("Key_Blood", sBlood);
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_SOCIETY_SCREEN, bundle);
         finish();
     }
 

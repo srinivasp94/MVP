@@ -167,21 +167,12 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         req.userId = SharedPrefsUtils.getInstance(ProfileActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
 
-        try
-
-        {
+        try {
             obj = Class.forName(ProfileReq.class.getName()).cast(req);
-        } catch (
-                Exception e)
-
-        {
+        } catch (Exception e) {
 
         }
-        new
-
-                RetrofitRequester(this).
-
-                callPostServices(obj, 1, "user_profile", true);
+        new RetrofitRequester(this).callPostServices(obj, 1, "user_profile", true);
 
     }
 
@@ -223,9 +214,10 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MY_FLATS_SCREEN);
                 break;
             case R.id.MyVehicles:
-                Intent intent = new Intent(ProfileActivity.this, AddVehicleActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, VehiclesActivity.class);
                 intent.putExtra("KEY_Vehicles", mVehicles);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.Digital:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_DIGITAL_INTERCOM_SCREEN);
