@@ -20,14 +20,12 @@ public class AppPermissions {
                     ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED &&
                     ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-                            != PackageManager.PERMISSION_GRANTED &&
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
                             != PackageManager.PERMISSION_GRANTED
                     ) {
 
                 ActivityCompat.requestPermissions((Activity) context,
                         new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                                Manifest.permission.CAMERA, Manifest.permission.CALL_PHONE},
+                                Manifest.permission.CAMERA},
                         MY_PERMISSIONS_REQUEST_EXTERNAL_STORAGE);
 
             }
@@ -51,5 +49,28 @@ public class AppPermissions {
         }
         return true;
     }
+
+    public static void callPermissionForContact(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                            != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(context, Manifest.permission.READ_CONTACTS)
+                            != PackageManager.PERMISSION_GRANTED
+                    ) {
+
+                ActivityCompat.requestPermissions((Activity) context,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                Manifest.permission.CAMERA,Manifest.permission.READ_CONTACTS},
+                        MY_PERMISSIONS_REQUEST_EXTERNAL_STORAGE);
+
+            }
+
+        }
+    }
+
 
 }

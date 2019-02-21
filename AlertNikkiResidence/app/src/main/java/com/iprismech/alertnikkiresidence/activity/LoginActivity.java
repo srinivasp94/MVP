@@ -16,6 +16,7 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 import com.iprismech.alertnikkiresidence.request.LoginReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
@@ -60,6 +61,8 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        AppPermissions.callPermissionForContact(LoginActivity.this);
 
         utils = new SharedPrefsUtils(LoginActivity.this);
         edtPhone = findViewById(R.id.edt_loginMobile);

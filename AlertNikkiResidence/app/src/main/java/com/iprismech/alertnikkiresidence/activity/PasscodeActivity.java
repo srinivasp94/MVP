@@ -101,6 +101,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
         }
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -126,6 +127,7 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
                             if (responseObj.optInt("user_type") == 1) {
                                 //Resident
                                 String userid = responseObj.optString("id");
+                                utils.setString(SharedPrefsUtils.KEY_ADMIN_ID, responseObj.optString("admin_id"));
                                 String prefPhone = responseObj.optString("mobile");
                                 String prefEmail = responseObj.optString("email_id");
                                 String prefSociety = responseObj.optString("society_id");
@@ -137,22 +139,45 @@ public class PasscodeActivity extends BaseAbstractActivity implements View.OnCli
                                 utils.createUserSession(userid, prefPhone, prefEmail
                                         , prefSociety, prefCity, prefFlat, prefBuilding, prefUserType);
 
+
+                                utils.setString(SharedPrefsUtils.KEY_SOCIETY_NAME, responseObj.optString("society_name"));
+                                utils.setString(SharedPrefsUtils.KEY_FLAT_NAME, responseObj.optString("flat_name"));
+                                utils.setString(SharedPrefsUtils.KEY_BUILDING_NAME, responseObj.optString("building_name"));
+
                                 utils.setString(SharedPrefsUtils.KEY_NAME, responseObj.optString("name"));
                                 utils.setString(SharedPrefsUtils.KEY_SOCIETY_NAME, responseObj.optString("society_name"));
                                 utils.setString(SharedPrefsUtils.KEY_BUILDING_NAME, responseObj.optString("building_name"));
                                 utils.setString(SharedPrefsUtils.KEY_FLAT_NAME, responseObj.optString("flat_name"));
                                 utils.setString(SharedPrefsUtils.KEY_PASSCODE, responseObj.optString("passcode"));
                                 utils.setString(SharedPrefsUtils.KEY_PROFILE_PIC, responseObj.optString("image"));
+                                utils.setString(SharedPrefsUtils.KEY_QRCODE, responseObj.optString("qrcode"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
                                 finish();
                             } else if (responseObj.optInt("user_type") == 2) {
                                 //Family Member
-                                utils.setString(SharedPrefsUtils.KEY_ID, responseObj.optString("user_id"));
+
+                                utils.createUserSession(
+                                        responseObj.optString("id"),
+                                        responseObj.optString("mobile"),
+                                        responseObj.optString("email_id"),
+                                        responseObj.optString("society_id"),
+                                        responseObj.optString("city_id"),
+                                        responseObj.optString("flat_id"),
+                                        responseObj.optString("building_id"),
+                                        responseObj.optString("user_type")
+                                );
+
+                                utils.setString(SharedPrefsUtils.KEY_QRCODE, responseObj.optString("qrcode"));
+                                utils.setString(SharedPrefsUtils.KEY_ADMIN_ID, responseObj.optString("admin_id"));
+                                utils.setString(SharedPrefsUtils.KEY_ID, responseObj.optString("id"));
                                 utils.setString(SharedPrefsUtils.KEY_PASSCODE, responseObj.optString("passcode"));
                                 utils.setString(SharedPrefsUtils.KEY_NAME, responseObj.optString("name"));
                                 utils.setString(SharedPrefsUtils.KEY_PHONE, responseObj.optString("mobile"));
                                 utils.setString(SharedPrefsUtils.KEY_EMAIL, responseObj.optString("email_id"));
                                 utils.setString(SharedPrefsUtils.KEY_USER_TYPE, responseObj.optString("user_type"));
+                                utils.setString(SharedPrefsUtils.KEY_SOCIETY_NAME, responseObj.optString("society_name"));
+                                utils.setString(SharedPrefsUtils.KEY_FLAT_NAME, responseObj.optString("flat_name"));
+                                utils.setString(SharedPrefsUtils.KEY_BUILDING_NAME, responseObj.optString("building_name"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
                                 finish();
                             }

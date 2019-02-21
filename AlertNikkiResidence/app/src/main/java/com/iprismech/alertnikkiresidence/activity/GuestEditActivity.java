@@ -57,9 +57,10 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
             finish();
 
         } else {
-
+            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN);
+            finish();
         }
-        finish();
+
     }
 
     @Override
@@ -181,25 +182,26 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
         edtMobile.setText(Contact);*/
         //!screenid.equalsIgnoreCase("3") &&
         if (!screenid.equalsIgnoreCase("1") && contactsList != null && contactsList.size() > 0) {
-            edtName.setText(contactsList.get(position).getContactName());
-            int len = contactsList.get(position).getContactNumber().length();
+            edtName.setText(contactsList.get(position).getContactName().trim());
+            int len = contactsList.get(position).getContactNumber().trim().length();
             int length = 0;
             if (len > 10) {
-                mMobile = contactsList.get(position).getContactNumber().substring(len - 10);
+                mMobile = contactsList.get(position).getContactNumber().trim().substring(len - 10);
                 edtMobile.setText(mMobile);
             } else
-                edtMobile.setText(contactsList.get(position).getContactNumber());
+                edtMobile.setText(contactsList.get(position).getContactNumber().trim());
 //            edtMobile.setText(contactsList.get(position).getContactNumber());
 
         } else {
             edtName.setText(guestName);
-            int len = guestPhn.length();
+            int len = guestPhn.trim().length();
             int length = 0;
             if (len > 10) {
-                mMobile = guestPhn.substring(len - 10);
+                mMobile = guestPhn.trim().substring(len - 10);
+                edtMobile.setText(guestPhn.trim());
             }
             if (!TextUtils.isEmpty(guestPhn))
-                edtMobile.setText(guestPhn);
+                edtMobile.setText(guestPhn.trim());
         }
 
     }

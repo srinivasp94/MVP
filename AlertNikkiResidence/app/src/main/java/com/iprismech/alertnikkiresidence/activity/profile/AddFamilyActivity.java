@@ -78,10 +78,10 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
             strName = bundle.getString("Key_Name", "");
             strNumber = bundle.getString("Key_Number", "");
 
-            int len = strNumber.length();
+            int len = strNumber.trim().length();
             int length = 0;
             if (len > 10) {
-                mMobile = strNumber.substring(len - 10);
+                mMobile = strNumber.trim().substring(len - 10);
             }
 //            strNumber.substring(len);
 
@@ -99,7 +99,7 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
         if (!TextUtils.isEmpty(strName))
             edtfamilyName.setText(strName);
         if (!TextUtils.isEmpty(mMobile))
-            edtfamilyPhn.setText(mMobile);
+            edtfamilyPhn.setText(mMobile.trim());
 
 
     }
