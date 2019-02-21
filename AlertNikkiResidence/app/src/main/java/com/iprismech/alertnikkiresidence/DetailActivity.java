@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.adapters.DetailitemAdapter;
@@ -144,7 +145,12 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add:
+                if (checkBox.isChecked()){
                 getdataFromAdapter(0);
+                }
+                else {
+                    Toast.makeText(DetailActivity.this, "Please allow terms & Conditions", Toast.LENGTH_SHORT).show();
+                }
                 break;
             case R.id.imgClose:
                 onBackPressed();

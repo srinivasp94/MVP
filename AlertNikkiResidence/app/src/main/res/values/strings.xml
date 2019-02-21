@@ -7,4 +7,5 @@
     <string name="add_amp_save"><![CDATA[Add & Save]]></string>
     <string name="default_notification_channel_id" translatable="false">default</string>
     <string name="password_note">Note: Password must be more than 6 letters, must contain minimum one Capital letter, one number digit and one Special character.</string>
+    <string name="terms">I agree to the terms and Conditions</string>
 </resources>

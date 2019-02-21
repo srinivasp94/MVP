@@ -63,10 +63,10 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgClosesociety"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
-                android:id="@+id/imgClosesociety"
                 android:src="@drawable/close_black" />
         </LinearLayout>
 
@@ -93,10 +93,10 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgCloseVlock"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
-                android:id="@+id/imgCloseVlock"
                 android:src="@drawable/close_black" />
         </LinearLayout>
 
@@ -123,10 +123,10 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgCloseFlat"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
-                android:id="@+id/imgCloseFlat"
                 android:src="@drawable/close_black" />
         </LinearLayout>
 
@@ -226,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:text="I agree "
+                android:text="@string/terms"
                 android:textSize="@dimen/_12sdp" />
         </LinearLayout>
     </LinearLayout>
