@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AlertNikki Residence</string>
+    <string name="app_name">Alert Nikki</string>
     <string name="otp_text">We have sent you an SMS with a OTP Code to your number for verification.</string>
     <string name="repair_amp_maintenance"><![CDATA[Repair & Maintenance]]></string>
     <string name="content">Your passcode is your personal Identifier.Please do not share.</string>
