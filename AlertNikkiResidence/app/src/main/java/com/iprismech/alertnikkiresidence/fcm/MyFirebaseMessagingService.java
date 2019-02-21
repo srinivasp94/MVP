@@ -10,12 +10,16 @@ import android.graphics.Bitmap;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.iprismech.alertnikkiresidence.MainActivity;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.activity.SplashScreenActivity;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 
 import org.json.JSONObject;
@@ -28,6 +32,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String TAG = "FirebaseMessageService";
     Bitmap bitmap;
     private Intent intent;
+    private String id;
+    private String service_type;
+    private String person_name;
 
     /**
      * Called when message is received.
@@ -66,20 +73,35 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
         Map<String, String> msg = remoteMessage.getData();
 //        String msgbody = msg.get("message");
-        String msgbody  = remoteMessage.getData().get("message");
+        String msgbody = remoteMessage.getData().get("message");
         try {
-            JSONObject jsonObject = new JSONObject(msgbody);
-            jsonObject.optString("name");
+            JSONObject jsonObject = new JSONObject(remoteMessage.getData().get("array"));
+            id = jsonObject.optString("id");
+            person_name = jsonObject.optString("name");
             jsonObject.optString("vehicle_no");
-            jsonObject.optString("mobile");
+            service_type = jsonObject.optString("delivery_from");
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 //        Log.d("msg_data", msg.get("message"));
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 //        if (msgbody.equalsIgnoreCase("Services person is coming check alerts")) {
+
+
+        if (SharedPrefsUtils.getInstance(this).isUserLoggedIn()) {
+            intent = new Intent(this, MainActivity.class);
+            try {
+                intent.putExtra("id", id);
+                intent.putExtra("person_name", person_name);
+                intent.putExtra("service_type", service_type);
+                intent.putExtra("key", "GuestDelivery");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
             intent = new Intent(this, SplashScreenActivity.class);
-//            intent.putExtra("key", "visitors");
+
+        }
         /*} else {
             intent = new Intent(this, SplashScreenActivity.class);
             intent.putExtra("key", "alerts");
@@ -87,26 +109,49 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
 //        Intent intent = new Intent(this, MainActivity.class);
 //            intent.putExtra("key", "alerts");
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
-        Notification.Builder notificationbuilder = new Notification.Builder(this)
-                .setSmallIcon(R.drawable.app_logo)
-                .setContentTitle(getResources().getString(R.string.app_name))
-                .setContentText(msgbody)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri)
-                .setFullScreenIntent(pendingIntent, true)
-                .setPriority(Notification.PRIORITY_HIGH)
-                .setContentIntent(pendingIntent);
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String channelId = getApplicationContext().getString(R.string.default_notification_channel_id);
-            NotificationChannel channel = new NotificationChannel(channelId, msg.get("message"), NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription(msg.get("message"));
-            notificationManager.createNotificationChannel(channel);
-            notificationbuilder.setChannelId(channelId);
+        try {
+
+            RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.custom_push);
+            contentView.setTextViewText(R.id.tv_custom_push_title, getResources().getString(R.string.app_name));
+            contentView.setTextViewText(R.id.tv_custom_push_content, msgbody);
+//
+//        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
+//                .setSmallIcon(R.drawable.icon)
+//                .setContent(contentView);
+
+//        Notification notification = mBuilder.build();
+//        notification.flags |= Notification.FLAG_AUTO_CANCEL;
+//        notification.defaults |= Notification.DEFAULT_SOUND;
+//        notification.defaults |= Notification.DEFAULT_VIBRATE;
+//        notificationManager.notify(1, notification);
+
+
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+            Notification.Builder notificationbuilder = new Notification.Builder(this)
+                    .setSmallIcon(R.drawable.app_logo)
+                    .setContent(contentView)
+                    //  .setContentTitle(getResources().getString(R.string.app_name))
+                    // .setContentText(msgbody)
+                    .setAutoCancel(true)
+                    .setSound(defaultSoundUri)
+                    .setFullScreenIntent(pendingIntent, true)
+                    .setPriority(Notification.PRIORITY_HIGH)
+                    .setContentIntent(pendingIntent);
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                String channelId = getApplicationContext().getString(R.string.default_notification_channel_id);
+                NotificationChannel channel = new NotificationChannel(channelId, msg.get("message"), NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setDescription(msg.get("message"));
+                notificationManager.createNotificationChannel(channel);
+                notificationbuilder.setChannelId(channelId);
+            }
+
+            notificationManager.notify(0, notificationbuilder.build());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        notificationManager.notify(0, notificationbuilder.build());
+
         //  }
         //imageUri will contain URL of the image to be displayed with Notification
         // String imageUri = remoteMessage.getData().get("image");
