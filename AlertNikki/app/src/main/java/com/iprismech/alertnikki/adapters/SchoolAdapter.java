@@ -26,7 +26,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
     public SchoolAdapter(Context context, ArrayList<SchoolBusesList> busesLists) {
         this.context = context;
         this.busesLists = busesLists;
-        this.temp=busesLists;
+        this.temp = busesLists;
     }
 
     private OnitemClickListener mListner;
@@ -40,12 +40,11 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                String charString  = constraint.toString();
+                String charString = constraint.toString();
                 if (charString.isEmpty()) {
                     busesLists = temp;
 
                 } else {
-
 
 
 //                    filteredHelpsList.clear();
@@ -61,7 +60,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.schoolBusName.toLowerCase().contains(charString.toLowerCase() )){
+                        if (row.schoolBusName.toLowerCase().contains(charString.toLowerCase())) {
 
                             filteredList.add(row);
                         }
@@ -84,7 +83,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
     }
 
     public interface OnitemClickListener {
-        void onItemClick(View view, int position,ArrayList<SchoolBusesList> busesLists);
+        void onItemClick(View view, int position, ArrayList<SchoolBusesList> busesLists);
     }
 
 
@@ -100,7 +99,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         SchoolBusesList buses = busesLists.get(i);
         viewHolder.schoolName.setText(buses.schoolBusName);
         viewHolder.schoolAddress.setText(buses.address);
-        viewHolder.route.setText("Bus No: " + buses.vehicleNumber+"\n"+"Route No: "+buses.route);
+        viewHolder.route.setText("Bus No: " + buses.vehicleNumber + "\n" + "Route No: " + buses.route);
         //viewHolder.route.setText("Bus No: " + buses.vehicleNumber);
 
         if (buses.attendence.inTime == null) {
@@ -152,7 +151,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.ViewHolder
         @Override
         public void onClick(View v) {
             if (mListner != null) {
-                mListner.onItemClick(v, getAdapterPosition(),busesLists);
+                mListner.onItemClick(v, getAdapterPosition(), busesLists);
             }
         }
     }

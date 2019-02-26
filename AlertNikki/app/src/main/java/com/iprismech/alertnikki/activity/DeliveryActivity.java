@@ -177,11 +177,6 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
         retrofitResponseListener = this;
-        // sp_building = findViewById(R.id.spinner_building);
-        //  sp_flat = findViewById(R.id.spinner_flat);
-
-        // sp_building.setOnItemSelectedListener(this);
-        // sp_flat.setOnItemSelectedListener(this);
 
         ll_buiding = findViewById(R.id.ll_building_delivery);
         ll_flatno = findViewById(R.id.ll_flatno_delivery);
@@ -263,38 +258,17 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                 } else if (tv_flat_number.getText().toString().equalsIgnoreCase("")
                         || tv_flat_number.getText().toString().isEmpty()) {
                     Toast.makeText(DeliveryActivity.this, "Please Select Flat Number", Toast.LENGTH_SHORT).show();
-                }
-
-//                else if (sv1.length() == 0 || sv1.length() < 2) {
-//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-//                } else if (sv2.length() == 0 || sv2.length() < 2) {
-//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-//                } else if (sv3.length() == 0 || sv3.length() < 2) {
-//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-//                } else if (sv4.length() == 0 || sv4.length() < 4) {
-//                    Common.showToast(DeliveryActivity.this, "Please Enter vehicle Number");
-//                }
-//                else if (mResidentMobile.length() == 0 || mResidentMobile.length() < 10) {
-//                    Common.showToast(DeliveryActivity.this, "Please Enter Resident Mobile ");
-//                }
-                else {
+                } else {
                     LayoutInflater dialoginflater = LayoutInflater.from(getApplicationContext());
                     View dialogview = dialoginflater.inflate(R.layout.alert_delivery_warning, null);
                     final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
                     alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     alertDialog.setView(dialogview);
-                    alertDialog.setCancelable(false);
+                    alertDialog.setCancelable(true);
                     TextView ok_submit, security_name, login_time;
 //                    ImageView security_img;
                     ok_submit = dialogview.findViewById(R.id.delivery_alert_ok);
-//                    security_name=dialogview.findViewById(R.id.security_name_login);
-//                    login_time=dialogview.findViewById(R.id.login_time);
-//                    security_img=dialogview.findViewById(R.id.sec_img_login_time);
-
-
-                    // login_time.setText(loginTimePojo.getResponse().getIn_time());
-
 
                     ok_submit.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -320,7 +294,7 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                     Bundle bundle = new Bundle();
                     bundle.putString("key", "delivery");
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN, bundle);
-
+                    finish();
                 } else {
                     onBackPressed();
                 }
@@ -501,7 +475,6 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
         return null;
     }
 
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -538,25 +511,71 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                 mVehicle3.getText().toString() + mVehicle4.getText().toString();
         req.photo = base64profile;
         req.service_from = mTitle;
-        try {
-            obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         if (mTitle.equalsIgnoreCase("Delivery Boy")) {
+
+            req.guest_type = "delivery";
+            try {
+                obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
+
         } else if (mTitle.equalsIgnoreCase("Cab") || mTitle.equalsIgnoreCase("OLA") || mTitle.equalsIgnoreCase("Uber") || mTitle.equalsIgnoreCase("Bla Bla")) {
+
+            req.guest_type = "cab";
+            try {
+                obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
             new RetrofitRequester(this).callPostServices(obj, 3, "cab_notify", true);
         } else if (mTitle.equalsIgnoreCase("Add Guest")) {
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
         } else if (mTitle.equalsIgnoreCase("Gas Delivery ")) {
+
+
+            req.guest_type = "delivery";
+            try {
+                obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
+
+
         } else if (mTitle.equalsIgnoreCase("Courier Boy")) {
+
+            req.guest_type = "delivery";
+            try {
+                obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
-        } else if (mTitle.equalsIgnoreCase("Swiggy") || mTitle.equalsIgnoreCase("Food Panda") || mTitle.equalsIgnoreCase("Zomoto") || mTitle.equalsIgnoreCase("Uber Eats")
+
+
+        } else if (mTitle.equalsIgnoreCase("Swiggy") || mTitle.equalsIgnoreCase("Food Panda") || mTitle.equalsIgnoreCase("Zomato") || mTitle.equalsIgnoreCase("Uber Eats")
                 || mTitle.equalsIgnoreCase("Other") || mTitle.equalsIgnoreCase("Paytm") || mTitle.equalsIgnoreCase("Amazon")
                 || mTitle.equalsIgnoreCase("FlipKart") || mTitle.equalsIgnoreCase("Myntra")) {
+
+
+            req.guest_type = "delivery";
+            try {
+                obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             new RetrofitRequester(this).callPostServices(obj, 3, "delivery_send_notification", true);
+
+
         }
     }
 
@@ -605,7 +624,8 @@ public class DeliveryActivity extends BaseAbstractActivity<Class> implements Vie
                             // Common.showToast(DeliveryActivity.this, object.optString("message"));
 
                             Toast.makeText(getApplicationContext(), "Notification Sent to user Successfully", Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+                            //  onBackPressed();
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
 
                             break;
                     }

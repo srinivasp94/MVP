@@ -20,7 +20,7 @@ public class UploadDocumentFragment extends BaseAbstractFragment<Class> implemen
     private ImageView iv_uploaded_doc, iv_aadhaar, iv_pan, iv_voter_id;
     //  private int GALLERY_DOC = 1, CAMERA_DOC = 2;
     //private String base64profile;
-    private TextView btn_next_upload_doc;
+    private TextView btn_next_upload_doc,txthint;
     private String service_id, name, mobile_number, address, document_id = "";
     private EditText et_doc_id_num;
     private boolean image_selected_status = false;
@@ -63,6 +63,7 @@ public class UploadDocumentFragment extends BaseAbstractFragment<Class> implemen
         iv_aadhaar = view.findViewById(R.id.iv_aadhar);
         iv_pan = view.findViewById(R.id.iv_pan);
         iv_voter_id = view.findViewById(R.id.iv_voterid);
+        txthint = view.findViewById(R.id.txthint);
         //iv_uploaded_doc = view.findViewById(R.id.iv_uploaded_image);
         btn_next_upload_doc = view.findViewById(R.id.btn_next_doc);
         et_doc_id_num = view.findViewById(R.id.et_doc_id_num);
@@ -88,6 +89,7 @@ public class UploadDocumentFragment extends BaseAbstractFragment<Class> implemen
             case R.id.ll_aadhar:
 
                 et_doc_id_num.setText("");
+                txthint.setText("Enter Aadhar Number");
 //                StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
 //                StrictMode.setVmPolicy(builder.build());
 //                //     permissionsRequest();
@@ -106,6 +108,7 @@ public class UploadDocumentFragment extends BaseAbstractFragment<Class> implemen
             case R.id.ll_pan:
 
                 et_doc_id_num.setText("");
+                txthint.setText("Enter PAN Number");
                 document_id = "2";
                 iv_pan.setImageResource(R.mipmap.pan_selected);
                 iv_voter_id.setImageResource(R.drawable.voter_id);
@@ -114,6 +117,7 @@ public class UploadDocumentFragment extends BaseAbstractFragment<Class> implemen
                 break;
             case R.id.ll_voterid:
                 et_doc_id_num.setText("");
+                txthint.setText("Enter Voter Id");
                 document_id = "3";
                 iv_voter_id.setImageResource(R.mipmap.voter_selected);
                 iv_pan.setImageResource(R.drawable.pan_card);

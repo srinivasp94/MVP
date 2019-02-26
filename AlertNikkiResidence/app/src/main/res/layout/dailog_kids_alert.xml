@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="*Scott person Name?(Mention person)"
+            android:text="*Escott person Name?(Mention person)"
             android:textColor="@color/colorPrimaryDark" />
 
         <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal

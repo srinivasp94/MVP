@@ -10,8 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:background="@color/white"
+        android:orientation="horizontal"
         android:padding="@dimen/_2sdp"
         android:weightSum="2">
         <!--<LinearLayout
@@ -25,6 +25,7 @@
             android:id="@+id/img_userpic"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
             android:padding="@dimen/_1sdp"
             android:src="@drawable/dummy" />
         <!--</LinearLayout>-->
@@ -60,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:text="Guset"
                 android:textSize="@dimen/_11sdp"
-                android:visibility="gone" />
+                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -116,10 +117,10 @@
 
                 <ImageView
                     android:id="@+id/btn_call"
-                    android:padding="@dimen/_2sdp"
                     android:layout_width="@dimen/_15sdp"
                     android:layout_height="@dimen/_17sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/call"
                     android:textColor="@color/black" />
 
@@ -127,8 +128,8 @@
                     android:id="@+id/btn_callactive"
                     android:layout_width="@dimen/_16sdp"
                     android:layout_height="@dimen/_18sdp"
-                    android:padding="@dimen/_2sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp"
                     android:src="@drawable/callactive"
                     android:textColor="@color/black" />
 

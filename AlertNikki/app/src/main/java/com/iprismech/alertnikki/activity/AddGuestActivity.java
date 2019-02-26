@@ -40,6 +40,7 @@ import com.iprismech.alertnikki.Pojo.MoveinPojo;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.BuildingListRequest;
 import com.iprismech.alertnikki.Request.DeliveryBoy_Req;
+import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 import com.iprismech.alertnikki.base.BaseAbstractActivity;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
@@ -551,6 +552,7 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
             req1.photo = base64profile;
             req1.service_from = mTitle;
             req1.added_from = "invite_guest";
+            req1.guest_type = "guest";
 
             try {
                 obj = Class.forName(DeliveryBoy_Req.class.getName()).cast(req1);
@@ -614,7 +616,8 @@ public class AddGuestActivity extends BaseAbstractActivity<Class> implements Vie
                             // Common.showToast(DeliveryActivity.this, object.optString("message"));
 
                             Toast.makeText(getApplicationContext(), "Notification Sent to user Successfully", Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                            //onBackPressed();
 
                             break;
                     }

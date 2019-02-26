@@ -171,8 +171,7 @@
                     android:id="@+id/qr"
                     android:layout_width="@dimen/_80sdp"
                     android:layout_height="@dimen/_80sdp"
-                    android:padding="@dimen/_20sdp"
-                    android:src="@drawable/ic_keypad_active" />
+                    android:src="@drawable/rsz_keypad" />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:layout_width="match_parent"

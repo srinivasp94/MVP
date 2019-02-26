@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_buildingBlock"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/ll_buildingBlock"
     android:orientation="vertical">
 
-    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+    <com.iprismech.alertnikki.customviews.CustomTextViewNormal
         android:id="@+id/tv_item_building"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
-        android:textSize="@dimen/_20sdp"
+        android:text="Block A"
+        android:padding="@dimen/_8sdp"
         android:textColor="@color/black"
-        android:text="Block A" />
+        android:textSize="@dimen/_20sdp" />
 
     <View
         android:layout_width="match_parent"

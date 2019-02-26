@@ -47,7 +47,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
     int itemPosition = 0;
     private ImageView imgClose;
     private TextView txtitle;
-    private FloatingActionButton fab;
+    private ImageView fab;
 
 
     @Override

@@ -160,6 +160,7 @@ public class Inside_Visitors_fragment extends BaseAbstractFragment<Class> implem
                                                 bundle.putString("Key_Visitor_id", arrayList.get(position).visitorId);
                                                 bundle.putString("Key_Type_id", arrayList.get(position).type);
                                                 bundle.putString("Name",arrayList.get(position).name);
+                                                bundle.putString("UserType",arrayList.get(position).userType);
                                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_GUEST_DETAILS_SCREEN, bundle);
                                                 break;
                                         }

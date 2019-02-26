@@ -34,6 +34,7 @@ import com.iprismech.alertnikki.Request.Through_Otp;
 import com.iprismech.alertnikki.Request.Through_Phone;
 import com.iprismech.alertnikki.Request.Through_Vehicle;
 import com.iprismech.alertnikki.Response.Passcodes_Info;
+import com.iprismech.alertnikki.activity.DummyActivity;
 import com.iprismech.alertnikki.activity.ScannerActivity;
 import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
@@ -451,9 +452,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                                 imgMore.setImageResource(R.drawable.ic_bottom_more);
 
-                            }
-                            catch (Exception e)
-                            {
+                            } catch (Exception e) {
                                 e.printStackTrace();
                                 // Common.commonLogs(getActivity(), "123Staff" + e.toString());
                             }
@@ -464,10 +463,14 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                             pinPhone.setText("");
                             pinOTP.setText("");
                             pinVehicleNumber.setText("");
+                            if (mobileResponse.length()<1) {
+                                Toast.makeText(getActivity(), "No Data found with entered number", Toast.LENGTH_SHORT).show();
+                            } else {
 
-                            showCustomDialogForThroug_Mobile(getActivity(), mobileResponse);
+                                showCustomDialogForThroug_Mobile(getActivity(), mobileResponse);
 
 
+                            }
                             break;
                         case 5:
                             JSONObject otpResponse = object.optJSONObject("response");
@@ -681,7 +684,7 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
     }
 
-    private void showCustomDialogForThroug_Mobile(FragmentActivity activity, JSONObject mobileResponse) {
+    private void showCustomDialogForThroug_Mobile(FragmentActivity activity, final JSONObject mobileResponse) {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
 //        getLayoutInflater().inflate(R.layout.alert_alerts,null);
         View view1 = inflater.inflate(R.layout.alert_through_mobile, null);
@@ -710,13 +713,14 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
             Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL + mobileResponse.optString("image")).into(img_through_mobile_pic);
         }
         tv_Name.setText(mobileResponse.optString("name"));
-        tv_mobile.setText("" + mobileResponse.optString("mobile"));
-        tv_Passcode.setText("" + mobileResponse.optString("passcode"));
+//        tv_mobile.setText("" + mobileResponse.optString("mobile"));
+//        tv_Passcode.setText("" + mobileResponse.optString("passcode"));
+        tv_Passcode.setText("" + mobileResponse.optString("mobile"));
         tv_flat.setText(mobileResponse.optString("flat"));
         tv_building.setText(mobileResponse.optString("building"));
         tv_city.setText(mobileResponse.optString("city"));
         tv_society.setText(mobileResponse.optString("society"));
-        tv_residency.setText("" + mobileResponse.optString("residence_type"));
+        tv_residency.setText("" + mobileResponse.optString("service"));
 
         //  tv_worksin.setText("" + responseObject.optString("flats"));
 
@@ -725,6 +729,11 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
             public void onClick(View v) {
                 alertDialog.dismiss();
                 pinPhone.setText(null);
+                Intent intent = new Intent(getActivity(), DummyActivity.class);
+                intent.putExtra("Key_Person", mobileResponse.optString("name"));
+                intent.putExtra("Key_PersonMobile", mobileResponse.optString("mobile"));
+                intent.putExtra("Key_PersonService", mobileResponse.optString("service"));
+                startActivity(intent);
             }
         });
         alertDialog.show();

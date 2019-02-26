@@ -4,6 +4,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,11 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.iprismech.alertnikki.MainActivity;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.AdminStaff;
@@ -26,7 +30,6 @@ import com.iprismech.alertnikki.Response.AlertsCommon;
 import com.iprismech.alertnikki.Response.DigitalGatepassAlert;
 import com.iprismech.alertnikki.Response.KidsGateAlerts;
 import com.iprismech.alertnikki.Response.NotifiGateAlerts;
-import com.iprismech.alertnikki.adapters.AlertsAdapter;
 import com.iprismech.alertnikki.adapters.GatepassImagesAdapter;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
@@ -37,30 +40,35 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 public class Alerts_Fragment extends BaseAbstractFragment<Class> implements RetrofitResponseListener {
-    private RecyclerView rv_alerts;
+//    private RecyclerView rv_alerts;
     private LinearLayoutManager manager;
+
+    TabLayout tabLayout;
+    FrameLayout fm_alerts;
 
     private ArrayList<DigitalGatepassAlert> digital_ist = new ArrayList<>();
     private ArrayList<NotifiGateAlerts> NotifyList = new ArrayList<>();
     private ArrayList<KidsGateAlerts> kidsList = new ArrayList<>();
 
     private ArrayList<AlertsCommon> commonAlertsList = new ArrayList<>();
-    private AlertsAdapter alertsAdapter;
+//    private AlertsAdapter alertsAdapter;
     private Object obj;
     RetrofitResponseListener responseListener;
     private AdminStaff req;
     private SharedPrefsUtils sharedPrefsUtils;
 
+
+    AlewrtKidFragment kidFragment;
+    AlertsNotifyFragment notifyFragment;
+    AlertsDigitalPassFragment digitalPassFragment;
+
     @Override
     protected View getFragmentView() {
-        view = LayoutInflater.from(getActivity()).inflate(R.layout.fragments_alerts, null);
+        view = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_alerts, null);
         return view;
     }
 
@@ -88,11 +96,43 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         super.initialiseViews();
         manager = new LinearLayoutManager(getActivity());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
-        rv_alerts = view.findViewById(R.id.rv_alerts);
-        responseListener = this;
-         req = new AdminStaff();
-        
-        
+
+        tabLayout = view.findViewById(R.id.tabs);
+        fm_alerts = view.findViewById(R.id.alerts_framelayout);
+
+
+        kidFragment = new AlewrtKidFragment();
+        notifyFragment = new AlertsNotifyFragment();
+        digitalPassFragment = new AlertsDigitalPassFragment();
+
+       /* tabLayout.addTab(tabLayout.newTab().setText("Kids"),true);
+        tabLayout.addTab(tabLayout.newTab().setText("Notiofy Gate"));
+        tabLayout.addTab(tabLayout.newTab().setText("Digital Pass"));*/
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                setCurrentTabFragment(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        tabLayout.addTab(tabLayout.newTab().setText("Kids"),true);
+        tabLayout.addTab(tabLayout.newTab().setText("Notify Gate"));
+        tabLayout.addTab(tabLayout.newTab().setText("Digital Pass"));
+//        rv_alerts = view.findViewById(R.id.rv_alerts);
+
+
+
         Alert alert = new Alert();
         alert.admin_id = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
         try {
@@ -100,16 +140,31 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new RetrofitRequester(this).callPostServices(obj, 1, "alerts", true);
+//        new RetrofitRequester(this).callPostServices(obj, 1, "alerts", true);
+
+//        rv_alerts.setLayoutManager(manager);
 
 
-        rv_alerts.setLayoutManager(manager);
+    }
 
-
-
-        
-
-
+    private void setCurrentTabFragment(int position) {
+        switch (position) {
+            case 0:
+                replaceFragment(kidFragment);
+                break;
+            case 1:
+                replaceFragment(notifyFragment);
+                break;
+            case 2:
+                replaceFragment(digitalPassFragment);
+        }
+    }
+    public void replaceFragment(Fragment fragment) {
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.alerts_framelayout, fragment);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.commit();
     }
 
     @Override
@@ -125,9 +180,9 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                     switch (requestId) {
                         case 1:
 
-                            
+
                             AlertModel alertModel = Common.getSpecificDataObject(objectResponse, AlertModel.class);
-                         //   AlertModel alertModel = gson.fromJson(jsonString,AlertModel.class);
+                            //   AlertModel alertModel = gson.fromJson(jsonString,AlertModel.class);
 
                             digital_ist = alertModel.digitalGatepassAlerts;
                             NotifyList = alertModel.notifyGateAlerts;
@@ -162,7 +217,6 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 
                                     }
                                     commonAlertsList.add(alertsCommon);
-
 
 
                                 }
@@ -226,9 +280,9 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 
                             if (commonAlertsList != null && commonAlertsList.size() > 0) {
                                 Collections.reverse(commonAlertsList);
-                                alertsAdapter = new AlertsAdapter(getActivity(), commonAlertsList);
-                                rv_alerts.setAdapter(alertsAdapter);
-                                alertsAdapter.setOnItemClickListener(new AlertsAdapter.OnitemClickListener() {
+//                                alertsAdapter = new AlertsAdapter(getActivity(), commonAlertsList);
+//                                rv_alerts.setAdapter(alertsAdapter);
+/*                                alertsAdapter.setOnItemClickListener(new AlertsAdapter.OnitemClickListener() {
                                     @Override
                                     public void onItemClick(View view, int position) {
 //                                        call_Nottify_AlertWS(position);
@@ -242,7 +296,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                                         }
 
                                     }
-                                });
+                                });*/
                             } else {
                                 Common.showToast(getActivity(), "No data found");
                             }
@@ -268,7 +322,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
                             TextView badgeAlerts = activity_alerts.findViewById(R.id.badge_notification_alerts);
                             badgeAlerts.setText("" + object.optInt("alerts_count"));
 
-                      
+
                     }
                     req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdmin();
                     try {
@@ -287,6 +341,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 
         }
     }
+
     private void showAlertDialog_kid(final int position, JSONObject jsonObject) {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         View view1 = inflater.inflate(R.layout.alert_kids, null);
@@ -299,17 +354,14 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
 //        alertDialog.setCancelable(false);
 
 
-
-
-
         TextView tv_kid_Name, tv_purpose, tv_intime, tv_outtime, tv_gingWith, bt_deny, btn_allow;
-        ImageView HelperPic,img_guardian_pic;
+        ImageView HelperPic, img_guardian_pic;
         tv_kid_Name = view1.findViewById(R.id.tv_alert_kid_name);
         tv_purpose = view1.findViewById(R.id.tv_helper_passcode);
         tv_intime = view1.findViewById(R.id.tv_kids_intime);
         tv_outtime = view1.findViewById(R.id.tv_kids_alert_outtime);
         tv_gingWith = view1.findViewById(R.id.tv_goingWith);
-        img_guardian_pic=view1.findViewById(R.id.img_guardian_pic);
+        img_guardian_pic = view1.findViewById(R.id.img_guardian_pic);
 
 
         tv_kid_Name.setText(commonAlertsList.get(position).name);
@@ -317,7 +369,7 @@ public class Alerts_Fragment extends BaseAbstractFragment<Class> implements Retr
         tv_intime.setText(commonAlertsList.get(position).inTime);
         tv_outtime.setText(commonAlertsList.get(position).outTime);
         tv_gingWith.setText(commonAlertsList.get(position).Description);
-        Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL +commonAlertsList.get(position).profilePic).into(img_guardian_pic);
+        Picasso.with(getActivity()).load(Constants.BASE_IMAGE_URL + commonAlertsList.get(position).profilePic).into(img_guardian_pic);
 
 
         btn_allow = view1.findViewById(R.id.tv_allow_kids_alert);

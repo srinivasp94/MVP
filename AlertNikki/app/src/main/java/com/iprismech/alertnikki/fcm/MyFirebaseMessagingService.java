@@ -11,6 +11,7 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
+import android.widget.RemoteViews;
 
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -76,12 +77,15 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             intent = new Intent(this, MainActivity.class);
             intent.putExtra("key", "alerts");
         }
-
+        RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.custom_push);
+        contentView.setTextViewText(R.id.tv_custom_push_title, getResources().getString(R.string.app_name));
+        contentView.setTextViewText(R.id.tv_custom_push_content, msgbody);
 //        Intent intent = new Intent(this, MainActivity.class);
 //            intent.putExtra("key", "alerts");
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         Notification.Builder notificationbuilder = new Notification.Builder(this)
                 .setSmallIcon(R.drawable.dummy)
+                .setContent(contentView)
                 .setContentTitle(msg.get("message"))
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
