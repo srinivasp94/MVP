@@ -76,6 +76,7 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
                     Bundle bundle = new Bundle();
                     bundle.putString("case", "Weekly");
                     bundle.putInt("position", getAdapterPosition());
+                    bundle.putString("maid_id",maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(getAdapterPosition()).getSmenu().get(0).getMaid_id());
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
 
                 }

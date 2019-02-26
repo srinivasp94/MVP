@@ -19,8 +19,8 @@ public class SharedPrefsUtils {
     public static final String KEY_ADMIN_ID = "admin_id";
     public static final String KEY_PHONE = "phone";
     public static final String KEY_EMAIL = "email";
-    public static final String KEY_NAME= "name";
-    public static final String KEY_PASSCODE= "passcode";
+    public static final String KEY_NAME = "name";
+    public static final String KEY_PASSCODE = "passcode";
 
     // User name (make variable public to access from outside)
     public static final String KEY_SOCIETY_ID = "society_id";
@@ -38,7 +38,7 @@ public class SharedPrefsUtils {
 
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_PROFILE_PIC = "profile_image";
-    public static final String KEY_QRCODE= "qrcode";
+    public static final String KEY_QRCODE = "qrcode";
     public static final String KEY_TOKEN = "token_id";
 
     //user type =1/2
@@ -72,8 +72,8 @@ public class SharedPrefsUtils {
 
 
     //Saving user details
-    public void createUserSession(String id,String Phone, String email, String society, String city,
-                                  String flat,String building ,String userType) {
+    public void createUserSession(String id, String Phone, String email, String society, String city,
+                                  String flat, String building, String userType) {
         editor.putBoolean(IS_USER_LOGIN, true);
         editor.putString(KEY_ID, id);
         editor.putString(KEY_PHONE, Phone);

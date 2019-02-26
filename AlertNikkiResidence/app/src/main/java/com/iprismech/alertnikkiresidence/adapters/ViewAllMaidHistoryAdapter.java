@@ -34,14 +34,18 @@ public class ViewAllMaidHistoryAdapter extends RecyclerView.Adapter<ViewAllMaidH
 
     @Override
     public void onBindViewHolder(@NonNull ViewAllMaidHistoryAdapter.ViewHolder viewHolder, int i) {
-        if (from_case.equalsIgnoreCase("Monthly")) {
-            viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(count).getSmenu().get(i).getDate());
-            viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(count).getSmenu().get(i).getIn_time());
-            viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(count).getSmenu().get(i).getOut_time());
-        } else {
-            viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(count).getSmenu().get(i).getDate());
-            viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(count).getSmenu().get(i).getIn_time());
-            viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(count).getSmenu().get(i).getOut_time());
+        try {
+            if (from_case.equalsIgnoreCase("Monthly")) {
+                viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(count).getSmenu().get(i).getDate());
+                viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(count).getSmenu().get(i).getIn_time());
+                viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getMonthly_history().get(count).getSmenu().get(i).getOut_time());
+            } else {
+                viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(count).getSmenu().get(i).getDate());
+                viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(count).getSmenu().get(i).getIn_time());
+                viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(count).getSmenu().get(i).getOut_time());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

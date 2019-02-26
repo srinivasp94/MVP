@@ -167,7 +167,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
         tv_back = view1.findViewById(R.id.tv_btn_pass_back);
         tv_submit = view1.findViewById(R.id.tv_btn_pass_submit);
         et_reason = view1.findViewById(R.id.et_comment_deny);
-        str_reason_for_deny = et_reason.getText().toString();
+
         tv_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,6 +181,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
                 if (et_reason.getText().toString().isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please write Reason for deny", Toast.LENGTH_SHORT).show();
                 } else {
+                    str_reason_for_deny = et_reason.getText().toString();
                     callGuestDeliveryDenyWS();
                     alertDialog.dismiss();
                     alertDialog_deny.dismiss();
@@ -195,7 +196,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
     private void callGuestDeliveryDenyWS() {
         GuestDeliveryAllowReq req = new GuestDeliveryAllowReq();
         req.id = notification_id;
-        req.allow_deny_status = "no";
+        req.allow_deny_status = "2";
         req.reson_for_deny = str_reason_for_deny;
 
         try {
@@ -209,7 +210,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements Retrofi
     private void callGuestallowReqWS() {
         GuestDeliveryAllowReq req = new GuestDeliveryAllowReq();
         req.id = notification_id;
-        req.allow_deny_status = "yes";
+        req.allow_deny_status = "1";
         req.reson_for_deny = "";
 
         try {

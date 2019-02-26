@@ -114,7 +114,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.custom_push);
             contentView.setTextViewText(R.id.tv_custom_push_title, getResources().getString(R.string.app_name));
             contentView.setTextViewText(R.id.tv_custom_push_content, msgbody);
-//
+////
 //        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this)
 //                .setSmallIcon(R.drawable.icon)
 //                .setContent(contentView);

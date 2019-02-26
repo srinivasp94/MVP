@@ -30,10 +30,10 @@ public class DenyVisitrosAdapter extends RecyclerView.Adapter<DenyVisitrosAdapte
 
     @Override
     public void onBindViewHolder(@NonNull DenyVisitrosAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.guest_name.setText(visitorsHistoryPojo.getAllow_records().get(i).getName());
-        viewHolder.guest_type.setText(visitorsHistoryPojo.getAllow_records().get(i).getService());
-        viewHolder.guest_visit_date.setText(visitorsHistoryPojo.getAllow_records().get(i).getFrom_date_time());
-        viewHolder.tv_reason_deny.setText(visitorsHistoryPojo.getAllow_records().get(i).getReson_for_deny());
+        viewHolder.guest_name.setText(visitorsHistoryPojo.getDeny_records().get(i).getName());
+        viewHolder.guest_type.setText(visitorsHistoryPojo.getDeny_records().get(i).getService());
+        viewHolder.guest_visit_date.setText(visitorsHistoryPojo.getDeny_records().get(i).getFrom_date_time());
+        viewHolder.tv_reason_deny.setText(visitorsHistoryPojo.getDeny_records().get(i).getReson_for_deny());
 
     }
 

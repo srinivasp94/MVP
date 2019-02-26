@@ -272,7 +272,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
 
     }
 
-    private void  showAlertForAddGuests() {
+    private void showAlertForAddGuests() {
         LayoutInflater inflater = LayoutInflater.from(InviteGuestActivity.this);
 //        getLayoutInflater().inflate(R.layout.alert_alerts,null);
         View view1 = inflater.inflate(R.layout.alert_guests, null);
