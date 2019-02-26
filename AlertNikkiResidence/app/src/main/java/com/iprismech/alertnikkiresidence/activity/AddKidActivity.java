@@ -2,11 +2,13 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -49,9 +51,11 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     private String str_selected_days, screen_type, kid_id = "";
     private Object obj;
     List<String> stringList = new ArrayList<>();
+    private Switch sw_kids_pass_days;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
+    private String kid_name_purpose,kid_name_edit,kid_name_days,kid_name_intime,kid_name_outtime;
 
     @Override
     public void onBackPressed() {
@@ -97,11 +101,13 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         // Append in a StringBuilder
                         str_out_time_12hr = new StringBuilder().append(hour).append(':')
                                 .append(min).append(" ").append(timeSet).toString();
-                        tv_kid_out_time.setText(str_out_time_12hr);
+                       // tv_kid_out_time.setText(str_out_time_12hr);
                         //  tv_opening_time.setText(selectedHour + ":" + selectedMinute);
 
                         selected_out_time = selectedHour;
                         str_kid_out_Time_24hr = selectedHour + ":" + min + ":" + "00";
+                        tv_kid_out_time.setText(str_kid_out_Time_24hr);
+
                     }
                 }, hour, minute, false);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -135,10 +141,12 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         // Append in a StringBuilder
                         str_in_time_12hr = new StringBuilder().append(hour).append(':')
                                 .append(min).append(" ").append(timeSet).toString();
-                        tv_kid_in_tim.setText(str_in_time_12hr);
+                      //  tv_kid_in_tim.setText(str_in_time_12hr);
+
                         //  tv_opening_time.setText(selectedHour + ":" + selectedMinute);
                         selected_in_time = selectedHour;
                         str_kid_in_Time_24hr = selectedHour + ":" + min + ":" + "00";
+                        tv_kid_in_tim.setText(str_kid_in_Time_24hr);
                     }
                 }, hour, minute, false);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -155,9 +163,11 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                     Toast.makeText(AddKidActivity.this, "Please Select out time", Toast.LENGTH_SHORT).show();
                 } else if (tv_kid_in_tim.getText().toString().equalsIgnoreCase("") || tv_kid_in_tim.getText().toString().isEmpty()) {
                     Toast.makeText(AddKidActivity.this, "Please Select in time", Toast.LENGTH_SHORT).show();
-                } else if (selected_in_time <= selected_out_time) {
-                    Toast.makeText(AddKidActivity.this, "In time must be greater than out time", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+//                else if (selected_in_time <= selected_out_time) {
+//                    Toast.makeText(AddKidActivity.this, "In time must be greater than out time", Toast.LENGTH_SHORT).show();
+//                }
+                else {
 
 
                     if (screen_type.equalsIgnoreCase("Add kid")) {
@@ -183,7 +193,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         AddKidPojo kidPojo = new AddKidPojo();
                         try {
 
-                            kidPojo.adminId = "2";
+                            kidPojo.adminId = SharedPrefsUtils.getInstance(AddKidActivity.this).getAdminID();
                             kidPojo.kidName = kid_name.getText().toString();
                             kidPojo.userId = SharedPrefsUtils.getInstance(AddKidActivity.this).getId();
 
@@ -238,11 +248,8 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     protected void initializeViews() {
         super.initializeViews();
 
-        screen_type = getIntent().getExtras().getString("screen", "");
-        kid_id = getIntent().getExtras().getString("kid_id", "");
-
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Add Kid");
 
 
@@ -255,6 +262,39 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
         tv_kid_out_time = findViewById(R.id.tv_kid_out_time);
         tv_kid_in_tim = findViewById(R.id.tv_kid_in_time);
         btn_add_save = findViewById(R.id.btn_add_save);
+        sw_kids_pass_days = findViewById(R.id.sw_kids_pass_days);
+
+
+
+
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            screen_type = getIntent().getExtras().getString("screen", "");
+            kid_id = getIntent().getExtras().getString("kid_id", "");
+            kid_name_edit=getIntent().getExtras().getString("kid_name", "");
+            kid_name_purpose=getIntent().getExtras().getString("kid_purpose", "");
+            kid_name_days=getIntent().getExtras().getString("days", "");
+            kid_name_intime=getIntent().getExtras().getString("intime", "");
+            kid_name_outtime=getIntent().getExtras().getString("outtime", "");
+        }
+
+        if(screen_type.equalsIgnoreCase("Edit Kid")){
+            txtitle.setText("Edit Kid");
+            kid_name.setText(kid_name_edit);
+            et_purpose.setText(kid_name_purpose);
+            tv_selected_days.setText(kid_name_days);
+            tv_kid_out_time.setText(kid_name_outtime);
+            tv_kid_in_tim.setText(kid_name_intime);
+            sw_kids_pass_days.setChecked(true);
+        }
+
+
+
+
+
+
+
 
 
     }
@@ -325,5 +365,6 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 
 
         tv_selected_days.setText("" + result_string);
+        sw_kids_pass_days.setChecked(true);
     }
 }

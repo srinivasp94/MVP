@@ -135,7 +135,8 @@
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="My Society"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
 
                 <LinearLayout
                     android:id="@+id/LinearMysocirty"
@@ -149,7 +150,7 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/NoticeBoard"
                         style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/notice_board"
                         android:drawablePadding="@dimen/_5sdp"
                         android:gravity="center|left"
                         android:text="Notice Board"
@@ -158,16 +159,16 @@
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/Emergeny"
                         style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/emergency_call"
                         android:drawablePadding="@dimen/_5sdp"
                         android:gravity="center|left"
-                        android:text="Emergeny Contact"
+                        android:text="Emergency Contact"
                         android:textSize="@dimen/_12sdp" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/Management"
                         style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/ic_delete"
+                        android:drawableLeft="@drawable/management_cmt"
                         android:drawablePadding="@dimen/_5sdp"
                         android:gravity="center|left"
                         android:text="Management Committee"
@@ -183,7 +184,8 @@
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Family Members"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/VisitorsHistory"
@@ -192,7 +194,8 @@
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Visitors History"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/MyFlat"
@@ -201,7 +204,17 @@
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="My Flat"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
+                <android.support.v7.widget.AppCompatTextView
+                    android:id="@+id/MyVehicles"
+                    style="@style/DefaultCustomTextView"
+                    android:drawableLeft="@drawable/building_samll"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:gravity="center|left"
+                    android:text="My Vehicles"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/Digital"
@@ -209,8 +222,9 @@
                     android:drawableLeft="@drawable/digital_inter"
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
-                    android:text="Digital Intervom Settings"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="@color/black"
+                    android:text="Digital Intercom Settings"
+                    android:textSize="@dimen/_14sdp" />
 
                 <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/Logout"
@@ -219,7 +233,8 @@
                     android:drawablePadding="@dimen/_5sdp"
                     android:gravity="center|left"
                     android:text="Logout"
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp" />
             </LinearLayout>
             <!--
                 <android.support.v7.widget.RecyclerView
@@ -234,5 +249,4 @@
         </LinearLayout>
 
     </ScrollView>
-
 </LinearLayout>

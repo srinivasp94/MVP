@@ -17,6 +17,7 @@ import com.iprismech.alertnikkiresidence.adapters.FamilyAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.request.FamilyDelete;
 import com.iprismech.alertnikkiresidence.request.ProfileReq;
 import com.iprismech.alertnikkiresidence.response.Family;
 import com.iprismech.alertnikkiresidence.response.FamilyList;
@@ -34,7 +35,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
     private LinearLayout linearLayout;
     private RelativeLayout relativeLayout;
     private RecyclerView rvSchools;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private TextView txtAddFamily;
     private Object obj;
     LinearLayoutManager layoutManager;
@@ -42,8 +43,8 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
     private FamilyAdapter familyAdapter;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
+    int itemPOsition = 0;
 
 
     @Override
@@ -86,7 +87,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
         layoutManager = new LinearLayoutManager(FamilyMembersActivity.this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Family Members");
 
         linearLayout = findViewById(R.id.lLayout);
@@ -106,6 +107,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
         new RetrofitRequester(this).callPostServices(obj, 1, " family_member_list", true);
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -123,13 +125,28 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
                             if (familyLists != null && familyLists.size() > 0) {
                                 relativeLayout.setVisibility(View.VISIBLE);
                                 linearLayout.setVisibility(View.GONE);
-                                familyAdapter = new FamilyAdapter(FamilyMembersActivity.this,familyLists);
+                                familyAdapter = new FamilyAdapter(FamilyMembersActivity.this, familyLists);
                                 rvSchools.setAdapter(familyAdapter);
+                                familyAdapter.setOnItemClickListener(new FamilyAdapter.OnitemClickListener() {
+                                    @Override
+                                    public void onItemClick(View view, int position) {
+                                        deleteFamilyWS(position);
+                                    }
+                                });
                             } else {
                                 relativeLayout.setVisibility(View.VISIBLE);
                                 linearLayout.setVisibility(View.GONE);
                             }
                             break;
+                        case 2:
+//                            familyAdapter.notifyDataSetChanged();
+                            if (familyLists.size() > 1) {
+                                familyLists.remove(itemPOsition);
+                                familyAdapter.notifyDataSetChanged();
+                            } else {
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FAMILY_SCREEN);
+                                finish();
+                            }
                     }
                 } else {
                     Common.showToast(FamilyMembersActivity.this, jsonObject.optString("message"));
@@ -141,17 +158,31 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
         }
     }
 
+    private void deleteFamilyWS(int position) {
+        itemPOsition = position;
+        FamilyDelete req = new FamilyDelete();
+        req.member_id = familyLists.get(position).id;
+        try {
+            obj = Class.forName(FamilyDelete.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+        new RetrofitRequester(this).callPostServices(obj, 2, "family_member_delete", true);
+    }
+
     @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txtAddFamily:
                 Bundle bundle = new Bundle();
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN,bundle);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN, bundle);
+                finish();
                 break;
             case R.id.fab:
                 Bundle bundle1 = new Bundle();
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN,bundle1);
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN, bundle1);
+                finish();
                 break;
             case R.id.imgClose:
                 onBackPressed();

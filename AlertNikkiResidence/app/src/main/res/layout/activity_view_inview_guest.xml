@@ -11,40 +11,39 @@
         android:id="@+id/header"
         layout="@layout/common_header" />
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/_5sdp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp">
 
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/RvSelectContact"
-            android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/fab"
+            android:layout_alignParentTop="true"
             android:layout_margin="@dimen/_3sdp"
             android:padding="@dimen/_2sdp">
 
         </android.support.v7.widget.RecyclerView>
 
-        <android.support.design.widget.FloatingActionButton
+        <ImageView
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/rlDateselect"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_8sdp"
-            android:src="@drawable/black_border_small" />
+            android:padding="@dimen/_3sdp"
+            android:src="@drawable/ic_add" />
 
 
         <RelativeLayout
             android:id="@+id/rlDateselect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/llInviteGuests"
+            android:layout_below="@+id/RvSelectContact"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:layout_marginRight="@dimen/_15sdp"
@@ -62,9 +61,9 @@
                 style="@style/customEdittext"
                 android:layout_below="@+id/dummy"
                 android:layout_alignParentLeft="true"
-                android:hint="Please Select Date"
                 android:editable="false"
-                android:focusable="false" />
+                android:focusable="false"
+                android:hint="Please Select Date" />
 
             <ImageView
                 android:layout_width="@dimen/_25sdp"
@@ -84,7 +83,7 @@
             android:id="@+id/llInviteGuests"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/rlDateselect"
             android:layout_marginLeft="@dimen/_15sdp"
             android:layout_marginRight="@dimen/_15sdp"
             android:background="@drawable/black_bgr_corners"

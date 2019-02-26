@@ -21,8 +21,7 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
     private MaidWeeklyAttendance fragment;
     private MaidMonthlyAttendance fragment1;
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
 
 
     @Override
@@ -39,51 +38,57 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
                 onBackPressed();
                 break;
             case R.id.tv_weekly:
+                try {
+                    final int sdk = android.os.Build.VERSION.SDK_INT;
+                    if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                        tv_weekly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
+                        tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                    } else {
+                        tv_weekly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.color.black));
+                        tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                    }
 
-                final int sdk = android.os.Build.VERSION.SDK_INT;
-                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                    tv_weekly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
-                    tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
-                } else {
-                    tv_weekly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.color.black));
-                    tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
-                }
-
-                if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                    tv_monthly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
-                    tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
-                } else {
-                    tv_monthly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.color.white));
-                    tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
-                }
+                    if (sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                        tv_monthly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                        tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
+                    } else {
+                        tv_monthly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.drawable.black_corner_noboarders));
+                        tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
+                    }
 //                tv_weekly.setBackgroundColor(Color.parseColor("#fff"));
 //                tv_monthly.setBackgroundColor(Color.parseColor("#000"));
-                fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_maid_att, fragment, "").commit();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.frame_maid_att, fragment, "").commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             case R.id.tv_monthly:
 //                tv_weekly.setBackgroundColor(Color.parseColor("#000"));
 //                tv_monthly.setBackgroundColor(Color.parseColor("#fff"));
+                try {
+                    final int sdk1 = android.os.Build.VERSION.SDK_INT;
+                    if (sdk1 < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                        tv_monthly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
+                        tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                    } else {
+                        tv_monthly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.color.black));
+                        tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                    }
 
-                final int sdk1 = android.os.Build.VERSION.SDK_INT;
-                if (sdk1 < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                    tv_monthly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
-                    tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
-                } else {
-                    tv_monthly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.color.black));
-                    tv_monthly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                    if (sdk1 < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                        tv_weekly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
+                        tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
+                    } else {
+                        tv_weekly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.drawable.black_corner_noboarders));
+                        tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
+                    }
+
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.frame_maid_att, fragment1, "").commit();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-                if (sdk1 < android.os.Build.VERSION_CODES.JELLY_BEAN) {
-                    tv_weekly.setBackgroundColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.white));
-                    tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
-                } else {
-                    tv_weekly.setBackground(ContextCompat.getDrawable(MaidAttendanceHistory.this, R.color.white));
-                    tv_weekly.setTextColor(ContextCompat.getColor(MaidAttendanceHistory.this, R.color.black));
-                }
-
-                fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_maid_att, fragment1, "").commit();
                 break;
         }
     }
@@ -99,9 +104,9 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         super.initializeViews();
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Maid Attendence");
-        imgClose.setOnClickListener(this);
+
 
         String maid_id = getIntent().getExtras().getString("maid_id", "");
 
@@ -116,8 +121,6 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         tv_weekly = findViewById(R.id.tv_weekly);
         tv_monthly = findViewById(R.id.tv_monthly);
 
-        tv_weekly.setOnClickListener(this);
-        tv_monthly.setOnClickListener(this);
 
         try {
 
@@ -127,6 +130,14 @@ public class MaidAttendanceHistory extends BaseAbstractActivity implements View.
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void setListenerToViews() {
+        super.setListenerToViews();
+        tv_weekly.setOnClickListener(this);
+        tv_monthly.setOnClickListener(this);
+        imgClose.setOnClickListener(this);
     }
 
     @Override

@@ -51,8 +51,7 @@ public class AllowFragmnet extends BaseAbstractFragment<Class> implements View.O
 
 
         VisitorsHistoryRequest req = new VisitorsHistoryRequest();
-        req.adminId = "2";
-        // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
+        req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdminID();        // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
         req.userId = SharedPrefsUtils.getInstance(getActivity()).getId();
         req.userType = SharedPrefsUtils.getInstance(getActivity()).getuserType();
 

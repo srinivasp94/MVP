@@ -31,6 +31,15 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
         View view = LayoutInflater.from(context).inflate(R.layout.item_histroy_maid, viewGroup, false);
         return new ViewHolder(view);
     }
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
 
     @Override
     public void onBindViewHolder(@NonNull MaidWeeklyAttAdapter.ViewHolder viewHolder, int i) {
@@ -39,7 +48,8 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
             viewHolder.txtDate.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getDate());
             viewHolder.txtInOutAm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getIn_time());
             viewHolder.txtinoutPm.setText(maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(i).getSmenu().get(count - 1).getOut_time());
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -49,7 +59,7 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
         return maidAttendanceHistoryPojo.getResponse().getWeekly_history().size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txtDate, txtInOutAm, txtinoutPm, tv_view_all;
 
         public ViewHolder(@NonNull View itemView) {
@@ -58,6 +68,7 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
             txtInOutAm = itemView.findViewById(R.id.txtInOutAm);
             txtinoutPm = itemView.findViewById(R.id.txtinoutPm);
             tv_view_all = itemView.findViewById(R.id.tv_view_all);
+
             tv_view_all.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("WrongConstant")
                 @Override
@@ -65,11 +76,19 @@ public class MaidWeeklyAttAdapter extends RecyclerView.Adapter<MaidWeeklyAttAdap
                     Bundle bundle = new Bundle();
                     bundle.putString("case", "Weekly");
                     bundle.putInt("position", getAdapterPosition());
+                    bundle.putString("maid_id",maidAttendanceHistoryPojo.getResponse().getWeekly_history().get(getAdapterPosition()).getSmenu().get(0).getMaid_id());
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
 
                 }
             });
 
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getAdapterPosition());
+            }
         }
     }
 }

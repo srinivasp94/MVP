@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.ViewHolder> {
@@ -56,14 +58,36 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull final ChooseMaidAdapter.ViewHolder viewHolder, int i) {
+
+        String rating = null;
+        try {
+            BigDecimal bd = new BigDecimal(chooseMaidPojo.getResponse().get(i).getRating());
+            bd = bd.setScale(2, BigDecimal.ROUND_HALF_UP);
+            rating = String.valueOf(bd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         viewHolder.tv_staff_name.setText(chooseMaidPojo.getResponse().get(i).getTitle());
         viewHolder.tv_staff_cat.setText(chooseMaidPojo.getResponse().get(i).getDesignation());
         viewHolder.tv_working_flats.setText(chooseMaidPojo.getResponse().get(i).getWorking_flats() + " flats");
-        viewHolder.tv_rating.setText(chooseMaidPojo.getResponse().get(i).getRating());
+        viewHolder.tv_rating.setText(rating);
         Picasso.with(context)
                 .load(Constants.BASE_IMAGE_URL + chooseMaidPojo.getResponse().get(i).getImage())
                 .error(R.drawable.dummy)
                 .into(viewHolder.iv_staff_image);
+        try {
+            if (chooseMaidPojo.getResponse().get(i).getRating().equalsIgnoreCase("")
+                    || chooseMaidPojo.getResponse().get(i).getRating().isEmpty()
+                    || chooseMaidPojo.getResponse().get(i).getRating() == null) {
+                viewHolder.rating_staff.setRating(Float.parseFloat(rating));
+
+            } else {
+                viewHolder.rating_staff.setRating(Float.parseFloat(rating));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 //        viewHolder.tv_addstaff.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -91,6 +115,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_staff_image;
         TextView tv_staff_name, tv_staff_cat, tv_working_flats, tv_rating, tv_addstaff;
+        RatingBar rating_staff;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -100,6 +125,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
             tv_working_flats = itemView.findViewById(R.id.tv_working_flats);
             tv_rating = itemView.findViewById(R.id.tv_rating);
             tv_addstaff = itemView.findViewById(R.id.tv_add_staff);
+            rating_staff = itemView.findViewById(R.id.rating_staff);
 
             tv_addstaff.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -186,8 +212,10 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("WorkingType", "1");
                                 bundle.putString("From_Date", tv_from_date.getText().toString());
                                 bundle.putString("ToDate", tv_end_date.getText().toString());
+                                bundle.putString("Key_screen", "Choose Maid");
 
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
+                                alertDialog.dismiss();
                             }
                         }
                     });
@@ -206,6 +234,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("From_Date", "");
                                 bundle.putString("ToDate", "");
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
+                                alertDialog.dismiss();
                             }
                         }
                     });

@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">AlertNikki Residence</string>
+    <string name="app_name">Alert Nikki</string>
     <string name="otp_text">We have sent you an SMS with a OTP Code to your number for verification.</string>
     <string name="repair_amp_maintenance"><![CDATA[Repair & Maintenance]]></string>
     <string name="content">Your passcode is your personal Identifier.Please do not share.</string>
     <string name="addsave">Add &amp; Save</string>
     <string name="add_amp_save"><![CDATA[Add & Save]]></string>
+    <string name="default_notification_channel_id" translatable="false">default</string>
+    <string name="password_note">Note: Password must be more than 6 letters, must contain minimum one Capital letter, one number digit and one Special character.</string>
+    <string name="terms">I agree to the terms and Conditions</string>
 </resources>

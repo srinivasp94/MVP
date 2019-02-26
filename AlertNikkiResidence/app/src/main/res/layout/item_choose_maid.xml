@@ -13,9 +13,9 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_maid_img"
             android:layout_width="@dimen/_50sdp"
             android:layout_height="@dimen/_50sdp"
-            android:id="@+id/iv_maid_img"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/_10sdp"
             android:src="@drawable/dummy" />
@@ -30,10 +30,10 @@
             android:orientation="vertical">
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/tv_staff_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Peter Cruiser"
-                android:id="@+id/tv_staff_name"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
@@ -43,9 +43,9 @@
                 android:orientation="horizontal">
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/tv_staff_cat"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_staff_cat"
                     android:text="Maid-" />
 
                 <ImageView
@@ -55,9 +55,9 @@
                     android:src="@drawable/home_icon" />
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/tv_working_flats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/tv_working_flats"
                     android:text="5+ flats" />
             </LinearLayout>
 
@@ -68,29 +68,35 @@
                 android:weightSum="1">
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+                    android:id="@+id/tv_rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.0"
-                    android:id="@+id/tv_rating"
                     android:textColor="@color/black" />
 
                 <RatingBar
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_10sdp"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_weight="0.4" />
+                    android:focusable="false"
+                    android:isIndicator="false"
+                    android:id="@+id/rating_staff"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:stepSize="0.1" />
 
             </LinearLayout>
         </LinearLayout>
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-            android:layout_width="@dimen/_40sdp"
             android:id="@+id/tv_add_staff"
+            android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_20sdp"
             android:layout_gravity="center"
+            android:layout_marginRight="@dimen/_5sdp"
             android:background="@drawable/black_border_small"
             android:gravity="center"
-            android:layout_marginRight="@dimen/_5sdp"
             android:text="Add" />
     </LinearLayout>
 </android.support.v7.widget.CardView>

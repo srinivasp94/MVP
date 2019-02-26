@@ -6,12 +6,87 @@
 
     <include layout="@layout/common_header" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graydark"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/graydark"></View>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/ItemDefaultCustomTextView"
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:text="Date"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/graydark"></View>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/ItemDefaultCustomTextView"
+                android:layout_width="wrap_content"
+                android:layout_toRightOf="@+id/dunny"
+
+                android:text="In Time"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/graydark"></View>
+
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="Out Time"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/graydark"></View>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rview_viewall"
         android:layout_width="match_parent"
-        android:padding="@dimen/_5sdp"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        >
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

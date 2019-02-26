@@ -14,8 +14,9 @@
             android:id="@+id/layoutNoStaff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:orientation="vertical">
+            android:layout_centerInParent="true"
+            android:orientation="vertical"
+            >
 
             <ImageView
                 android:layout_width="@dimen/_150sdp"
@@ -46,7 +47,7 @@
                 android:paddingBottom="@dimen/_8sdp"
                 android:text="Add Staff"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_14sdp" />
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
 
         <RelativeLayout

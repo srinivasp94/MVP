@@ -11,17 +11,23 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/netconfig"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        android:usesCleartextTraffic="true">
         <activity android:name=".MainActivity" />
         <activity android:name=".activity.SplashScreenActivity">
             <intent-filter>
@@ -33,62 +39,187 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.IntroScreensActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.SignupActivity" />
-        <activity android:name=".activity.OtpVerificationActivity" />
-        <activity android:name=".activity.PasscodeActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SignupActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.OtpVerificationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.PasscodeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".activity.InviteGuestActivity" />
         <activity android:name=".activity.PickContactsActivity" />
-        <activity android:name=".activity.ViewInviteGuestActivity" />
-        <activity android:name=".activity.GuestEditActivity" />
-        <activity android:name=".activity.SelectCityActivity" />
-        <activity android:name=".activity.SelectSocietyActivity"></activity>
+        <activity
+            android:name=".activity.ViewInviteGuestActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.GuestEditActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SelectCityActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SelectSocietyActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.AddStaffActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ChooseMaidActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.MyStaffAlerts"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.StaffProfileActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.StaffStandardTimingActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.notifygate.NotifyGateMainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.notifygate.GateServicesActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.notifygate.EditGateAlertActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.SchoolBus_MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.SelectSchoolActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.BusRouteActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.AddBusActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.BushistoryActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.ProfileActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.KidsGateAlertActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.AddKidActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.LocalServiceActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ChooseLocalServiceActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.LocalServiceContactDetails"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.MaidStaffAttendanceHistory"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.NoticeBoardActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.EmergencyContactActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ManagementCommitteActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.DigitalInterComSettingsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ContactUsActivtiy"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.VisitorsHistoryActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.MaidAttendanceHistory"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.FamilyMembersActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.AddFamilyActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.ContactSingleActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.MyFlatActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.MaidViewAllAttandancesHistory"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SelectBuildingActvity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SelectFlatActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".DetailActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.SOSActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.AddVehicleActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ForgotPasswordActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ForgotPasswordOTPVerificationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.ResetPasswordActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.SchoolBusAttendanceHistory"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.schoolbus.BusViewAllAttandancesHistory"
+            android:windowSoftInputMode="stateAlwaysHidden" />
 
-        <activity android:name=".activity.AddStaffActivity" />
-        <activity android:name=".activity.ChooseMaidActivity" />
-        <activity android:name=".activity.MyStaffAlerts" />
-        <activity android:name=".activity.StaffProfileActivity" />
-        <activity android:name=".activity.StaffStandardTimingActivity" />
-        <activity android:name=".activity.notifygate.NotifyGateMainActivity" />
-        <activity android:name=".activity.notifygate.GateServicesActivity" />
-        <activity android:name=".activity.notifygate.EditGateAlertActivity" />
-        <activity android:name=".activity.schoolbus.SchoolBus_MainActivity" />
-        <activity android:name=".activity.schoolbus.SelectSchoolActivity" />
-        <activity android:name=".activity.schoolbus.BusRouteActivity" />
-        <activity android:name=".activity.schoolbus.AddBusActivity" />
-        <activity android:name=".activity.schoolbus.BushistoryActivity" />
-        <activity android:name=".activity.profile.ProfileActivity"/>
-<!--            <intent-filter>
-                <action
-                    android:name="android.intent.action.MAIN"
-                    android:theme="@style/AppTheme.NoActionBar" />
-
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        <!--</activity>-->
-
-        <!--<activity android:name=".activity.StaffStandardTimingActivity" />-->
-        <activity android:name=".activity.KidsGateAlertActivity" />
-        <activity android:name=".activity.AddKidActivity" />
-        <activity android:name=".activity.LocalServiceActivity" />
-        <activity android:name=".activity.ChooseLocalServiceActivity" />
-        <activity android:name=".activity.LocalServiceContactDetails" />
-        <activity android:name=".activity.MaidStaffAttendanceHistory" />
-        <activity android:name=".activity.NoticeBoardActivity" />
-        <activity android:name=".activity.EmergencyContactActivity" />
-        <activity android:name=".activity.ManagementCommitteActivity" />
-        <activity android:name=".activity.DigitalInterComSettingsActivity" />
-        <activity android:name=".activity.ContactUsActivtiy" />
-        <activity android:name=".activity.VisitorsHistoryActivity" />
-        <activity android:name=".activity.MaidAttendanceHistory" />
-        <activity android:name=".activity.profile.FamilyMembersActivity" />
-        <activity android:name=".activity.profile.AddFamilyActivity" />
-        <activity android:name=".activity.profile.ContactSingleActivity"></activity>
-        <activity android:name=".activity.MaidViewAllAttandancesHistory" />
-
+        <!--
         <activity android:name=".activity.SelectBuildingActvity"></activity>
         <activity android:name=".activity.SelectFlatActivity"></activity>
+        <activity android:name=".activity.AddSelectFlatActivity"></activity>
+        -->
+        <activity
+            android:name=".activity.AddSelectFlatActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.profile.NotificationActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <service android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".fcm.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <activity android:name=".activity.profile.VehiclesActivity"></activity>
     </application>
 
 </manifest>

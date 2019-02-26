@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="1"
     android:background="@drawable/login_background"
+    android:orientation="vertical"
     android:theme="@style/AppTheme.NoActionBar">
 
     <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:orientation="vertical">
 
@@ -20,7 +26,7 @@
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_120sdp"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
                 android:scaleType="centerInside"
                 android:src="@drawable/app_logo" />
 
@@ -31,10 +37,10 @@
                 android:layout_marginTop="@dimen/_25sdp"
                 android:text="- Please Login Here -"
                 android:textColor="@color/graydark"
-                android:textSize="@dimen/_14sdp" />
+                android:textSize="@dimen/_15sdp" />
 
             <LinearLayout
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="@dimen/_210sdp"
                 android:layout_height="@dimen/_110sdp"
                 android:layout_gravity="center_horizontal"
                 android:orientation="horizontal">
@@ -42,7 +48,7 @@
                 <ImageView
                     android:layout_width="@dimen/_10sdp"
                     android:layout_height="match_parent"
-                    android:background="@drawable/login_short"/>
+                    android:background="@drawable/login_short" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -57,11 +63,11 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="@dimen/_20sdp"
+                            android:layout_width="@dimen/_18sdp"
                             android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="center"
                             android:layout_marginLeft="@dimen/_10sdp"
-                            android:src="@drawable/login_mobile" />
+                            android:background="@drawable/login_mobile" />
 
                         <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
                             android:id="@+id/edt_loginMobile"
@@ -74,7 +80,7 @@
                             android:maxLines="1"
                             android:paddingLeft="@dimen/_10sdp"
                             android:singleLine="true"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_13sdp" />
                     </LinearLayout>
 
                     <View
@@ -109,7 +115,7 @@
                             android:maxLines="1"
                             android:paddingLeft="@dimen/_10sdp"
                             android:singleLine="true"
-                            android:textSize="@dimen/_11sdp" />
+                            android:textSize="@dimen/_13sdp" />
 
                         <ImageView
                             android:id="@+id/imgShowPassword"
@@ -135,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_5sdp"
                     android:text="Forgot Password?"
-                    android:textColor="@color/black" />
+                    android:textSize="@dimen/_13sdp"  />
 
                 <View
                     android:layout_width="match_parent"
@@ -156,65 +162,71 @@
                 android:src="@drawable/login_arrow" />
 
             <LinearLayout
+                android:id="@+id/dummt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:layout_marginRight="@dimen/_15sdp"
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
                 <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                     android:id="@+id/txtHavePasscode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="right"
                     android:padding="@dimen/_4sdp"
                     android:text="If you have a passcode?"
                     android:textColor="@color/red" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/red"></View>
+                    style="@style/customView"
+                    android:background="@color/red" />
             </LinearLayout>
-        </LinearLayout>
-    <!--</ScrollView>-->
-
-    <LinearLayout
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="17dp"
-
-        android:gravity="center_horizontal"
-        android:orientation="horizontal">
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardCornerRadius="@dimen/_20sdp">
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
 
-                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/login_txt_bg"
-                    android:gravity="center"
-                    android:text="Login"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_12sdp" />
-
-                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                    android:id="@+id/btnSignup"
+                <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="Sign Up"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
+                    app:cardCornerRadius="@dimen/_20sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/login_txt_bg"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Login"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                            android:id="@+id/btnSignup"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:padding="@dimen/_10sdp"
+                            android:text="Sign Up"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
             </LinearLayout>
-        </android.support.v7.widget.CardView>
-    </LinearLayout>
-</RelativeLayout>
+        </LinearLayout>
+        <!--</ScrollView>-->
+
+
+    </RelativeLayout>
+</ScrollView>

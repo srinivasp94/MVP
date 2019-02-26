@@ -66,7 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:text="*Scott person Name?(Mention person)"
+            android:text="*Escott person Name?(Mention person)"
             android:textColor="@color/colorPrimaryDark" />
 
         <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
@@ -81,11 +81,8 @@
             android:textSize="@dimen/_12sdp" />
 
         <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/graylight"></View>
+            style="@style/customView"
+            />
 
 
         <LinearLayout
@@ -121,7 +118,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:orientation="horizontal"
-
                         android:weightSum="1">
 
                         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
@@ -130,6 +126,7 @@
                             android:layout_weight="0.95"
                             android:hint="09:30 am"
                             android:textColor="@color/black"
+                            android:id="@+id/tv_kid_out_time"
                             android:textSize="@dimen/_13sdp" />
 
                         <ImageView
@@ -164,6 +161,7 @@
                             android:layout_weight="0.95"
                             android:hint="10:30 am"
                             android:textColor="@color/black"
+                            android:id="@+id/tv_kid_intime"
                             android:textSize="@dimen/_13sdp" />
 
                         <ImageView

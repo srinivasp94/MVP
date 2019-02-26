@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_2sdp"
+    android:orientation="vertical"
+    android:padding="@dimen/_2sdp">
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/edtVehicle"
+        style="@style/customEdittext"
+        android:maxLength="13"
+        android:hint="Vehicle number ( XX 00 XX 0000 )" />
+
+    <View style="@style/customView" />
+</LinearLayout>

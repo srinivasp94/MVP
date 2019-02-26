@@ -39,23 +39,23 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:padding="@dimen/_5sdp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="@dimen/_5sdp">
 
         <LinearLayout
             android:id="@+id/layoutNoKid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_alignParentTop="true"
+            android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="@dimen/_150sdp"
+                android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:src="@drawable/kids_alert"
-                />
+                android:src="@drawable/kids_alert" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="wrap_content"

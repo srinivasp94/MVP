@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -19,6 +20,7 @@ import com.iprismech.alertnikkiresidence.adapters.SchoolBusInfoAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.request.NotifySchoolBus;
 import com.iprismech.alertnikkiresidence.request.SchoolBusReq;
 import com.iprismech.alertnikkiresidence.response.SchoolBusList;
 import com.iprismech.alertnikkiresidence.response.SchoolBusRes;
@@ -36,7 +38,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
     private LinearLayout linearLayout;
     private RelativeLayout relativeLayout;
     private RecyclerView rvSchools;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private TextView txtbusAlerts;
     private Object obj;
     private ArrayList<SchoolBusList> schoolBusLists = new ArrayList<>();
@@ -44,7 +46,8 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
     LinearLayoutManager layoutManager;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
+    private boolean isActive;
 
     @Override
     public void onBackPressed() {
@@ -84,7 +87,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("School Bus");
 
         linearLayout = findViewById(R.id.lLayout);
@@ -96,7 +99,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
         txtbusAlerts = findViewById(R.id.txtBus);
 
         SchoolBusReq req = new SchoolBusReq();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(SchoolBus_MainActivity.this).getAdminID();
         req.userId = SharedPrefsUtils.getInstance(this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
 
@@ -151,7 +154,16 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                                         switch (view.getId()) {
                                             case R.id.rootRelative:
 //                                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_BUS_HISTORY_SCREEN);
-                                                startActivity(new Intent(SchoolBus_MainActivity.this, BushistoryActivity.class));
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("school_bus_id", schoolBusLists.get(position).userSchoolbusId);
+                                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_HISTORY, bundle);
+                                                // startActivity(new Intent(SchoolBus_MainActivity.this, BushistoryActivity.class));
+                                                break;
+                                            case R.id.busSwitch:
+                                                //updateuser_schoolbus_notificationstatus
+                                                Switch aSwitch = view.findViewById(R.id.busSwitch);
+                                                isActive = aSwitch.isChecked();
+                                                callnotifyOnOff(position, isActive);
                                                 break;
                                         }
                                     }
@@ -160,6 +172,9 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                                 linearLayout.setVisibility(View.VISIBLE);
                                 relativeLayout.setVisibility(View.GONE);
                             }
+                            break;
+                        case 4:
+                            busInfoAdapter.notifyDataSetChanged();
                             break;
                     }
                 } else {
@@ -170,5 +185,25 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
             }
 
         }
+    }
+
+    private void callnotifyOnOff(int position, boolean isActive) {
+        NotifySchoolBus req = new NotifySchoolBus();
+        req.userSchoolbusId = schoolBusLists.get(position).userSchoolbusId;
+        if (isActive) {
+
+            req.status = "1";
+            schoolBusLists.get(position).notificationStatus = "1";
+        } else if (isActive == false) {
+            req.status = "0";
+            schoolBusLists.get(position).notificationStatus = "0";
+        }
+        try {
+            obj = Class.forName(NotifySchoolBus.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+        new RetrofitRequester(this).callPostServices(obj, 4, "updateuser_schoolbus_notificationstatus", true);
+
     }
 }

@@ -172,6 +172,7 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
                                     bundle.putString("Key_Name", contactList.get(position).getContactName());
                                     bundle.putString("Key_Number", contactList.get(position).getContactNumber());
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN, bundle);
+                                    finish();
                                     break;
                             }
 

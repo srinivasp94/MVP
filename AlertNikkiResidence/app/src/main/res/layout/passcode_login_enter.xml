@@ -7,52 +7,60 @@
 
     <include layout="@layout/common_header" />
 
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:padding="@dimen/_10sdp"
-        android:text="Lorem LoremLorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
-        android:textColor="@color/black" />
-
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:padding="@dimen/_10sdp"
-        android:text="Passcode"
-        android:textColor="@color/red" />
-
-    <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:background="@null"
-        android:maxLength="7"
-        android:singleLine="true"
-        android:id="@+id/edtPasscode"
-        android:hint="Enter Passcode"
-        android:padding="@dimen/_10sdp"
-        android:textSize="@dimen/_12sdp" />
+        android:layout_height="match_parent">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:background="@color/graylight"
-        android:padding="@dimen/_10sdp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_8sdp"
+            android:orientation="vertical">
 
-    </View>
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="Lorem LoremLorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem Lorem "
+                android:textColor="@color/black" />
 
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_40sdp"
-        android:id="@+id/btnLoginWithPasscode"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/black_corner_bg"
-        android:gravity="center"
-        android:padding="@dimen/_10sdp"
-        android:text="Login"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_16sdp" />
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:padding="@dimen/_10sdp"
+                android:text="Passcode"
+                android:textColor="@color/red" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/edtPasscode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@null"
+                android:hint="Enter Passcode"
+                android:maxLength="7"
+                android:inputType="number"
+                android:padding="@dimen/_10sdp"
+                android:singleLine="true"
+                android:textSize="@dimen/_12sdp" />
+
+            <View style="@style/customView">
+
+            </View>
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/btnLoginWithPasscode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/black_corner_bg"
+                android:gravity="center"
+                android:padding="@dimen/_8sdp"
+                android:text="Login"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

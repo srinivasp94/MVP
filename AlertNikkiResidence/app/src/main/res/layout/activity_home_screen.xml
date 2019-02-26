@@ -20,25 +20,27 @@
 
             <ImageView
                 android:id="@+id/iv_memu"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_50sdp"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_35sdp"
                 android:padding="@dimen/_10sdp"
                 android:src="@drawable/ic_menu" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/tv_flat_building"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="0.9"
+                android:layout_weight="1"
                 android:gravity="center_horizontal"
                 android:text="101, Ayyappa Society"
                 android:textColor="@color/white" />
 
             <ImageView
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_gravity="center"
-                android:padding="@dimen/_8sdp"
+                android:id="@+id/iv_notification"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="@dimen/_5sdp"
                 android:src="@drawable/ic_notofocation" />
         </LinearLayout>
 
@@ -46,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_120sdp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_35sdp"
+            android:elevation="8dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -58,17 +61,19 @@
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
                 app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/_15sdp">
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:cardElevation="@dimen/_5sdp">
 
                 <LinearLayout
                     android:id="@+id/layoutInviteGuests"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elevation="@dimen/_3sdp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_invite_guest" />
@@ -91,6 +96,7 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
+                android:elevation="8dp"
                 app:cardBackgroundColor="@color/transparent"
                 app:cardCornerRadius="@dimen/_15sdp">
 
@@ -98,11 +104,12 @@
                     android:id="@+id/layoutMyStaff"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elevation="@dimen/_8sdp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_staff" />
@@ -112,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="My Staff Alert"
+                        android:text="My Staff "
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -134,19 +141,20 @@
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
-
                 app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/_15sdp">
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:cardElevation="@dimen/_5sdp">
 
                 <LinearLayout
                     android:id="@+id/layoutGateAlerts"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elevation="@dimen/_3sdp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_notify_gate" />
@@ -156,7 +164,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Notify Gate Alert"
+                        android:text="Notify Gate "
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -169,17 +177,19 @@
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
                 app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/_15sdp">
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:cardElevation="@dimen/_5sdp">
 
                 <LinearLayout
                     android:id="@+id/layoutSchoolBus"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elevation="@dimen/_3sdp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_school_bus" />
@@ -189,7 +199,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="School bus Alert"
+                        android:text="School bus "
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -211,17 +221,19 @@
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
                 app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/_15sdp">
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:cardElevation="@dimen/_5sdp">
 
                 <LinearLayout
                     android:id="@+id/layoutKidsGate"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elevation="@dimen/_3sdp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_kids_gate" />
@@ -231,7 +243,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:text="Kids Gate Alert"
+                        android:text="Kids Gate "
                         android:textColor="@color/black" />
                 </LinearLayout>
 
@@ -244,17 +256,19 @@
                 android:layout_marginVertical="@dimen/_10sdp"
                 android:layout_weight="0.4"
                 app:cardBackgroundColor="@color/transparent"
-                app:cardCornerRadius="@dimen/_15sdp">
+                app:cardCornerRadius="@dimen/_15sdp"
+                app:cardElevation="@dimen/_5sdp">
 
                 <LinearLayout
                     android:id="@+id/LayoutLocalServices"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:elevation="@dimen/_3sdp"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_50sdp"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:src="@drawable/ic_local_services" />
@@ -314,9 +328,11 @@
                 android:background="@color/black" />
 
             <ImageView
+                android:id="@+id/imgSOS"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="@dimen/_60sdp"
                 android:src="@drawable/sos_nav" />
+
             <android.support.v7.widget.AppCompatTextView
                 style="@style/DefaultCustomTextView"
                 android:text="Panic Alert"

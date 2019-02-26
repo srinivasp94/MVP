@@ -1,6 +1,7 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,18 +17,18 @@ import com.iprismech.alertnikkiresidence.utilities.Common;
 
 public class OtpVerificationActivity extends BaseAbstractActivity implements View.OnClickListener {
     private PinEntryEditText txt_pin_entry;
-    private TextView verifyotp_btn;
+    private TextView verifyotp_btn, txtResendcode;
     private String otp = "";
     private String sOtp, sName, sMail, sPhone, sPassword, sBlood;
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
+    private TextView txtitle;
 
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+//        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SIGNUP_SCREEN);
         finish();
     }
 
@@ -52,16 +53,18 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
         super.setListenerToViews();
         ApplicationController.getInstance().setContext(context);
         verifyotp_btn.setOnClickListener(this);
+        txtResendcode.setOnClickListener(this);
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
-        txt_pin_entry = findViewById(R.id.txt_pin_entry);
-        verifyotp_btn = findViewById(R.id.verifyotp_btn);
+            txt_pin_entry = findViewById(R.id.txt_pin_entry);
+            txtResendcode = findViewById(R.id.txtResendcode);
+            verifyotp_btn = findViewById(R.id.verifyotp_btn);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("OTP Verification");
         imgClose.setOnClickListener(this);
 
@@ -80,6 +83,25 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                 otp = str.toString();
             }
         });
+
+        CountDownTimer countDownTimer = new CountDownTimer(30000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+
+                txtResendcode.setText(" Resend Code in " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+
+                txtResendcode.setText("Resend OTP");
+
+//                sos
+//                        user_id
+//                user_type
+//                        admin_id
+            }
+        };
+        countDownTimer.start();
     }
 
     @SuppressLint("WrongConstant")
@@ -89,6 +111,11 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
 
             case R.id.imgClose:
                 onBackPressed();
+                break;
+            case R.id.txtResendcode:
+                if (txtResendcode.getText().toString().equalsIgnoreCase("Resend OTP")) {
+
+                }
                 break;
             case R.id.verifyotp_btn:
                 if (otp.length() == 0 || otp.equalsIgnoreCase("")) {
@@ -101,13 +128,14 @@ public class OtpVerificationActivity extends BaseAbstractActivity implements Vie
                     //make service call here
                     //navigate to set resident address screens
                     Bundle bundle = new Bundle();
-                    bundle.putString("Key_otp",otp);
-                    bundle.putString("Key_Name",sName);
-                    bundle.putString("Key_Mobile",sPhone);
-                    bundle.putString("Key_Email",sMail);
-                    bundle.putString("Key_Password",sPassword);
-                    bundle.putString("Key_Blood",sBlood);
-                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN,bundle);
+                    bundle.putString("Key_otp", otp);
+                    bundle.putString("Key_Name", sName);
+                    bundle.putString("Key_Mobile", sPhone);
+                    bundle.putString("Key_Email", sMail);
+                    bundle.putString("Key_Password", sPassword);
+                    bundle.putString("Key_Blood", sBlood);
+                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SELECT_CITY_SCREEN, bundle);
+                    finish();
                 }
 
                 break;

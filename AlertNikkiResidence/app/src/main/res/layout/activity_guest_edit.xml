@@ -9,156 +9,161 @@
 
     <include layout="@layout/common_header" />
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="@dimen/_10sdp">
-
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/DefaultCustomTextView"
-            android:text="*Name"
-            android:textColor="@color/colorPrimary" />
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/edtname"
-            style="@style/customEdittext"
-            android:hint="Enter Name" />
-
-        <View style="@style/customView" />
-
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/DefaultCustomTextView"
-            android:text="*Mobile Number"
-            android:textColor="@color/colorPrimary" />
-
-        <android.support.v7.widget.AppCompatEditText
-            android:id="@+id/edtMobileNumber"
-            style="@style/customEdittext"
-            android:hint="Enter Mobile Number"
-            android:inputType="number"
-            android:maxLength="10" />
-
-        <View style="@style/customView" />
-
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/DefaultCustomTextView"
-            android:text="*Date"
-            android:textColor="@color/colorPrimary" />
-
-        <!--
-                <android.support.v7.widget.AppCompatEditText
-                    android:id="@+id/edtDate"
-                    style="@style/customEdittext"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:hint="Please Select Date" />
-        -->
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtDate"
-                style="@style/customEdittext"
-                android:layout_below="@+id/dummy"
-                android:layout_alignParentLeft="true"
-                android:editable="false"
-                android:focusable="false"
-                android:hint="Please Select Date" />
-
-            <ImageView
-                android:layout_width="@dimen/_25sdp"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_below="@+id/dummy"
-                android:layout_alignParentRight="true"
-                android:foregroundGravity="center"
-                android:padding="@dimen/_2sdp"
-                android:src="@drawable/ic_calendar" />
-
-        </RelativeLayout>
-
-        <View style="@style/customView" />
-
-        <android.support.v7.widget.AppCompatTextView
-            style="@style/DefaultCustomTextView"
-            android:text="If they have any Vehicle? Please enter details(Optional)"
-            android:textColor="@color/colorPrimary" />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
-            android:orientation="horizontal"
-            android:padding="@dimen/_5sdp"
-            android:weightSum="5">
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="*Name"
+                android:textColor="@color/colorPrimary" />
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtVehicle1"
+                android:id="@+id/edtname"
                 style="@style/customEdittext"
-                android:layout_width="0dp"
-                android:layout_marginLeft="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:digits="qwertyuiopasdfghjkzxcvbnmQWERTYUIOPASDFGHJKZXCVBNM "
-                android:background="@drawable/black_border_small"
-                android:gravity="center"
-                android:maxLength="2"
-                android:inputType="textPersonName"
-                android:textAllCaps="true" />
+                android:hint="Enter Name" />
+
+            <View style="@style/customView" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="*Mobile Number"
+                android:textColor="@color/colorPrimary" />
 
             <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtVehicle2"
+                android:id="@+id/edtMobileNumber"
                 style="@style/customEdittext"
-                android:layout_width="0dp"
-                android:layout_marginLeft="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:background="@drawable/black_border_small"
-                android:gravity="center"
+                android:hint="Enter Mobile Number"
                 android:inputType="number"
-                android:maxLength="2" />
+                android:maxLength="12" />
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtVehicle3"
-                style="@style/customEdittext"
-                android:layout_width="0dp"
-                android:layout_marginLeft="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_weight="1"
-                android:background="@drawable/black_border_small"
+            <View style="@style/customView" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="*Date"
+                android:textColor="@color/colorPrimary" />
+
+            <!--
+                    <android.support.v7.widget.AppCompatEditText
+                        android:id="@+id/edtDate"
+                        style="@style/customEdittext"
+                        android:editable="false"
+                        android:focusable="false"
+                        android:hint="Please Select Date" />
+            -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtDate"
+                    style="@style/customEdittext"
+                    android:layout_below="@+id/dummy"
+                    android:layout_alignParentLeft="true"
+                    android:editable="false"
+                    android:focusable="false"
+                    android:hint="Please Select Date" />
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_below="@+id/dummy"
+                    android:layout_alignParentRight="true"
+                    android:foregroundGravity="center"
+                    android:padding="@dimen/_2sdp"
+                    android:src="@drawable/ic_calendar" />
+
+            </RelativeLayout>
+
+            <View style="@style/customView" />
+
+            <android.support.v7.widget.AppCompatTextView
+                style="@style/DefaultCustomTextView"
+                android:text="If they have any Vehicle? Please enter details(Optional)"
+                android:textColor="@color/colorPrimary" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp"
+                android:weightSum="5">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtVehicle1"
+                    style="@style/customEdittext"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/black_border_small"
+                    android:digits="qwertyuiopasdfghjkzxcvbnmQWERTYUIOPASDFGHJKZXCVBNM "
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:maxLength="2"
+                    android:textAllCaps="true" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtVehicle2"
+                    style="@style/customEdittext"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/black_border_small"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtVehicle3"
+                    style="@style/customEdittext"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/black_border_small"
+                    android:digits="qwertyuiopasdfghjkzxcvbnmQWERTYUIOPASDFGHJKZXCVBNM "
+                    android:gravity="center"
+                    android:inputType="textPersonName"
+                    android:maxLength="2"
+                    android:textAllCaps="true" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edtVehicle4"
+                    style="@style/customEdittext"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:layout_weight="2"
+                    android:background="@drawable/black_border_small"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/txtSave"
+                style="@style/DefaultCustomTextView"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:background="@drawable/black_corner_bg"
                 android:gravity="center"
-                android:maxLength="2"
-                android:digits="qwertyuiopasdfghjkzxcvbnmQWERTYUIOPASDFGHJKZXCVBNM "
-                android:inputType="textPersonName"
-                android:textAllCaps="true" />
-
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/edtVehicle4"
-                style="@style/customEdittext"
-                android:layout_width="0dp"
-                android:layout_marginLeft="@dimen/_2sdp"
-                android:layout_marginRight="@dimen/_2sdp"
-                android:layout_weight="2"
-                android:background="@drawable/black_border_small"
-                android:gravity="center"
-                android:inputType="number"
-                android:maxLength="4" />
-
+                android:padding="@dimen/_6sdp"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
         </LinearLayout>
-
-
-        <android.support.v7.widget.AppCompatTextView
-            android:id="@+id/txtSave"
-            style="@style/DefaultCustomTextView"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:background="@drawable/black_corner_bg"
-            android:gravity="center"
-            android:padding="@dimen/_6sdp"
-            android:text="Save"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp" />
-    </LinearLayout>
+    </ScrollView>
 </LinearLayout>

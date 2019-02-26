@@ -2,6 +2,7 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +16,7 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 import com.iprismech.alertnikkiresidence.request.LoginReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
@@ -53,13 +55,14 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
         txtForgotpassword.setOnClickListener(this);
         txtHavepasscode.setOnClickListener(this);
         btnSignup.setOnClickListener(this);
-
     }
 
     @Override
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
+
+        AppPermissions.callPermissionForContact(LoginActivity.this);
 
         utils = new SharedPrefsUtils(LoginActivity.this);
         edtPhone = findViewById(R.id.edt_loginMobile);
@@ -98,14 +101,27 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
                 }
                 break;
             case R.id.imgShowPassword:
+                /*if () {
+                    txt_showpass.setText("Hide");
+                    edtPassword.setTransformationMethod(null);
+                } else if () {
+
+                    txt_showpass.setText("Show");
+                    edtPassword.setTransformationMethod(new PasswordTransformationMethod());
+                }*/
+                edtPassword.setTransformationMethod(new PasswordTransformationMethod());
                 break;
             case R.id.txtForgotpassword:
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FORGOT_PASSWORD_SCREEN);
+                finish();
                 break;
             case R.id.txtHavePasscode:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PASSCODE_SCREEN);
+                finish();
                 break;
             case R.id.btnSignup:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SIGNUP_SCREEN);
+                finish();
                 break;
         }
     }
@@ -138,10 +154,11 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
                                 String prefBuilding = responseObj.optString("building_id");
                                 String prefUserType = responseObj.optString("user_type");
 
-                                utils.createUserSession(userid, prefPhone, prefEmail
-                                        , prefSociety, prefCity, prefFlat, prefBuilding, prefUserType);
+
+                                utils.createUserSession(userid, prefPhone, prefEmail, prefSociety, prefCity, prefFlat, prefBuilding, prefUserType);
 
                                 utils.setString(SharedPrefsUtils.KEY_NAME, responseObj.optString("name"));
+                                utils.setString(SharedPrefsUtils.KEY_ADMIN_ID, responseObj.optString("admin_id"));
                                 utils.setString(SharedPrefsUtils.KEY_SOCIETY_NAME, responseObj.optString("society_name"));
                                 utils.setString(SharedPrefsUtils.KEY_BUILDING_NAME, responseObj.optString("building_name"));
                                 utils.setString(SharedPrefsUtils.KEY_FLAT_NAME, responseObj.optString("flat_name"));
@@ -149,15 +166,18 @@ public class LoginActivity extends BaseAbstractActivity implements View.OnClickL
                                 utils.setString(SharedPrefsUtils.KEY_PROFILE_PIC, responseObj.optString("image"));
                                 utils.setString(SharedPrefsUtils.KEY_QRCODE, responseObj.optString("qrcode"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                                finish();
                             } else if (responseObj.optInt("user_type") == 2) {
                                 //Family Member
                                 utils.setString(SharedPrefsUtils.KEY_ID, responseObj.optString("user_id"));
+                                utils.setString(SharedPrefsUtils.KEY_ADMIN_ID, responseObj.optString("admin_id"));
                                 utils.setString(SharedPrefsUtils.KEY_PASSCODE, responseObj.optString("passcode"));
                                 utils.setString(SharedPrefsUtils.KEY_NAME, responseObj.optString("name"));
                                 utils.setString(SharedPrefsUtils.KEY_PHONE, responseObj.optString("mobile"));
                                 utils.setString(SharedPrefsUtils.KEY_EMAIL, responseObj.optString("email_id"));
                                 utils.setString(SharedPrefsUtils.KEY_USER_TYPE, responseObj.optString("user_type"));
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
+                                finish();
                             }
 
                             break;

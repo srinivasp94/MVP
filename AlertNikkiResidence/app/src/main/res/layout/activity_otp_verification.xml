@@ -1,117 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <include layout="@layout/common_header" />
 
-    <ImageView
-        android:id="@+id/mobile_icon"
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_80sdp"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_40sdp"
-        android:src="@drawable/dummy" />
-
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:id="@+id/txt_verification"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/mobile_icon"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:gravity="center"
-        android:text="Verification"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_15sdp" />
+        android:layout_height="match_parent">
 
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:id="@+id/display_txt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:gravity="center"
-        android:paddingLeft="@dimen/_14sdp"
-        android:paddingRight="@dimen/_14sdp"
-        android:text="@string/otp_text"
-        android:textSize="@dimen/_12sdp" />
-    <!--<com.github.glomadrian.codeinputlib.CodeInput-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:id="@+id/pairing"-->
-    <!--/>-->
-<!--
-    <RelativeLayout
-        android:id="@+id/otp_rec"
-        android:layout_width="@dimen/_180sdp"
-        android:layout_height="@dimen/_45sdp"
-        android:layout_below="@id/display_txt"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_15sdp"
-        android:background="@color/graylight">-->
-        <com.alimuzaffar.lib.pin.PinEntryEditText
-            android:id="@+id/txt_pin_entry"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:cursorVisible="false"
-            android:digits="1234567890"
-            android:inputType="number"
-            android:maxLength="6"
-            android:textIsSelectable="false"
-            android:textSize="@dimen/_14sdp"
-            android:padding="@dimen/_5sdp"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_below="@id/display_txt"
-            android:visibility="visible"
-            app:pinLineColors="@color/pin_line_colors" />
-
-
-    <!--</RelativeLayout>-->
-
-    <LinearLayout
-        android:layout_marginLeft="@dimen/_30sdp"
-        android:layout_marginRight="@dimen/_30sdp"
-        android:id="@+id/linear_verify"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_pin_entry"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginTop="@dimen/_25sdp"
-        android:background="@drawable/black_corner_bg">
-
-        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-            android:id="@+id/verifyotp_btn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Verify"
-            android:padding="@dimen/_8sdp"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_15sdp" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/mobile_icon"
+                android:layout_width="@dimen/_90sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:src="@drawable/forgot_password" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txt_verification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mobile_icon"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="Verification"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp" />
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/display_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:gravity="center"
+                android:paddingLeft="@dimen/_14sdp"
+                android:paddingRight="@dimen/_14sdp"
+                android:text="@string/otp_text"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.alimuzaffar.lib.pin.PinEntryEditText
+                android:id="@+id/txt_pin_entry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/display_txt"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:background="@null"
+                android:cursorVisible="false"
+                android:digits="1234567890"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="6"
+                android:padding="@dimen/_5sdp"
+                android:textIsSelectable="false"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="visible"
+                app:pinLineColors="@color/pin_line_colors" />
 
 
-    </LinearLayout>
+            <!--</RelativeLayout>-->
 
-    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-        android:id="@+id/txtResendcode"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_verify"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:gravity="center"
-        android:text="Resend Code in 00:20"
-        android:textColor="@color/black" />
+            <LinearLayout
+                android:id="@+id/linear_verify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt_pin_entry"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_30sdp"
+                android:background="@drawable/black_corner_bg">
+
+                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                    android:id="@+id/verifyotp_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/_8sdp"
+                    android:text="Verify"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_15sdp" />
+
+            </LinearLayout>
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtResendcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/linear_verify"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:text="Resend Code in 00:20"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

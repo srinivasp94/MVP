@@ -38,7 +38,7 @@ public class BusRoutesAdapter extends RecyclerView.Adapter<BusRoutesAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_select_city, null);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_select_bus_route, null);
         return new ViewHolder(view);
     }
 
@@ -47,14 +47,14 @@ public class BusRoutesAdapter extends RecyclerView.Adapter<BusRoutesAdapter.View
         final BusRouteList model = routeLists.get(i);
         viewHolder.textView.setText(model.route);
 
-        viewHolder.itemView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
-        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
+//        viewHolder.itemView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
+/*        viewHolder.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 model.setSelected(!model.isSelected());
                 viewHolder.itemView.setBackgroundColor(model.isSelected() ? Color.CYAN : Color.WHITE);
             }
-        });
+        });*/
     }
 
     @Override

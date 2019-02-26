@@ -14,7 +14,6 @@ import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationContro
 import com.iprismech.alertnikkiresidence.pojo.GetDigitalInterComPojo;
 import com.iprismech.alertnikkiresidence.request.DigitalIntercomRequest;
 import com.iprismech.alertnikkiresidence.request.DigitalntercomSettingsRequest;
-import com.iprismech.alertnikkiresidence.request.StandardMaidTimingsRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
@@ -70,11 +69,14 @@ public class DigitalInterComSettingsActivity extends BaseAbstractActivity implem
         tv_save = findViewById(R.id.save_intercom);
 
 
-        DigitalIntercomRequest req = new DigitalIntercomRequest();
-        req.digital_intercom_id = "2";
+        DigitalIntercomRequest digital_intercom = new DigitalIntercomRequest();
+        digital_intercom.digital_intercom_id = "2";
+        digital_intercom.adminId = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getAdminID();
+        digital_intercom.userId = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getId();
+        digital_intercom.userType = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getuserType();
 
         try {
-            obj = Class.forName(DigitalIntercomRequest.class.getName()).cast(req);
+            obj = Class.forName(DigitalIntercomRequest.class.getName()).cast(digital_intercom);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,11 +86,11 @@ public class DigitalInterComSettingsActivity extends BaseAbstractActivity implem
             @Override
             public void onClick(View v) {
                 DigitalntercomSettingsRequest req = new DigitalntercomSettingsRequest();
-                req.adminId = "2";
+                req.adminId = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getAdminID();
                 req.userId = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getId();
                 req.userType = SharedPrefsUtils.getInstance(DigitalInterComSettingsActivity.this).getuserType();
                 req.primaryNumber = et_primary_number.getText().toString();
-                req.secondaryNumber = et_primary_number.getText().toString();
+                req.secondaryNumber = et_sec_number.getText().toString();
 
                 try {
                     obj = Class.forName(DigitalntercomSettingsRequest.class.getName()).cast(req);

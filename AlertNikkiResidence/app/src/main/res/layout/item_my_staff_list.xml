@@ -35,13 +35,30 @@
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
-                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                    android:id="@+id/staff_name"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Peter Cruiser"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_13sdp" />
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                        android:id="@+id/staff_name"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.9"
+                        android:text="Peter Cruiser"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <Switch
+                        android:id="@+id/switch_noti"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_5sdp"
+                        android:textOff="On"
+                        android:textOn="Off" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"

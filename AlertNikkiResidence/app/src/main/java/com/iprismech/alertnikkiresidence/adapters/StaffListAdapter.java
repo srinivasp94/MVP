@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -60,6 +61,12 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         } else {
             viewHolder.rating_staff.setRating(Float.parseFloat(myStaff_maids_list_pojo.getResponse().get(i).getRating()));
         }
+        if (myStaff_maids_list_pojo.getResponse().get(i).getNotification_status().equalsIgnoreCase("0")) {
+//            0 as FALSE and 1 as TRUE
+            viewHolder.switch_noti.setChecked(false);
+        } else {
+            viewHolder.switch_noti.setChecked(true);
+        }
         //  viewHolder.rating_staff.setRating(Float.parseFloat("4.5"));
 
 
@@ -70,11 +77,12 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         return myStaff_maids_list_pojo.getResponse().size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         LinearLayout ll_make_call, ll_delete, ll_send_gate_pass, ll_item_staff_list;
         TextView tv_no_of_flats, tv_staff_name, tv_maid_type, tv_staff_rating;
         RatingBar rating_staff;
+        Switch switch_noti;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +91,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             ll_send_gate_pass = itemView.findViewById(R.id.ll_send_gate_pass);
             ll_delete = itemView.findViewById(R.id.ll_delete_maid);
             ll_item_staff_list = itemView.findViewById(R.id.ll_item_staff_list);
+            switch_noti = itemView.findViewById(R.id.switch_noti);
 
 
             tv_no_of_flats = itemView.findViewById(R.id.no_flats);
@@ -91,6 +100,10 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             tv_staff_rating = itemView.findViewById(R.id.staff_rating);
             rating_staff = itemView.findViewById(R.id.rating_staff_bar);
 
+            switch_noti.setOnClickListener(this);
+            ll_make_call.setOnClickListener(this);
+            ll_send_gate_pass.setOnClickListener(this);
+            ll_delete.setOnClickListener(this);
 
             ll_item_staff_list.setOnClickListener(new View.OnClickListener() {
                 @SuppressLint("WrongConstant")
@@ -102,32 +115,14 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STAFF_PROFILE, bundle);
                 }
             });
-            ll_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListner != null) {
-                        mListner.onItemClick(v, getAdapterPosition());
-//                        myStaff_maids_list_pojo.getResponse().remove(getAdapterPosition());
-//                        notifyDataSetChanged();
-                    }
-                }
-            });
-            ll_make_call.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListner != null) {
-                        mListner.onItemClick(v, getAdapterPosition());
-                    }
-                }
-            });
-            ll_send_gate_pass.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mListner != null) {
-                        mListner.onItemClick(v, getAdapterPosition());
-                    }
-                }
-            });
+
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (mListner != null) {
+                mListner.onItemClick(v, getAdapterPosition());
+            }
         }
     }
 }

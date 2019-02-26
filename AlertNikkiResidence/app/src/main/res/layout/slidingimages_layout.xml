@@ -6,7 +6,7 @@
     <ImageView
         android:id="@+id/images_intro"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_300sdp"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:scaleType="centerInside" />
 
@@ -19,6 +19,7 @@
         android:padding="@dimen/_5sdp"
         android:text="@string/app_name"
         android:textColor="@color/colorPrimary"
+        android:visibility="gone"
         android:textSize="@dimen/_15sdp" />
 
     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
@@ -29,6 +30,7 @@
         android:padding="@dimen/_5sdp"
         android:text="@string/app_name"
         android:layout_alignParentBottom="true"
+        android:visibility="gone"
         android:textSize="@dimen/_13sdp" />
 
 </RelativeLayout>

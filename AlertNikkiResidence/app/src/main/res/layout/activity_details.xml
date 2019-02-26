@@ -8,41 +8,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/contactus_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_70sdp"
-            android:background="#e20d2d">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_gravity="center"
-                    android:padding="@dimen/_8sdp"
-                    android:src="@drawable/bg_close" />
-
-                <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Details"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14sdp" />
-            </LinearLayout>
-        </android.support.v7.widget.Toolbar>
+        <include layout="@layout/common_header" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_margin="@dimen/_12sdp"
             android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
             android:weightSum="1">
 
             <ImageView
@@ -51,6 +24,7 @@
                 android:src="@drawable/location" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtCity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
@@ -59,6 +33,7 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgCloseCity"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
@@ -68,10 +43,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_margin="@dimen/_12sdp"
             android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
             android:weightSum="1">
 
             <ImageView
@@ -80,6 +54,7 @@
                 android:src="@drawable/buildin_scocity" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtSociety"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
@@ -88,6 +63,7 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgClosesociety"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
@@ -97,10 +73,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_margin="@dimen/_12sdp"
             android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
             android:weightSum="1">
 
             <ImageView
@@ -109,6 +84,7 @@
                 android:src="@drawable/building" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtBlock"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
@@ -117,6 +93,7 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgCloseVlock"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
@@ -126,10 +103,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:padding="@dimen/_5sdp"
+            android:layout_margin="@dimen/_12sdp"
             android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
             android:weightSum="1">
 
             <ImageView
@@ -138,6 +114,7 @@
                 android:src="@drawable/home_small" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtFlat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.9"
@@ -146,6 +123,7 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/imgCloseFlat"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp"
                 android:padding="@dimen/_2sdp"
@@ -155,10 +133,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_margin="@dimen/_12sdp"
             android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
             android:weightSum="1">
 
             <ImageView
@@ -176,17 +153,27 @@
 
         </LinearLayout>
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_ownTypes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp">
+
+        </android.support.v7.widget.RecyclerView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:padding="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:gravity="center"
             android:orientation="horizontal"
+            android:padding="@dimen/_5sdp"
+            android:visibility="gone"
             android:weightSum="1">
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtOwner"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -199,25 +186,27 @@
                 android:textColor="@color/black" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txttenent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginRight="@dimen/_10sdp"
                 android:layout_weight="0.3"
-                android:padding="@dimen/_5sdp"
                 android:background="@drawable/black_border"
                 android:gravity="center"
+                android:padding="@dimen/_5sdp"
                 android:text="Tenant"
                 android:textColor="@color/black" />
 
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:id="@+id/txtMultiTenent"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_weight="0.3"
-                android:padding="@dimen/_5sdp"
                 android:background="@drawable/black_border"
                 android:gravity="center"
+                android:padding="@dimen/_5sdp"
                 android:text="Multi-Tenant"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -229,27 +218,32 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/checkboxPrivacy"
                 android:layout_width="@dimen/_20sdp"
                 android:layout_height="@dimen/_20sdp" />
+
             <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_5sdp"
-                android:textSize="@dimen/_12sdp"
-                android:text="Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum Lorem Ipusum "/>
+                android:text="@string/terms"
+                android:textSize="@dimen/_12sdp" />
         </LinearLayout>
     </LinearLayout>
 
     <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+        android:id="@+id/btn_add"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
         android:layout_marginBottom="6dp"
-        android:textSize="@dimen/_14sdp"
         android:background="@drawable/black_corner_bg"
         android:gravity="center"
         android:paddingBottom="@dimen/_5sdp"
         android:text="Add Now"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
 </RelativeLayout>

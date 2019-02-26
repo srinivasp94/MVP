@@ -49,6 +49,11 @@ public class SchoolBusInfoAdapter extends RecyclerView.Adapter<SchoolBusInfoAdap
         viewHolder.txtLocation.setText(model.address);
         viewHolder.txtIntime.setText(model.entryTime);
         viewHolder.txtOuttime.setText(model.exitTime);
+        if (model.notificationStatus.equalsIgnoreCase("0"))
+            viewHolder.busSwitch.setChecked(false);
+        else if (model.notificationStatus.equalsIgnoreCase("1"))
+            viewHolder.busSwitch.setChecked(true);
+
     }
 
     @Override
@@ -68,14 +73,11 @@ public class SchoolBusInfoAdapter extends RecyclerView.Adapter<SchoolBusInfoAdap
             txtIntime = itemView.findViewById(R.id.txtIntime);
             txtOuttime = itemView.findViewById(R.id.txtOuttime);
             busSwitch = itemView.findViewById(R.id.busSwitch);
-
             rootRelative = itemView.findViewById(R.id.rootRelative);
-
             busSwitch.setOnClickListener(this);
 //            itemView.setOnClickListener(this);
             rootRelative.setOnClickListener(this);
         }
-
         @Override
         public void onClick(View v) {
             if (mListner != null) {

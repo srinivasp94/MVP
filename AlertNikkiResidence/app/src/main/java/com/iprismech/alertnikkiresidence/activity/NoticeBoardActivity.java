@@ -15,6 +15,7 @@ import com.iprismech.alertnikkiresidence.request.NoticeBoardRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -63,7 +64,7 @@ public class NoticeBoardActivity extends BaseAbstractActivity implements View.On
 
         txtitle = findViewById(R.id.txtitle);
         imgClose= findViewById(R.id.imgClose);
-        txtitle.setText("NOtice Board");
+        txtitle.setText("Notice Board");
         imgClose.setOnClickListener(this);
 
 
@@ -74,7 +75,7 @@ public class NoticeBoardActivity extends BaseAbstractActivity implements View.On
 
 
         NoticeBoardRequest req = new NoticeBoardRequest();
-        req.adminId = "2";
+        req.adminId =  SharedPrefsUtils.getInstance(NoticeBoardActivity.this).getAdminID();
 
         //  req.userId = 22;
         try {

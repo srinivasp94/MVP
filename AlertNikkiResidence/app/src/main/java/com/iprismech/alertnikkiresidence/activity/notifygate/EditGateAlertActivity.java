@@ -1,5 +1,6 @@
 package com.iprismech.alertnikkiresidence.activity.notifygate;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.request.EditGateReq;
 import com.iprismech.alertnikkiresidence.request.NotifyGateAdd;
@@ -97,16 +99,14 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                     Common.showToast(EditGateAlertActivity.this, "Enter Name");
                 } else if (strPhone.length() == 0 || strPhone.length() < 10) {
                     Common.showToast(EditGateAlertActivity.this, "Enter Mobile");
-                } else if (strValidTill.length() == 0) {
-                    Common.showToast(EditGateAlertActivity.this, "Enter Valid till ");
                 } else if (screen.equalsIgnoreCase("2")) {
                     //edit_notify_gate_alert
                     EditGateReq req = new EditGateReq();
                     req.gateAlertId = gateId;
                     req.serviceId = serviceId;
-                    req.name = strName;
+                    req.name = edtPersonName.getText().toString();
                     req.mobile = strPhone;
-                    req.vaildTo = strValidTill;
+                    req.vaildTo = "3";
 
                     try {
                         obj = Class.forName(EditGateReq.class.getName()).cast(req);
@@ -117,11 +117,11 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                 } else if (screen.equalsIgnoreCase("1")) {
                     //notify_gate_alert
                     NotifyGateAdd req = new NotifyGateAdd();
-                    req.adminId = "2";
+                    req.adminId = SharedPrefsUtils.getInstance(EditGateAlertActivity.this).getAdminID();
                     req.userId = SharedPrefsUtils.getInstance(EditGateAlertActivity.this).getId();
                     req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
                     req.serviceId = serviceId;
-                    req.name = strName;
+                    req.name = edtPersonName.getText().toString();
                     req.mobile = strPhone;
                     req.vaildTo = strValidTill;
 
@@ -141,6 +141,7 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
     }
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectResponse.equals("")) {
@@ -153,9 +154,11 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
                         case 1:
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
                             finish();
                             break;
                         case 2:
+                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
                             finish();
                             break;
                     }
@@ -169,9 +172,11 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
         }
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
         finish();
     }
 }

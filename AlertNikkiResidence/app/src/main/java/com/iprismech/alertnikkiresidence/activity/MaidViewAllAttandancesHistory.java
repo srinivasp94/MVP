@@ -15,6 +15,7 @@ import com.iprismech.alertnikkiresidence.request.MaidAttendanceHistoryReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -30,7 +31,7 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
 
     private ImageView imgClose;
     private TextView txtitle;
-
+    private String maid_id;
 
 
     @Override
@@ -38,18 +39,14 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
         super.onBackPressed();
         finish();
     }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-
             case R.id.imgClose:
                 onBackPressed();
                 break;
         }
     }
-
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_maid_view_all_history, null);
@@ -74,11 +71,11 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
                     switch (requestId) {
                         case 1:
                             maidAttendanceHistoryPojo = gson.fromJson(jsonString, MaidAttendanceHistoryPojo.class);
-                                viewAllMaidHistoryAdapter = new ViewAllMaidHistoryAdapter(MaidViewAllAttandancesHistory.this, maidAttendanceHistoryPojo, postion,from_case);
-                                rview_viewall.setAdapter(viewAllMaidHistoryAdapter);
-                                viewAllMaidHistoryAdapter.notifyDataSetChanged();
+                            viewAllMaidHistoryAdapter = new ViewAllMaidHistoryAdapter(MaidViewAllAttandancesHistory.this, maidAttendanceHistoryPojo, postion, from_case);
+                            rview_viewall.setAdapter(viewAllMaidHistoryAdapter);
+                            viewAllMaidHistoryAdapter.notifyDataSetChanged();
 
-                          //  else if(from_case.equalsIgnoreCase("Weekly"))
+                            //  else if(from_case.equalsIgnoreCase("Weekly"))
 
 
                             break;
@@ -98,9 +95,10 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
         super.initializeViews();
         from_case = getIntent().getExtras().getString("case");
         postion = getIntent().getExtras().getInt("position");
+        maid_id = getIntent().getExtras().getString("maid_id");
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Maids");
         imgClose.setOnClickListener(this);
 
@@ -111,9 +109,12 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
 
         MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
 
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(MaidViewAllAttandancesHistory.this).getAdminID();
         // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
-        req.maidId = "1";
+//        req.maidId = "1";
+//        req.adminId = "2";
+        req.maidId = maid_id;
+        //req.maidId = "1";
 
 
         //  req.userId = 22;

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
@@ -50,6 +51,11 @@ public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHo
     public void onBindViewHolder(@NonNull KidsListAdapter.ViewHolder viewHolder, int i) {
         viewHolder.kid_name.setText(kidsListPojo.getResponse().get(i).getKid_name());
         viewHolder.kid_purpose.setText(kidsListPojo.getResponse().get(i).getPurpose());
+        if (kidsListPojo.getResponse().get(i).getNotification_status().equalsIgnoreCase("0")) {
+            viewHolder.switch_kids_noti.setChecked(false);
+        } else if (kidsListPojo.getResponse().get(i).getNotification_status().equalsIgnoreCase("1")) {
+            viewHolder.switch_kids_noti.setChecked(true);
+        }
     }
 
     @Override
@@ -61,6 +67,7 @@ public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         LinearLayout ll_edit_kid, ll_delete, ll_send_gate_pass;
         TextView kid_name, kid_purpose;
+        Switch switch_kids_noti;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +77,8 @@ public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHo
 
             kid_name = itemView.findViewById(R.id.kid_name);
             kid_purpose = itemView.findViewById(R.id.purpose_kid);
+            switch_kids_noti = itemView.findViewById(R.id.switch_kids_noti);
+            switch_kids_noti.setOnClickListener(this);
 
             ll_delete.setOnClickListener(this);
             ll_edit_kid.setOnClickListener(this);
@@ -92,6 +101,11 @@ public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHo
                         Bundle bundle = new Bundle();
                         bundle.putString("screen", "Edit Kid");
                         bundle.putString("kid_id", kidsListPojo.getResponse().get(getAdapterPosition()).getId());
+                        bundle.putString("kid_name", kidsListPojo.getResponse().get(getAdapterPosition()).getKid_name());
+                        bundle.putString("kid_purpose", kidsListPojo.getResponse().get(getAdapterPosition()).getPurpose());
+                        bundle.putString("days",kidsListPojo.getResponse().get(getAdapterPosition()).getFull_days());
+                        bundle.putString("intime",kidsListPojo.getResponse().get(getAdapterPosition()).getIn_time());
+                        bundle.putString("outtime",kidsListPojo.getResponse().get(getAdapterPosition()).getOut_time());
                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_KID_SCREEN, bundle);
 
                     }

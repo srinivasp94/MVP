@@ -2,7 +2,6 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,26 +28,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.activity.profile.ProfileActivity;
 import com.iprismech.alertnikkiresidence.adapters.KidsListAdapter;
 import com.iprismech.alertnikkiresidence.adapters.StaffListAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.KidsListPojo;
-import com.iprismech.alertnikkiresidence.pojo.MyStaff_Maids_List_Pojo;
 import com.iprismech.alertnikkiresidence.request.DeleteKidRequest;
-import com.iprismech.alertnikkiresidence.request.DeleteStaffRequest;
 import com.iprismech.alertnikkiresidence.request.KidGatePassRequest;
 import com.iprismech.alertnikkiresidence.request.KidsListRequest;
-import com.iprismech.alertnikkiresidence.request.StaffRequest;
+import com.iprismech.alertnikkiresidence.request.NotifyKid;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
@@ -76,9 +75,8 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
     private String mTitle, base64profile = "";
 
     private ImageView imgClose;
-    private 	TextView txtitle;
-
-
+    private TextView txtitle;
+    private boolean isActive;
 
 
     @Override
@@ -122,7 +120,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
         ApplicationController.getInstance().setContext(context);
 
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Kids Gate");
 
 
@@ -135,7 +133,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
 
 
         KidsListRequest req = new KidsListRequest();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(KidsGateAlertActivity.this).getAdminID();
         req.user_id = SharedPrefsUtils.getInstance(KidsGateAlertActivity.this).getId();
         req.user_type = SharedPrefsUtils.getInstance(KidsGateAlertActivity.this).getuserType();
         // req.user_id = "1";
@@ -189,14 +187,29 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                     removed_postion = position;
                                     switch (view.getId()) {
                                         case R.id.ll_delete_kid:
-                                            DeleteKidRequest deleteKidRequest = new DeleteKidRequest();
-                                            deleteKidRequest.user_kid_id = kidsListPojo.getResponse().get(position).getId();
-                                            try {
-                                                obj = Class.forName(DeleteKidRequest.class.getName()).cast(deleteKidRequest);
-                                            } catch (Exception e) {
-                                                e.printStackTrace();
-                                            }
-                                            new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_kid", true);
+
+
+                                            AlertUtils.showSimpleAlert(KidsGateAlertActivity.this, "Do you want to delete kid Gate pass", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
+                                                @Override
+                                                public void onpositiveclick() {
+                                                    DeleteKidRequest deleteKidRequest = new DeleteKidRequest();
+                                                    deleteKidRequest.user_kid_id = kidsListPojo.getResponse().get(removed_postion).getId();
+                                                    try {
+                                                        obj = Class.forName(DeleteKidRequest.class.getName()).cast(deleteKidRequest);
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                    new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_kid", true);
+
+                                                }
+
+                                                @Override
+                                                public void onNegativeClick() {
+
+                                                }
+                                            });
+
+
 
                                             break;
                                         case R.id.ll_send_gate_pass_kid:
@@ -209,7 +222,8 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                             alertDialog.setCancelable(true);
                                             final EditText kid_name, scott_name;
-                                            TextView btn_gate_pass_send_notify;
+                                            String kid_out_time, kid_intime;
+                                            TextView btn_gate_pass_send_notify, tv_kid_out_time, tv_kid_intime;
                                             ImageView close;
                                             LinearLayout ll_upload_scott_img;
 
@@ -217,9 +231,17 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                             scott_name = view1.findViewById(R.id.gate_pass_scott_name);
                                             scott_image = view1.findViewById(R.id.iv_scott_image);
                                             close = view1.findViewById(R.id.gate_pass_iv_close);
+                                            tv_kid_out_time = view1.findViewById(R.id.tv_kid_out_time);
+                                            tv_kid_intime = view1.findViewById(R.id.tv_kid_intime);
                                             ll_upload_scott_img = view1.findViewById(R.id.ll_upload_image);
 
                                             kid_name.setText(kidsListPojo.getResponse().get(position).getKid_name());
+                                            kid_out_time = kidsListPojo.getResponse().get(position).getOut_time();
+                                            kid_intime = kidsListPojo.getResponse().get(position).getIn_time();
+
+                                            tv_kid_out_time.setText(kid_out_time + "");
+                                            tv_kid_intime.setText(kid_intime + "");
+
                                             btn_gate_pass_send_notify = view1.findViewById(R.id.btn_gate_pass_send_notify);
 
 
@@ -263,6 +285,11 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                             alertDialog.show();
 
                                             break;
+                                        case R.id.switch_kids_noti:
+                                            Switch aSwitch = view.findViewById(R.id.switch_kids_noti);
+                                            isActive = aSwitch.isChecked();
+                                            callNotifyKidAlertsWS(position, isActive);
+                                            break;
                                     }
 
                                 }
@@ -278,6 +305,9 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                         case 3:
                             Toast.makeText(KidsGateAlertActivity.this, "Gate Pass Sent Successfully", Toast.LENGTH_SHORT).show();
                             break;
+                        case 4:
+                            kidsListAdapter.notifyDataSetChanged();
+                            break;
                     }
                 } else {
                     Common.showToast(KidsGateAlertActivity.this, jsonObject.optString("message"));
@@ -290,13 +320,30 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
 
     }
 
+    private void callNotifyKidAlertsWS(int position, boolean isActive) {
+        NotifyKid req = new NotifyKid();
+        req.userKidId = kidsListPojo.getResponse().get(position).getId();
+        if (isActive) {
+
+            req.status = "1";
+            kidsListPojo.getResponse().get(position).setNotification_status("1");
+        } else if (isActive == false) {
+            req.status = "0";
+            kidsListPojo.getResponse().get(position).setNotification_status("0");
+        }
+        try {
+            obj = Class.forName(NotifyKid.class.getName()).cast(req);
+        } catch (Exception e) {
+
+        }
+        new RetrofitRequester(this).callPostServices(obj, 4, "update_notification_kid_status", true);
+    }
+
     private void showPictureDialog(final String base64) {
         android.app.AlertDialog.Builder pictureDialog = new android.app.AlertDialog.Builder(context);
         pictureDialog.setTitle("Select Action");
-//        String[] pictureDialogItems = {
-//                "Select photo from gallery",
-//                "Capture photo from camera"};
         String[] pictureDialogItems = {
+                "Select photo from gallery",
                 "Capture photo from camera"};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
@@ -304,11 +351,10 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                // choosePhotoFromGallary(base64);
-                                takePhotoFromCamera(base64);
+                                choosePhotoFromGallary(base64);
                                 break;
                             case 1:
-                                // takePhotoFromCamera(base64);
+                                takePhotoFromCamera(base64);
                                 break;
                         }
                     }
@@ -316,6 +362,23 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
         pictureDialog.show();
     }
 
+    public void choosePhotoFromGallary(String base64) {
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (ContextCompat.checkSelfPermission(KidsGateAlertActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                    && ContextCompat.checkSelfPermission(KidsGateAlertActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
+                    ContextCompat.checkSelfPermission(KidsGateAlertActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                Log.d("hhhh", "Permissions not granted");
+                // ask for permission
+                ActivityCompat.requestPermissions(KidsGateAlertActivity.this, new String[]{Manifest.permission.CAMERA}, 1);
+            }
+        }
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(Intent.createChooser(galleryIntent, "Select Picture"), GALLERY_DOC);
+
+
+    }
 
     private void takePhotoFromCamera(String base64) {
         if (Build.VERSION.SDK_INT >= 23) {
@@ -343,6 +406,21 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
             return;
+        } else if (requestCode == GALLERY_DOC) {
+            if (data != null) {
+                Uri choosenImage = data.getData();
+                if (choosenImage != null) {
+
+                    Bitmap bp = decodeUri(choosenImage, 200);
+                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                    bp.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
+                    scott_image.setImageBitmap(bp);
+
+                    byte[] byte_arr = bytes.toByteArray();
+                    base64profile = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+
+                }
+            }
         } else if (requestCode == CAMERA_DOC) {
 
             // Variable.img_banner = profile;

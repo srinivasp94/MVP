@@ -1,5 +1,6 @@
 package com.iprismech.alertnikkiresidence.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,11 +13,14 @@ import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.MaidMonthlyAttAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractFragment;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
+import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.MaidAttendanceHistoryPojo;
 import com.iprismech.alertnikkiresidence.request.MaidAttendanceHistoryReq;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikkiresidence.utilities.Common;
+import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 
@@ -26,6 +30,7 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
     private LinearLayoutManager manager;
     MaidAttendanceHistoryPojo maidAttendanceHistoryPojo;
     private Object obj;
+    private String maid_id;
 
     @Override
     public void onClick(View v) {
@@ -42,7 +47,7 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
     protected void initialiseViews() {
         super.initialiseViews();
         Bundle arguments = getArguments();
-        String maid_id = arguments.getString("maid_id");
+        maid_id = arguments.getString("maid_id");
 
         rview_monthly = view.findViewById(R.id.rview_monthly);
         manager = new LinearLayoutManager(getActivity());
@@ -51,7 +56,7 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
 
 
         MaidAttendanceHistoryReq req = new MaidAttendanceHistoryReq();
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(getActivity()).getAdminID();
         // req.userId=SharedPrefsUtils.getInstance(getActivity()).getId();
         req.maidId = maid_id;
 
@@ -94,7 +99,23 @@ public class MaidMonthlyAttendance extends BaseAbstractFragment<Class> implement
                             maidMonthlyAttAdapter = new MaidMonthlyAttAdapter(getActivity(), maidAttendanceHistoryPojo);
                             rview_monthly.setAdapter(maidMonthlyAttAdapter);
                             maidMonthlyAttAdapter.notifyDataSetChanged();
-                            break;
+                            maidMonthlyAttAdapter.setOnItemClickListener(new MaidMonthlyAttAdapter.OnitemClickListener() {
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    switch (view.getId()) {
+                                        case R.id.tv_view_all:
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString("case", "Monthly");
+                                            bundle.putInt("position", position);
+                                            bundle.putString("maid_id", maid_id);
+                                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_ALL_MAID_ATTENDANCE_HISTORY_SCREEN, bundle);
+
+                                            break;
+                                    }
+
+                                }
+                            });
                     }
                 } else {
                     Common.showToast(getActivity(), jsonObject.optString("message"));

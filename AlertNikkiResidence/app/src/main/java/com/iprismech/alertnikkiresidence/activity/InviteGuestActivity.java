@@ -32,6 +32,7 @@ import com.iprismech.alertnikkiresidence.response.Guests;
 import com.iprismech.alertnikkiresidence.response.GuestsList;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.AppPermissions;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
@@ -44,7 +45,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     private TextView txtInviteGuests;
     private RelativeLayout RlGuestsLists;
     private LinearLayout layoutNoGuests;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private RecyclerView rvGuestsLists;
     private LinearLayoutManager manager;
     private boolean iscontactsGranted;
@@ -90,7 +91,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
     protected void initializeViews() {
         super.initializeViews();
         ApplicationController.getInstance().setContext(context);
-
+        AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Invite Guest");
@@ -108,7 +109,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
 
         GuestsReq req = new GuestsReq();
 
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
         req.otpSentType = "1";
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);
@@ -162,19 +163,32 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                             Guests response = Common.getSpecificDataObject(objectResponse, Guests.class);
                             guestsLists = (ArrayList<GuestsList>) response.response;
                             if (guestsLists != null && guestsLists.size() > 0) {
+                                txtitle.setText("Invite Guest" + "(" + guestsLists.size() + ")");
                                 layoutNoGuests.setVisibility(View.GONE);
                                 RlGuestsLists.setVisibility(View.VISIBLE);
                                 guestsAdapter = new AllGuestsAdapter(InviteGuestActivity.this, guestsLists);
                                 rvGuestsLists.setAdapter(guestsAdapter);
                                 guestsAdapter.setOnItemClickListener(new AllGuestsAdapter.OnitemClickListener() {
                                     @Override
-                                    public void onItemClick(View view, int position) {
+                                    public void onItemClick(View view, final int position) {
                                         switch (view.getId()) {
                                             case R.id.imgCallGuest:
                                                 callToGuest(position);
                                                 break;
                                             case R.id.imgDeleteGuest:
-                                                callDeleteWS(position);
+                                                AlertUtils.showSimpleAlert(InviteGuestActivity.this, "Are you sure want to  delete.?",
+                                                        "Confirmation", "Delete", "Cancel", new AlertUtils.onClicklistners() {
+                                                            @Override
+                                                            public void onpositiveclick() {
+                                                                callDeleteWS(position);
+                                                            }
+
+                                                            @Override
+                                                            public void onNegativeClick() {
+
+                                                            }
+                                                        });
+
                                                 break;
                                             case R.id.imgGuestEdit:
                                                 callEditGuestDetailsWS(position);
@@ -301,7 +315,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         super.onResume();
         GuestsReq req = new GuestsReq();
 
-        req.adminId = "2";
+        req.adminId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getAdminID();
         req.otpSentType = "1";
         req.userId = SharedPrefsUtils.getInstance(InviteGuestActivity.this).getId();
         req.userType = SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE);

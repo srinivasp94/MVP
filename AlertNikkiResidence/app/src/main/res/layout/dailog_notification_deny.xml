@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/white_bg_corner"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/top_corner_pimary_bg"
+            android:gravity="center"
+
+            >
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_20sdp"
+                android:text="Reason for DENY   "
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_130sdp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@drawable/bg_grey">
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
+                android:id="@+id/et_comment_deny"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="start"
+                android:background="@null"
+                android:textSize="@dimen/_10sdp"
+                android:gravity="start"
+                android:hint="Write Text here" />
+        </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="@dimen/_10sdp"
+
+    android:background="@color/graylight"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/white_bg_corner"
+            android:orientation="horizontal">
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+                android:id="@+id/tv_btn_pass_back"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/_10sdp"
+                android:text="Back"
+                android:textColor="@color/black" />
+
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/graydark"
+                android:paddingVertical="@dimen/_5sdp"
+               >
+
+            </View>
+
+            <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+                android:id="@+id/tv_btn_pass_submit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/_10sdp"
+                android:text="Submit"
+                android:textColor="@color/black" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

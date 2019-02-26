@@ -47,6 +47,11 @@ public class NotifyFGateAdapter extends RecyclerView.Adapter<NotifyFGateAdapter.
         viewHolder.name.setText(model.name);
         viewHolder.phone.setText(model.mobile);
         viewHolder.validtill.setText("Notification Valid - " + model.vaildTo + " Hour");
+        if (model.alertStatus.equalsIgnoreCase("0"))
+            viewHolder.aSwitch.setChecked(false);
+        else if (model.alertStatus.equalsIgnoreCase("1"))
+            viewHolder.aSwitch.setChecked(true);
+
     }
 
     @Override

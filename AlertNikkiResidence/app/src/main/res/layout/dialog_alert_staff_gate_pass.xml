@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:background="@drawable/gate_pass_bg"
             android:gravity="center"
 
             >
@@ -26,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="@dimen/_20sdp"
                 android:text="! Digital Pass!"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
         </LinearLayout>
 
@@ -69,60 +71,60 @@
         </LinearLayout>
 
         <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="@dimen/_5sdp"-->
-            <!--android:layout_marginTop="@dimen/_10sdp"-->
-            <!--android:orientation="horizontal">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/_5sdp"-->
+        <!--android:layout_marginTop="@dimen/_10sdp"-->
+        <!--android:orientation="horizontal">-->
 
-            <!--<ImageView-->
-                <!--android:layout_width="@dimen/_18sdp"-->
-                <!--android:layout_height="@dimen/_18sdp"-->
-                <!--android:src="@drawable/ic_movein" />-->
+        <!--<ImageView-->
+        <!--android:layout_width="@dimen/_18sdp"-->
+        <!--android:layout_height="@dimen/_18sdp"-->
+        <!--android:src="@drawable/ic_movein" />-->
 
-            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="@dimen/_10sdp"-->
-                <!--android:text="Entry In "-->
-                <!--android:textColor="@color/colorPrimaryDark" />-->
+        <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+        <!--android:text="Entry In "-->
+        <!--android:textColor="@color/colorPrimaryDark" />-->
 
-            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
-                <!--android:id="@+id/tv_maid_staff_entry_in_time"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="@dimen/_10sdp"-->
-                <!--android:text="-10:30 am"-->
-                <!--android:textColor="@color/black" />-->
+        <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+        <!--android:id="@+id/tv_maid_staff_entry_in_time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+        <!--android:text="-10:30 am"-->
+        <!--android:textColor="@color/black" />-->
 
         <!--</LinearLayout>-->
 
         <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginLeft="@dimen/_5sdp"-->
-            <!--android:layout_marginTop="@dimen/_10sdp"-->
-            <!--android:orientation="horizontal">-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/_5sdp"-->
+        <!--android:layout_marginTop="@dimen/_10sdp"-->
+        <!--android:orientation="horizontal">-->
 
-            <!--<ImageView-->
-                <!--android:layout_width="@dimen/_18sdp"-->
-                <!--android:layout_height="@dimen/_18sdp"-->
-                <!--android:src="@drawable/ic_movein" />-->
+        <!--<ImageView-->
+        <!--android:layout_width="@dimen/_18sdp"-->
+        <!--android:layout_height="@dimen/_18sdp"-->
+        <!--android:src="@drawable/ic_movein" />-->
 
-            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="@dimen/_10sdp"-->
-                <!--android:text="Out "-->
-                <!--android:textColor="@color/colorPrimaryDark" />-->
+        <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+        <!--android:text="Out "-->
+        <!--android:textColor="@color/colorPrimaryDark" />-->
 
-            <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
-                <!--android:id="@+id/tv_maid_staff_entry_out_time"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginLeft="@dimen/_10sdp"-->
-                <!--android:text="-12:00 pm"-->
-                <!--android:textColor="@color/black" />-->
+        <!--<com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal-->
+        <!--android:id="@+id/tv_maid_staff_entry_out_time"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="@dimen/_10sdp"-->
+        <!--android:text="-12:00 pm"-->
+        <!--android:textColor="@color/black" />-->
 
         <!--</LinearLayout>-->
 
@@ -139,12 +141,17 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp" />
 
+        <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Upload minimum 3 Images"
+            android:textColor="@color/colorPrimary" />
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rview_add_images"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-        >
-        </android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,12 +161,13 @@
             android:background="@drawable/bg_grey">
 
             <com.iprismech.alertnikkiresidence.customviews.CustomEditTextNormal
-                android:layout_width="match_parent"
                 android:id="@+id/et_comment"
-                android:layout_gravity="start"
-                android:gravity="start"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@null" />
+                android:layout_gravity="start"
+                android:background="@null"
+                android:gravity="start"
+                android:hint="Write a description here" />
         </LinearLayout>
 
         <LinearLayout
