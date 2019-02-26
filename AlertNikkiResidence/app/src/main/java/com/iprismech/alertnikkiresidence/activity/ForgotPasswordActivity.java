@@ -29,7 +29,7 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
     private TextView tv_btn_next;
     private Object obj;
     private ImageView imgClose;
-    private 	TextView txtitle;
+    private TextView txtitle;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -76,7 +76,6 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
         super.setListenerToViews();
         et_mobile_number.setOnClickListener(this);
         tv_btn_next.setOnClickListener(this);
-
         imgClose.setOnClickListener(this);
     }
 
@@ -85,9 +84,8 @@ public class ForgotPasswordActivity extends BaseAbstractActivity implements View
         super.initializeViews();
         et_mobile_number = findViewById(R.id.et_mobile_number);
         tv_btn_next = findViewById(R.id.tv_btn_next);
-
         txtitle = findViewById(R.id.txtitle);
-        imgClose= findViewById(R.id.imgClose);
+        imgClose = findViewById(R.id.imgClose);
         txtitle.setText("Forgot Password");
 
     }
