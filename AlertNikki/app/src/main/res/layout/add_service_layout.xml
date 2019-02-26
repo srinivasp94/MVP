@@ -233,15 +233,14 @@
                         android:src="@drawable/spinner_img" />
                 </LinearLayout>
 
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_add_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isScrollContainer="true"
+                    android:numColumns="4">
 
-                    <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
-                        android:id="@+id/gv_add_service"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:isScrollContainer="true"
-                        android:numColumns="4">
-
-                    </com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+                </com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
 
                 <View
                     android:layout_width="match_parent"
@@ -276,7 +275,7 @@
 
                 <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
                     android:id="@+id/gv_vendor_service"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:isScrollContainer="true"
                     android:numColumns="4"
@@ -291,6 +290,49 @@
                     android:background="#969396">
 
                 </View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_security"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Society Security"
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_security_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:paddingBottom="@dimen/_5sdp"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396">
+
+                </View>
+
 
                 <LinearLayout
                     android:id="@+id/add_service_tutors"
@@ -319,7 +361,7 @@
 
                 <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
                     android:id="@+id/gv_tutor"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:isScrollContainer="true"
@@ -360,7 +402,7 @@
 
                 <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
                     android:id="@+id/gv_fulltimehelps_service"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:isScrollContainer="true"
@@ -402,7 +444,7 @@
 
                 <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
                     android:id="@+id/gv_societyadmin_service"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:isScrollContainer="true"
@@ -415,7 +457,179 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:background="#969396"></View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_transport"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Transport"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_transport_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_medical_help"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Medical Help"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_medical_help_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+
+                <LinearLayout
+                    android:id="@+id/add_service_handymen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Handyman"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_handymen_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+                <LinearLayout
+                    android:id="@+id/add_service_socityMaintanance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <com.iprismech.alertnikki.customviews.CustomTextViewBold
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.9"
+                        android:gravity="center_vertical"
+                        android:text="Society Adminstration Staff"
+
+                        android:textColor="@color/black" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_weight="0.1"
+                        android:src="@drawable/spinner_img" />
+                </LinearLayout>
+
+                <com.iprismech.alertnikki.customviews.ExpandableHeightGridView
+                    android:id="@+id/gv_societymaintance_service"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:isScrollContainer="true"
+                    android:numColumns="4"
+                    android:visibility="gone"></com.iprismech.alertnikki.customviews.ExpandableHeightGridView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="#969396"></View>
+
+
             </LinearLayout>
+
 
         </RelativeLayout>
     </ScrollView>

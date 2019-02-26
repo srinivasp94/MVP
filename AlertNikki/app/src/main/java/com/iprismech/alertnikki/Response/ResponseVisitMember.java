@@ -56,6 +56,10 @@ public class ResponseVisitMember {
     @Expose
     public String security_name;
 
+    @SerializedName("delivery_from")
+    @Expose
+    public String delivery_from;
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -74,6 +78,7 @@ public class ResponseVisitMember {
                 .append("buildingName", buildingName)
                 .append("type", type)
                 .append("security_accept_status", security_accept_status)
+                .append("delivery_from", delivery_from)
                 .append("security_name", security_name)
                 .toString();
     }

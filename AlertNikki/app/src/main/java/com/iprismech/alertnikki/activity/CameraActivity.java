@@ -36,7 +36,7 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
     private String mSecurity_Id,
             mAdmin_Id,
             mPasscode,
-            mName,mShift;
+            mName, mShift;
     private Object obj;
     private String timeStamp = "";
     private int cameraId;
@@ -75,16 +75,16 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
             mAdmin_Id = bundle.getString("Key_Admin_Id", "");
             mPasscode = bundle.getString("Key_Passcode", "");
             mName = bundle.getString("Key_Name", "");
-            mShift=bundle.getString("Key_Shift", "");
+            mShift = bundle.getString("Key_Shift", "");
         }
         Common.commonLogs(CameraActivity.this, bundle.toString());
 
 
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-      //  cameraId = findFrontFacingCamera();
-     //   Camera camera=Camera.open((Camera.CameraInfo.CAMERA_FACING_FRONT));
-        cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 0);
+        //  cameraId = findFrontFacingCamera();
+        //   Camera camera=Camera.open((Camera.CameraInfo.CAMERA_FACING_FRONT));
+        cameraIntent.putExtra("android.intent.extras.CAMERA_FACING", 1);
 
         startActivityForResult(cameraIntent, 2);
     }
@@ -97,7 +97,7 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
             Camera.CameraInfo info = new Camera.CameraInfo();
             Camera.getCameraInfo(i, info);
             if (info.facing == Camera.CameraInfo.CAMERA_FACING_FRONT) {
-               //
+                //
                 // Log.d(DEBUG_TAG, "Camera found");
                 cameraId = i;
                 break;
@@ -183,12 +183,11 @@ public class CameraActivity extends BaseAbstractActivity<Class> implements Retro
                         case 1:
                             //loginPojo=new Gson().fromJson(jsonString,LoginPojo.class);
 
-
                             Login login = Common.getSpecificDataObject(objectResponse, Login.class);
+
                             SharedPrefsUtils.getInstance(this).createUserSession(login.response.securityId,
                                     login.response.adminId, login.response.loginDate, login.response.loginTime
                                     , login.response.society, login.response.city);
-
 
                             Bundle bundle = new Bundle();
                             bundle.putString("Key_Base", img_path);

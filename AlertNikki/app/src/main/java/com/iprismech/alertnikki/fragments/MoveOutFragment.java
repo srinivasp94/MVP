@@ -205,8 +205,9 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
                             break;
                         case 3:
                             moveOutPojo=new Gson().fromJson(jsonString, MoveOutPojo.class);
-                            Toast.makeText(getActivity(), "Request has been sent to Admin", Toast.LENGTH_SHORT).show();
+                           Common.showToast(getActivity(), object.optString("message"));
                             getActivity().onBackPressed();
+
 
 
                     }
@@ -214,7 +215,8 @@ public class MoveOutFragment extends BaseAbstractFragment<Class> implements Retr
 
                 }
                 else{
-                 //   Toast.makeText(getActivity(), "Request already has been sent to Admin", Toast.LENGTH_SHORT).show();
+                    Common.showToast(getActivity(), object.optString("message"));
+                    getActivity().onBackPressed();
 
                 }
             } catch (Exception e) {

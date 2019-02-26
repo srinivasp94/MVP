@@ -1,19 +1,16 @@
 package com.iprismech.alertnikki.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.alimuzaffar.lib.pin.PinEntryEditText;
 import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.Login_model;
 import com.iprismech.alertnikki.Response.InitialLogin;
-import com.iprismech.alertnikki.Response.Login;
 import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 import com.iprismech.alertnikki.base.BaseAbstractActivity;
@@ -21,7 +18,6 @@ import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.AppPermissions;
 import com.iprismech.alertnikki.utilities.Common;
-import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
 
 import org.json.JSONObject;
 

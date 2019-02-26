@@ -31,15 +31,18 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_guest_details);
     }
+
     @Override
     protected View getView() {
         View view = getLayoutInflater().inflate(R.layout.activity_guest_details, null);
         return view;
     }
+
     @Override
     public void setPresenter() {
 
     }
+
     @Override
     protected void setListenerToViews() {
         super.setListenerToViews();
@@ -63,20 +66,19 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         String visitor_id = bundle.getString("Key_Visitor_id");
         String type_id = bundle.getString("Key_Type_id");
         String name = bundle.getString("Name");
+        String user_type = bundle.getString("UserType");
 
 
         mName.setText(name);
         mType.setText(type_id);
 
 
-
-
-
         Visitors_Common_Req visitors_common_req = new Visitors_Common_Req();
         visitors_common_req.visitorId = visitor_id;
         if (type_id.equalsIgnoreCase("Guest")) {
             visitors_common_req.type = "1";
-        } else {
+        }
+        else {
             visitors_common_req.type = "2";
         }
 
@@ -86,7 +88,7 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
         } catch (Exception e) {
             e.printStackTrace();
         }
-            new RetrofitRequester(this).callPostServices(obj, 1, "after_in_visitor_data", true);
+        new RetrofitRequester(this).callPostServices(obj, 1, "after_in_visitor_data", true);
 
 //        back = findViewById(R.id.image_pics);
     }
@@ -95,8 +97,7 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
         if (objectResponse == null || objectRequest.equals("")) {
             Common.showToast(GuestDetailsActivity.this, "PLease Try again");
-        }
-        else {
+        } else {
             try {
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
@@ -111,9 +112,14 @@ public class GuestDetailsActivity extends BaseAbstractActivity<Class> implements
                             mType.setText(jsonObject.optString("type"));
                             mCheckin.setText(jsonObject.optString("in_time"));
                             mAllowed.setText(jsonObject.optString("security_name"));
-                            mApproved.setText(jsonObject.optString("user_name"));
+                            if (jsonObject.optString("user_type").equalsIgnoreCase("1"))
+                              //  mApproved.setText(jsonObject.optString("Resident"));
+                                mApproved.setText("Resident");
+                            else
+                              //  mApproved.setText(jsonObject.optString("Family Member"));
+                                mApproved.setText(jsonObject.optString("Security"));
                             mVehicle.setText("Vehicle Number: " + jsonObject.optString("vehicle_no"));
-                          //  Picasso.with(context).load(Constants.BASE_IMAGE_URL + jsonObject.optString().into(viewHolder.service_img);
+                            //  Picasso.with(context).load(Constants.BASE_IMAGE_URL + jsonObject.optString().into(viewHolder.service_img);
                             break;
                     }
                 }

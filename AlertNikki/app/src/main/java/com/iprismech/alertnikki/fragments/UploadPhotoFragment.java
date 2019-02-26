@@ -29,6 +29,7 @@ import com.google.gson.Gson;
 import com.iprismech.alertnikki.Pojo.AddServiceSendReqPojo;
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Request.AddServiceReq;
+import com.iprismech.alertnikki.activity.DummyActivity;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.Common;
@@ -144,8 +145,13 @@ public class UploadPhotoFragment extends BaseAbstractFragment<Class> implements 
     private void showPictureDialog(final String base64) {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getActivity());
         pictureDialog.setTitle("Select Action");
+//        String[] pictureDialogItems = {
+//                "Select photo from gallery",
+//                "Capture photo from camera"};
+//
+
+
         String[] pictureDialogItems = {
-                "Select photo from gallery",
                 "Capture photo from camera"};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
@@ -153,10 +159,11 @@ public class UploadPhotoFragment extends BaseAbstractFragment<Class> implements 
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:
-                                choosePhotoFromGallary(base64);
+                                //   choosePhotoFromGallary(base64);
+                                takePhotoFromCamera(base64);
                                 break;
                             case 1:
-                                takePhotoFromCamera(base64);
+                                // takePhotoFromCamera(base64);
                                 break;
                         }
                     }
@@ -209,22 +216,24 @@ public class UploadPhotoFragment extends BaseAbstractFragment<Class> implements 
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
             return;
-        } else if (requestCode == GALLERY_DOC) {
-            if (data != null) {
-                Uri choosenImage = data.getData();
-                if (choosenImage != null) {
-
-                    Bitmap bp = decodeUri(choosenImage, 200);
-                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    bp.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
-                    iv_uploaded_photo.setImageBitmap(bp);
-
-                    byte[] byte_arr = bytes.toByteArray();
-                    base64profile = Base64.encodeToString(byte_arr, Base64.DEFAULT);
-                    img_uploded_status = true;
-                }
-            }
-        } else if (requestCode == CAMERA_DOC) {
+        }
+//        else if (requestCode == GALLERY_DOC) {
+//            if (data != null) {
+//                Uri choosenImage = data.getData();
+//                if (choosenImage != null) {
+//
+//                    Bitmap bp = decodeUri(choosenImage, 200);
+//                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//                    bp.compress(Bitmap.CompressFormat.JPEG, 70, bytes);
+//                    iv_uploaded_photo.setImageBitmap(bp);
+//
+//                    byte[] byte_arr = bytes.toByteArray();
+//                    base64profile = Base64.encodeToString(byte_arr, Base64.DEFAULT);
+//                    img_uploded_status = true;
+//                }
+//            }
+//        }
+        else if (requestCode == CAMERA_DOC) {
 
             // Variable.img_banner = profile;
             Bitmap profilebit = (Bitmap) data.getExtras().get("data");
@@ -282,10 +291,12 @@ public class UploadPhotoFragment extends BaseAbstractFragment<Class> implements 
                         case 1:
                             AddServiceSendReqPojo addServiceSendReqPojo = new Gson().fromJson(jsonString, AddServiceSendReqPojo.class);
                             Toast.makeText(getActivity(), "Request Posted Successfully", Toast.LENGTH_SHORT).show();
-                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.fm_container,new HomeFragment(),"").commit();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            fragmentManager.beginTransaction().replace(R.id.fm_container, new HomeFragment(), "").commit();
 
                     }
+                } else {
+                    Common.showToast(getActivity(), object.optString("message"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();

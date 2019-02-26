@@ -2,12 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_item_categoty"
     android:layout_width="@dimen/_70sdp"
-    android:layout_height="wrap_content"
-    >
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingVertical="@dimen/_7sdp">
 
@@ -25,7 +24,8 @@
             android:layout_gravity="center"
             android:gravity="center_horizontal"
             android:text="Car Clener gfsgfg"
-            android:textSize="@dimen/_10sdp" />
+            android:textSize="@dimen/_10sdp"
+            android:paddingBottom="@dimen/_5sdp"/>
     </LinearLayout>
     <!--<View-->
     <!--android:layout_width="@dimen/_1sdp"-->

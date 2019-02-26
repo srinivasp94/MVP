@@ -98,6 +98,7 @@
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:focusableInTouchMode="false"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <service android:name=".fcm.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -113,16 +114,13 @@
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/default_notification_channel_id" />
 
-        <!--<activity android:name=".activity.DummyActivity">
+        <activity
+            android:name=".activity.DummyActivity"
+            android:windowSoftInputMode="stateAlwaysHidden"
+            android:screenOrientation="portrait">
 
-        </activity>-->
-        <activity android:name=".activity.Main2Activity">
-            <!-- <intent-filter>
-                 <action android:name="android.intent.action.MAIN" />
-
-                 <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>-->
         </activity>
+        <activity android:name=".activity.Main2Activity"></activity>
     </application>
 
 </manifest>

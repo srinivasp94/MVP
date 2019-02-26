@@ -10,21 +10,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.iprismech.alertnikki.R;
-import com.iprismech.alertnikki.Request.DailyHelpsReq;
-import com.iprismech.alertnikki.Request.Login_model;
-import com.iprismech.alertnikki.Request.SecurityShiftsRequest;
-import com.iprismech.alertnikki.Response.Login;
 import com.iprismech.alertnikki.app.factories.constants.AppConstants;
 import com.iprismech.alertnikki.app.factories.controllers.ApplicationController;
 import com.iprismech.alertnikki.base.BaseAbstractActivity;
-import com.iprismech.alertnikki.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikki.retrofitnetwork.RetrofitResponseListener;
 import com.iprismech.alertnikki.utilities.Common;
-import com.iprismech.alertnikki.utilities.SharedPrefsUtils;
-
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

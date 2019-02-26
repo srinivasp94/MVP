@@ -37,8 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="mobile"
-                android:visibility="gone"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -49,13 +49,15 @@
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Passcode :" />
+                    android:text="Phone :" />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewBold
                     android:id="@+id/tv_through_passcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="356153"
+                    android:text="+91- 000 0000000"
+                    android:layout_marginLeft="@dimen/_3sdp"
+                    android:padding="@dimen/_3sdp"
                     android:textColor="#000" />
 
             </LinearLayout>
@@ -70,26 +72,29 @@
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Resident Type: " />
+                    android:text="Category Type: " />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:id="@+id/through_mobile_residency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Owner"
+                    android:text="Service"
+                    android:padding="@dimen/_3sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
                     android:textColor="@color/black" />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
+                    android:visibility="gone"
                     android:text="City: " />
 
                 <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                     android:id="@+id/through_mobile_city"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hyderabad"
+                    android:text=" "
                     android:textColor="@color/black" />
             </LinearLayout>
 
@@ -97,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:visibility="gone"
                 android:orientation="horizontal"
                 android:weightSum="1">
 
@@ -123,6 +129,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=""
+
+
                     android:textColor="@color/black" />
             </LinearLayout>
 

@@ -2,13 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    >
+    android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -16,6 +14,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -32,20 +31,20 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/service_cat_img"
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center_horizontal"
-                        android:id="@+id/service_cat_img"
                         android:src="@drawable/add_services_checked" />
 
                     <com.iprismech.alertnikki.customviews.CustomTextViewNormal
+                        android:id="@+id/service_category_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:id="@+id/service_category_name"
+                        android:gravity="center_horizontal"
                         android:text="Service Boy"
                         android:textColor="#00d454"
-                        android:gravity="center_horizontal"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
 
@@ -99,9 +98,9 @@
                     <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Document"
                         android:layout_gravity="center_horizontal"
                         android:gravity="center"
+                        android:text="Document"
                         android:textColor="#00d454"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
@@ -123,15 +122,15 @@
                         android:layout_width="@dimen/_20sdp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/add_services_checked" />
+                        android:src="@drawable/dummy" />
 
                     <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="Photo"
                         android:gravity="center_horizontal"
-                        android:textColor="#00d454"
+                        android:text="Photo"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
 
@@ -154,34 +153,34 @@
                 android:textColor="@color/black" />
 
             <ImageView
+                android:id="@+id/iv_select_photo"
                 android:layout_width="@dimen/_80sdp"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:id="@+id/iv_select_photo"
                 android:src="@android:drawable/ic_menu_camera" />
+
             <ImageView
+                android:id="@+id/uploaded_photo"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_140sdp"
-                android:layout_marginHorizontal="@dimen/_50sdp"
                 android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_50sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:id="@+id/uploaded_photo"
-                android:layout_marginBottom="@dimen/_10sdp"
-                 />
+                android:layout_marginBottom="@dimen/_10sdp" />
         </LinearLayout>
     </ScrollView>
 
     <com.iprismech.alertnikki.customviews.CustomTextViewBold
+        android:id="@+id/btn_send_request_admin"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_40sdp"
         android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         android:background="@drawable/black_button_bgr"
-        android:id="@+id/btn_send_request_admin"
         android:gravity="center"
-        android:text="Request to Admin"
+        android:text="Save"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp" />
 
