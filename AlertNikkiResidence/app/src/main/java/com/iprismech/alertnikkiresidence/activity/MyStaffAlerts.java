@@ -250,13 +250,18 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                             alertDialog.setCancelable(true);
 
-                                            TextView tv_btn_upload_images, tv_cancel, tv_submit;
+                                            TextView tv_btn_upload_images, tv_cancel, tv_submit,tv_staff_maid_name,tv_maid_type;
                                             final EditText et_comment;
                                             tv_btn_upload_images = view1.findViewById(R.id.tv_btn_upload_images);
                                             tv_cancel = view1.findViewById(R.id.tv_btn_pass_cancel);
                                             tv_submit = view1.findViewById(R.id.tv_btn_pass_submit);
                                             et_comment = view1.findViewById(R.id.et_comment);
+                                            tv_staff_maid_name = view1.findViewById(R.id.tv_staff_maid_name);
+                                            tv_maid_type = view1.findViewById(R.id.tv_maid_type);
                                             rcvuploadimages = view1.findViewById(R.id.rview_add_images);
+                                            tv_staff_maid_name.setText(myStaff_maids_list_pojo.getResponse().get(position).getMaid_name());
+                                            tv_maid_type.setText(myStaff_maids_list_pojo.getResponse().get(position).getMaid_designation());
+
                                             tv_btn_upload_images.setOnClickListener(new View.OnClickListener() {
                                                 @Override
                                                 public void onClick(View v) {

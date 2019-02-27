@@ -24,6 +24,7 @@
                 android:layout_height="@dimen/_50sdp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
+                android:id="@+id/iv_maid_img"
                 android:src="@drawable/dummy" />
 
             <LinearLayout

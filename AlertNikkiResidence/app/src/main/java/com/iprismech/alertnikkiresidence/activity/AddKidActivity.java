@@ -42,7 +42,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     //private List<String> mdays = new ArrayList<>();
     private List<Purpose> purposearray = new ArrayList<>();
     private String str_out_time_12hr, str_kid_out_Time_24hr, str_in_time_12hr, str_kid_in_Time_24hr;
-
+    private String replacedString = new String();
     Calendar mcurrentTime = Calendar.getInstance();
     int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
     int minute = mcurrentTime.get(Calendar.MINUTE);
@@ -55,7 +55,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 
     private ImageView imgClose;
     private TextView txtitle;
-    private String kid_name_purpose,kid_name_edit,kid_name_days,kid_name_intime,kid_name_outtime;
+    private String kid_name_purpose, kid_name_edit, kid_name_days, kid_name_intime, kid_name_outtime;
 
     @Override
     public void onBackPressed() {
@@ -101,7 +101,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         // Append in a StringBuilder
                         str_out_time_12hr = new StringBuilder().append(hour).append(':')
                                 .append(min).append(" ").append(timeSet).toString();
-                       // tv_kid_out_time.setText(str_out_time_12hr);
+                        // tv_kid_out_time.setText(str_out_time_12hr);
                         //  tv_opening_time.setText(selectedHour + ":" + selectedMinute);
 
                         selected_out_time = selectedHour;
@@ -141,7 +141,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         // Append in a StringBuilder
                         str_in_time_12hr = new StringBuilder().append(hour).append(':')
                                 .append(min).append(" ").append(timeSet).toString();
-                      //  tv_kid_in_tim.setText(str_in_time_12hr);
+                        //  tv_kid_in_tim.setText(str_in_time_12hr);
 
                         //  tv_opening_time.setText(selectedHour + ":" + selectedMinute);
                         selected_in_time = selectedHour;
@@ -179,17 +179,29 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 //                    replacedString.replace("Thu", "5");
 //                    replacedString.replace("Fri", "6");
 //                    replacedString.replace("Sat", "7");
-                        String replacedString = new String();
-                        replacedString = str_selected_days.replace("Sun", "1").replace("Mon", "2").replace("Tue", "3")
-                                .replace("Wed", "4")
-                                .replace("Thu", "5")
-                                .replace("Fri", "6")
-                                .replace("Sat", "7");
-
-                        String[] mdays = replacedString.split(", ");
+//                        String replacedString = new String();
+//                        replacedString = str_selected_days.replace("Sun", "1").replace("Mon", "2").replace("Tue", "3")
+//                                .replace("Wed", "4")
+//                                .replace("Thu", "5")
+//                                .replace("Fri", "6")
+//                                .replace("Sat", "7");
+//
+//                        String[] mdays = replacedString.split(", ");
 //                    Toast.makeText(AddKidActivity.this, replacedString, Toast.LENGTH_SHORT).show();
                         //char[] ggg = replacedString.replace(", ", "").toCharArray();
                         //  Common.commonLogs(AddKidActivity.this, mdays.toString());
+
+
+                        replacedString = str_selected_days.replace("Sunday", "1").replace("Monday", "2").replace("Tuesday", "3")
+                                .replace("Wednesday", "4")
+                                .replace("Thursday", "5")
+                                .replace("Friday", "6")
+                                .replace("Saturday", "7");
+
+                        String[] mdays = replacedString.split(",");
+                        stringList = Arrays.asList(mdays);
+
+
                         AddKidPojo kidPojo = new AddKidPojo();
                         try {
 
@@ -224,10 +236,20 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 //                        }
                         //days.add()
                     } else if (screen_type.equalsIgnoreCase("Edit Kid")) {
+                        replacedString = tv_selected_days.getText().toString();
+                        replacedString = kid_name_days.replace("Sunday", "1").replace("Monday", "2").replace("Tuesday", "3")
+                                .replace("Wednesday", "4")
+                                .replace("Thursday", "5")
+                                .replace("Friday", "6")
+                                .replace("Saturday", "7");
+
+                        String[] mdays = replacedString.split(",");
+                        stringList = Arrays.asList(mdays);
+
                         EditKidRequest editKidRequest = new EditKidRequest();
 
-                        editKidRequest.in_time = str_kid_in_Time_24hr;
-                        editKidRequest.Out_time = str_kid_out_Time_24hr;
+                        editKidRequest.in_time = tv_kid_in_tim.getText().toString();
+                        editKidRequest.Out_time = tv_kid_out_time.getText().toString();
                         editKidRequest.user_kid_id = kid_id;
                         editKidRequest.days = stringList;
                         editKidRequest.kid_name = kid_name.getText().toString();
@@ -265,21 +287,18 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
         sw_kids_pass_days = findViewById(R.id.sw_kids_pass_days);
 
 
-
-
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             screen_type = getIntent().getExtras().getString("screen", "");
             kid_id = getIntent().getExtras().getString("kid_id", "");
-            kid_name_edit=getIntent().getExtras().getString("kid_name", "");
-            kid_name_purpose=getIntent().getExtras().getString("kid_purpose", "");
-            kid_name_days=getIntent().getExtras().getString("days", "");
-            kid_name_intime=getIntent().getExtras().getString("intime", "");
-            kid_name_outtime=getIntent().getExtras().getString("outtime", "");
+            kid_name_edit = getIntent().getExtras().getString("kid_name", "");
+            kid_name_purpose = getIntent().getExtras().getString("kid_purpose", "");
+            kid_name_days = getIntent().getExtras().getString("days", "");
+            kid_name_intime = getIntent().getExtras().getString("intime", "");
+            kid_name_outtime = getIntent().getExtras().getString("outtime", "");
         }
 
-        if(screen_type.equalsIgnoreCase("Edit Kid")){
+        if (screen_type.equalsIgnoreCase("Edit Kid")) {
             txtitle.setText("Edit Kid");
             kid_name.setText(kid_name_edit);
             et_purpose.setText(kid_name_purpose);
@@ -288,13 +307,6 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
             tv_kid_in_tim.setText(kid_name_intime);
             sw_kids_pass_days.setChecked(true);
         }
-
-
-
-
-
-
-
 
 
     }
@@ -358,7 +370,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
 
     public void resultDialogTimings(String result_string) {
         if (result_string.equalsIgnoreCase("All")) {
-            str_selected_days = "Sun, Mon, Tue, Wed, Thu, Fri, Sat";
+            str_selected_days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday";
         } else {
             str_selected_days = result_string;
         }
