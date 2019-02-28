@@ -135,6 +135,8 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
                     bundle.putString("maid_id", myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getMaid_id());
                     bundle.putString("user_maid_id", myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getId());
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STAFF_PROFILE, bundle);
+
+
                 }
             });
 

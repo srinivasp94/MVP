@@ -39,6 +39,7 @@ import java.util.Calendar;
 
 public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.ViewHolder> {
     private Context context;
+    ChooseMaidActivity mActivity;
     private ChooseMaidPojo chooseMaidPojo;
     private boolean add_status = false;
     int mYear, mMonth, mDay;
@@ -47,7 +48,20 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
     public ChooseMaidAdapter(ChooseMaidActivity chooseMaidActivity, ChooseMaidPojo chooseMaidPojo) {
         this.context = chooseMaidActivity;
         this.chooseMaidPojo = chooseMaidPojo;
+        this.mActivity = chooseMaidActivity;
+
     }
+
+    private OnitemClickListener mListner;
+
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
+        mListner = onitemClickListener;
+    }
+
+    public interface OnitemClickListener {
+        void onItemClick(View view, int position);
+    }
+
 
     @NonNull
     @Override
@@ -126,6 +140,7 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
             tv_rating = itemView.findViewById(R.id.tv_rating);
             tv_addstaff = itemView.findViewById(R.id.tv_add_staff);
             rating_staff = itemView.findViewById(R.id.rating_staff);
+
 
             tv_addstaff.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -213,9 +228,10 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("From_Date", tv_from_date.getText().toString());
                                 bundle.putString("ToDate", tv_end_date.getText().toString());
                                 bundle.putString("Key_screen", "Choose Maid");
-
-                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
                                 alertDialog.dismiss();
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
+                                mActivity.finish();
+
                             }
                         }
                     });
@@ -233,8 +249,10 @@ public class ChooseMaidAdapter extends RecyclerView.Adapter<ChooseMaidAdapter.Vi
                                 bundle.putString("WorkingType", "2");
                                 bundle.putString("From_Date", "");
                                 bundle.putString("ToDate", "");
-                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
                                 alertDialog.dismiss();
+                                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STANDARD_TIMINGS, bundle);
+
+                                mActivity.finish();
                             }
                         }
                     });

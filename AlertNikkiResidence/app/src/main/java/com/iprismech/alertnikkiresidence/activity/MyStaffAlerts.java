@@ -90,11 +90,11 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
     private boolean switchonOff = false;
 
 
-
-
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
         finish();
     }
 
@@ -108,9 +108,11 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                 break;
             case R.id.txtAddStaff:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
+                finish();
                 break;
             case R.id.fab_add_staff:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
+                finish();
                 break;
         }
     }
@@ -227,6 +229,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                                     new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 2, "delete_user_maid", true);
 
                                                 }
+
                                                 @Override
                                                 public void onNegativeClick() {
 
@@ -250,7 +253,7 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
                                             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                                             alertDialog.setCancelable(true);
 
-                                            TextView tv_btn_upload_images, tv_cancel, tv_submit,tv_staff_maid_name,tv_maid_type;
+                                            TextView tv_btn_upload_images, tv_cancel, tv_submit, tv_staff_maid_name, tv_maid_type;
                                             final EditText et_comment;
                                             tv_btn_upload_images = view1.findViewById(R.id.tv_btn_upload_images);
                                             tv_cancel = view1.findViewById(R.id.tv_btn_pass_cancel);
