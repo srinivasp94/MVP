@@ -44,6 +44,7 @@
         style="@style/DefaultCustomTextView"
         android:layout_below="@+id/viewContact"
         android:gravity="center"
+        android:textColor="@color/red"
         android:text="Once invited your Visitor will receive an SMS.Invite  with OTP for hassel-free entry at society Gate"
         android:textSize="@dimen/_11sdp" />
 

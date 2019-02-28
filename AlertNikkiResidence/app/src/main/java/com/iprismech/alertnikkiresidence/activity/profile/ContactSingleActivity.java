@@ -35,9 +35,14 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
     private ImageView imgClose;
     private TextView txtitle;
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Bundle bundle = new Bundle();
+        /*bundle.putString("Key_Name", contactList.get(position).getContactName());
+        bundle.putString("Key_Number", contactList.get(position).getContactNumber());*/
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN, bundle);
         finish();
     }
 
@@ -107,10 +112,10 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
                     Bundle bundle = new Bundle();
 //                    bundle.putParcelableArrayList("Key_Contacts", contactSelected);
 //                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_INVITE_GUEST_SCREEN,bundle);
-                    Intent intent = new Intent(ContactSingleActivity.this, ViewInviteGuestActivity.class);
-                    intent.putParcelableArrayListExtra("Key_Contacts", contactSelected);
-                    startActivity(intent);
-                    finish();
+//                    Intent intent = new Intent(ContactSingleActivity.this, ViewInviteGuestActivity.class);
+//                    intent.putParcelableArrayListExtra("Key_Contacts", contactSelected);
+//                    startActivity(intent);
+//                    finish();
                 } else {
                     Common.showToast(ContactSingleActivity.this, "Please Select Contacts");
                 }
@@ -170,7 +175,7 @@ public class ContactSingleActivity extends BaseAbstractActivity implements View.
                                     //set date to add family activity(only name and phone)
                                     Bundle bundle = new Bundle();
                                     bundle.putString("Key_Name", contactList.get(position).getContactName());
-                                    bundle.putString("Key_Number", contactList.get(position).getContactNumber());
+                                    bundle.putString("Key_Number", contactList.get(position).getContactNumber().replace(" ", "").trim());
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_FAMILY_SCREEN, bundle);
                                     finish();
                                     break;

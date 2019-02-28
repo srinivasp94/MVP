@@ -27,9 +27,27 @@ public class TypleList {
     @SerializedName("delete_status")
     @Expose
     public String deleteStatus;
+    public boolean isSelect = false;
+
+    public boolean isSelect() {
+        return isSelect;
+    }
+
+    public void setSelect(boolean select) {
+        isSelect = select;
+    }
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this).append("id", id).append("adminId", adminId).append("title", title).append("slug", slug).append("createdOn", createdOn).append("modifiedOn", modifiedOn).append("deleteStatus", deleteStatus).toString();
+        return new ToStringBuilder(this)
+                .append("id", id)
+                .append("adminId", adminId)
+                .append("title", title)
+                .append("slug", slug)
+                .append("createdOn", createdOn)
+                .append("modifiedOn", modifiedOn)
+                .append("deleteStatus", deleteStatus)
+                .append("isSelect", isSelect)
+                .toString();
     }
 }

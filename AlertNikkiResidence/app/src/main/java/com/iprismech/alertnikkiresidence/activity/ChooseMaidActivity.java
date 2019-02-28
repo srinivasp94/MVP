@@ -63,12 +63,13 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
         tv_nodata_txt = findViewById(R.id.tv_nodata_txt);
-        txtitle.setText("Choose Maid");
+
         imgClose.setOnClickListener(this);
 
 
         String service_id = getIntent().getExtras().getString("ServiceID");
-
+        String service_name = getIntent().getExtras().getString("ServiceName");
+        txtitle.setText("Choose " + service_name);
         ChooseMaidRequest chooseMaidRequest = new ChooseMaidRequest();
         // chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getId();
         chooseMaidRequest.adminId = SharedPrefsUtils.getInstance(ChooseMaidActivity.this).getAdminID();

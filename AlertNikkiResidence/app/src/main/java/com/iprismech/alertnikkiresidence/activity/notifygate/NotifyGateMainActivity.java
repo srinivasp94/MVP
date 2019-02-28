@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
+import com.iprismech.alertnikkiresidence.activity.profile.NotificationActivity;
 import com.iprismech.alertnikkiresidence.adapters.NotifyFGateAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
@@ -31,6 +32,7 @@ import com.iprismech.alertnikkiresidence.response.NotifyGateList;
 import com.iprismech.alertnikkiresidence.response.NotifyGateRes;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
@@ -128,10 +130,12 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
             case R.id.txtNotify:
                 //Navigete to services
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_GATE_SERVICE);
+                finish();
                 break;
             case R.id.fab:
                 //Navigete to services
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_GATE_SERVICE);
+                finish();
                 break;
             case R.id.imgClose:
 
@@ -154,8 +158,10 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
                     switch (requestId) {
                         case 1:
                             NotifyGateRes response = Common.getSpecificDataObject(objectResponse, NotifyGateRes.class);
+
                             gateLists = (ArrayList<NotifyGateList>) response.response;
                             if (gateLists != null && gateLists.size() > 0) {
+                                txtitle.setText("Notify Gate"+" ("+response.response.size()+")");
                                 rl_listItems.setVisibility(View.VISIBLE);
                                 ll_gateAlerts.setVisibility(View.GONE);
                                 notifyFGateAdapter = new NotifyFGateAdapter(NotifyGateMainActivity.this, gateLists);
@@ -270,17 +276,27 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
         patientDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertUtils.showSimpleAlert(NotifyGateMainActivity.this, "Are you sure want to delete ", "Alert", "Delete", "Cancel", new AlertUtils.onClicklistners() {
+                    @Override
+                    public void onpositiveclick() {
+                        Delete_notifygate_alert req = new Delete_notifygate_alert();
+                        req.gate_alert_id = gateLists.get(pos).id;
+                        try {
+                            obj = Class.forName(Delete_notifygate_alert.class.getName()).cast(req);
 
-                Delete_notifygate_alert req = new Delete_notifygate_alert();
-                req.gate_alert_id = gateLists.get(pos).id;
-                try {
-                    obj = Class.forName(Delete_notifygate_alert.class.getName()).cast(req);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        new RetrofitRequester(NotifyGateMainActivity.this).callPostServices(obj, 3, "delete_notifygate_alert", true);
+                        dialog.dismiss();
+                    }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                new RetrofitRequester(NotifyGateMainActivity.this).callPostServices(obj, 3, "delete_notifygate_alert", true);
-                dialog.dismiss();
+                    @Override
+                    public void onNegativeClick() {
+
+                    }
+                });
+
             }
         });
         dialog.show();

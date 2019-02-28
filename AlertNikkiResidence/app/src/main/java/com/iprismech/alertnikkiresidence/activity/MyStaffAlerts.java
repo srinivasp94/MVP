@@ -182,22 +182,17 @@ public class MyStaffAlerts extends BaseAbstractActivity implements View.OnClickL
             Common.showToast(MyStaffAlerts.this, "Please Try Again");
         } else {
             try {
-
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
-
-
                 JSONObject jsonObject = new JSONObject(jsonString);
-
 
                 if (jsonObject.optBoolean("status")) {
                     layoutNoStaff.setVisibility(View.GONE);
                     RlStaffsLists.setVisibility(View.VISIBLE);
-
-
                     switch (requestId) {
                         case 1:
                             myStaff_maids_list_pojo = gson.fromJson(jsonString, MyStaff_Maids_List_Pojo.class);
+                            txtitle.setText("My Staff alerts"+" ("+myStaff_maids_list_pojo.getResponse().size()+")");
                             staffListAdapter = new StaffListAdapter(MyStaffAlerts.this, myStaff_maids_list_pojo);
                             rvSatffLists.setAdapter(staffListAdapter);
 //                            staffListAdapter.notifyDataSetChanged();

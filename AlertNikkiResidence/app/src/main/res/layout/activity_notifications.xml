@@ -9,120 +9,130 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
         android:weightSum="1">
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
             android:text="Invite Guest"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
         <Switch
             android:id="@+id/sw_invite_guest"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:padding="@dimen/_3sdp"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp" />
+             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
         android:orientation="horizontal"
-        android:paddingVertical="@dimen/_10sdp"
-
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
         android:weightSum="1">
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
             android:text="My Staff"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
         <Switch
             android:id="@+id/sw_staff"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp" />
+            android:padding="@dimen/_3sdp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
         android:orientation="horizontal"
 
-        android:paddingVertical="@dimen/_10sdp"
+
         android:weightSum="1">
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
             android:text="Society Gate"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
         <Switch
             android:id="@+id/sw_society"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp" />
+            android:padding="@dimen/_3sdp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
         android:orientation="horizontal"
 
-        android:paddingVertical="@dimen/_10sdp"
+
         android:weightSum="1">
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
             android:text="School Bus"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
         <Switch
             android:id="@+id/sw_school_bus"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp" />
+            android:padding="@dimen/_3sdp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:padding="@dimen/_5sdp"
         android:orientation="horizontal"
 
-        android:paddingVertical="@dimen/_10sdp"
+
         android:weightSum="1">
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
             android:text="Kids Gatepass"
             android:textColor="@color/black"
             android:textSize="@dimen/_15sdp" />
 
         <Switch
             android:id="@+id/sw_kids_pass"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:textOn="On"
+            android:textOff="Off"
+            android:layout_weight="0.2"
             android:layout_height="wrap_content"
-            android:padding="@dimen/_5sdp" />
+            android:padding="@dimen/_3sdp" />
     </LinearLayout>
 
 </LinearLayout>

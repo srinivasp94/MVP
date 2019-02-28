@@ -9,7 +9,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/graydark"></View>
+        android:background="@color/viewcolor"></View>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@color/graydark"></View>
+            android:background="@color/viewcolor"></View>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -37,15 +37,17 @@
             <android.support.v7.widget.AppCompatTextView
                 style="@style/ItemDefaultCustomTextView"
                 android:layout_width="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:text="Date"
                 android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
+
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/graydark"></View>
+            android:background="@color/viewcolor"></View>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -53,19 +55,20 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:orientation="vertical">
+
             <android.support.v7.widget.AppCompatTextView
                 style="@style/ItemDefaultCustomTextView"
                 android:layout_width="wrap_content"
                 android:layout_toRightOf="@+id/dunny"
-
                 android:text="In Time"
                 android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
+
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/graydark"></View>
+            android:background="@color/viewcolor"></View>
 
         <com.iprismech.alertnikkiresidence.customviews.CustomTextViewNormal
             android:layout_width="0dp"
@@ -77,16 +80,18 @@
             android:text="Out Time"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/graydark"></View>
+        android:layout_height="0.1dp"
+        android:background="@color/viewcolor" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rview_viewall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:padding="@dimen/_2sdp">
+
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

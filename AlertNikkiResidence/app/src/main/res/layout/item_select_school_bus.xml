@@ -96,6 +96,8 @@
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:layout_weight="0.2"
+            android:textOff="Off"
+            android:textOn="On"
             android:gravity="center" />
 
     </RelativeLayout>

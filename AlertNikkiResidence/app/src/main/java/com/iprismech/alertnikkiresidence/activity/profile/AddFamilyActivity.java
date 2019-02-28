@@ -35,9 +35,11 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
     private String mMobile = "";
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_FAMILY_SCREEN);
         finish();
     }
 
@@ -82,13 +84,14 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
             int length = 0;
             if (len > 10) {
                 mMobile = strNumber.trim().substring(len - 10);
-            }
+            }else
+                mMobile = strNumber.replace(" ","").trim();
 //            strNumber.substring(len);
 
         }
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Add Fammily ");
+        txtitle.setText("Add Family ");
 
         selectContact = findViewById(R.id.selectContact);
         txtaddsave = findViewById(R.id.txtaddsave);
@@ -142,7 +145,7 @@ public class AddFamilyActivity extends BaseAbstractActivity implements View.OnCl
                 break;
             case R.id.selectContact:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_OONTACT_SINGLE_SCREEN);
-//                finish();
+                finish();
                 break;
         }
     }

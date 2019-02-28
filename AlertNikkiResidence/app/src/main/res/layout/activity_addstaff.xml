@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <include layout="@layout/common_header" />
@@ -55,9 +55,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_margin="@dimen/_5sdp"
                     android:background="@drawable/search_bg_new"
                     android:orientation="horizontal"
                     android:weightSum="1">
@@ -65,7 +63,7 @@
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_5sdp"
                         android:layout_weight="0.1"
                         android:src="@drawable/search_icon"
                         android:visibility="visible">
@@ -155,7 +153,12 @@
         android:id="@+id/gv_daily_helps_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:numColumns="4">
+        android:numColumns="4"
+        android:visibility="gone">
 
     </GridView>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rcvGridItems"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

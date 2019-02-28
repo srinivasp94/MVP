@@ -1,13 +1,16 @@
 package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -81,6 +84,15 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                 break;
             case R.id.imgSignup:
 
+                LinearLayout mainLayout;
+
+// Get your layout set up, this is just an example
+                mainLayout = (LinearLayout)findViewById(R.id.myLinearLayout);
+
+// Then just use the following:
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(mainLayout.getWindowToken(), 0);
+
                 if (edtSignupName.getText().toString().length() == 0) {
                     Common.showToast(SignupActivity.this, "Please Enter Name");
                 } else if (edtSignupPhone.getText().toString().length() == 0 || edtSignupPhone.getText().toString().length() < 10) {
@@ -91,7 +103,8 @@ public class SignupActivity extends BaseAbstractActivity implements View.OnClick
                     Common.showToast(SignupActivity.this, "Please Enter Blood Group");
                 } else if (edtSignupPassword.getText().toString().length() == 0) {
                     Common.showToast(SignupActivity.this, "Please Enter Password");
-                } else if (edtSignupCnfPassword.getText().toString().length() == 0) {
+                } else if (edtSignupCnfPassword.getText().toString().length() == 0 &&
+                        !isValidPassword(edtSignupCnfPassword.getText().toString())) {
                     Common.showToast(SignupActivity.this, "Please Enter Confirm Password");
                 } else if (!edtSignupPassword.getText().toString().equalsIgnoreCase(edtSignupCnfPassword.getText().toString())) {
                     Common.showToast(SignupActivity.this, "Make sure password and confirm password same");

@@ -42,7 +42,9 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
     RecyclerView recyclerView;
     LinearLayoutManager manager;
     private ArrayList<TypleList> list = new ArrayList<>();
-    private String typeId, typename;
+    private String typeId, typename = "";
+
+    int nPrevSelGridItem = -1;
 
 
     @Override
@@ -145,11 +147,12 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add:
-                if (checkBox.isChecked()){
-                getdataFromAdapter(0);
-                }
-                else {
-                    Toast.makeText(DetailActivity.this, "Please allow terms & Conditions", Toast.LENGTH_SHORT).show();
+                if (typename.equalsIgnoreCase("")) {
+                    Common.showToast(DetailActivity.this,"Please select Resident type");
+                } else if (checkBox.isChecked()) {
+                    getdataFromAdapter(0);
+                } else {
+                    Toast.makeText(DetailActivity.this, "Please Accept terms & Conditions", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case R.id.imgClose:
@@ -251,8 +254,29 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
                                 public void onItemClick(View view, int position) {
                                     switch (view.getId()) {
                                         case R.id.txttenent:
+                                            View previousCiew;
                                             TextView textView = view.findViewById(R.id.txttenent);
-                                            textView.setBackgroundColor(getResources().getColor(R.color.mainbackgroundhome));
+
+                                            if (list.get(position).isSelect()) {
+                                                textView.setBackgroundColor(getResources().getColor(R.color.mainbackgroundhome));
+                                            }
+//                    adapter.notifyDataSetChanged();
+                                            try {
+                                                if (nPrevSelGridItem != -1) {
+                                                    previousCiew = recyclerView.getChildAt(nPrevSelGridItem);
+                                                    previousCiew.findViewById(R.id.txttenent).setBackground(getResources().getDrawable(R.drawable.black_border));
+                                                }
+                                                nPrevSelGridItem = position;
+                                                if (nPrevSelGridItem == position) {
+//                                                    textView.setBackground(getResources().getDrawable(R.drawable.black_border));
+                                                    textView.setBackgroundColor(getResources().getColor(R.color.mainbackgroundhome));
+                                                }
+
+                                            } catch (Exception e) {
+                                                e.printStackTrace();
+                                            }
+
+//                                            textView.setBackgroundColor(getResources().getColor(R.color.mainbackgroundhome));
                                             typeId = list.get(position).id;
                                             typename = list.get(position).title;
                                             break;

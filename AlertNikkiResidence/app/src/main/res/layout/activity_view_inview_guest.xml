@@ -29,14 +29,14 @@
 
         <ImageView
             android:id="@+id/fab"
-            android:layout_width="@dimen/_50sdp"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_width="@dimen/_45sdp"
+            android:layout_height="@dimen/_45sdp"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_marginRight="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:padding="@dimen/_3sdp"
-            android:src="@drawable/ic_add" />
+            android:src="@drawable/rsz_add" />
 
 
         <RelativeLayout

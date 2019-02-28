@@ -65,7 +65,7 @@ public class EmergencyContactActivity extends BaseAbstractActivity implements Vi
         super.initializeViews();
         txtitle = findViewById(R.id.txtitle);
         imgClose= findViewById(R.id.imgClose);
-        txtitle.setText("Emergenct Contact");
+        txtitle.setText("Emergency Contact");
         imgClose.setOnClickListener(this);
         rview_emergency_conatct = findViewById(R.id.rview_emergency_contact);
         manager = new LinearLayoutManager(EmergencyContactActivity.this);

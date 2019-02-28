@@ -31,7 +31,7 @@ public class DailyHelpsAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return dailyHelpsListPojo.getResponse().get(position).getId();
+        return position;
     }
 
     @Override

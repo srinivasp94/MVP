@@ -2,6 +2,7 @@ package com.iprismech.alertnikkiresidence.activity.schoolbus;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -172,8 +173,15 @@ public class BusRouteActivity extends BaseAbstractActivity implements RetrofitRe
                             break;
                         case 2:
                             Toast.makeText(this, "Bus route Added successfully", Toast.LENGTH_SHORT).show();
-                            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_SCREEN);
-                            finish();
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_SCHOOL_BUS_SCREEN);
+                                    finish();
+                                }
+                            }, 5000);
+
                             break;
                     }
                 } else {

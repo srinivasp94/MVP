@@ -7,8 +7,8 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/graydark"></View>
+        android:layout_height="0.1dp"
+        android:background="@color/viewcolor"></View>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,11 +23,13 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:padding="@dimen/_2sdp"
             android:text="dd/mm/yy" />
+
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/graydark"></View>
+            android:background="@color/viewcolor"></View>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtInOutAm"
@@ -37,11 +39,14 @@
             android:layout_toRightOf="@+id/dunny"
             android:layout_weight="1"
             android:gravity="center"
+            android:padding="@dimen/_2sdp"
             android:text="dd/mm/yy" />
+
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/graydark"></View>
+            android:background="@color/viewcolor"></View>
+
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/txtinoutPm"
             style="@style/ItemDefaultCustomTextView"
@@ -49,14 +54,17 @@
             android:layout_alignParentRight="true"
             android:layout_weight="1"
             android:gravity="center"
+            android:padding="@dimen/_2sdp"
             android:text="dd/mm/yy" />
+
         <View
-            android:layout_width="1dp"
+            android:layout_width="0.1dp"
             android:layout_height="match_parent"
-            android:background="@color/graydark"></View>
+            android:background="@color/viewcolor"></View>
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/graydark"></View>
+        android:layout_height="0.1dp"
+        android:background="@color/viewcolor"></View>
 </LinearLayout>
