@@ -106,8 +106,8 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
                 } else if (screen.equalsIgnoreCase("2")) {
                     //edit_notify_gate_alert
                     EditGateReq req = new EditGateReq();
-                    req.gateAlertId = gateId;
-                    req.serviceId = serviceId;
+                    req.gateAlertId = serviceId;
+                    req.serviceId = gateId;
                     req.name = edtPersonName.getText().toString();
                     req.mobile = strPhone;
                     req.vaildTo = "3";

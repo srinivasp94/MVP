@@ -242,7 +242,8 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
         Bundle bundle = new Bundle();
         bundle.putString("Key_ServiceName", gateLists.get(position).service);
         bundle.putString("Key_ServiceId", gateLists.get(position).id);
-        bundle.putString("Key_GateId", gateLists.get(position).allowSecurityId);
+        bundle.putString("Key_GateId", gateLists.get(position).serviceType);
+//        bundle.putString("Key_GateId", gateLists.get(position).allowSecurityId);
         bundle.putString("Key_Name", gateLists.get(position).name);
         bundle.putString("Key_Mobile", gateLists.get(position).mobile);
         bundle.putString("Key_Valid", gateLists.get(position).vaildTo);
