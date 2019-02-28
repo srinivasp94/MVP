@@ -23,17 +23,20 @@ import com.iprismech.alertnikkiresidence.pojo.KidsListPojo;
 public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHolder> {
     private Context context;
     private KidsListPojo kidsListPojo;
+    private KidsGateAlertActivity kidsGateAlertActivity;
 
 
     public KidsListAdapter(KidsGateAlertActivity kidsGateAlertActivityClass, KidsListPojo kidsListPojo) {
         this.context = kidsGateAlertActivityClass;
         this.kidsListPojo = kidsListPojo;
+        this.kidsGateAlertActivity = kidsGateAlertActivityClass;
     }
 
     private StaffListAdapter.OnitemClickListener mListner;
 
     public void setOnItemClickListener(StaffListAdapter.OnitemClickListener onitemClickListener) {
         mListner = onitemClickListener;
+
     }
 
     public interface OnitemClickListener {
@@ -103,10 +106,11 @@ public class KidsListAdapter extends RecyclerView.Adapter<KidsListAdapter.ViewHo
                         bundle.putString("kid_id", kidsListPojo.getResponse().get(getAdapterPosition()).getId());
                         bundle.putString("kid_name", kidsListPojo.getResponse().get(getAdapterPosition()).getKid_name());
                         bundle.putString("kid_purpose", kidsListPojo.getResponse().get(getAdapterPosition()).getPurpose());
-                        bundle.putString("days",kidsListPojo.getResponse().get(getAdapterPosition()).getFull_days());
-                        bundle.putString("intime",kidsListPojo.getResponse().get(getAdapterPosition()).getIn_time());
-                        bundle.putString("outtime",kidsListPojo.getResponse().get(getAdapterPosition()).getOut_time());
+                        bundle.putString("days", kidsListPojo.getResponse().get(getAdapterPosition()).getFull_days());
+                        bundle.putString("intime", kidsListPojo.getResponse().get(getAdapterPosition()).getIn_time());
+                        bundle.putString("outtime", kidsListPojo.getResponse().get(getAdapterPosition()).getOut_time());
                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_KID_SCREEN, bundle);
+                        kidsGateAlertActivity.finish();
 
                     }
                     break;

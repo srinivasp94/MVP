@@ -57,9 +57,10 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     private TextView txtitle;
     private String kid_name_purpose, kid_name_edit, kid_name_days, kid_name_intime, kid_name_outtime;
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_KIDS_NOTIFY_ALERTS);
         finish();
     }
 
@@ -237,7 +238,7 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
                         //days.add()
                     } else if (screen_type.equalsIgnoreCase("Edit Kid")) {
                         replacedString = tv_selected_days.getText().toString();
-                        replacedString = kid_name_days.replace("Sunday", "1").replace("Monday", "2").replace("Tuesday", "3")
+                        replacedString = replacedString.replace("Sunday", "1").replace("Monday", "2").replace("Tuesday", "3")
                                 .replace("Wednesday", "4")
                                 .replace("Thursday", "5")
                                 .replace("Friday", "6")
@@ -307,8 +308,6 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
             tv_kid_in_tim.setText(kid_name_intime);
             sw_kids_pass_days.setChecked(true);
         }
-
-
     }
 
     @Override
@@ -371,12 +370,15 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
     public void resultDialogTimings(String result_string) {
         if (result_string.equalsIgnoreCase("All")) {
             str_selected_days = "Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday";
+            tv_selected_days.setText("" + str_selected_days);
         } else {
             str_selected_days = result_string;
+            tv_selected_days.setText("" + result_string);
         }
 
 
-        tv_selected_days.setText("" + result_string);
+
         sw_kids_pass_days.setChecked(true);
     }
+
 }

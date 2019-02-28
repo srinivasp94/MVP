@@ -17,7 +17,7 @@ public class EditKidRequest {
     @SerializedName("in_time")
     @Expose
     public String in_time;
-    @SerializedName("Out_time")
+    @SerializedName("out_time")
     @Expose
     public String Out_time;
     @SerializedName("kid_name")
@@ -34,7 +34,7 @@ public class EditKidRequest {
                 .append("user_kid_id", user_kid_id)
                 .append("purpose", purpose)
                 .append("in_time", in_time)
-                .append("Out_time", Out_time)
+                .append("out_time", Out_time)
                 .append("kid_name", kid_name)
                 .append("days", days)
                 .toString();

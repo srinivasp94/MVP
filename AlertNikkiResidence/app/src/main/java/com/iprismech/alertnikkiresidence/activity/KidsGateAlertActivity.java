@@ -159,6 +159,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
 
     @Override
     public void onResponseSuccess(Object objectResponse, Object objectRequest, int requestId) {
+
         if (objectResponse == null || objectResponse.equals("")) {
             Common.showToast(KidsGateAlertActivity.this, "Please Try Again");
         } else {
@@ -166,14 +167,12 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
                 JSONObject jsonObject = new JSONObject(jsonString);
-                if (jsonObject.optBoolean("status") == true) {
+                if (jsonObject.optBoolean("status")) {
                     layoutNoKid.setVisibility(View.GONE);
                     RlKidssLists.setVisibility(View.VISIBLE);
                     switch (requestId) {
                         case 1:
-                    /*        layoutNoKid.setVisibility(View.GONE);
-                            RlKidssLists.setVisibility(View.VISIBLE);*/
-//                            txtitle.setText("Kids Gate" + " (" + kidsListPojo.getResponse().size() + ")");
+                            txtitle.setText("Kids Gate" + " (" + kidsListPojo.getResponse().size() + ")");
                             manager = new LinearLayoutManager(KidsGateAlertActivity.this);
                             manager.setOrientation(LinearLayoutManager.VERTICAL);
                             rvKidLists.setLayoutManager(manager);
@@ -188,6 +187,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                     removed_postion = position;
                                     switch (view.getId()) {
                                         case R.id.ll_delete_kid:
+
 
                                             AlertUtils.showSimpleAlert(KidsGateAlertActivity.this, "Do you want to delete kid Gate pass", "Confirm...?", "Yes", "No", new AlertUtils.onClicklistners() {
                                                 @Override
