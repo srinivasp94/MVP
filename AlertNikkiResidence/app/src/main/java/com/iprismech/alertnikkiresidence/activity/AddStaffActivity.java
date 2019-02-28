@@ -48,17 +48,21 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
     private SearchDailyHelpsPojo searchDailyHelpsPojo;
     private String[] shops;
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
         finish();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgClose:
-                onBackPressed();
+                //  onBackPressed();
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
+                finish();
                 break;
         }
     }
@@ -101,7 +105,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                                     bundle.putString("ServiceID", service_id);
                                     bundle.putString("ServiceName", dailyHelpsListPojo.getResponse().get(position).getTitle());
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
-                                    //finish();
+                                    finish();
                                 }
                             });
 
@@ -134,6 +138,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                                 bundle.putString("ServiceID", service_id);
                                 bundle.putString("ServiceName", searchDailyHelpsPojo.getResponse().get(position).getTitle());
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
+                                finish();
                             }
                         });
                         break;
@@ -193,7 +198,8 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
             public boolean onQueryTextChange(String s) {
                 if (s.length() > 2) {
                     SearchDailyHelps searchDailyHelps = new SearchDailyHelps();
-                    searchDailyHelps.adminId = "2";
+                    searchDailyHelps.adminId = SharedPrefsUtils.getInstance(AddStaffActivity.this).getAdminID();
+                    ;
                     searchDailyHelps.name = "" + s;
                     try {
                         obj = Class.forName(SearchDailyHelps.class.getName()).cast(searchDailyHelps);
@@ -206,4 +212,5 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
             }
         });
     }
+
 }

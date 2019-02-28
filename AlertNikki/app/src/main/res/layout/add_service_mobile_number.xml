@@ -60,17 +60,17 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/_20sdp"
+                        android:layout_width="19dp"
                         android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center_horizontal"
-                        android:src="@drawable/add_services_checked" />
+                        android:src="@drawable/dummy" />
 
                     <com.iprismech.alertnikki.customviews.CustomTextViewNormal
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:text="Mobile Number"
-                        android:textColor="#2da13a"
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_8sdp" />
                 </LinearLayout>
 

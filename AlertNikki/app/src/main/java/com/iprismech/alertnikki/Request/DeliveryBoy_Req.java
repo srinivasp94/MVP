@@ -38,6 +38,10 @@ public class DeliveryBoy_Req {
     @Expose
     public String added_from;
 
+    @SerializedName("guest_type")
+    @Expose
+    public String guest_type;
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
@@ -51,6 +55,7 @@ public class DeliveryBoy_Req {
                 .append("photo", photo)
                 .append("service_from", service_from)
                 .append("added_from", added_from)
+                .append("guest_type", guest_type)
                 .toString();
     }
 }

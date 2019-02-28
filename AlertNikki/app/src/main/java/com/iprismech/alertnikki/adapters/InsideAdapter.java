@@ -21,11 +21,13 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
     private Context context;
     private ArrayList<ResponseVisitMember> arrayList;
     private ArrayList<ResponseVisitMember> temp;
+
     public InsideAdapter(Context context, ArrayList<ResponseVisitMember> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
         this.temp = arrayList;
     }
+
     private OnitemClickListener mListner;
 
     public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
@@ -37,12 +39,11 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
         return new Filter() {
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
-                String charString  = constraint.toString();
+                String charString = constraint.toString();
                 if (charString.isEmpty()) {
                     arrayList = temp;
 
                 } else {
-
 
 
 //                    filteredHelpsList.clear();
@@ -58,7 +59,7 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.name.toLowerCase().contains(charString.toLowerCase() )){
+                        if (row.name.toLowerCase().contains(charString.toLowerCase())) {
 
                             filteredList.add(row);
                         }
@@ -81,15 +82,15 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
     }
 
     public interface OnitemClickListener {
-        void onItemClick(View view, int position,ArrayList<ResponseVisitMember> arrayList);
+        void onItemClick(View view, int position, ArrayList<ResponseVisitMember> arrayList);
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-       // View view = LayoutInflater.from(context).inflate(R.layout.item_inside, viewGroup, false);
+        // View view = LayoutInflater.from(context).inflate(R.layout.item_inside, viewGroup, false);
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_inside, null);
-        MyViewHolder viewHolder=new MyViewHolder(view);
+        MyViewHolder viewHolder = new MyViewHolder(view);
         return viewHolder;
     }
 
@@ -98,7 +99,7 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
         ResponseVisitMember member = arrayList.get(i);
         holder.guestName.setText(member.name);
         holder.type.setText(member.type);
-        holder.invitedBy.setText(member.userName+" "+member.buildingName);
+        holder.invitedBy.setText(member.flatName + "," + member.buildingName);
         holder.address.setText(member.flatName);
 //        holder.timesince.setText(member.inTime + "");
         try {
@@ -128,7 +129,7 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
             address = itemView.findViewById(R.id.txt_AddressFrom_inside);
             timesince = itemView.findViewById(R.id.txt_timeSince_inside);
             out = itemView.findViewById(R.id.btn_out_inside);
-            ll_rootVisitor= itemView.findViewById(R.id.ll_rootVisitor);
+            ll_rootVisitor = itemView.findViewById(R.id.ll_rootVisitor);
 
             out.setOnClickListener(this);
             ll_rootVisitor.setOnClickListener(this);
@@ -138,7 +139,7 @@ public class InsideAdapter extends RecyclerView.Adapter<InsideAdapter.MyViewHold
         @Override
         public void onClick(View v) {
             if (mListner != null) {
-                mListner.onItemClick(v, getAdapterPosition(),arrayList);
+                mListner.onItemClick(v, getAdapterPosition(), arrayList);
             }
 
         }

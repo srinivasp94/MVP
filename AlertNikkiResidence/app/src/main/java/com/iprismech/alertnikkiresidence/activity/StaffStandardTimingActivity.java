@@ -40,17 +40,22 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
     private String screentype;
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Bundle bundle = new Bundle();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
         finish();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgClose:
-                onBackPressed();
+                Bundle bundle = new Bundle();
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
+                finish();
                 break;
             case R.id.txtAddSlots:
                 list = slotAdapter.getSelectedSlots();
@@ -58,7 +63,8 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
 //intent pass here or service call here
 
                     AddStaffMaidRequest req = new AddStaffMaidRequest();
-                    req.adminId = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getAdminID();;
+                    req.adminId = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getAdminID();
+                    ;
                     req.userType = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getuserType();
                     req.flatId = SharedPrefsUtils.getInstance(StaffStandardTimingActivity.this).getFlatId();
                     req.maidId = maid_id;

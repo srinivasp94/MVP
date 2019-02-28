@@ -231,15 +231,15 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     sunday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Sun");
+                        stringBuilder.append("Sunday");
 
 
                     } else {
-                        stringBuilder.append(", Sun");
+                        stringBuilder.append(",Sunday");
                     }
                 } else {
                     sunday_status = false;
-                    stringBuilder.toString().replace("Sun", "");
+                    stringBuilder.toString().replace("Sunday", "");
                 }
                 result_string = stringBuilder.toString();
 
@@ -251,13 +251,13 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     monday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Mon");
+                        stringBuilder.append("Monday");
                     } else {
-                        stringBuilder.append(", Mon");
+                        stringBuilder.append(",Monday");
                     }
                 } else {
                     monday_status = false;
-                    stringBuilder.toString().replace("Mon", "");
+                    stringBuilder.toString().replace("Monday", "");
 
                 }
                 result_string = stringBuilder.toString();
@@ -270,13 +270,13 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     tuesday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Tue");
+                        stringBuilder.append("Tuesday");
                     } else {
-                        stringBuilder.append(", Tue");
+                        stringBuilder.append(",Tuesday");
                     }
                 } else {
                     tuesday_status = false;
-                    stringBuilder.toString().replace("Tue", "");
+                    stringBuilder.toString().replace("Tuesday", "");
 
                 }
                 result_string = stringBuilder.toString();
@@ -289,13 +289,13 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     wednesday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Wed");
+                        stringBuilder.append("Wednesday");
                     } else {
-                        stringBuilder.append(", Wed");
+                        stringBuilder.append(",Wednesday");
                     }
                 } else {
                     wednesday_status = false;
-                    stringBuilder.toString().replace("Wed", "");
+                    stringBuilder.toString().replace("Wednesday", "");
 
 
                 }
@@ -309,13 +309,13 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     thursday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Thu");
+                        stringBuilder.append("Thursday");
                     } else {
-                        stringBuilder.append(", Thu");
+                        stringBuilder.append(",Thursday");
                     }
                 } else {
                     thursday_status = false;
-                    stringBuilder.toString().replace("Thu", "");
+                    stringBuilder.toString().replace("Thursday", "");
 
                 }
                 result_string = stringBuilder.toString();
@@ -328,13 +328,13 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     friday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Fri");
+                        stringBuilder.append("Friday");
                     } else {
-                        stringBuilder.append(", Fri");
+                        stringBuilder.append(",Friday");
                     }
                 } else {
                     friday_status = false;
-                    stringBuilder.toString().replace("Fri", "");
+                    stringBuilder.toString().replace("Friday", "");
 
                 }
                 result_string = stringBuilder.toString();
@@ -347,13 +347,13 @@ public class DaysSelction extends Dialog implements View.OnClickListener, Compou
                 if (b == true) {
                     friday_status = true;
                     if (stringBuilder.length() == 0) {
-                        stringBuilder.append("Sat");
+                        stringBuilder.append("Saturday");
                     } else {
-                        stringBuilder.append(", Sat");
+                        stringBuilder.append(",Saturday");
                     }
                 } else {
                     saturday_status = false;
-                    stringBuilder.toString().replace("Sat", "");
+                    stringBuilder.toString().replace("Saturday", "");
 
                 }
                 result_string = stringBuilder.toString();

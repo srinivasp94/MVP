@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/_4sdp"
@@ -10,6 +10,7 @@
 
 
     <LinearLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -17,26 +18,40 @@
         <com.iprismech.alertnikki.customviews.CustomTextViewLight
             android:id="@+id/item_notify_date"
             android:layout_width="wrap_content"
-            android:textColor="@color/viewcolor"
             android:layout_height="wrap_content"
-            android:text="23 oct 2018" />
+            android:text="23 oct 2018"
+            android:textColor="@color/viewcolor" />
 
         <com.iprismech.alertnikki.customviews.CustomTextViewLight
             android:id="@+id/item_notify_type"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:gravity="right"
-            android:layout_height="wrap_content"
             android:text="23 oct 2018" />
 
     </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/icon_alert"
+        android:layout_width="@dimen/_45sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_below="@+id/root"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:padding="@dimen/_2sdp"
+        android:src="@drawable/user" />
 
     <com.iprismech.alertnikki.customviews.CustomTextViewNormal
         android:id="@+id/item_notify_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/root"
         android:layout_marginTop="@dimen/_3sdp"
+        android:layout_toLeftOf="@+id/icon_alert"
+        android:padding="@dimen/_3sdp"
         android:text="Lorem ipsum is the nonsense filler text that typically demonstrates the font and style of a text in a document or visual demonstration."
         android:textSize="@dimen/_12sdp" />
-</LinearLayout>
+</RelativeLayout>

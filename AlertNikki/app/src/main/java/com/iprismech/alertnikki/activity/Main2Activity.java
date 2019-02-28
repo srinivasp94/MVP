@@ -18,6 +18,6 @@ public class Main2Activity extends AppCompatActivity {
         layout = findViewById(R.id.fml);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.fml, new DummyActivity()).commit();
+//        fragmentManager.beginTransaction().replace(R.id.fml, new DummyActivity()).commit();
     }
 }

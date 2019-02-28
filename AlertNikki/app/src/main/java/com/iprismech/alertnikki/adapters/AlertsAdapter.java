@@ -6,10 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.iprismech.alertnikki.R;
 import com.iprismech.alertnikki.Response.AlertsCommon;
+import com.iprismech.alertnikki.Response.NotifiGateAlerts;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +20,10 @@ import java.util.List;
 public class AlertsAdapter extends RecyclerView.Adapter<AlertsAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<AlertsCommon> list;
+//    private ArrayList<AlertsCommon> list;
+    private ArrayList<NotifiGateAlerts> list;
 
-    public AlertsAdapter(Context context, ArrayList<AlertsCommon> list) {
+    public AlertsAdapter(Context context, ArrayList<NotifiGateAlerts> list) {
         this.context = context;
         this.list = list;
     }
@@ -43,11 +47,13 @@ public class AlertsAdapter extends RecyclerView.Adapter<AlertsAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        AlertsCommon alerts = list.get(i);
-        viewHolder.date.setText(alerts.date);
-        viewHolder.notification_Msg.setText("Name:"+alerts.name+"  Mobile:"+alerts.phone);
+        NotifiGateAlerts alerts = list.get(i);
+        viewHolder.date.setText(alerts.fromDate);
+        viewHolder.notification_Msg.setText("Person Name as "+alerts.personName+" Service From "+alerts.service+"\n"+
+                alerts.member.flat+", "+alerts.member.building+", "+alerts.member.city);
        // viewHolder.notification_Msg.setText(alerts.Description);
-        viewHolder.type.setText(alerts.type_alert);
+        viewHolder.type.setText(alerts.member.memberType);
+        Picasso.with(context).load(R.drawable.ic_notify_alert).into(viewHolder.icon_alert);
 
     }
 
@@ -59,12 +65,14 @@ public class AlertsAdapter extends RecyclerView.Adapter<AlertsAdapter.ViewHolder
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView date, notification_Msg, type;
+        ImageView icon_alert;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             date = itemView.findViewById(R.id.item_notify_date);
             notification_Msg = itemView.findViewById(R.id.item_notify_message);
             type = itemView.findViewById(R.id.item_notify_type);
+            icon_alert = itemView.findViewById(R.id.icon_alert);
 
             itemView.setOnClickListener(this);
         }

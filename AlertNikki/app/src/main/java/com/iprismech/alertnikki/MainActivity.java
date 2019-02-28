@@ -153,6 +153,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
         ll_top_keypad = findViewById(R.id.ll_top_keypad);
         ll_top_adminstaff = findViewById(R.id.ll_top_adminstaff);
         ll_top_visitors = findViewById(R.id.ll_top_visitors);
+
         ll_top_alerts = findViewById(R.id.ll_top_alerts);
         ll_top_more = findViewById(R.id.ll_top_more);
 
@@ -223,7 +224,8 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
 
 
         txtGate = findViewById(R.id.txtSocietyGate);
-        txtGate.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY));
+        txtGate.setText(SharedPrefsUtils.getString(SharedPrefsUtils.KEY_SOCIETY) + ", "
+                + SharedPrefsUtils.getString(SharedPrefsUtils.KEY_CITY));
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
 
 
@@ -351,9 +353,9 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                 iv_bottom_more.setImageResource(R.drawable.ic_bottom_more);
 
 
-                String[] list = {"My Login Time", "Add data", "About Us", "Logout", "SOS", "QR Code"};
+                String[] list = {"My Login Time", "Add data", "About Us", "Logout",  "QR Code"};
                 Integer[] imageslist = {R.drawable.ic_clock,
-                        R.drawable.ic_adddata, R.drawable.ic_about, R.drawable.ic_logout, R.drawable.ic_sos, R.drawable.qrcode};
+                        R.drawable.ic_adddata, R.drawable.ic_about, R.drawable.ic_logout, R.drawable.qrcode};
 
 
                 LayoutInflater dialoginflater = LayoutInflater.from(MainActivity.this);
@@ -374,7 +376,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                 ll_adda_data = dialogview.findViewById(R.id.ll_add_data);
                 ll_aboutus = dialogview.findViewById(R.id.ll_aboutus);
                 ll_logout = dialogview.findViewById(R.id.ll_logout);
-                ll_sos = dialogview.findViewById(R.id.ll_sos);
+//                ll_sos = dialogview.findViewById(R.id.ll_sos);
                 ll_qrcode = dialogview.findViewById(R.id.ll_qrcode);
                 ll_mylogintime.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -397,7 +399,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                         }
                         new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 1, "my_login_time", true);
 
-                        alertDialog.dismiss();
+//                        alertDialog.dismiss();
 
                     }
                 });
@@ -428,12 +430,12 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                     }
                 });
 
-                ll_sos.setOnClickListener(new View.OnClickListener() {
+                /*ll_sos.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
                     }
-                });
+                });*/
 
                 ll_qrcode.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -691,6 +693,7 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
 
                             ok_submit = dialogview.findViewById(R.id.login_time_Ok);
                             security_name = dialogview.findViewById(R.id.security_name_login);
+
                             login_time = dialogview.findViewById(R.id.login_time);
                             txt_society = dialogview.findViewById(R.id.txt_society);
                             security_img = dialogview.findViewById(R.id.sec_img_login_time);
@@ -727,7 +730,6 @@ public class MainActivity extends BaseAbstractActivity<Class> implements View.On
                         case 3:
 
 //                        {"status":true,"message":"Data fetched Successfully!","visitors_count":8}
-
 
                             int visitors_count = object.optInt("visitors_count") + object.optInt("visitors_count_inside");
                             badgeVisitors.setText("" + visitors_count);

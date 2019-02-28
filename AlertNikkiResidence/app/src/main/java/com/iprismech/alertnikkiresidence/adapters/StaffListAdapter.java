@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.Switch;
@@ -15,9 +16,12 @@ import android.widget.TextView;
 
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.activity.MyStaffAlerts;
+import com.iprismech.alertnikkiresidence.activity.StaffProfileActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.MyStaff_Maids_List_Pojo;
+import com.iprismech.alertnikkiresidence.utilities.Constants;
+import com.squareup.picasso.Picasso;
 
 public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.ViewHolder> {
     private Context context;
@@ -52,10 +56,20 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         viewHolder.tv_staff_name.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_name());
         viewHolder.tv_maid_type.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_designation());
         viewHolder.tv_staff_rating.setText(myStaff_maids_list_pojo.getResponse().get(i).getRating());
-        if (myStaff_maids_list_pojo.getResponse().get(i).getIn_time() != null)
-            viewHolder.intime.setText(myStaff_maids_list_pojo.getResponse().get(i).getIn_time() + "");
-        if (myStaff_maids_list_pojo.getResponse().get(i).getOut_time() != null)
-            viewHolder.outtime.setText(myStaff_maids_list_pojo.getResponse().get(i).getOut_time() + "");
+//        Picasso.with(context).load(Constants.BASE_IMAGE_URL + myStaff_maids_list_pojo.getResponse().get(i).get)
+//                .error(R.drawable.dummy)
+//                .into(iv_staff);
+        if (myStaff_maids_list_pojo.getResponse().get(i).getOut_time() == null) {
+            viewHolder.outtime.setText("");
+        } else {
+            viewHolder.outtime.setText((CharSequence) myStaff_maids_list_pojo.getResponse().get(i).getOut_time() + "");
+        }
+        if (myStaff_maids_list_pojo.getResponse().get(i).getIn_time() == null) {
+            viewHolder.intime.setText("");
+        } else {
+            viewHolder.intime.setText((CharSequence) myStaff_maids_list_pojo.getResponse().get(i).getIn_time() + "");
+        }
+
 
         if (myStaff_maids_list_pojo.getResponse().get(i).getRating().equalsIgnoreCase("")
                 || myStaff_maids_list_pojo.getResponse().get(i).getRating().isEmpty()
@@ -87,6 +101,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         TextView tv_no_of_flats, tv_staff_name, tv_maid_type, tv_staff_rating, intime, outtime;
         RatingBar rating_staff;
         Switch switch_noti;
+        ImageView iv_maid_img;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -96,6 +111,9 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             ll_delete = itemView.findViewById(R.id.ll_delete_maid);
             ll_item_staff_list = itemView.findViewById(R.id.ll_item_staff_list);
             switch_noti = itemView.findViewById(R.id.switch_noti);
+            intime = itemView.findViewById(R.id.intime);
+            outtime = itemView.findViewById(R.id.outtime);
+            iv_maid_img = itemView.findViewById(R.id.iv_maid_img);
 
 
             tv_no_of_flats = itemView.findViewById(R.id.no_flats);
@@ -103,8 +121,6 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             tv_maid_type = itemView.findViewById(R.id.maid_type);
             tv_staff_rating = itemView.findViewById(R.id.staff_rating);
             rating_staff = itemView.findViewById(R.id.rating_staff_bar);
-            intime = itemView.findViewById(R.id.intime);
-            outtime = itemView.findViewById(R.id.outtime);
 
             switch_noti.setOnClickListener(this);
             ll_make_call.setOnClickListener(this);
@@ -119,6 +135,8 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
                     bundle.putString("maid_id", myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getMaid_id());
                     bundle.putString("user_maid_id", myStaff_maids_list_pojo.getResponse().get(getAdapterPosition()).getId());
                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_STAFF_PROFILE, bundle);
+
+
                 }
             });
 

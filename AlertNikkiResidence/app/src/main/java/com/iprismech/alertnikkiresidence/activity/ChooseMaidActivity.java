@@ -1,5 +1,6 @@
 package com.iprismech.alertnikkiresidence.activity;
 
+import android.annotation.SuppressLint;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,6 +11,8 @@ import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.adapters.ChooseMaidAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
+import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
+import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
 import com.iprismech.alertnikkiresidence.pojo.ChooseMaidPojo;
 import com.iprismech.alertnikkiresidence.request.ChooseMaidRequest;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
@@ -31,18 +34,23 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
     private TextView txtitle, tv_nodata_txt;
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        //super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
         finish();
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.imgClose:
-                onBackPressed();
+                //  onBackPressed();
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_ADD_STAFF_SCREEN);
+                finish();
                 break;
         }
     }
@@ -84,6 +92,7 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
         return view;
     }
 
+
     @Override
     public void setPresenter() {
 
@@ -112,6 +121,15 @@ public class ChooseMaidActivity extends BaseAbstractActivity implements View.OnC
                         chooseMaidAdapter = new ChooseMaidAdapter(ChooseMaidActivity.this, chooseMaidPojo);
                         rview_choosemaid.setAdapter(chooseMaidAdapter);
                         chooseMaidAdapter.notifyDataSetChanged();
+                        // finish();
+//                        chooseMaidAdapter.setOnItemClickListener(new ChooseMaidAdapter.OnitemClickListener() {
+//                            @Override
+//                            public void onItemClick(View view, int position) {
+//                                switch (view.getId()){
+//                                    case R.id.
+//                                }
+//                            }
+//                        });
                     }
                 } else {
                     tv_nodata_txt.setVisibility(View.VISIBLE);
