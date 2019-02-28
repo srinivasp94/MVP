@@ -53,8 +53,8 @@ public class StaffStandardTimingActivity extends BaseAbstractActivity implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imgClose:
-                Bundle bundle = new Bundle();
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
+                //    Bundle bundle = new Bundle();
+                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MYSTAFF_ALERTS);
                 finish();
                 break;
             case R.id.txtAddSlots:
