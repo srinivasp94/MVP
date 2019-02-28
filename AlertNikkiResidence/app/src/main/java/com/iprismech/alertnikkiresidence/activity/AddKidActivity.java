@@ -308,8 +308,6 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
             tv_kid_in_tim.setText(kid_name_intime);
             sw_kids_pass_days.setChecked(true);
         }
-
-
     }
 
     @Override
@@ -375,10 +373,11 @@ public class AddKidActivity extends BaseAbstractActivity implements View.OnClick
             tv_selected_days.setText("" + str_selected_days);
         } else {
             str_selected_days = result_string;
+            tv_selected_days.setText("" + result_string);
         }
 
 
-        tv_selected_days.setText("" + result_string);
+
         sw_kids_pass_days.setChecked(true);
     }
 
