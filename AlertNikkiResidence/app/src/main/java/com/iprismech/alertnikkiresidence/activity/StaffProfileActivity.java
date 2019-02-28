@@ -543,6 +543,7 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             } else {
                                 rating_staff_profile.setRating(Float.parseFloat(staffprofilePojo.getResponse().getRating()));
                             }
+                            tv_satff_passcode.setText("Passcode :" + staffprofilePojo.getResponse().getPasscode());
 
                             //user_maid_id=staffprofilePojo.getResponse().getId();
                             break;

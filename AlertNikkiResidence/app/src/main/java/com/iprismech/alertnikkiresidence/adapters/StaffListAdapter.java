@@ -144,9 +144,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
 
         @Override
         public void onClick(View v) {
-            if (mListner != null) {
-                mListner.onItemClick(v, getAdapterPosition());
-            }
+
         }
     }
 }
