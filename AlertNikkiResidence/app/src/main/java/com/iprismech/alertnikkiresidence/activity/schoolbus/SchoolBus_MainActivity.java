@@ -140,7 +140,9 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                         case 1:
                             SchoolBusRes res = Common.getSpecificDataObject(objectResponse, SchoolBusRes.class);
                             schoolBusLists = (ArrayList<SchoolBusList>) res.response;
+
                             if (schoolBusLists != null && schoolBusLists.size() > 0) {
+                                txtitle.setText("School Bus" + " (" + schoolBusLists.size() + ")");
                                 linearLayout.setVisibility(View.GONE);
                                 relativeLayout.setVisibility(View.VISIBLE);
                                 busInfoAdapter = new SchoolBusInfoAdapter(SchoolBus_MainActivity.this, schoolBusLists);

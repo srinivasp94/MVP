@@ -234,7 +234,8 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         intent.putExtra("Key_id", "1");
         intent.putExtra("Key_GuestId", guestsLists.get(pos).id);
         intent.putExtra("Key_Name", guestsLists.get(pos).name);
-        intent.putExtra("Key_Mobile", guestsLists.get(pos).mobile);
+        intent.putExtra("Key_Mobile", guestsLists.get(pos).
+                mobile.replace("+", "").replace(" ", "").trim());
         intent.putExtra("Key_Vehicle", guestsLists.get(pos).vehicleNo);
         startActivity(intent);
         finish();
@@ -303,7 +304,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("Key_Name","OTHERS");
+                bundle.putString("Key_TitleName", "OTHERS");
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN, bundle);
                 alertDialog.dismiss();
             }

@@ -165,7 +165,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
             guestId = bundle.getString("Key_GuestId", "");
             guestName = bundle.getString("Key_Name", "");
             guestPhn = bundle.getString("Key_Mobile", "");
-            key_name = bundle.getString("Key_Name", "");
+            key_name = bundle.getString("Key_TitleName", "");
         }
 
         txtitle = findViewById(R.id.txtitle);
@@ -200,14 +200,14 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
 
         } else {
             edtName.setText(guestName);
-            int len = guestPhn.trim().length();
+            int len = guestPhn.replace(" ","").trim().length();
             int length = 0;
             if (len > 10) {
-                mMobile = guestPhn.trim().substring(len - 10);
-                edtMobile.setText(guestPhn.trim());
+                mMobile = guestPhn.replace(" ", "").trim().substring(len - 10);
+                edtMobile.setText(guestPhn.replace(" ", "").trim());
             }
             if (!TextUtils.isEmpty(guestPhn))
-                edtMobile.setText(guestPhn.trim());
+                edtMobile.setText(guestPhn.replace(" ", "").trim());
         }
 
     }

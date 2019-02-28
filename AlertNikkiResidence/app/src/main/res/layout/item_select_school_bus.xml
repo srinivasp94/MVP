@@ -98,8 +98,6 @@
             android:layout_weight="0.2"
             android:textOff="Off"
             android:textOn="On"
-            android:clickable="false"
-            android:focusable="false"
             android:gravity="center" />
 
     </RelativeLayout>

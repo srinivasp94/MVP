@@ -172,6 +172,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                     RlKidssLists.setVisibility(View.VISIBLE);
                     switch (requestId) {
                         case 1:
+                            txtitle.setText("Kids Gate" + " (" + kidsListPojo.getResponse().size() + ")");
                             manager = new LinearLayoutManager(KidsGateAlertActivity.this);
                             manager.setOrientation(LinearLayoutManager.VERTICAL);
                             rvKidLists.setLayoutManager(manager);
@@ -179,8 +180,6 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                             kidsListAdapter = new KidsListAdapter(KidsGateAlertActivity.this, kidsListPojo);
                             rvKidLists.setAdapter(kidsListAdapter);
                             kidsListAdapter.notifyDataSetChanged();
-
-
                             kidsListAdapter.setOnItemClickListener(new StaffListAdapter.OnitemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
@@ -208,7 +207,6 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
 
                                                 }
                                             });
-
 
 
                                             break;

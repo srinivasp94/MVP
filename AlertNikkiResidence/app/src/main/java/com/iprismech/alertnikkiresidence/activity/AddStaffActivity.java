@@ -2,6 +2,8 @@ package com.iprismech.alertnikkiresidence.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,6 +17,7 @@ import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
 import com.iprismech.alertnikkiresidence.activity.schoolbus.SelectSchoolActivity;
 import com.iprismech.alertnikkiresidence.adapters.DailyHelpsAdapter;
+import com.iprismech.alertnikkiresidence.adapters.StaffRecyclerGridAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
@@ -47,6 +50,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
     private SearchView et_search;
     private SearchDailyHelpsPojo searchDailyHelpsPojo;
     private String[] shops;
+    RecyclerView rcvGridItems;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -94,7 +98,25 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                         tv_nodata_txt.setVisibility(View.GONE);
                         JSONObject jsonObject = new JSONObject(jsonString);
                         if (jsonObject.optBoolean("status")) {
-                            daily_helps_adapter = new DailyHelpsAdapter(AddStaffActivity.this, dailyHelpsListPojo);
+                            GridLayoutManager gridLayoutManager = new GridLayoutManager(AddStaffActivity.this, 4);
+                            StaffRecyclerGridAdapter staffRecyclerGridAdapter = new StaffRecyclerGridAdapter(AddStaffActivity.this, dailyHelpsListPojo);
+                            rcvGridItems.setLayoutManager(gridLayoutManager);
+                            rcvGridItems.setNestedScrollingEnabled(true);
+                            rcvGridItems.setAdapter(staffRecyclerGridAdapter);
+                            staffRecyclerGridAdapter.setOnItemClickListener(new StaffRecyclerGridAdapter.OnitemClickListener() {
+                                @SuppressLint("WrongConstant")
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    String service_id = dailyHelpsListPojo.getResponse().get(position).getId();
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("ServiceID", service_id);
+                                    bundle.putString("ServiceName", dailyHelpsListPojo.getResponse().get(position).getTitle());
+                                    ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
+                                    finish();
+                                }
+                            });
+
+                         /*   daily_helps_adapter = new DailyHelpsAdapter(AddStaffActivity.this, dailyHelpsListPojo);
                             gv_daily_helps.setAdapter(daily_helps_adapter);
                             gv_daily_helps.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @SuppressLint("WrongConstant")
@@ -107,7 +129,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
                                     finish();
                                 }
-                            });
+                            });*/
 
                         } else {
                             Common.showToast(AddStaffActivity.this, jsonObject.optString("message"));
@@ -157,6 +179,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
         tv_nodata_txt = findViewById(R.id.tv_nodata_txt);
+        rcvGridItems = findViewById(R.id.rcvGridItems);
         txtitle.setText("Add Staff");
 
         imgClose.setOnClickListener(this);

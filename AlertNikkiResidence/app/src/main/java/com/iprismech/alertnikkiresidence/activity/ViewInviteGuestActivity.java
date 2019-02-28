@@ -186,7 +186,7 @@ public class ViewInviteGuestActivity extends BaseAbstractActivity implements Vie
                 intent1.putExtra("Key_id", "3");
                 intent1.putExtra("Key_Sub_Id", "10");
                 intent1.putExtra("Key_Position", "0");
-                intent1.putExtra("Key_Name", "OTHERS");
+                intent1.putExtra("Key_TitleName", "OTHERS");
                 startActivity(intent1);
                 finish();
                 break;

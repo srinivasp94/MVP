@@ -145,13 +145,17 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
         Emergeny = findViewById(R.id.Emergeny);
         NoticeBoard = findViewById(R.id.NoticeBoard);
         LinearMysocirty = findViewById(R.id.LinearMysocirty);
+        try {
 
-        if (SharedPrefsUtils.getString(SharedPrefsUtils.KEY_USER_TYPE).equalsIgnoreCase("2.0")) {
-            MyFlat.setVisibility(View.GONE);
-            MyVehicles.setVisibility(View.GONE);
+            if (SharedPrefsUtils.getInstance(ProfileActivity.this).getuserType().equalsIgnoreCase("2.0")) {
+                MyFlat.setVisibility(View.GONE);
+                MyVehicles.setVisibility(View.GONE);
 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.d("@@Error",e.toString());
         }
-
 
         /*rvProfileitems = findViewById(R.id.rvProfileitems);
         rvProfileitems.setLayoutManager(manager);*/

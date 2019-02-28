@@ -147,7 +147,9 @@ public class DetailActivity extends BaseAbstractActivity implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_add:
-                if (checkBox.isChecked()) {
+                if (typename.equalsIgnoreCase("")) {
+                    Common.showToast(DetailActivity.this,"Please select Resident type");
+                } else if (checkBox.isChecked()) {
                     getdataFromAdapter(0);
                 } else {
                     Toast.makeText(DetailActivity.this, "Please Accept terms & Conditions", Toast.LENGTH_SHORT).show();

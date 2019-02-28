@@ -158,8 +158,10 @@ public class NotifyGateMainActivity extends BaseAbstractActivity implements View
                     switch (requestId) {
                         case 1:
                             NotifyGateRes response = Common.getSpecificDataObject(objectResponse, NotifyGateRes.class);
+
                             gateLists = (ArrayList<NotifyGateList>) response.response;
                             if (gateLists != null && gateLists.size() > 0) {
+                                txtitle.setText("Notify Gate"+" ("+response.response.size()+")");
                                 rl_listItems.setVisibility(View.VISIBLE);
                                 ll_gateAlerts.setVisibility(View.GONE);
                                 notifyFGateAdapter = new NotifyFGateAdapter(NotifyGateMainActivity.this, gateLists);
