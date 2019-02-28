@@ -278,6 +278,7 @@ public class KidsGateAlertActivity extends BaseAbstractActivity implements View.
                                                             e.printStackTrace();
                                                         }
                                                         new RetrofitRequester(retrofitResponseListener).callPostServices(obj, 3, "kid_gatepass_notify", true);
+                                                        alertDialog.dismiss();
                                                     }
                                                 }
                                             });

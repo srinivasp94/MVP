@@ -46,6 +46,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
     private ListView searchresults;
     private SearchView et_search;
     private SearchDailyHelpsPojo searchDailyHelpsPojo;
+    private String[] shops;
 
     @Override
     public void onBackPressed() {
@@ -98,6 +99,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                                     String service_id = dailyHelpsListPojo.getResponse().get(position).getId();
                                     Bundle bundle = new Bundle();
                                     bundle.putString("ServiceID", service_id);
+                                    bundle.putString("ServiceName", dailyHelpsListPojo.getResponse().get(position).getTitle());
                                     ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
                                     //finish();
                                 }
@@ -113,7 +115,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                     case 2:
                         et_search.setFocusable(true);
                         searchDailyHelpsPojo = gson.fromJson(jsonString, SearchDailyHelpsPojo.class);
-                        String[] shops = new String[searchDailyHelpsPojo.getResponse().size()];
+                        shops = new String[searchDailyHelpsPojo.getResponse().size()];
                         for (int i = 0; i < searchDailyHelpsPojo.getResponse().size(); i++) {
                             shops[i] = searchDailyHelpsPojo.getResponse().get(i).getTitle();
                         }
@@ -130,6 +132,7 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
                                 String service_id = searchDailyHelpsPojo.getResponse().get(position).getId();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("ServiceID", service_id);
+                                bundle.putString("ServiceName", searchDailyHelpsPojo.getResponse().get(position).getTitle());
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_CHOOSE_MAID, bundle);
                             }
                         });
@@ -154,6 +157,20 @@ public class AddStaffActivity extends BaseAbstractActivity implements View.OnCli
         imgClose.setOnClickListener(this);
         et_search = findViewById(R.id.et_search);
         searchresults = findViewById(R.id.searchresults);
+        try {
+            ImageView closeButton = (ImageView) et_search.findViewById(R.id.search_close_btn);
+            closeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    et_search.setQuery("", true);
+                    et_search.setFocusable(false);
+                    shops = null;
+                    searchresults.setAdapter(null);
+                }
+            });
+        } catch (Exception e) {
+
+        }
 
         DailyHelpsList dailyHelpsReq = new DailyHelpsList();
 

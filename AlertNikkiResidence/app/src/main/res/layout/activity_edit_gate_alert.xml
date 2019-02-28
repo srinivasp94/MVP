@@ -36,7 +36,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 style="@style/DefaultCustomTextView"
-                android:text="*Person Name(Delivery Boy)"
+                android:text="*Person Name(Service person)"
                 android:textColor="@color/colorPrimary" />
 
             <android.support.v7.widget.AppCompatEditText
@@ -66,12 +66,16 @@
                 android:text="*How many hours this information will valid?"
                 android:textColor="@color/colorPrimary" />
 
-            <android.support.v7.widget.AppCompatEditText
+            <TextView
                 android:id="@+id/edtValidHours"
-                style="@style/customEdittext"
-                android:hint="+3 hours"
-                android:focusable="false"
-                android:textColor="@color/black" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3 Hours"
+                android:paddingLeft="@dimen/_5sdp"
+                android:typeface="sans"
+                
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
 
             <View style="@style/customView" />
 

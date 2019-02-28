@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -25,9 +26,9 @@ public class SchoolBusInfoAdapter extends RecyclerView.Adapter<SchoolBusInfoAdap
         this.lists = lists;
     }
 
-    private ContactViewAdapter.OnitemClickListener mListner;
+    private OnitemClickListener mListner;
 
-    public void setOnItemClickListener(ContactViewAdapter.OnitemClickListener onitemClickListener) {
+    public void setOnItemClickListener(OnitemClickListener onitemClickListener) {
         mListner = onitemClickListener;
     }
 
@@ -74,7 +75,15 @@ public class SchoolBusInfoAdapter extends RecyclerView.Adapter<SchoolBusInfoAdap
             txtOuttime = itemView.findViewById(R.id.txtOuttime);
             busSwitch = itemView.findViewById(R.id.busSwitch);
             rootRelative = itemView.findViewById(R.id.rootRelative);
+            busSwitch.setClickable(false);
             busSwitch.setOnClickListener(this);
+            busSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    mListner.onItemClick(buttonView,getAdapterPosition());
+                }
+            });
+
 //            itemView.setOnClickListener(this);
             rootRelative.setOnClickListener(this);
         }

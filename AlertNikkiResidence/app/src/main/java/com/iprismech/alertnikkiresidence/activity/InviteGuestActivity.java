@@ -94,7 +94,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
         AppPermissions.callPermissionForContacts(InviteGuestActivity.this);
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Invite Guest");
+        txtitle.setText("Guests");
         imgClose.setOnClickListener(this);
 
         manager = new LinearLayoutManager(InviteGuestActivity.this);
@@ -163,7 +163,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                             Guests response = Common.getSpecificDataObject(objectResponse, Guests.class);
                             guestsLists = (ArrayList<GuestsList>) response.response;
                             if (guestsLists != null && guestsLists.size() > 0) {
-                                txtitle.setText("Invite Guest" + "(" + guestsLists.size() + ")");
+                                txtitle.setText("Guests" + " (" + guestsLists.size() + ")");
                                 layoutNoGuests.setVisibility(View.GONE);
                                 RlGuestsLists.setVisibility(View.VISIBLE);
                                 guestsAdapter = new AllGuestsAdapter(InviteGuestActivity.this, guestsLists);
@@ -209,6 +209,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
                             if (guestsLists.size() > 1) {
                                 guestsLists.remove(itemPosition);
                                 guestsAdapter.notifyDataSetChanged();
+                                txtitle.setText("Guests" + " (" + guestsLists.size() + ")");
                             } else {
                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN);
                                 finish();
@@ -302,6 +303,7 @@ public class InviteGuestActivity extends BaseAbstractActivity implements View.On
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
+                bundle.putString("Key_Name","OTHERS");
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GUEST_SCREEN, bundle);
                 alertDialog.dismiss();
             }

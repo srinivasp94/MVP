@@ -41,7 +41,7 @@
                 style="@style/customEdittext"
                 android:hint="Enter Mobile Number"
                 android:inputType="number"
-                android:maxLength="12" />
+                android:maxLength="10" />
 
             <View style="@style/customView" />
 

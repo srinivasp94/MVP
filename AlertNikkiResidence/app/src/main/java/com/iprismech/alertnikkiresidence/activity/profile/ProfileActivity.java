@@ -72,9 +72,11 @@ public class ProfileActivity extends BaseAbstractActivity implements View.OnClic
     private String mVehicles = "";
 
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_SCREEN);
         finish();
     }
 

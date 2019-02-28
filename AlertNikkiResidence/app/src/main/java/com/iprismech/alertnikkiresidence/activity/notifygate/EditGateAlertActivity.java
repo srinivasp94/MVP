@@ -24,7 +24,8 @@ import org.json.JSONObject;
 public class EditGateAlertActivity extends BaseAbstractActivity implements RetrofitResponseListener, View.OnClickListener {
     private ImageView imgClose;
     private TextView txtitle;
-    private EditText edtServiceType, edtPersonName, edtPhone, edtValidHours;
+    private EditText edtServiceType, edtPersonName, edtPhone;
+    TextView edtValidHours;
     private TextView notifyGate;
     private Object obj;
     private String serviceName, serviceId, screen, gateId,
@@ -71,8 +72,11 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
         }
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Edit Notify Gate");
-
+        if (screen.equalsIgnoreCase("1"))
+            txtitle.setText("Add " +
+                    "Notify Gate");
+        else if (screen.equalsIgnoreCase("2"))
+            txtitle.setText("Edit Notify Gate");
         notifyGate = findViewById(R.id.notifyGate);
         edtServiceType = findViewById(R.id.edtServiceType);
         edtPersonName = findViewById(R.id.edtPersonName);
@@ -82,7 +86,7 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
         edtServiceType.setText(serviceName);
         edtPersonName.setText(Name);
         edtPhone.setText(Mobile);
-        edtValidHours.setText(Valid);
+//        edtValidHours.setText(Valid);
     }
 
     @Override
@@ -176,7 +180,12 @@ public class EditGateAlertActivity extends BaseAbstractActivity implements Retro
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
-        finish();
+        if (screen.equalsIgnoreCase("1")) {
+            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_GATE_SERVICE);
+            finish();
+        } else {
+            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
+            finish();
+        }
     }
 }

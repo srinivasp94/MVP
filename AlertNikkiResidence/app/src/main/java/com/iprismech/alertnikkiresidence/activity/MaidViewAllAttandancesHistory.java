@@ -99,7 +99,7 @@ public class MaidViewAllAttandancesHistory extends BaseAbstractActivity implemen
 
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Maids");
+        txtitle.setText("Maid History");
         imgClose.setOnClickListener(this);
 
         rview_viewall = findViewById(R.id.rview_viewall);

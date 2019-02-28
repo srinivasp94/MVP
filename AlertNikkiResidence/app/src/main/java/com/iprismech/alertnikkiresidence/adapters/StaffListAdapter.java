@@ -52,6 +52,10 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
         viewHolder.tv_staff_name.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_name());
         viewHolder.tv_maid_type.setText(myStaff_maids_list_pojo.getResponse().get(i).getMaid_designation());
         viewHolder.tv_staff_rating.setText(myStaff_maids_list_pojo.getResponse().get(i).getRating());
+        if (myStaff_maids_list_pojo.getResponse().get(i).getIn_time() != null)
+            viewHolder.intime.setText(myStaff_maids_list_pojo.getResponse().get(i).getIn_time() + "");
+        if (myStaff_maids_list_pojo.getResponse().get(i).getOut_time() != null)
+            viewHolder.outtime.setText(myStaff_maids_list_pojo.getResponse().get(i).getOut_time() + "");
 
         if (myStaff_maids_list_pojo.getResponse().get(i).getRating().equalsIgnoreCase("")
                 || myStaff_maids_list_pojo.getResponse().get(i).getRating().isEmpty()
@@ -80,7 +84,7 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         LinearLayout ll_make_call, ll_delete, ll_send_gate_pass, ll_item_staff_list;
-        TextView tv_no_of_flats, tv_staff_name, tv_maid_type, tv_staff_rating;
+        TextView tv_no_of_flats, tv_staff_name, tv_maid_type, tv_staff_rating, intime, outtime;
         RatingBar rating_staff;
         Switch switch_noti;
 
@@ -99,6 +103,8 @@ public class StaffListAdapter extends RecyclerView.Adapter<StaffListAdapter.View
             tv_maid_type = itemView.findViewById(R.id.maid_type);
             tv_staff_rating = itemView.findViewById(R.id.staff_rating);
             rating_staff = itemView.findViewById(R.id.rating_staff_bar);
+            intime = itemView.findViewById(R.id.intime);
+            outtime = itemView.findViewById(R.id.outtime);
 
             switch_noti.setOnClickListener(this);
             ll_make_call.setOnClickListener(this);

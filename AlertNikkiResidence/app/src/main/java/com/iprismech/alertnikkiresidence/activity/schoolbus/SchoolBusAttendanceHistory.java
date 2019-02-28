@@ -111,7 +111,7 @@ public class SchoolBusAttendanceHistory extends BaseAbstractActivity implements 
 
         txtitle = findViewById(R.id.txtitle);
         imgClose= findViewById(R.id.imgClose);
-        txtitle.setText("Bus Attendence History");
+        txtitle.setText("Bus Attendance History");
         imgClose.setOnClickListener(this);
 
          school_bus_id = getIntent().getExtras().getString("school_bus_id", "");

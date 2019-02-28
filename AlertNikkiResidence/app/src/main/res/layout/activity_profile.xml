@@ -126,17 +126,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="@dimen/_5sdp">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/MySociety"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/buildin_scocity"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:text="My Society"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/dum1"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/buildin_scocity" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/MySociety"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum1"
+                        android:gravity="center|left"
+                        android:text="My Society"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:id="@+id/LinearMysocirty"
@@ -147,94 +162,221 @@
                     android:padding="@dimen/_3sdp"
                     android:visibility="gone">
 
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/NoticeBoard"
-                        style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/notice_board"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:gravity="center|left"
-                        android:text="Notice Board"
-                        android:textSize="@dimen/_12sdp" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/Emergeny"
-                        style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/emergency_call"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:gravity="center|left"
-                        android:text="Emergency Contact"
-                        android:textSize="@dimen/_12sdp" />
+                        <ImageView
+                            android:id="@+id/dum11"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center|left"
+                            android:src="@drawable/notice_board" />
 
-                    <android.support.v7.widget.AppCompatTextView
-                        android:id="@+id/Management"
-                        style="@style/DefaultCustomTextView"
-                        android:drawableLeft="@drawable/management_cmt"
-                        android:drawablePadding="@dimen/_5sdp"
-                        android:gravity="center|left"
-                        android:text="Management Committee"
-                        android:textSize="@dimen/_12sdp" />
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/NoticeBoard"
+                            style="@style/DefaultCustomTextView"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:layout_toRightOf="@+id/dum11"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:gravity="center|left"
+                            android:text="Notice Board"
+                            android:textSize="@dimen/_12sdp" />
+                    </RelativeLayout>
 
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/dum12"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center|left"
+                            android:src="@drawable/emergency_call" />
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/Emergeny"
+                            style="@style/DefaultCustomTextView"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:layout_toRightOf="@+id/dum12"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:gravity="center|left"
+                            android:text="Emergency Contact"
+                            android:textSize="@dimen/_12sdp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/dum13"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_22sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center|left"
+                            android:src="@drawable/management_cmt" />
+
+
+                        <android.support.v7.widget.AppCompatTextView
+                            android:id="@+id/Management"
+                            style="@style/DefaultCustomTextView"
+                            android:layout_marginLeft="@dimen/_3sdp"
+                            android:layout_toRightOf="@+id/dum13"
+                            android:drawablePadding="@dimen/_5sdp"
+                            android:gravity="center|left"
+                            android:text="Management Committee"
+                            android:textSize="@dimen/_12sdp" />
+                    </RelativeLayout>
 
                 </LinearLayout>
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/FamilyMembers"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/familly"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:text="Family Members"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/VisitorsHistory"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/visitor_history"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:text="Visitors History"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                    <ImageView
+                        android:id="@+id/dum2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/familly" />
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/MyFlat"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/building_samll"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:text="My Flat"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/MyVehicles"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/building_samll"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:text="My Vehicles"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/FamilyMembers"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum2"
+                        android:gravity="center|left"
+                        android:text="Family Members"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </RelativeLayout>
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/Digital"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/digital_inter"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:textColor="@color/black"
-                    android:text="Digital Intercom Settings"
-                    android:textSize="@dimen/_14sdp" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <android.support.v7.widget.AppCompatTextView
-                    android:id="@+id/Logout"
-                    style="@style/DefaultCustomTextView"
-                    android:drawableLeft="@drawable/logout_ic"
-                    android:drawablePadding="@dimen/_5sdp"
-                    android:gravity="center|left"
-                    android:text="Logout"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp" />
+                    <ImageView
+                        android:id="@+id/dum3"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/visitor_history" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/VisitorsHistory"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum3"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center|left"
+                        android:text="Visitors History"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/dum4"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/building_samll" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/MyFlat"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum4"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center|left"
+                        android:text="My Flat"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/dum5"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/building_samll" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/MyVehicles"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum5"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center|left"
+                        android:text="My Vehicles"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/dum6"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/digital_inter" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/Digital"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum6"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center|left"
+                        android:text="Digital Intercom Settings"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/dum7"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:gravity="center|left"
+                        android:src="@drawable/logout_ic" />
+
+                    <android.support.v7.widget.AppCompatTextView
+                        android:id="@+id/Logout"
+                        style="@style/DefaultCustomTextView"
+                        android:layout_marginLeft="@dimen/_3sdp"
+                        android:layout_toRightOf="@+id/dum7"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center|left"
+                        android:text="Logout"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp" />
+                </RelativeLayout>
             </LinearLayout>
             <!--
                 <android.support.v7.widget.RecyclerView

@@ -522,7 +522,6 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
 
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
-
                 JSONObject jsonObject = new JSONObject(jsonString);
                 if (jsonObject.optBoolean("status")) {
                     switch (requestId) {
@@ -535,11 +534,12 @@ public class StaffProfileActivity extends BaseAbstractActivity implements View.O
                             tv_staff_type.setText(staffprofilePojo.getResponse().getDesignation());
                             tv_staff_rating.setText(staffprofilePojo.getResponse().getRating());
                             tv_working_flats.setText(staffprofilePojo.getResponse().getFlats());
+                            if (staffprofilePojo.getResponse().getPasscode() != null)
+                                tv_satff_passcode.setText("Passcode :" + staffprofilePojo.getResponse().getPasscode());
                             if (staffprofilePojo.getResponse().getRating().equalsIgnoreCase("")
                                     || staffprofilePojo.getResponse().getRating().isEmpty()
                                     || staffprofilePojo.getResponse().getRating() == null) {
                                 rating_staff_profile.setRating(Float.parseFloat("0.0"));
-                                tv_satff_passcode.setText("Passcode :" + staffprofilePojo.getResponse().getPasscode());
                             } else {
                                 rating_staff_profile.setRating(Float.parseFloat(staffprofilePojo.getResponse().getRating()));
                             }

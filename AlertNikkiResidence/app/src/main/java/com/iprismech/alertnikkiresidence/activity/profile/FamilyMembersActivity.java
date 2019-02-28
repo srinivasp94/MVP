@@ -23,6 +23,7 @@ import com.iprismech.alertnikkiresidence.response.Family;
 import com.iprismech.alertnikkiresidence.response.FamilyList;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitRequester;
 import com.iprismech.alertnikkiresidence.retrofitnetwork.RetrofitResponseListener;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.Common;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
@@ -97,6 +98,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
 
         fab = findViewById(R.id.fab);
         txtAddFamily = findViewById(R.id.txtAddFamily);
+
         ProfileReq req = new ProfileReq();
         req.userId = SharedPrefsUtils.getInstance(FamilyMembersActivity.this).getId();
         try {
@@ -117,7 +119,7 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
                 Gson gson = new Gson();
                 String jsonString = gson.toJson(objectResponse);
                 JSONObject jsonObject = new JSONObject(jsonString);
-                if (jsonObject.optBoolean("status")) {
+                if (jsonObject.optBoolean("status")==true) {
                     switch (requestId) {
                         case 1:
                             Family family = Common.getSpecificDataObject(objectResponse, Family.class);
@@ -129,8 +131,20 @@ public class FamilyMembersActivity extends BaseAbstractActivity implements Retro
                                 rvSchools.setAdapter(familyAdapter);
                                 familyAdapter.setOnItemClickListener(new FamilyAdapter.OnitemClickListener() {
                                     @Override
-                                    public void onItemClick(View view, int position) {
-                                        deleteFamilyWS(position);
+                                    public void onItemClick(View view, final int position) {
+                                        AlertUtils.showSimpleAlert(FamilyMembersActivity.this, "Are You sure want to delete Family Member ?"
+                                                , "Alert Message", "Delete", "cancel", new AlertUtils.onClicklistners() {
+                                                    @Override
+                                                    public void onpositiveclick() {
+                                                        deleteFamilyWS(position);
+                                                    }
+
+                                                    @Override
+                                                    public void onNegativeClick() {
+
+                                                    }
+                                                });
+
                                     }
                                 });
                             } else {

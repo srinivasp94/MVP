@@ -28,9 +28,11 @@ public class GateServicesActivity extends BaseAbstractActivity implements Retrof
     private ImageView imgClose;
     private TextView txtitle;
 
+    @SuppressLint("WrongConstant")
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_MAIN_NOTIFY_GATE);
         finish();
     }
 
@@ -121,6 +123,7 @@ public class GateServicesActivity extends BaseAbstractActivity implements Retrof
                                                 bundle.putString("Key_ServiceId", serviceList.get(position).id);
                                                 bundle.putString("Key_Screen", "1");
                                                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_EDIT_GATE_SERVICE, bundle);
+                                                finish();
                                                 break;
                                         }
                                     }

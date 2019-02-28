@@ -40,6 +40,8 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
     private ImageView imgClose;
     private TextView txtitle;
     private String mMobile = "";
+    private String sub_Id;
+    private String key_name;
 
 
     @SuppressLint("WrongConstant")
@@ -47,7 +49,7 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
     public void onBackPressed() {
         super.onBackPressed();
         if (screenid.equalsIgnoreCase("1")) {
-            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_VIEW_INVITE_GUEST_SCREEN);
+            ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_INVITE_GUEST_SCREEN);
             finish();
         } else if (screenid.equalsIgnoreCase("3")) {
             Intent intent = new Intent(GuestEditActivity.this, ViewInviteGuestActivity.class);
@@ -159,15 +161,19 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
             contactsList = bundle.getParcelableArrayList("Key_Contacts");
             position = bundle.getInt("Key_Position", 0);
             screenid = bundle.getString("Key_id", "");
+            sub_Id = bundle.getString("Key_Sub_Id", "");
             guestId = bundle.getString("Key_GuestId", "");
             guestName = bundle.getString("Key_Name", "");
             guestPhn = bundle.getString("Key_Mobile", "");
+            key_name = bundle.getString("Key_Name", "");
         }
 
         txtitle = findViewById(R.id.txtitle);
         imgClose = findViewById(R.id.imgClose);
-        txtitle.setText("Edit Guest Details");
-
+        if (key_name.equalsIgnoreCase("OTHERS"))
+            txtitle.setText("Add Guest Details");
+        else
+            txtitle.setText("Edit Guest Details");
 
         edtName = findViewById(R.id.edtname);
         edtMobile = findViewById(R.id.edtMobileNumber);
@@ -181,15 +187,15 @@ public class GuestEditActivity extends BaseAbstractActivity implements View.OnCl
         /*edtName.setText(Name);
         edtMobile.setText(Contact);*/
         //!screenid.equalsIgnoreCase("3") &&
-        if (!screenid.equalsIgnoreCase("1") && contactsList != null && contactsList.size() > 0) {
+        if (!screenid.equalsIgnoreCase("1") && contactsList != null && contactsList.size() > 0 && !sub_Id.equalsIgnoreCase("10")) {
             edtName.setText(contactsList.get(position).getContactName().trim());
-            int len = contactsList.get(position).getContactNumber().trim().length();
+            int len = contactsList.get(position).getContactNumber().replace(" ", "").trim().length();
             int length = 0;
             if (len > 10) {
-                mMobile = contactsList.get(position).getContactNumber().trim().substring(len - 10);
-                edtMobile.setText(mMobile);
+                mMobile = contactsList.get(position).getContactNumber().replace(" ", "").trim().substring(len - 10);
+                edtMobile.setText(mMobile.trim());
             } else
-                edtMobile.setText(contactsList.get(position).getContactNumber().trim());
+                edtMobile.setText(contactsList.get(position).getContactNumber().replace(" ", "").trim());
 //            edtMobile.setText(contactsList.get(position).getContactNumber());
 
         } else {

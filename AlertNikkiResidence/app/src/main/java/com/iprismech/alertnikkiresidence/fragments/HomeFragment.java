@@ -21,6 +21,7 @@ import com.iprismech.alertnikkiresidence.adapters.Slidemenu_adapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractFragment;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
 import com.iprismech.alertnikkiresidence.factories.controllers.ApplicationController;
+import com.iprismech.alertnikkiresidence.utilities.AlertUtils;
 import com.iprismech.alertnikkiresidence.utilities.SharedPrefsUtils;
 
 public class HomeFragment extends BaseAbstractFragment<Class> implements View.OnClickListener {
@@ -118,6 +119,8 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
 
                         drawer_layout.closeDrawer(Gravity.LEFT);
                         ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_PROFILE_SCREEN);
+                        getActivity().finish();
+
                     } else if (i == 1) {
                         drawer_layout.closeDrawer(Gravity.LEFT);
                         //ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTICE_BOARD_SCREEN);
@@ -164,7 +167,19 @@ public class HomeFragment extends BaseAbstractFragment<Class> implements View.On
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_KIDS_NOTIFY_ALERTS);
                 break;
             case R.id.LayoutLocalServices:
-                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOCAL_SERVICE_SCREEN);
+                AlertUtils.showSimpleAlert(getActivity(), "We are coming soon ", "Alert", "Ok", "", new AlertUtils.onClicklistners() {
+                    @Override
+                    public void onpositiveclick() {
+
+                    }
+
+                    @Override
+                    public void onNegativeClick() {
+
+                    }
+                });
+                // coming soon...uncomment below line and delete above alert dialog
+//                ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_LOCAL_SERVICE_SCREEN);
                 break;
             case R.id.iv_notification:
                 ApplicationController.getInstance().handleEvent(AppConstants.EventIds.LAUNCH_NOTIFICATION_SCREEN);

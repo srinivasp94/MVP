@@ -1,8 +1,6 @@
 package com.iprismech.alertnikkiresidence.activity.schoolbus;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +13,6 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.iprismech.alertnikkiresidence.R;
-import com.iprismech.alertnikkiresidence.adapters.ContactViewAdapter;
 import com.iprismech.alertnikkiresidence.adapters.SchoolBusInfoAdapter;
 import com.iprismech.alertnikkiresidence.base.BaseAbstractActivity;
 import com.iprismech.alertnikkiresidence.factories.Constants.AppConstants;
@@ -48,6 +45,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
     private ImageView imgClose;
     private TextView txtitle;
     private boolean isActive;
+    private Switch aSwitch;
 
     @Override
     public void onBackPressed() {
@@ -147,7 +145,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                                 relativeLayout.setVisibility(View.VISIBLE);
                                 busInfoAdapter = new SchoolBusInfoAdapter(SchoolBus_MainActivity.this, schoolBusLists);
                                 rvSchools.setAdapter(busInfoAdapter);
-                                busInfoAdapter.setOnItemClickListener(new ContactViewAdapter.OnitemClickListener() {
+                                busInfoAdapter.setOnItemClickListener(new SchoolBusInfoAdapter.OnitemClickListener() {
                                     @SuppressLint("WrongConstant")
                                     @Override
                                     public void onItemClick(View view, int position) {
@@ -161,7 +159,7 @@ public class SchoolBus_MainActivity extends BaseAbstractActivity implements View
                                                 break;
                                             case R.id.busSwitch:
                                                 //updateuser_schoolbus_notificationstatus
-                                                Switch aSwitch = view.findViewById(R.id.busSwitch);
+                                                aSwitch = view.findViewById(R.id.busSwitch);
                                                 isActive = aSwitch.isChecked();
                                                 callnotifyOnOff(position, isActive);
                                                 break;
